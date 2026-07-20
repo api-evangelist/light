@@ -1,0 +1,104 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.light.inc/getting-started/authentication
+docs: https://docs.light.inc/getting-started/authentication
+spec_source: openapi/light-openapi-original.json
+note: >-
+  Upgraded from derived to searched: the OpenAPI declares only apiKey + bearer, but the
+  documentation publishes a full OAuth 2.0 authorization-code flow (with authorize/token
+  endpoints and refresh-token rotation) that the spec omits.
+
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+  transport: HTTPS required — calls made over plain HTTP fail.
+
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  scheme: Basic
+  example: 'Authorization: Basic [example key]'
+  description: >-
+    Basic authentication header of the form "Basic <api_key>", where <api_key> is your API key.
+  provisioning: >-
+    Log in to Light, navigate to Settings > API Keys and click Create Key. The generated key is
+    shown once and must be stored securely.
+  authorization_model: >-
+    API keys are linked to roles the same way user accounts are; the roles assigned to the key
+    determine what actions it can perform.
+  sources:
+  - openapi/light-openapi-original.json
+  - https://docs.light.inc/getting-started/authentication
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  example: 'Authorization: Bearer [example key]'
+  description: OAuth 2.0 access token presented as a bearer JWT.
+  sources:
+  - openapi/light-openapi-original.json
+  - https://docs.light.inc/getting-started/authentication
+- name: oauth2
+  type: oauth2
+  documented_only: true
+  enablement: >-
+    Contact Light support at help@light.inc to set up your account for the OAuth 2.0 flow.
+    You receive a client_id and client_secret and register a redirect URI.
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.light.inc/oauth/authorize
+    tokenUrl: https://api.light.inc/oauth/token
+    refreshUrl: https://api.light.inc/oauth/token
+    parameters:
+    - client_id
+    - redirect_uri
+    - state
+    token_request_content_type: application/x-www-form-urlencoded
+    grant_types:
+    - authorization_code
+    - refresh_token
+    scopes: {}
+    scopes_documented: false
+  token_response_fields:
+  - access_token
+  - refresh_token
+  - expires_in
+  refresh_token_rotation: true
+  refresh_token_notes: >-
+    The refresh response returns a NEW access_token, refresh_token and expires_in. The old
+    refresh token is invalidated after use, so stored refresh tokens must be updated.
+  operations:
+  - startOAuthAuthorizationFlow
+  - getOAuthToken
+  identity_provider:
+    vendor: Auth0
+    evidence: >-
+      A live GET to https://api.light.inc/oauth/authorize?client_id=...&redirect_uri=... returns
+      an authorization page whose stylesheets load from cdn.auth0.com, indicating the OAuth
+      authorization surface is backed by Auth0.
+    probed: '2026-07-19'
+  parameter_naming_note: >-
+    Calling /oauth/authorize with no parameters returns
+    {"type":"MISSING_PARAMETER","message":"Missing parameter 'redirectUri'"} — camelCase — but
+    the documented snake_case redirect_uri is what the endpoint actually accepts (it renders the
+    authorization page). The error message wording does not match the accepted parameter name.
+  sources:
+  - https://docs.light.inc/getting-started/authentication
+
+client_requirements:
+- Follow HTTP redirects AND forward the Authorization header, as some endpoints redirect to other URLs.
+- Send all requests over HTTPS.
+
+scopes:
+  published: false
+  notes: >-
+    Light documents no OAuth scope surface — access is governed by the roles attached to the
+    API key or user account, not by per-token scopes. No scopes/ artifact is emitted.
