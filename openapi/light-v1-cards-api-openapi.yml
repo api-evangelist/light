@@ -1,0 +1,1081 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Cards API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Cards
+paths:
+  /v1/cards:
+    get:
+      tags:
+      - v1 - Cards
+      summary: List cards
+      description: Returns a paginated list of cards
+      operationId: listCards
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `accountId`, `status`, `createdAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `cardBalanceAccountId`, `status`, `type`, `createdAt`, `updatedAt`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalBffCardV1Model'
+    post:
+      tags:
+      - v1 - Cards
+      summary: Create card
+      description: Creates a new card. Use metadata type 'VENDOR' for vendor cards or 'EMPLOYEE' for employee cards.
+      operationId: createCard
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateCardRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCardV1Model'
+  /v1/cards/{cardId}/freeze:
+    post:
+      tags:
+      - v1 - Cards
+      summary: Freeze card
+      description: Freezes a card to block transactions
+      operationId: freezeCard
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCardV1Model'
+  /v1/cards/{cardId}:
+    get:
+      tags:
+      - v1 - Cards
+      summary: Get card
+      description: Returns a card by ID
+      operationId: getCard
+      parameters:
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalBffCardV1Model'
+  /v1/cards/{cardId}/unfreeze:
+    post:
+      tags:
+      - v1 - Cards
+      summary: Unfreeze card
+      description: Unfreezes a card to allow transactions. For physical cards, this confirms the cardholder is in possession of the card.
+      operationId: unfreezeCard
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      - name: cardId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCardV1Model'
+components:
+  schemas:
+    ExternalPaginatedResponseV1ModelExternalBffCardV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalBffCardV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalCardDeliveryAddressV1Model:
+      type: object
+      properties:
+        street:
+          type: string
+          description: Street name (maps to Adyen `address.line1`).
+        houseNumberOrName:
+          type: string
+          description: House number, building, apartment, or suite (maps to Adyen `address.line2`).
+        city:
+          type: string
+          description: City.
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+        country:
+          type: string
+          description: 'ISO 3166-1 alpha-2 country code (e.g. `DK`, `US`, `GB`).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        stateOrProvince:
+          type: string
+          description: State, province, or region. **Required** when `country` is `US` or `CA`; requests without it are rejected with `PHYSICAL_CARD_STATE_OR_PROVINCE_REQUIRED`. Optional for other countries.
+          nullable: true
+      description: Postal address the card is shipped to. Country must be an ISO 3166-1 alpha-2 code; `stateOrProvince` is required for US and CA destinations.
+    ExternalCardAuthenticationV1Model:
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        email:
+          type: string
+          description: Email address for 3D Secure authentication.
+          nullable: true
+      description: 3D Secure authentication details for the card.
+    ExternalCreateCardLimitRequestV1Model:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Spending limit amount in minor units (e.g., cents).
+          format: int64
+        currency:
+          type: string
+          example: USD
+        interval:
+          type: string
+          description: 'Interval for the spending limit (PER_TRANSACTION, WEEKLY, or MONTHLY).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - PER_TRANSACTION
+          - WEEKLY
+          - MONTHLY
+      description: Optional spending limits for this card.
+      nullable: true
+    ExternalCreateCardMetadataV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
+      description: Card type metadata. Use type 'VENDOR' with vendorId for vendor cards, or type 'EMPLOYEE' with employeeId for employee cards.
+      discriminator:
+        propertyName: type
+    ExternalCardLimitV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        cardId:
+          type: string
+          format: uuid
+        amount:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          example: USD
+        interval:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PER_TRANSACTION
+          - WEEKLY
+          - MONTHLY
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PhoneNumber:
+      type: object
+      properties:
+        countryCode:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        localNumber:
+          type: string
+      description: Vendor phone number.
+      nullable: true
+    ExternalCard3DsMetadataV1Model:
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        password:
+          type: string
+        email:
+          type: string
+    ExternalCardV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        ownerId:
+          type: string
+          format: uuid
+        cardBalanceAccountId:
+          type: string
+          format: uuid
+        form:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PHYSICAL
+          - VIRTUAL
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - FROZEN
+          - CLOSED
+          - UPDATE_IN_PROGRESS
+        metadata:
+          $ref: '#/components/schemas/ExternalCardMetadataV1Model'
+        threeDs:
+          $ref: '#/components/schemas/ExternalCard3DsMetadataV1Model'
+        description:
+          type: string
+        bin:
+          type: string
+        lastFour:
+          type: string
+        cardholderName:
+          type: string
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCardLimitV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
+    ExternalCreateCardRequestV1Model:
+      type: object
+      properties:
+        balanceAccountId:
+          type: string
+          description: ID of the card balance account to associate with this card.
+          format: uuid
+        ownerId:
+          type: string
+          description: ID of the user who will own/manage this card.
+          format: uuid
+        metadata:
+          $ref: '#/components/schemas/ExternalCreateCardMetadataV1Model'
+        description:
+          type: string
+          description: Optional description or memo for this card.
+          nullable: true
+        authentication:
+          $ref: '#/components/schemas/ExternalCardAuthenticationV1Model'
+        limits:
+          type: array
+          description: Optional spending limits for this card.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCreateCardLimitRequestV1Model'
+        formFactor:
+          type: string
+          description: 'Card form factor. Defaults to `VIRTUAL` when omitted. `PHYSICAL` ships a plastic card and requires `deliveryContact` to be set. `VIRTUAL` must be sent with `deliveryContact` left null. Mismatches are rejected with `PHYSICAL_CARD_DELIVERY_CONTACT_REQUIRED` or `VIRTUAL_CARD_DELIVERY_CONTACT_NOT_ALLOWED`.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - PHYSICAL
+          - VIRTUAL
+        deliveryContact:
+          $ref: '#/components/schemas/ExternalCardDeliveryContactV1Model'
+    ExternalCardDeliveryContactV1Model:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/ExternalCardDeliveryAddressV1Model'
+        name:
+          $ref: '#/components/schemas/ExternalCardDeliveryContactNameV1Model'
+        company:
+          type: string
+          description: Company or department name on the shipping label.
+          nullable: true
+        email:
+          type: string
+          description: Contact email for delivery notifications.
+          nullable: true
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+      description: Recipient and address used by the card issuer to ship the physical card. Only `address` and `name` are required.
+      nullable: true
+    ExternalBffCardV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyEntityName:
+          type: string
+        companyId:
+          type: string
+          format: uuid
+        ownerId:
+          type: string
+          format: uuid
+        ownerName:
+          type: string
+        cardBalanceAccountId:
+          type: string
+          format: uuid
+        cardBalanceAccountLabel:
+          type: string
+        currency:
+          type: string
+          example: USD
+        form:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PHYSICAL
+          - VIRTUAL
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - FROZEN
+          - CLOSED
+          - UPDATE_IN_PROGRESS
+        metadata:
+          $ref: '#/components/schemas/ExternalCardMetadataV1Model'
+        threeDs:
+          $ref: '#/components/schemas/ExternalCard3DsMetadataV1Model'
+        vendorId:
+          type: string
+          format: uuid
+        vendorName:
+          type: string
+        vendorAvatarUrl:
+          type: string
+        description:
+          type: string
+        bin:
+          type: string
+        lastFour:
+          type: string
+        cardholderName:
+          type: string
+        limitIntervalSpend:
+          type: integer
+          format: int64
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCardLimitV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
+      description: List of records for the current page
+    ExternalCardDeliveryContactNameV1Model:
+      type: object
+      properties:
+        firstName:
+          type: string
+          description: Recipient first name.
+        lastName:
+          type: string
+          description: Recipient last name.
+      description: Name printed on the shipping label.
+    ExternalCardMetadataV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
+      discriminator:
+        propertyName: type
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

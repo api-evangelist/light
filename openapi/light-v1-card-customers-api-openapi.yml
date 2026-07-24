@@ -1,0 +1,50 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Card Customers API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Card Customers
+paths:
+  /v1/card-customers/public-key:
+    get:
+      tags:
+      - v1 - Card Customers
+      summary: Get card integration public key
+      description: Returns the public key for the cards integration service
+      operationId: getPublicKey
+      parameters:
+      - name: companyEntityId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCardPublicKeyInfoV1Model'
+components:
+  schemas:
+    ExternalCardPublicKeyInfoV1Model:
+      type: object
+      properties:
+        publicKey:
+          type: string
+        expiryDate:
+          type: string
+          format: date
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

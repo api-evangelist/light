@@ -1,0 +1,3762 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Invoice Payables API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Invoice Payables
+paths:
+  /v1/bff/invoice-payables:
+    get:
+      tags:
+      - v1 - Invoice Payables
+      summary: List invoice payables
+      description: Returns a paginated list of invoice payables
+      operationId: listInvoicePayables
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `amount`, `canceledAt`, `companyEntityName`, `description`, `dueDate`, `fromAccountName`, `createdAt`, `invoiceNumber`, `issuedDate`, `ocrCompletedAt`, `paymentAt`, `senderEmail`, `state`, `vendorName`, `businessPartnerName`, `nextApproverName`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `approverUserId`, `id`, `vendorId`, `userId`, `companyEntityId`, `senderBankAccountId`, `amount`, `description`, `documentNumber`, `dueDate`, `issuedDate`, `paymentAt`, `createdAt`, `updatedAt`, `state`, `vendorName`, `userFirstName`, `userLastName`, `type`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      - name: include
+        in: query
+        schema:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+            enum:
+            - REIMBURSEMENT
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalBffInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/approve:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Approve invoice payable
+      description: Approves an invoice payable for payment processing
+      operationId: approveInvoicePayable
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalApproveInvoicePayableRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/cancel:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Cancel invoice payable
+      description: Cancels an invoice payable
+      operationId: cancelInvoicePayable
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCancelInvoicePayableRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Create invoice payable
+      description: Creates a new invoice payable document. Supports inline line items via the `lineItems` field for single-request creation.
+      operationId: createInvoicePayableDetails
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateInvoicePayableRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/document/upload-url:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Generate document upload URL
+      description: Generates a secure upload URL for invoice payable documents
+      operationId: createInvoicePayableDocumentUploadUrl
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUploadInvoicePayableDocumentRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableUploadUrlResponseV1Model'
+  /v1/invoice-payables/{invoicePayableId}/line-items:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Create invoice payable line item
+      description: Creates an invoice payable line item
+      operationId: createInvoicePayableLineItem
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateInvoicePayableLineItemRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableLineItemV1Model'
+  /v1/invoice-payables/{invoicePayableId}/decline:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Decline invoice payable
+      description: Declines an invoice payable
+      operationId: declineInvoicePayable
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalDeclineInvoicePayableRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/line-items/{lineItemId}:
+    get:
+      tags:
+      - v1 - Invoice Payables
+      summary: Get invoice payable line item
+      description: Gets an invoice payable line item
+      operationId: getInvoicePayableLineItem
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableLineItemV1Model'
+    put:
+      tags:
+      - v1 - Invoice Payables
+      summary: Update invoice payable line item
+      description: Updates an invoice payable line item
+      operationId: updateInvoicePayableLineItem
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateInvoicePayableLineItemRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableLineItemV1Model'
+    delete:
+      tags:
+      - v1 - Invoice Payables
+      summary: Delete invoice payable line item
+      description: Deletes an invoice payable line item
+      operationId: deleteInvoicePayableLineItem
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8: {}
+  /v1/invoice-payables/{invoicePayableId}:
+    get:
+      tags:
+      - v1 - Invoice Payables
+      summary: Get invoice payable
+      description: Returns a specific invoice payable by ID
+      operationId: getInvoicePayableDetails
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: includeOutstandingBalance
+        in: query
+        schema:
+          type: boolean
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+    patch:
+      tags:
+      - v1 - Invoice Payables
+      summary: Update invoice payable
+      description: Updates an existing invoice payable document header
+      operationId: updateInvoicePayable
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateInvoicePayablePatchRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/document:
+    get:
+      tags:
+      - v1 - Invoice Payables
+      summary: Get invoice document
+      description: Returns the attached document for an invoice payable
+      operationId: getInvoicePayableDocument
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: documentType
+        in: query
+        schema:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ORIGINAL
+          - GENERATED
+      responses:
+        default:
+          description: default response
+          content:
+            application/pdf: {}
+  /v1/invoice-payables/{invoicePayableId}/credit-notes:
+    get:
+      tags:
+      - v1 - Invoice Payables
+      summary: Get linked credit notes
+      description: Returns all credit notes linked to the invoice payable
+      operationId: getLinkedCreditNotes
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalCreditNoteInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/payments:
+    get:
+      tags:
+      - v1 - Invoice Payables
+      summary: List invoice payable payments
+      description: Returns all clearings (bank payments and credit notes) linked to the invoice payable. Each entry carries a `type` discriminator (`BP` for bank payments, `CN` for credit notes) so consumers can filter client-side if only one kind is needed. Reversed clearings are excluded.
+      operationId: listInvoicePayablePayments
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalInvoicePayablePaymentV1Model'
+  /v1/invoice-payables/{invoicePayableId}/mark-as-paid:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Mark invoice payable as paid
+      description: Marks an invoice payable as paid by recording a bank payment that clears it. Use `paymentOption=FULL` to clear the remaining outstanding balance, or `paymentOption=PARTIAL` to record an installment. The invoice transitions to `PAID` (full) or `PARTIALLY_PAID` (partial).
+      operationId: markInvoicePayableAsPaid
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalMarkInvoicePayableAsPaidRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/post:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Post invoice payable without approval
+      description: Posts an invoice payable directly to the ledger without going through the approval workflow. The invoice must be in `IN_DRAFT` state. After posting, linked credit notes are applied and unlinked credit notes may be auto-allocated. If the invoice is fully cleared by credit notes, it transitions to `COMPLETED`; otherwise it transitions to `UNPAID`.
+      operationId: postInvoicePayable
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/reverse-clearing:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Reverse invoice payable payment
+      description: Reverses a clearing applied to an invoice payable — either a bank payment (`BP`) or a credit note (`CN`) — identified by its accounting document ID. Use the `List invoice payable payments` endpoint to obtain the `accountingDocumentId` and `type` of the clearing to reverse. Reversing removes the clearing's effect from the ledger and transitions the invoice back to `UNPAID` or `PARTIALLY_PAID` depending on the remaining outstanding balance. Optionally set `shouldArchiveClearingDocument` to also archive the underlying bank payment or credit note.
+      operationId: reverseInvoicePayableClearing
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalReverseInvoicePayableClearingRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/submit-for-approval:
+    post:
+      tags:
+      - v1 - Invoice Payables
+      summary: Submit for approval
+      description: Submits an invoice for approval
+      operationId: submitInvoicePayableForApproval
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalSubmitForApprovalRequestV1Model'
+      responses:
+        '200':
+          description: 'Invoice approval submitted successfully. The invoice state will change to `APPROVAL_REQUESTED`. You must poll the invoice to check when it changes to `APPROVAL_PENDING`.
+
+            If the invoice fails to submit for approval, the state will change back to `IN_DRAFT` and the `failureContext` field will be populated with the error details.'
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+  /v1/invoice-payables/{invoicePayableId}/custom-properties:
+    patch:
+      tags:
+      - v1 - Invoice Payables
+      summary: Update the custom properties of a posted invoice payable
+      description: Replaces all custom fields on an invoice payable after it has been posted/approved (e.g. ready for payment release, scheduled, unpaid, partially paid, completed). Any custom property group not included in the request is removed. Use this to set fields such as a reconciliation link once the invoice has left the inbox. Editing is locked while approval is actively pending.
+      operationId: updateInvoicePayableCustomProperties
+      parameters:
+      - name: invoicePayableId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateInvoicePayableCustomPropertiesRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalInvoicePayableV1Model'
+components:
+  schemas:
+    ExternalPropertyObjectValueV1Model:
+      type: object
+      properties:
+        propertyId:
+          type: string
+          format: uuid
+        value:
+          type: string
+        valueId:
+          type: string
+          format: uuid
+    ExternalInvoicePayableLineItemV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the invoice payable line item.
+          format: uuid
+        invoicePayableId:
+          type: string
+          description: ID of the invoice payable this line item belongs to.
+          format: uuid
+        type:
+          type: string
+          description: 'Type of the invoice payable line item (vendor invoice or reimbursement).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - REIMBURSEMENT
+          - VENDOR_INVOICE
+        metadata:
+          $ref: '#/components/schemas/ExternalInvoicePayableLineItemMetadataV1Model'
+        amount:
+          type: integer
+          description: Amount in cents, including tax. When `lineItemsIncludeTax` is true, `amount` represents the full tax-inclusive amount for this line.
+          format: int64
+          nullable: true
+        netAmount:
+          type: integer
+          description: Net line amount in cents, excluding tax. When `lineItemsIncludeTax` is false, `netAmount` represents the base amount on which tax is calculated.
+          format: int64
+          nullable: true
+        description:
+          type: string
+          description: Description of this invoice payable line item.
+          nullable: true
+        taxCodeId:
+          type: string
+          description: ID of the tax code applied to this line item.
+          format: uuid
+          nullable: true
+        taxAmount:
+          type: integer
+          description: Tax amount in cents for this line item.
+          format: int64
+          nullable: true
+        accountId:
+          type: string
+          description: ID of the ledger account used to book this line item.
+          format: uuid
+          nullable: true
+        costCenterId:
+          type: string
+          description: ID of the cost center associated with this line item, if applicable.
+          format: uuid
+          nullable: true
+        amortizationStartDate:
+          type: string
+          description: Start date for amortization of this line item.
+          format: date
+          nullable: true
+        amortizationEndDate:
+          type: string
+          description: End date for amortization of this line item.
+          format: date
+          nullable: true
+        amortizationTemplateId:
+          type: string
+          description: ID of the amortization template to use for this line item within Light Ledger.
+          format: uuid
+          nullable: true
+        customPropertiesOld:
+          $ref: '#/components/schemas/ExternalCustomPropertiesObjectValuesV1Model'
+        aiValueSuggestions:
+          type: array
+          description: AI-generated suggestions for line item values (e.g. account, cost center, tax code).
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalAiValueSuggestionV1Model'
+        customProperties:
+          type: array
+          description: Custom properties set on this invoice payable line item.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        createdAt:
+          type: string
+          description: Timestamp when this invoice payable line item was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when this invoice payable line item was last updated.
+          format: date-time
+    ExternalInvoicePayablePaymentCreditNoteEntryV1Model:
+      title: Credit note
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ExternalInvoicePayablePaymentEntryV1Model'
+      - type: object
+        properties:
+          accountingDocumentId:
+            type: string
+            description: ID of the accounting document
+            format: uuid
+          amount:
+            type: integer
+            description: Credit note amount in smallest denomination
+            format: int64
+            nullable: true
+          documentNumber:
+            type: string
+            description: Document number
+            nullable: true
+    ExternalApproveInvoicePayableRequestV1Model:
+      type: object
+      properties:
+        note:
+          type: string
+          description: Optional note.
+          nullable: true
+    ExternalInvoicePayableLineItemMetadataV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'Type of the invoice payable line item (vendor invoice or reimbursement).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - REIMBURSEMENT
+          - VENDOR_INVOICE
+      description: Metadata for the invoice payable line item (ERP-specific fields and context).
+      discriminator:
+        propertyName: type
+    ExternalUpdateInvoicePayableCustomPropertiesRequestV1Model:
+      type: object
+      properties:
+        customProperties:
+          type: array
+          description: 'The full set of custom properties for the invoice payable. This replaces all existing custom properties: any group not included is removed, and sending an empty `valueIds`/`inlineValues` for a group clears that group. Can be used after the invoice has been posted/approved.'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalInvoicePayablePaymentEntryV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: '- `BP` - Bank payment
+
+            - `CN` - Credit note
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          enum:
+          - BP
+          - CN
+      description: Type of payment entry for an invoice payable payment
+      nullable: true
+      discriminator:
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/ExternalInvoicePayablePaymentBankPaymentEntryV1Model'
+      - $ref: '#/components/schemas/ExternalInvoicePayablePaymentCreditNoteEntryV1Model'
+    ExternalMarkInvoicePayableAsPaidRequestV1Model:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount paid in cents, in the invoice's currency. Must be greater than zero.
+          format: int64
+        bankAccountId:
+          type: string
+          description: ID of the bank account the payment was made from.
+          format: uuid
+        paymentAt:
+          type: string
+          description: Date/time the payment was made. Defaults to now if omitted.
+          format: date-time
+          nullable: true
+        comment:
+          type: string
+          description: Optional comment describing the payment.
+          nullable: true
+        paymentOption:
+          type: string
+          description: 'Whether to mark the invoice as fully paid or partially paid. Use `FULL` to clear the remaining outstanding balance regardless of `amount`, or `PARTIAL` to record an installment.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - FULL
+          - PARTIAL
+    ExternalCreateInvoicePayableRequestV1Model:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          description: ID of the vendor.
+          format: uuid
+          nullable: true
+        amount:
+          type: integer
+          description: Invoice total amount in cents.
+          format: int64
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+          example: USD
+        processingMode:
+          type: string
+          description: 'How the invoice should be processed (skip AI Parse or AI Parse + merge).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - DATA_ONLY
+          - AI_PARSE_AND_MERGE
+        companyEntityId:
+          type: string
+          description: ID of the company entity.
+          format: uuid
+          nullable: true
+        invoiceNumber:
+          type: string
+          description: Invoice number.
+          nullable: true
+        description:
+          type: string
+          description: Invoice description.
+          nullable: true
+        issuedDate:
+          type: string
+          description: Issue date of the original vendor invoice.
+          format: date
+          nullable: true
+        dueDate:
+          type: string
+          description: Payment due date of the invoice payable.
+          format: date
+          nullable: true
+        paymentAt:
+          type: string
+          description: Date/time when payment is scheduled or was executed for this invoice payable.
+          format: date-time
+          nullable: true
+        senderBankAccountId:
+          type: string
+          description: ID of the sender bank account from which this invoice payable will be paid.
+          format: uuid
+          nullable: true
+        lineItemsIncludeTax:
+          type: boolean
+          description: Whether invoice line item amounts are entered as tax-inclusive. When true, line item `amount` is expected to be the gross amount including tax; when false, line item `netAmount` is expected to be the base amount excluding tax.
+          nullable: true
+        lineItems:
+          type: array
+          description: List of line items to create with the invoice. This allows creating the invoice header and its line items in a single request.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCreateInvoicePayableLineItemRequestV1Model'
+        customProperties:
+          type: array
+          description: List of custom properties to set on the invoice.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        localCurrencyFxRateOverride:
+          type: number
+          description: Custom FX rate for the ledger's local currency. If not provided, Light uses official ECB rates.
+          nullable: true
+        groupCurrencyFxRateOverride:
+          type: number
+          description: Custom FX rate for the ledger's group currency. If not provided, Light uses official ECB rates.
+          nullable: true
+    ExternalUpdateInvoicePayablePatchRequestV1Model:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          description: ID of the vendor.
+          format: uuid
+          nullable: true
+        companyEntityId:
+          type: string
+          description: ID of the company entity.
+          format: uuid
+          nullable: true
+        invoiceNumber:
+          type: string
+          description: Invoice number.
+          nullable: true
+        amount:
+          type: integer
+          description: Invoice total amount in cents.
+          format: int64
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+          example: USD
+        description:
+          type: string
+          description: Invoice description.
+          nullable: true
+        senderBankAccountId:
+          type: string
+          description: ID of the sender bank account from which this invoice payable will be paid.
+          format: uuid
+          nullable: true
+        fiNumber:
+          type: string
+          description: FI (Finnish reference) number associated with this invoice payable, if applicable.
+          nullable: true
+        norKidReference:
+          type: string
+          description: Norwegian KID reference associated with this invoice payable, if applicable.
+          nullable: true
+        swissPaymentReference:
+          type: string
+          description: Swiss payment reference (QR-Reference or Creditor Reference/SCOR) associated with this invoice payable, if applicable.
+          nullable: true
+        paymentAt:
+          type: string
+          description: Date/time when payment is scheduled or was executed for this invoice payable.
+          format: date-time
+          nullable: true
+        issuedDate:
+          type: string
+          description: Issue date of the original vendor invoice.
+          format: date
+          nullable: true
+        dueDate:
+          type: string
+          description: Payment due date of the invoice payable.
+          format: date
+          nullable: true
+        approvalNote:
+          type: string
+          description: Note used during approval workflow.
+          nullable: true
+        purchaseOrderId:
+          type: string
+          description: ID of the purchase order linked to this invoice payable, if any.
+          format: uuid
+          nullable: true
+        lineItemsIncludeTax:
+          type: boolean
+          description: Whether invoice line item amounts are entered as tax-inclusive. When true, line item `amount` is expected to be the gross amount including tax; when false, line item `netAmount` is expected to be the base amount excluding tax.
+          nullable: true
+        customProperties:
+          type: array
+          description: List of custom properties to set on the invoice.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        localCurrencyFxRateOverride:
+          type: number
+          description: Custom FX rate for the ledger's local currency. If not provided, Light uses official ECB rates.
+          nullable: true
+        groupCurrencyFxRateOverride:
+          type: number
+          description: Custom FX rate for the ledger's group currency. If not provided, Light uses official ECB rates.
+          nullable: true
+    ExternalSetCustomPropertyRequestV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type: array
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          nullable: true
+          items:
+            type: string
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+            nullable: true
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+      nullable: true
+    ExternalInvoicePayableV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: External ID of the invoice payable object.
+          format: uuid
+        type:
+          type: string
+          description: 'Type of the invoice payable (e.g. vendor invoice or reimbursement).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - REIMBURSEMENT
+          - VENDOR_INVOICE
+        metadata:
+          $ref: '#/components/schemas/ExternalInvoicePayableMetadataV1Model'
+        invoicePayableId:
+          type: string
+          description: Internal ID of the underlying invoice payable record.
+          format: uuid
+        companyId:
+          type: string
+          description: ID of the company this invoice payable belongs to.
+          format: uuid
+        state:
+          type: string
+          description: 'Current state of the invoice payable in its lifecycle (from ingestion to payment/completion).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - INIT
+          - CREATED
+          - IN_DRAFT
+          - APPROVAL_REQUESTED
+          - APPROVAL_PENDING
+          - APPROVED_ACCOUNTING_ENTRY_PENDING
+          - DECLINED
+          - READY_FOR_PAYMENT_RELEASE
+          - PENDING_PAYMENT_APPROVAL
+          - PAYMENT_PAUSED
+          - SCHEDULED
+          - PAYMENT_PENDING
+          - PARTIALLY_PAID
+          - UNPAID
+          - PAID
+          - COMPLETED
+          - RESET_PENDING
+          - CANCELLATION_PENDING
+          - CANCELLED
+          - DUPLICATED
+          - IMPORT_PENDING
+        failureReason:
+          type: string
+          description: 'High-level reason why processing the invoice payable failed, if any.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - EMAIL_NOT_ALLOWED
+          - ERP_ENTRY_FAILED
+          - OCR_FAILED
+          - PAYMENT_APPROVAL_DECLINED
+          - PAYMENT_FAILED
+          - RESETTING_INVOICE_FAILED
+          - APPROVAL_SUBMISSION_FAILED
+          - USER_INPUT_VALIDATION_FAILED
+          - DUPLICATE_INVOICE
+          - PAYMENT_REJECTED
+        failureContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        warningContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        approvalNote:
+          type: string
+          description: Approval note associated with the invoice payable (e.g. approver comments).
+          nullable: true
+        cancellationReason:
+          type: string
+          description: Reason why the invoice payable was cancelled, if applicable.
+          nullable: true
+        payeeName:
+          type: string
+          description: Name of the payee for this invoice payable.
+          nullable: true
+        payeeIban:
+          type: string
+          description: Payee IBAN used for payment of this invoice payable.
+          nullable: true
+        payeeBban:
+          type: string
+          description: Payee BBAN (Basic Bank Account Number) used for local payments.
+          nullable: true
+        payeeBic:
+          type: string
+          description: Payee bank BIC/SWIFT code.
+          nullable: true
+        payeeBankCode:
+          type: string
+          description: Payee bank/branch code used for local payments.
+          nullable: true
+        payeeSwedishBankgiroNumber:
+          type: string
+          description: Payee Swedish Bankgiro number, if applicable.
+          nullable: true
+        payeeSwedishPlusgiroNumber:
+          type: string
+          description: Payee Swedish Plusgiro number, if applicable.
+          nullable: true
+        payeeCountry:
+          type: string
+          description: 'Country of the payee.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        payeeAddress:
+          type: string
+          description: Street address of the payee.
+          nullable: true
+        payeeZipcode:
+          type: string
+          description: ZIP/postal code of the payee.
+          nullable: true
+        payeeBankName:
+          type: string
+          description: Name of the payee's bank.
+          nullable: true
+        payeeBankCountry:
+          type: string
+          description: 'Country of the payee''s bank.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        payeeBankAddress:
+          type: string
+          description: Street address of the payee's bank.
+          nullable: true
+        payeeBankZipcode:
+          type: string
+          description: ZIP/postal code of the payee's bank.
+          nullable: true
+        payeeCity:
+          type: string
+          description: City of the payee.
+          nullable: true
+        payeeBankCity:
+          type: string
+          description: City of the payee's bank.
+          nullable: true
+        vendorId:
+          type: string
+          description: ID of the vendor entity this invoice payable is linked to, if any.
+          format: uuid
+          nullable: true
+        vendorDetailsOcr:
+          $ref: '#/components/schemas/ExternalInvoicePayableVendorDetailsOcrV1Model'
+        companyEntityId:
+          type: string
+          description: ID of the company entity this invoice payable is booked under.
+          format: uuid
+          nullable: true
+        invoiceNumber:
+          type: string
+          description: Invoice number provided on the vendor invoice.
+          nullable: true
+        amount:
+          type: integer
+          description: Total invoice amount in cents, expressed in the invoice currency.
+          format: int64
+          nullable: true
+        outstandingBalance:
+          type: integer
+          description: Outstanding invoice balance to be paid in cents, expressed in the invoice currency.
+          format: int64
+          nullable: true
+        currency:
+          type: string
+          example: USD
+        description:
+          type: string
+          description: Description or memo for the invoice payable.
+          nullable: true
+        senderBankAccountId:
+          type: string
+          description: ID of the sender bank account from which this invoice payable will be paid.
+          format: uuid
+          nullable: true
+        fiNumber:
+          type: string
+          description: FI (Finnish reference) number associated with this invoice payable, if applicable.
+          nullable: true
+        norKidReference:
+          type: string
+          description: Norwegian KID reference associated with this invoice payable, if applicable.
+          nullable: true
+        swissPaymentReference:
+          type: string
+          description: Swiss payment reference (QR-Reference or Creditor Reference/SCOR) associated with this invoice payable, if applicable.
+          nullable: true
+        paymentAt:
+          type: string
+          description: Date/time when payment is scheduled or was executed for this invoice payable.
+          format: date-time
+          nullable: true
+        ocrCompletedAt:
+          type: string
+          description: Timestamp when OCR processing for this invoice payable was completed.
+          format: date-time
+          nullable: true
+        canceledAt:
+          type: string
+          description: Timestamp when this invoice payable was cancelled.
+          format: date-time
+          nullable: true
+        issuedDate:
+          type: string
+          description: Issue date of the original vendor invoice.
+          format: date
+          nullable: true
+        dueDate:
+          type: string
+          description: Payment due date of the invoice payable.
+          format: date
+          nullable: true
+        invoiceCreatedAt:
+          type: string
+          description: Timestamp when the invoice payable record was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the invoice payable record was last updated.
+          format: date-time
+        purchaseOrderId:
+          type: string
+          description: ID of the purchase order linked to this invoice payable, if any.
+          format: uuid
+          nullable: true
+        lineItemsIncludeTax:
+          type: boolean
+          description: Whether invoice line item amounts are entered as tax-inclusive. When true, line item `amount` is expected to be the gross amount including tax; when false, line item `netAmount` is expected to be the base amount excluding tax.
+        localCurrencyFxRate:
+          type: number
+          description: Foreign exchange rate to the ledger's local currency. If null, the system uses its default FX source.
+          nullable: true
+        groupCurrencyFxRate:
+          type: number
+          description: Foreign exchange rate to the ledger's group currency. If null, the system uses its default FX source.
+          nullable: true
+        lineItems:
+          type: array
+          description: List of line items belonging to this invoice payable.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalInvoicePayableLineItemV1Model'
+        customProperties:
+          type: array
+          description: Custom properties set on the invoice payable header.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        paymentPausedBy:
+          type: string
+          description: ID of the user who paused payment for this invoice payable, if payment is paused.
+          format: uuid
+          nullable: true
+        paymentPausedAt:
+          type: string
+          description: Timestamp when payment for this invoice payable was paused, if applicable.
+          format: date-time
+          nullable: true
+        senderEmail:
+          type: string
+          description: Email address from which the invoice payable was received, if known.
+          nullable: true
+        documentName:
+          type: string
+          description: Name of the original document file associated with this invoice payable.
+          nullable: true
+    ExternalInvoicePayableUploadUrlResponseV1Model:
+      type: object
+      properties:
+        uploadUrl:
+          type: string
+          description: Pre-signed URL to which the invoice payable document can be uploaded.
+          format: url
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+            description: HTTP headers required when uploading the document to the pre-signed URL.
+          description: HTTP headers required when uploading the document to the pre-signed URL.
+    ExternalAiValueSuggestionV1Model:
+      type: object
+      properties:
+        field:
+          type: string
+        fieldValues:
+          type: array
+          items:
+            type: string
+        reasoning:
+          type: string
+      description: AI-generated suggestions for line item values (e.g. account, cost center, tax code).
+      nullable: true
+    ExternalReimbursementV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        expenseIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - IN_PROGRESS
+          - SUCCEEDED
+          - FAILED
+          - REJECTED
+          - RESET
+        createdAt:
+          type: string
+          format: date-time
+    ExternalInvoicePayableMetadataV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'Type of metadata attached to the invoice payable, depending on its kind (vendor invoice or reimbursement).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - VENDOR_INVOICE_METADATA
+          - REIMBURSEMENT_METADATA
+      description: Metadata specific to the invoice payable type (e.g. reimbursement- or vendor-specific fields).
+      discriminator:
+        propertyName: type
+    ExternalNextApproverV1Model:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+        firstName:
+          type: string
+        lastName:
+          type: string
+        fullName:
+          type: string
+        approvalSentAt:
+          type: string
+          format: date-time
+    ExternalInvoicePayableVendorDetailsOcrV1Model:
+      type: object
+      properties:
+        avatarUrl:
+          type: string
+          description: URL of the vendor avatar/logo detected by OCR, if any.
+          nullable: true
+        name:
+          type: string
+          description: Vendor name detected by OCR from the uploaded document.
+          nullable: true
+        email:
+          type: string
+          description: Vendor email address detected by OCR from the uploaded document.
+          nullable: true
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        website:
+          type: string
+          description: Vendor website detected by OCR from the uploaded document.
+          nullable: true
+        country:
+          type: string
+          description: 'Vendor country detected by OCR from the uploaded document.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        city:
+          type: string
+          description: Vendor city detected by OCR from the uploaded document.
+          nullable: true
+        address:
+          type: string
+          description: Vendor street address detected by OCR from the uploaded document.
+          nullable: true
+        zipcode:
+          type: string
+          description: Vendor ZIP/postal code detected by OCR from the uploaded document.
+          nullable: true
+        bankAccountNumber:
+          type: string
+          description: Vendor bank account number (IBAN or local format) detected by OCR from the uploaded document.
+          nullable: true
+        bankAccountBic:
+          type: string
+          description: Vendor bank BIC/SWIFT code detected by OCR from the uploaded document.
+          nullable: true
+        domesticBankAccountNumber:
+          type: string
+          description: Vendor domestic bank account number detected by OCR (country-specific format).
+          nullable: true
+        domesticBankAccountCode:
+          type: string
+          description: Vendor domestic bank account code detected by OCR (e.g. routing/sort code).
+          nullable: true
+        vatId:
+          type: string
+          description: Vendor VAT ID detected by OCR from the uploaded document.
+          nullable: true
+      description: Vendor details extracted from the invoice using OCR.
+      nullable: true
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalInvoicePayablePaymentV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the payment
+          format: uuid
+        invoicePayableId:
+          type: string
+          description: ID of the invoice payable this payment cleared
+          format: uuid
+        amount:
+          type: integer
+          description: Payment amount in the smallest currency denomination (e.g. cents), in the invoice payable's currency
+          format: int64
+        currency:
+          type: string
+          example: USD
+        paymentDate:
+          type: string
+          description: Date the payment was made
+          format: date
+        payment:
+          $ref: '#/components/schemas/ExternalInvoicePayablePaymentEntryV1Model'
+        createdAt:
+          type: string
+          description: Timestamp when the payment was created
+          format: date-time
+    ExternalCreateInvoicePayableLineItemRequestV1Model:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Gross line amount in cents, including tax. Set this when the parent invoice header field `lineItemsIncludeTax` is true. When `lineItemsIncludeTax` is false, prefer using `netAmount` instead and avoid sending both.
+          format: int64
+          nullable: true
+        netAmount:
+          type: integer
+          description: Net line amount in cents, excluding tax. Set this when the parent invoice header field `lineItemsIncludeTax` is false. When `lineItemsIncludeTax` is true, prefer using `amount` instead and avoid sending both.
+          format: int64
+          nullable: true
+        taxAmount:
+          type: integer
+          description: Tax amount for this line in cents. If omitted, tax may be derived from the configured tax code and base amount.
+          format: int64
+          nullable: true
+        description:
+          type: string
+          description: Description for this invoice payable line item.
+          nullable: true
+        taxCodeId:
+          type: string
+          description: ID of the tax code to apply to this invoice payable line item.
+          format: uuid
+          nullable: true
+        accountId:
+          type: string
+          description: ID of the ledger account to book this invoice payable line item against.
+          format: uuid
+          nullable: true
+        amortizationStartDate:
+          type: string
+          description: Start date for amortization of this invoice payable line item.
+          format: date
+          nullable: true
+        amortizationEndDate:
+          type: string
+          description: End date for amortization of this invoice payable line item.
+          format: date
+          nullable: true
+        amortizationTemplateId:
+          type: string
+          description: ID of the amortization template to apply to this line item using Light Ledger.
+          format: uuid
+          nullable: true
+        customProperties:
+          type: array
+          description: Custom properties to set on this invoice payable line item.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalCreditNoteInvoicePayableV1Model:
+      type: object
+      properties:
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        creditNote:
+          $ref: '#/components/schemas/ExternalRelatedAccDocV1Model'
+        invoicePayable:
+          $ref: '#/components/schemas/ExternalRelatedAccDocV1Model'
+        amount:
+          type: integer
+          description: Clearing amount in cents
+          format: int64
+        currency:
+          type: string
+          example: USD
+        createdAt:
+          type: string
+          description: Timestamp when the link was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the link was last updated
+          format: date-time
+    ExternalReverseInvoicePayableClearingRequestV1Model:
+      type: object
+      properties:
+        clearingAccountingDocumentId:
+          type: string
+          description: ID of the clearing accounting document to reverse — the bank payment or credit note that was applied to this invoice payable. Obtain it from the `accountingDocumentId` of an entry returned by the `List invoice payable payments` endpoint.
+          format: uuid
+        clearingType:
+          type: string
+          description: 'Type of the clearing being reversed: `BP` for a bank payment or `CN` for a credit note. Matches the `type` of the corresponding entry returned by the `List invoice payable payments` endpoint.
+
+
+            - `BP` - Bank payment
+
+            - `CN` - Credit note
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - BP
+          - CN
+        shouldArchiveClearingDocument:
+          type: boolean
+          description: Whether to also archive the underlying clearing document (bank payment or credit note) after reversing it.
+          default: false
+    ExternalUpdateInvoicePayableLineItemRequestV1Model:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Gross line amount in cents, including tax. Set this when the parent invoice header field `lineItemsIncludeTax` is true. When `lineItemsIncludeTax` is false, prefer using `netAmount` instead and avoid sending both.
+          format: int64
+          nullable: true
+        netAmount:
+          type: integer
+          description: Net line amount in cents, excluding tax. Set this when the parent invoice header field `lineItemsIncludeTax` is false. When `lineItemsIncludeTax` is true, prefer using `amount` instead and avoid sending both.
+          format: int64
+          nullable: true
+        taxAmount:
+          type: integer
+          description: Tax amount for this line in cents. If omitted, tax may be derived from the configured tax code and base amount.
+          format: int64
+          nullable: true
+        description:
+          type: string
+          description: Description for this invoice payable line item.
+          nullable: true
+        taxCodeId:
+          type: string
+          description: ID of the tax code to apply to this invoice payable line item.
+          format: uuid
+          nullable: true
+        accountId:
+          type: string
+          description: ID of the ledger account to book this invoice payable line item against.
+          format: uuid
+          nullable: true
+        metadata:
+          $ref: '#/components/schemas/ExternalInvoicePayableLineItemMetadataV1Model'
+        amortizationStartDate:
+          type: string
+          description: Start date for amortization of this invoice payable line item.
+          format: date
+          nullable: true
+        amortizationEndDate:
+          type: string
+          description: End date for amortization of this invoice payable line item.
+          format: date
+          nullable: true
+        amortizationTemplateId:
+          type: string
+          description: ID of the amortization template to apply to this line item using Light Ledger.
+          format: uuid
+          nullable: true
+        customProperties:
+          type: array
+          description: Custom properties to set on this invoice payable line item.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalBffInvoicePayableVendorDetailsV1Model:
+      type: object
+      properties:
+        vendorId:
+          type: string
+          format: uuid
+          nullable: true
+        vatId:
+          type: string
+          nullable: true
+        vendorAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        vendorTaxCodeId:
+          type: string
+          format: uuid
+          nullable: true
+        vendorCostCenterId:
+          type: string
+          format: uuid
+          nullable: true
+        vendorSenderBankAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        vendorIdentifier:
+          type: string
+          nullable: true
+        vendorName:
+          type: string
+          nullable: true
+        vendorAvatarUrl:
+          type: string
+          nullable: true
+        vendorEmail:
+          type: string
+          nullable: true
+        vendorWebsite:
+          type: string
+          nullable: true
+        vendorCountry:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          nullable: true
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        vendorCity:
+          type: string
+          nullable: true
+        vendorAddress:
+          type: string
+          nullable: true
+        vendorZipcode:
+          type: string
+          nullable: true
+        vendorCurrency:
+          type: string
+          nullable: true
+          example: USD
+        vendorContractValue:
+          type: integer
+          format: int64
+          nullable: true
+        vendorCreatedBy:
+          type: string
+          format: uuid
+          nullable: true
+    ExternalPaginatedResponseV1ModelExternalBffInvoicePayableV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalBffInvoicePayableV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalCustomPropertiesObjectValuesV1Model:
+      type: object
+      properties:
+        items:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/ExternalPropertyObjectValueV1Model'
+      description: Legacy container for custom properties on this line item (deprecated/old format).
+      nullable: true
+    ExternalRelatedAccDocV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        documentNumber:
+          type: string
+          description: Document number
+          nullable: true
+        documentDate:
+          type: string
+          description: Date the accounting document was issued
+          format: date
+          nullable: true
+        status:
+          type: string
+          description: 'Status of the accounting document
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - DRAFT
+          - APPROVAL_PENDING
+          - APPROVED
+          - POSTED
+          - PARTIALLY_CLEARED
+          - CLEARED
+          - ARCHIVED
+        amount:
+          type: integer
+          description: The amount of the accounting document in cents
+          format: int64
+          nullable: true
+        currency:
+          type: string
+          example: USD
+      description: Invoice payable details
+    ExternalSubmitForApprovalRequestV1Model:
+      type: object
+      properties:
+        closePurchaseOrder:
+          type: boolean
+          description: Whether the purchase order should be closed or not.
+          nullable: true
+    ExternalCancelInvoicePayableRequestV1Model:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: Reason for cancelling the invoice payable.
+    ExternalDeclineInvoicePayableRequestV1Model:
+      type: object
+      properties:
+        note:
+          type: string
+          description: Optional note.
+          nullable: true
+    PhoneNumber:
+      type: object
+      properties:
+        countryCode:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        localNumber:
+          type: string
+      description: Vendor phone number.
+      nullable: true
+    ExternalUploadInvoicePayableDocumentRequestV1Model:
+      type: object
+      properties:
+        documentName:
+          type: string
+          description: Original file name of the document.
+        contentType:
+          type: string
+          description: MIME type of the uploaded document (e.g. application/pdf).
+    ExternalUiClientExceptionErrorV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A string code identifying the error type
+        message:
+          type: string
+          description: A human-readable message providing more details about the error
+        path:
+          type: array
+          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+          nullable: true
+          items:
+            type: string
+            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+            nullable: true
+        context:
+          type: object
+          additionalProperties:
+            type: object
+            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+            nullable: true
+          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+          nullable: true
+      description: List of errors providing details about what went wrong
+    ExternalBffInvoicePayableUserDetailsV1Model:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          nullable: true
+        userFirstName:
+          type: string
+          nullable: true
+        userLastName:
+          type: string
+          nullable: true
+        userAvatarUrl:
+          type: string
+          nullable: true
+    ExternalUiClientExceptionV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
+      nullable: true
+    ExternalBffInvoicePayableV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - REIMBURSEMENT
+          - VENDOR_INVOICE
+        metadata:
+          $ref: '#/components/schemas/ExternalInvoicePayableMetadataV1Model'
+        documentKey:
+          type: string
+          nullable: true
+        documentName:
+          type: string
+          nullable: true
+        senderEmail:
+          type: string
+          nullable: true
+        companyId:
+          type: string
+          format: uuid
+        failureReason:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          nullable: true
+          enum:
+          - EMAIL_NOT_ALLOWED
+          - ERP_ENTRY_FAILED
+          - OCR_FAILED
+          - PAYMENT_APPROVAL_DECLINED
+          - PAYMENT_FAILED
+          - RESETTING_INVOICE_FAILED
+          - APPROVAL_SUBMISSION_FAILED
+          - USER_INPUT_VALIDATION_FAILED
+          - DUPLICATE_INVOICE
+          - PAYMENT_REJECTED
+        failureContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        state:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - INIT
+          - CREATED
+          - IN_DRAFT
+          - APPROVAL_REQUESTED
+          - APPROVAL_PENDING
+          - APPROVED_ACCOUNTING_ENTRY_PENDING
+          - DECLINED
+          - READY_FOR_PAYMENT_RELEASE
+          - PENDING_PAYMENT_APPROVAL
+          - PAYMENT_PAUSED
+          - SCHEDULED
+          - PAYMENT_PENDING
+          - PARTIALLY_PAID
+          - UNPAID
+          - PAID
+          - COMPLETED
+          - RESET_PENDING
+          - CANCELLATION_PENDING
+          - CANCELLED
+          - DUPLICATED
+          - IMPORT_PENDING
+        version:
+          type: integer
+          format: int32
+        approvalNote:
+          type: string
+          nullable: true
+        payeeName:
+          type: string
+          nullable: true
+        payeeIban:
+          type: string
+          nullable: true
+        payeeBban:
+          type: string
+          nullable: true
+        payeeBic:
+          type: string
+          nullable: true
+        payeeBankCode:
+          type: string
+          nullable: true
+        payeeCountry:
+          type: string
+          nullable: true
+        payeeAddress:
+          type: string
+          nullable: true
+        payeeZipcode:
+          type: string
+          nullable: true
+        payeeBankName:
+          type: string
+          nullable: true
+        payeeBankCountry:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          nullable: true
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        payeeBankAddress:
+          type: string
+          nullable: true
+        payeeBankZipcode:
+          type: string
+          nullable: true
+        payeeCity:
+          type: string
+          nullable: true
+        payeeBankCity:
+          type: string
+          nullable: true
+        fiNumber:
+          type: string
+          nullable: true
+        invoiceNumber:
+          type: string
+          nullable: true
+        companyEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        companyEntityName:
+          type: string
+          nullable: true
+        amount:
+          type: integer
+          format: int64
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+          example: USD
+        issuedDate:
+          type: string
+          format: date
+          nullable: true
+        dueDate:
+          type: string
+          format: date
+          nullable: true
+        paymentAt:
+          type: string
+          format: date-time
+          nullable: true
+        ocrCompletedAt:
+          type: string
+          format: date-time
+          nullable: true
+        canceledAt:
+          type: string
+          format: date-time
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        senderBankAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        cancellationReason:
+          type: string
+          nullable: true
+        vendor:
+          $ref: '#/components/schemas/ExternalBffInvoicePayableVendorDetailsV1Model'
+        user:
+          $ref: '#/components/schemas/ExternalBffInvoicePayableUserDetailsV1Model'
+        nextApprover:
+          $ref: '#/components/schemas/ExternalNextApproverV1Model'
+        reimbursement:
+          $ref: '#/components/schemas/ExternalReimbursementV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        paymentPausedBy:
+          type: string
+          format: uuid
+          nullable: true
+        paymentPausedAt:
+          type: string
+          format: date-time
+          nullable: true
+      description: List of records for the current page
+    ExternalInvoicePayablePaymentBankPaymentEntryV1Model:
+      title: Bank payment
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/ExternalInvoicePayablePaymentEntryV1Model'
+      - type: object
+        properties:
+          bankAccountId:
+            type: string
+            description: ID of the bank account
+            format: uuid
+            nullable: true
+          endToEndId:
+            type: string
+            description: End-to-end ID for the payment
+            nullable: true
+          originalAmount:
+            type: integer
+            description: Original payment amount in smallest denomination
+            format: int64
+          originalCurrency:
+            type: string
+            example: USD
+          accountingDocumentId:
+            type: string
+            description: ID of the accounting document
+            format: uuid
+    ExternalCustomPropertyV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+      nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

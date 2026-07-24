@@ -1,0 +1,397 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Ledger Transactions API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Ledger Transactions
+paths:
+  /v1/ledger-transaction-lines:
+    get:
+      tags:
+      - v1 - Ledger Transactions
+      summary: List ledger transaction lines
+      description: Returns a paginated list of ledger transaction lines
+      operationId: listLedgerTransactionLines
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `accountingDocumentNumber`, `transactionSequenceId`, `documentSequenceId`, `documentType`, `accountCode`, `accountLabel`, `postingDate`, `accountType`, `taxTagLabel`, `createdAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `accountCode`, `accountId`, `accountType`, `accDocId`, `businessPartnerId`, `businessPartnerName`, `companyEntityCode`, `companyEntityId`, `createdAt`, `customPropertyValueId`, `documentSequenceId`, `documentType`, `eliminationOffset`, `groupAmount`, `groupCurrency`, `id`, `ledgerName`, `lineType`, `localAmount`, `localCurrency`, `postingDate`, `taxTagLabel`, `transactionCurrency`, `transactionId`, `transactionSequenceId`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      - name: includeCustomProperties
+        in: query
+        schema:
+          type: boolean
+      - name: includeMaxLineAmount
+        in: query
+        description: If true, includes the maximum line amount in the response. This field is deprecated and will be removed, please fetch all lines and compute this locally if needed
+        deprecated: true
+        schema:
+          type: boolean
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalGetLedgerTransactionLinesWithMaxAmountResponseV1Model'
+components:
+  schemas:
+    ExternalLedgerTransactionLineV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        ledgerTransactionId:
+          type: string
+          format: uuid
+        transactionSequenceId:
+          type: string
+        companyId:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyEntityCode:
+          type: string
+        companyEntityName:
+          type: string
+        ledgerName:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PRIMARY
+          - ELIMINATION
+        accountId:
+          type: string
+          format: uuid
+        accountCode:
+          type: integer
+          format: int32
+        accountLabel:
+          type: string
+        accountType:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - BANK
+          - CARD
+          - CASH_AND_EQUIVALENTS
+          - ACCOUNTS_RECEIVABLE
+          - INVENTORY
+          - CORPORATE_TAX_RECEIVABLE
+          - OTHER_CURRENT_ASSET
+          - INTANGIBLE_NON_CURRENT_ASSET
+          - TANGIBLE_NON_CURRENT_ASSET
+          - FINANCIAL_NON_CURRENT_ASSET
+          - CORPORATE_TAX_DEFERRED_ASSET
+          - OTHER_NON_CURRENT_ASSET
+          - ACCOUNTS_PAYABLE
+          - OVERDRAFT_FACILITY
+          - CORPORATE_TAX_PAYABLE
+          - OTHER_CURRENT_LIABILITY
+          - LONG_TERM_LOAN
+          - CORPORATE_TAX_DEFERRED_LIABILITY
+          - OTHER_LONG_TERM_LIABILITY
+          - CONTRIBUTED_CAPITAL
+          - RETAINED_EARNINGS
+          - ACCUMULATED_OTHER_COMPREHENSIVE_INCOME
+          - OTHER_EQUITY
+          - COST_OF_SALES
+          - DISTRIBUTION_COST
+          - GENERAL_AND_ADMINISTRATIVE_EXPENSE
+          - PERSONNEL_COST
+          - OTHER_OPERATING_EXPENSE
+          - INCOME_TAX
+          - DEPRECIATION_AND_AMORTIZATION
+          - NON_OPERATING_EXPENSE
+          - INTEREST_EXPENSE
+          - EXCHANGE_RATE_LOSS_REALIZED
+          - EXCHANGE_RATE_LOSS_UNREALIZED
+          - OTHER_FINANCIAL_EXPENSE
+          - REVENUE
+          - DISCOUNT
+          - NON_OPERATING_INCOME
+          - INTEREST_INCOME
+          - EXCHANGE_RATE_GAIN_REALIZED
+          - EXCHANGE_RATE_GAIN_UNREALIZED
+          - OTHER_FINANCIAL_INCOME
+        accountingDocumentLineId:
+          type: string
+          format: uuid
+          nullable: true
+        documentSequenceId:
+          type: string
+        accountingDocumentId:
+          type: string
+          format: uuid
+        accountingDocumentNumber:
+          type: string
+          nullable: true
+        documentType:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - AP
+          - AR
+          - BP
+          - CC
+          - CN
+          - CT
+          - DE
+          - FX
+          - JE
+          - YC
+        postingDate:
+          type: string
+          format: date
+        valuationDate:
+          type: string
+          format: date
+        description:
+          type: string
+          nullable: true
+        documentDescription:
+          type: string
+          nullable: true
+        amounts:
+          $ref: '#/components/schemas/ExternalLedgerTransactionLineAmountsV1Model'
+        taxId:
+          type: string
+          format: uuid
+          nullable: true
+        taxTagLabel:
+          type: string
+          nullable: true
+        taxCode:
+          type: string
+          nullable: true
+        businessPartnerName:
+          type: string
+          nullable: true
+        businessPartnerId:
+          type: string
+          format: uuid
+          nullable: true
+        costCenterId:
+          type: string
+          format: uuid
+          nullable: true
+        accruedLedgerTransactionLineId:
+          type: string
+          format: uuid
+          nullable: true
+        ledgerTransactionType:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - DEFAULT
+          - AMORTIZATION
+          - FX
+          - CTA
+          - BANK_CLEARING
+        accountingReleaseStartDate:
+          type: string
+          format: date
+          nullable: true
+        accountingReleaseEndDate:
+          type: string
+          format: date
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+          format: uuid
+          nullable: true
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        amortized:
+          type: boolean
+      description: List of records for the current page
+    ExternalGetLedgerTransactionLinesWithMaxAmountResponseV1Model:
+      type: object
+      properties:
+        maxTransactionAmount:
+          type: integer
+          description: Maximum line amount in transaction currency across all records. This field is deprecated and will be removed, please fetch all lines and compute this locally if needed
+          format: int64
+          nullable: true
+          deprecated: true
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalLedgerTransactionLineV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalLedgerTransactionLineAmountsV1Model:
+      type: object
+      properties:
+        dcSign:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - D
+          - C
+        transactionAmount:
+          type: integer
+          format: int64
+          nullable: true
+        transactionAmountInMajors:
+          type: number
+          nullable: true
+        signedTransactionAmount:
+          type: integer
+          format: int64
+          nullable: true
+        transactionCurrency:
+          type: string
+          nullable: true
+          example: USD
+        localAmount:
+          type: integer
+          format: int64
+        localAmountInMajors:
+          type: number
+        signedLocalAmount:
+          type: integer
+          format: int64
+        localCurrency:
+          type: string
+          example: USD
+        groupAmount:
+          type: integer
+          format: int64
+        groupAmountInMajors:
+          type: number
+        signedGroupAmount:
+          type: integer
+          format: int64
+        groupCurrency:
+          type: string
+          example: USD
+        debit:
+          type: boolean
+        credit:
+          type: boolean
+    ExternalCustomPropertyV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+      nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

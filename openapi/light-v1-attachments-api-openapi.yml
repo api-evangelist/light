@@ -1,0 +1,227 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Attachments API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Attachments
+paths:
+  /v1/attachments:
+    get:
+      tags:
+      - v1 - Attachments
+      summary: List attachments
+      description: Returns a list of attachments associated with a specific resource
+      operationId: getAttachments
+      parameters:
+      - name: resourceId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalAttachmentV1Model'
+    post:
+      tags:
+      - v1 - Attachments
+      summary: Create attachment
+      description: Creates a new attachment record
+      operationId: createAttachment
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateAttachmentRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalAttachmentV1Model'
+  /v1/attachments/upload-url:
+    post:
+      tags:
+      - v1 - Attachments
+      summary: Generate attachment upload URL
+      description: Generates a secure upload URL for attachment files
+      operationId: createAttachmentUploadUrl
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUploadAttachmentRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalAttachmentUploadUrlResponseV1Model'
+  /v1/attachments/{attachmentId}:
+    delete:
+      tags:
+      - v1 - Attachments
+      summary: Delete attachment
+      description: Deletes a specific attachment and its associated file
+      operationId: deleteAttachment
+      parameters:
+      - name: attachmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8: {}
+  /v1/attachments/{attachmentId}/document:
+    get:
+      tags:
+      - v1 - Attachments
+      summary: Get attachment document
+      description: Returns the document file for a specific attachment
+      operationId: getAttachmentDocument
+      parameters:
+      - name: attachmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8: {}
+    options:
+      tags:
+      - v1 - Attachments
+      summary: Get attachment options
+      description: Handles CORS preflight requests for attachment document access
+      operationId: getAttachmentDocumentOptions
+      parameters:
+      - name: attachmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/LightPrincipal'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8: {}
+components:
+  schemas:
+    LightPrincipal:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+    ExternalAttachmentUploadUrlResponseV1Model:
+      type: object
+      properties:
+        uploadUrl:
+          type: string
+          format: url
+        key:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+          nullable: true
+    ExternalAttachmentV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        resourceId:
+          type: string
+          format: uuid
+        documentKey:
+          type: string
+        fileName:
+          type: string
+        contentType:
+          type: string
+        createdBy:
+          type: string
+          format: uuid
+        metadata:
+          $ref: '#/components/schemas/ExternalAttachmentMetadataV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ExternalUploadAttachmentRequestV1Model:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        fileName:
+          type: string
+        contentType:
+          type: string
+    ExternalCreateAttachmentRequestV1Model:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        documentKey:
+          type: string
+        fileName:
+          type: string
+        contentType:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/ExternalAttachmentMetadataV1Model'
+    ExternalAttachmentMetadataV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - AR
+      discriminator:
+        propertyName: type
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,311 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Card Balance Accounts API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Card Balance Accounts
+paths:
+  /v1/card-balance-accounts/{accountId}/statement:
+    get:
+      tags:
+      - v1 - Card Balance Accounts
+      summary: Generate a card balance account statement
+      description: Generates a statement for a card balance account over a period. Dates are interpreted as UTC day boundaries and all timestamps in the response are in UTC. Runs a fresh provider sync inline so the statement reflects the latest activity.
+      operationId: generateCardBalanceAccountStatement
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: from
+        in: query
+        description: Start of the statement period, inclusive. A UTC calendar date in `YYYY-MM-DD` format.
+        schema:
+          type: string
+          format: date
+          example: '2026-01-01'
+      - name: to
+        in: query
+        description: End of the statement period. A UTC calendar date in `YYYY-MM-DD` format; must be after `from`.
+        schema:
+          type: string
+          format: date
+          example: '2026-01-31'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCardBalanceAccountStatementV1Model'
+  /v1/card-balance-accounts/{accountId}:
+    get:
+      tags:
+      - v1 - Card Balance Accounts
+      summary: Get card balance account
+      description: Returns a card balance account by ID, including balance details
+      operationId: getCardBalanceAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCardBalanceAccountV1Model'
+  /v1/card-balance-accounts:
+    get:
+      tags:
+      - v1 - Card Balance Accounts
+      summary: List card balance accounts
+      description: Returns a list of card balance accounts
+      operationId: listCardBalanceAccounts
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `companyEntityId`, `status`, `createdAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `companyId`, `companyEntityId`, `currency`, `status`, `createdAt`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalCardBalanceAccountV1Model'
+  /v1/card-balance-accounts/{accountId}/total-spend:
+    get:
+      tags:
+      - v1 - Card Balance Accounts
+      summary: Get total spend for a card balance account
+      description: Returns the total spend for a card balance account within a date range
+      operationId: getCardBalanceAccountTotalSpend
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: from
+        in: query
+        description: Start of the spend window, inclusive. A UTC calendar date in `YYYY-MM-DD` format.
+        schema:
+          type: string
+          format: date
+          example: '2026-01-01'
+      - name: to
+        in: query
+        description: End of the spend window, inclusive. A UTC calendar date in `YYYY-MM-DD` format. Defaults to now if omitted.
+        schema:
+          type: string
+          format: date
+          example: '2026-01-31'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCardBalanceAccountSpendV1Model'
+components:
+  schemas:
+    ExternalCardBalanceAccountV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        currency:
+          type: string
+          example: USD
+        label:
+          type: string
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - CLOSED
+        balance:
+          $ref: '#/components/schemas/ExternalCardBalanceAccountBalanceV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        primary:
+          type: boolean
+      description: List of records for the current page
+    ExternalCardBalanceAccountBalanceV1Model:
+      type: object
+      properties:
+        available:
+          type: integer
+          format: int64
+        settled:
+          type: integer
+          format: int64
+        reserved:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          example: USD
+    ExternalPaginatedResponseV1ModelExternalCardBalanceAccountV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCardBalanceAccountV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalCardBalanceAccountSpendV1Model:
+      type: object
+      properties:
+        currency:
+          type: string
+          example: USD
+        total:
+          type: integer
+          format: int64
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
+    ExternalCardBalanceAccountStatementLineV1Model:
+      type: object
+      properties:
+        providerId:
+          type: string
+        direction:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - DEBIT
+          - CREDIT
+        amount:
+          type: integer
+          format: int64
+        runningBalance:
+          type: integer
+          format: int64
+        bookedAt:
+          type: string
+          format: date-time
+        valuedAt:
+          type: string
+          format: date-time
+        description:
+          type: string
+          nullable: true
+        reference:
+          type: string
+          nullable: true
+    ExternalCardBalanceAccountStatementV1Model:
+      type: object
+      properties:
+        balanceAccountId:
+          type: string
+          format: uuid
+        currency:
+          type: string
+          example: USD
+        periodStart:
+          type: string
+          format: date-time
+        periodEnd:
+          type: string
+          format: date-time
+        openingBalance:
+          type: integer
+          format: int64
+        closingBalance:
+          type: integer
+          format: int64
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCardBalanceAccountStatementLineV1Model'
+        generatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

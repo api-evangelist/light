@@ -1,0 +1,533 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Products API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Products
+paths:
+  /v1/products/{productId}/archive:
+    post:
+      tags:
+      - v1 - Products
+      summary: Archive product
+      description: Archive the given product
+      operationId: archiveProduct
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalProductV1Model'
+  /v1/products:
+    get:
+      tags:
+      - v1 - Products
+      summary: List products
+      description: Returns a list of products
+      operationId: listProducts
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `name`, `createdAt`, `updatedAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `name`, `pricingType`, `recurrence`, `state`, `invoiceReceivableId`, `updatedAt`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalProductV1Model'
+    post:
+      tags:
+      - v1 - Products
+      summary: Create product
+      description: Creates a new product
+      operationId: createProduct
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateProductRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalProductV1Model'
+  /v1/products/{productId}:
+    get:
+      tags:
+      - v1 - Products
+      summary: Get product
+      description: Returns a product by ID
+      operationId: getProductById
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalProductV1Model'
+    patch:
+      tags:
+      - v1 - Products
+      summary: Update product
+      description: Updates an existing product
+      operationId: updateProduct
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      - name: productId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateProductRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalProductV1Model'
+components:
+  schemas:
+    ExternalCreateProductRequestV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+        pricingType:
+          type: string
+          description: '- `FIXED` - The product has a single price per unit
+
+            - `PACKAGE` - The product is sold in packages with a fixed quantity
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          enum:
+          - FIXED
+          - PACKAGE
+        billingRecurrence:
+          type: string
+          description: '- `ONE_TIME` - The product is billed once
+
+            - `MONTHLY` - The product is billed every month
+
+            - `QUARTERLY` - The product is billed every three months
+
+            - `HALF_YEARLY` - The product is billed every six months
+
+            - `YEARLY` - The product is billed every year
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          enum:
+          - ONE_TIME
+          - MONTHLY
+          - QUARTERLY
+          - HALF_YEARLY
+          - YEARLY
+        pricings:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalProductPricingV1Model'
+        defaultAvataxCode:
+          type: string
+          nullable: true
+        defaultTaxId:
+          type: string
+          format: uuid
+          nullable: true
+        defaultLedgerAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalApiExternalSourceV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the external source
+
+
+            - `CHARGEBEE` - Data synced from Chargebee
+
+            - `HUBSPOT` - Data synced from HubSpot
+
+            - `SALESFORCE` - Data synced from Salesforce
+
+            - `STRIPE` - Data synced from Stripe
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - CHARGEBEE
+          - HUBSPOT
+          - SALESFORCE
+          - STRIPE
+        externalId:
+          type: string
+          description: The ID of the object in the external source system
+      description: The external system where this product was synced from
+      nullable: true
+    ExternalProductV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        name:
+          type: string
+          description: Name of the product
+        pricingType:
+          type: string
+          description: 'Pricing type of the product
+
+
+            - `FIXED` - The product has a single price per unit
+
+            - `PACKAGE` - The product is sold in packages with a fixed quantity
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - FIXED
+          - PACKAGE
+        billingRecurrence:
+          type: string
+          description: 'Billing frequency for the product. Used in contracts
+
+
+            - `ONE_TIME` - The product is billed once
+
+            - `MONTHLY` - The product is billed every month
+
+            - `QUARTERLY` - The product is billed every three months
+
+            - `HALF_YEARLY` - The product is billed every six months
+
+            - `YEARLY` - The product is billed every year
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - ONE_TIME
+          - MONTHLY
+          - QUARTERLY
+          - HALF_YEARLY
+          - YEARLY
+        pricings:
+          type: array
+          description: List of product price per currency
+          items:
+            $ref: '#/components/schemas/ExternalProductPricingV1Model'
+        state:
+          type: string
+          description: 'Product state
+
+
+            - `ACTIVE` - The product is active and can be used in invoices and contracts
+
+            - `ARCHIVED` - The product is archived and cannot be used in new invoices or contracts
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - ACTIVE
+          - ARCHIVED
+        defaultTaxId:
+          type: string
+          description: ID of the default tax code for this product. Will be assigned to invoice lines when creating a line with this product
+          format: uuid
+          nullable: true
+        defaultAvataxCode:
+          type: string
+          description: Default Avalara tax code. Used when the invoice tax engine is `AVATAX`. Will be assigned to invoice lines when creating a line with this product
+          nullable: true
+        defaultLedgerAccountId:
+          type: string
+          description: ID of the default ledger account for this product. Will be assigned to invoice lines when creating a line with this product
+          format: uuid
+          nullable: true
+        externalSource:
+          $ref: '#/components/schemas/ExternalApiExternalSourceV1Model'
+        createdAt:
+          type: string
+          description: Timestamp when the product was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the product was last updated
+          format: date-time
+        customProperties:
+          type: array
+          description: List of custom properties associated with the product
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+    ExternalUpdateProductRequestV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        pricingType:
+          type: string
+          description: '- `FIXED` - The product has a single price per unit
+
+            - `PACKAGE` - The product is sold in packages with a fixed quantity
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          enum:
+          - FIXED
+          - PACKAGE
+        billingRecurrence:
+          type: string
+          description: '- `ONE_TIME` - The product is billed once
+
+            - `MONTHLY` - The product is billed every month
+
+            - `QUARTERLY` - The product is billed every three months
+
+            - `HALF_YEARLY` - The product is billed every six months
+
+            - `YEARLY` - The product is billed every year
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          enum:
+          - ONE_TIME
+          - MONTHLY
+          - QUARTERLY
+          - HALF_YEARLY
+          - YEARLY
+        pricings:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalProductPricingV1Model'
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        defaultAvataxCode:
+          type: string
+          nullable: true
+        defaultTaxId:
+          type: string
+          format: uuid
+          nullable: true
+        defaultLedgerAccountId:
+          type: string
+          format: uuid
+          nullable: true
+    ExternalProductPricingV1Model:
+      type: object
+      properties:
+        currency:
+          type: string
+          example: USD
+        amount:
+          type: integer
+          description: Price in cents
+          format: int64
+    ExternalPaginatedResponseV1ModelExternalProductV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalProductV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalSetCustomPropertyRequestV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type: array
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          nullable: true
+          items:
+            type: string
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+            nullable: true
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+      nullable: true
+    ExternalCustomPropertyV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+      nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

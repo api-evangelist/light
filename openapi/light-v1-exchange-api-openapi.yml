@@ -1,0 +1,106 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Exchange API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Exchange
+paths:
+  /v1/exchange/rates/{base}/{target}:
+    get:
+      tags:
+      - v1 - Exchange
+      summary: Get exchange rate
+      description: Returns an exchange rate between base and target currencies for a given date
+      operationId: getRate
+      parameters:
+      - name: base
+        in: path
+        description: Base currency of the exchange rate
+        required: true
+        schema:
+          type: string
+      - name: target
+        in: path
+        description: Target currency of the exchange rate
+        required: true
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: Date the exchange rate is requested for. If omitted, defaults to today
+        schema:
+          $ref: '#/components/schemas/LocalDateParam'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalExchangeRateV1Model'
+  /v1/exchange/rates/{currency}:
+    get:
+      tags:
+      - v1 - Exchange
+      summary: Get currency exchange rates
+      description: Returns exchange rates for the given currency against all available currencies
+      operationId: getRates
+      parameters:
+      - name: currency
+        in: path
+        description: Currency for which available exchange rates are requested for
+        required: true
+        schema:
+          type: string
+      - name: date
+        in: query
+        description: Date the exchange rate is requested for. If omitted, defaults to today
+        schema:
+          type: string
+          format: date
+          example: '2025-11-25'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalExchangeRateV1Model'
+components:
+  schemas:
+    LocalDateParam:
+      type: object
+    ExternalExchangeRateV1Model:
+      type: object
+      properties:
+        base:
+          type: string
+          example: USD
+        target:
+          type: string
+          example: USD
+        rate:
+          type: number
+          description: Exchange rate between base and target currency
+        effectiveDate:
+          type: string
+          description: Effective date of the exchange rate. E.g., rate requested on Saturday will have the effective date Friday
+          format: date
+        requestedDate:
+          type: string
+          description: Date the exchange rate is requested for
+          format: date
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

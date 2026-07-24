@@ -1,0 +1,187 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Accounting Documents API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Accounting Documents
+paths:
+  /v1/accounting-documents/accounting-documents:
+    get:
+      tags:
+      - v1 - Accounting Documents
+      summary: List accounting documents
+      description: Returns a paginated list of accounting documents
+      operationId: listAccountingDocuments
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `companyEntityId`, `documentSequenceId`, `postingDate`, `valuationDate`, `documentDate`, `businessPartnerName`, `status`, `createdBy`, `createdAt`, `description`, `documentNumber`, `arDueDate`, `arOpenedAt`, `ctPerformedAt`, `ctStatus`, `ctAmount`, `ccAmount`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `documentSequenceId`, `documentNumber`, `documentType`, `companyEntityId`, `ledgerName`, `businessPartnerName`, `businessPartnerId`, `status`, `currency`, `postingDate`, `documentDate`, `valuationDate`, `createdAt`, `updatedAt`, `createdBy`, `intercompanyDocumentId`, `apDueDate`, `apState`, `apVendorId`, `arContractId`, `arDueDate`, `arCustomerId`, `arInvoiceTemplateId`, `arPayeeBankAccountId`, `arOpenedAt`, `arState`, `ctCardId`, `ctCardBalanceAccountId`, `ctStatus`, `ctPerformedAt`, `cnToBeAdjustedAccDocType`, `intercompanyJournalEntryId`, `ycAccountingYearId`, `accountCode`, `accountLabel`, `taxCode`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalAccountingDocumentWithAmountV1Model'
+components:
+  schemas:
+    ExternalPaginatedResponseV1ModelExternalAccountingDocumentWithAmountV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalAccountingDocumentWithAmountV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalAccountingDocumentWithAmountV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        documentSequenceId:
+          type: string
+          nullable: true
+        documentNumber:
+          type: string
+          nullable: true
+        documentType:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - AP
+          - AR
+          - BP
+          - CC
+          - CN
+          - CT
+          - DE
+          - FX
+          - JE
+          - YC
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - DRAFT
+          - APPROVAL_PENDING
+          - APPROVED
+          - POSTED
+          - PARTIALLY_CLEARED
+          - CLEARED
+          - ARCHIVED
+        description:
+          type: string
+          nullable: true
+        documentDate:
+          type: string
+          format: date
+          nullable: true
+        areLinesWithTax:
+          type: boolean
+        businessPartnerName:
+          type: string
+          nullable: true
+        businessPartnerId:
+          type: string
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        totalTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        totalTransactionAmountInMajors:
+          type: number
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+          example: USD
+      description: List of records for the current page
+    DirectedAmount:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        dcSign:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - D
+          - C
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

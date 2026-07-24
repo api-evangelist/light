@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Invoice Approvals API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Invoice Approvals
+paths:
+  /v1/invoice-approval:
+    get:
+      tags:
+      - v1 - Invoice Approvals
+      summary: Get invoice approvals
+      description: Returns approval records for specified invoice payables
+      operationId: getInvoicePayableApprovals
+      parameters:
+      - name: invoicePayableId
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/LightPrincipal'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExternalInvoiceApprovalV1Model'
+components:
+  schemas:
+    LightPrincipal:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+    ExternalInvoiceUserApprovalV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        approvalId:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+          nullable: true
+        userGroupId:
+          type: string
+          format: uuid
+          nullable: true
+        priority:
+          type: integer
+          format: int32
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - APPROVED
+          - DECLINED
+          - FAILED
+          - IN_REVIEW
+          - PENDING
+        note:
+          type: string
+          nullable: true
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        notifiedAt:
+          type: string
+          format: date-time
+          nullable: true
+    ExternalInvoiceApprovalV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        invoicePayableId:
+          type: string
+          format: uuid
+        invoiceDocumentKey:
+          type: string
+        invoiceNumber:
+          type: string
+          nullable: true
+        invoiceAmount:
+          type: integer
+          format: int64
+        invoiceCurrency:
+          type: string
+          example: USD
+        invoiceIssuedAt:
+          type: string
+          format: date-time
+        invoiceIssuedDate:
+          type: string
+          format: date
+        invoiceDueAt:
+          type: string
+          format: date-time
+        invoiceDueDate:
+          type: string
+          format: date
+        userApprovals:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalInvoiceUserApprovalV1Model'
+        note:
+          type: string
+          nullable: true
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - APPROVED
+          - DECLINED
+          - CANCELLED
+          - FAILED
+          - IN_PROGRESS
+        completedAt:
+          type: string
+          format: date-time
+          nullable: true
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

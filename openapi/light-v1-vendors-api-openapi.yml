@@ -1,0 +1,2849 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Vendors API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Vendors
+paths:
+  /v1/vendors:
+    get:
+      tags:
+      - v1 - Vendors
+      summary: List vendors
+      description: Returns a paginated list of vendors
+      operationId: listVendors
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `name`, `spendLastMtd`, `createdAt`, `updatedAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `status`, `type`, `ledgerAccountId`, `ledgerTaxId`, `spendLastMtd`, `createdAt`, `updatedAt`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: searchTerm
+        in: query
+        description: Search term to filter results by. Performs a case-insensitive partial match across searchable fields.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalVendorV1Model'
+    post:
+      tags:
+      - v1 - Vendors
+      summary: Create vendor
+      description: Creates a new vendor
+      operationId: createVendor
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateVendorRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalVendorV1Model'
+  /v1/vendors/{vendorId}:
+    get:
+      tags:
+      - v1 - Vendors
+      summary: Get vendor
+      description: Returns a vendor by ID
+      operationId: getVendor
+      parameters:
+      - name: vendorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalVendorV1Model'
+    put:
+      tags:
+      - v1 - Vendors
+      summary: Update vendor
+      description: Updates an existing vendor
+      operationId: updateVendor
+      parameters:
+      - name: vendorId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateVendorRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalVendorV1Model'
+components:
+  schemas:
+    ExternalVendorV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: 'Type of the vendor.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - EXTERNAL
+          - USER
+        vendorId:
+          type: string
+          description: External ID of the vendor.
+          format: uuid
+        companyId:
+          type: string
+          description: ID of the company this vendor belongs to.
+          format: uuid
+        companyEntityIds:
+          uniqueItems: true
+          type: array
+          description: IDs of the company entities this vendor is associated with.
+          items:
+            type: string
+            description: IDs of the company entities this vendor is associated with.
+            format: uuid
+        defaultCompanyEntity:
+          $ref: '#/components/schemas/ExternalDefaultVendorCompanyEntityV1Model'
+        vatId:
+          type: string
+          description: Vendor VAT ID.
+          nullable: true
+        businessRegistrationNumber:
+          type: string
+          description: Vendor business registration number.
+          nullable: true
+        identifier:
+          type: string
+          description: Vendor identifier (external/system identifier).
+          nullable: true
+        name:
+          type: string
+          description: Vendor name.
+        description:
+          type: string
+          description: Vendor description or memo.
+          nullable: true
+        avatarUrl:
+          type: string
+          description: Vendor avatar/logo URL.
+          nullable: true
+        email:
+          type: string
+          description: Vendor email address.
+          nullable: true
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        website:
+          type: string
+          description: Vendor website.
+          nullable: true
+        country:
+          type: string
+          description: 'Vendor country.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        city:
+          type: string
+          description: Vendor city.
+          nullable: true
+        address:
+          type: string
+          description: Vendor street address.
+          nullable: true
+        zipcode:
+          type: string
+          description: Vendor ZIP/postal code.
+          nullable: true
+        bankName:
+          type: string
+          description: Vendor bank name.
+          nullable: true
+        bankCountry:
+          type: string
+          description: 'Vendor bank country.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        bankCity:
+          type: string
+          description: Vendor bank city.
+          nullable: true
+        bankAddress:
+          type: string
+          description: Vendor bank address.
+          nullable: true
+        bankZipcode:
+          type: string
+          description: Vendor bank ZIP/postal code.
+          nullable: true
+        bankAccountNumber:
+          type: string
+          description: Vendor bank account number (IBAN or local format).
+          nullable: true
+        bankAccountBic:
+          type: string
+          description: Vendor bank BIC/SWIFT code.
+          nullable: true
+        domesticBankAccountNumber:
+          type: string
+          description: Vendor domestic bank account number (country-specific format).
+          nullable: true
+        domesticBankAccountCode:
+          type: string
+          description: Vendor domestic bank account code (e.g. routing/sort code).
+          nullable: true
+        swedishBankgiroNumber:
+          type: string
+          description: Vendor Swedish Bankgiro number, if applicable.
+          nullable: true
+        swedishPlusgiroNumber:
+          type: string
+          description: Vendor Swedish Plusgiro number, if applicable.
+          nullable: true
+        bankRecipientName:
+          type: string
+          description: Name of the bank account holder. When set, this overrides the vendor name on the payment recipient for providers that consult it (currently Airwallex).
+          nullable: true
+        vendorCreatedAt:
+          type: string
+          description: Timestamp when the vendor was created.
+          format: date-time
+        approvers:
+          type: array
+          description: List of vendor approvers.
+          items:
+            $ref: '#/components/schemas/ExternalVendorApproverV1Model'
+        notes:
+          type: array
+          description: List of vendor notes.
+          items:
+            $ref: '#/components/schemas/ExternalVendorNoteV1Model'
+        currency:
+          type: string
+          example: USD
+        contractValue:
+          type: integer
+          description: Vendor contract value in cents.
+          format: int64
+          nullable: true
+        createdBy:
+          type: string
+          description: ID of the user who created the vendor.
+          format: uuid
+          nullable: true
+        status:
+          type: string
+          description: 'Vendor onboarding/status.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - ONBOARDING
+          - IN_REVIEW
+          - ACTIVE
+          - FAILED
+        failureContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        version:
+          type: integer
+          description: Vendor record version.
+          format: int32
+        updatedAt:
+          type: string
+          description: Timestamp when the vendor was last updated.
+          format: date-time
+        customProperties:
+          type: array
+          description: Custom properties set on the vendor.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        lastMtdSpendInGroupCurrency:
+          type: integer
+          description: Last month-to-date spend in group currency.
+          format: int64
+          nullable: true
+        groupCurrency:
+          type: string
+          example: USD
+    ExternalPaginatedResponseV1ModelExternalVendorV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalVendorV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalVendorNoteV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        vendorId:
+          type: string
+          format: uuid
+        authorId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        channel:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - WEB_APP
+          - SLACK
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      description: List of vendor notes.
+    ExternalCreateVendorRequestV1Model:
+      type: object
+      properties:
+        defaultCompanyEntity:
+          $ref: '#/components/schemas/ExternalCreateDefaultVendorCompanyEntityRequestV1Model'
+        companyEntityIds:
+          uniqueItems: true
+          type: array
+          description: IDs of the company entities this vendor is associated with.
+          items:
+            type: string
+            description: IDs of the company entities this vendor is associated with.
+            format: uuid
+        vatId:
+          type: string
+          description: Vendor VAT ID.
+          nullable: true
+        businessRegistrationNumber:
+          type: string
+          description: Vendor business registration number.
+          nullable: true
+        identifier:
+          type: string
+          description: Vendor identifier (external/system identifier).
+          nullable: true
+        name:
+          type: string
+          description: Vendor name.
+        description:
+          type: string
+          description: Vendor description or memo.
+          nullable: true
+        avatarUrl:
+          type: string
+          description: Vendor avatar/logo URL.
+          nullable: true
+        email:
+          type: string
+          description: Vendor email address.
+          nullable: true
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        website:
+          type: string
+          description: Vendor website.
+          nullable: true
+        country:
+          type: string
+          description: 'Vendor country.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        city:
+          type: string
+          description: Vendor city.
+          nullable: true
+        address:
+          type: string
+          description: Vendor street address.
+          nullable: true
+        zipcode:
+          type: string
+          description: Vendor ZIP/postal code.
+          nullable: true
+        bankName:
+          type: string
+          description: Vendor bank name.
+          nullable: true
+        bankCountry:
+          type: string
+          description: 'Vendor bank country.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        bankCity:
+          type: string
+          description: Vendor bank city.
+          nullable: true
+        bankAddress:
+          type: string
+          description: Vendor bank address.
+          nullable: true
+        bankZipcode:
+          type: string
+          description: Vendor bank ZIP/postal code.
+          nullable: true
+        bankAccountNumber:
+          type: string
+          description: Vendor bank account number (IBAN or local format).
+          nullable: true
+        bankAccountBic:
+          type: string
+          description: Vendor bank BIC/SWIFT code.
+          nullable: true
+        domesticBankAccountNumber:
+          type: string
+          description: Vendor domestic bank account number (country-specific format).
+          nullable: true
+        domesticBankAccountCode:
+          type: string
+          description: Vendor domestic bank account code (e.g. routing/sort code).
+          nullable: true
+        swedishBankgiroNumber:
+          type: string
+          description: Vendor Swedish Bankgiro number, if applicable.
+          nullable: true
+        swedishPlusgiroNumber:
+          type: string
+          description: Vendor Swedish Plusgiro number, if applicable.
+          nullable: true
+        bankRecipientName:
+          type: string
+          description: Name of the bank account holder. When set, this overrides the vendor name on the payment recipient for providers that consult it (currently Airwallex).
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+          example: USD
+        customProperties:
+          type: array
+          description: List of custom properties to set on the vendor.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
+    ExternalUpdateVendorRequestV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Vendor name.
+        defaultCompanyEntity:
+          $ref: '#/components/schemas/ExternalUpdateDefaultVendorCompanyEntityRequestV1Model'
+        companyEntityIds:
+          uniqueItems: true
+          type: array
+          description: IDs of the company entities this vendor is associated with.
+          items:
+            type: string
+            description: IDs of the company entities this vendor is associated with.
+            format: uuid
+        vatId:
+          type: string
+          description: Vendor VAT ID.
+          nullable: true
+        businessRegistrationNumber:
+          type: string
+          description: Vendor business registration number.
+          nullable: true
+        identifier:
+          type: string
+          description: Vendor identifier (external/system identifier).
+          nullable: true
+        description:
+          type: string
+          description: Vendor description or memo.
+          nullable: true
+        avatarUrl:
+          type: string
+          description: Vendor avatar/logo URL.
+          nullable: true
+        email:
+          type: string
+          description: Vendor email address.
+          nullable: true
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        website:
+          type: string
+          description: Vendor website.
+          nullable: true
+        country:
+          type: string
+          description: 'Vendor country. Note: currently, updating country does not sync with the vendor in the ERP.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        city:
+          type: string
+          description: Vendor city.
+          nullable: true
+        address:
+          type: string
+          description: Vendor street address.
+          nullable: true
+        zipcode:
+          type: string
+          description: Vendor ZIP/postal code.
+          nullable: true
+        bankName:
+          type: string
+          description: Vendor bank name.
+          nullable: true
+        bankCountry:
+          type: string
+          description: 'Vendor bank country.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        bankCity:
+          type: string
+          description: Vendor bank city.
+          nullable: true
+        bankAddress:
+          type: string
+          description: Vendor bank address.
+          nullable: true
+        bankZipcode:
+          type: string
+          description: Vendor bank ZIP/postal code.
+          nullable: true
+        bankAccountNumber:
+          type: string
+          description: Vendor bank account number (IBAN or local format).
+          nullable: true
+        bankAccountBic:
+          type: string
+          description: Vendor bank BIC/SWIFT code.
+          nullable: true
+        domesticBankAccountNumber:
+          type: string
+          description: Vendor domestic bank account number (country-specific format).
+          nullable: true
+        domesticBankAccountCode:
+          type: string
+          description: Vendor domestic bank account code (e.g. routing/sort code).
+          nullable: true
+        swedishBankgiroNumber:
+          type: string
+          description: Vendor Swedish Bankgiro number, if applicable.
+          nullable: true
+        swedishPlusgiroNumber:
+          type: string
+          description: Vendor Swedish Plusgiro number, if applicable.
+          nullable: true
+        bankRecipientName:
+          type: string
+          description: Name of the bank account holder. When set, this overrides the vendor name on the payment recipient for providers that consult it (currently Airwallex).
+          nullable: true
+        customProperties:
+          type: array
+          description: List of custom properties to set on the vendor. Replaces the existing set.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalVendorApproverV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the vendor approver entry.
+          format: uuid
+        userId:
+          type: string
+          description: ID of the approver user.
+          format: uuid
+        vendorId:
+          type: string
+          description: ID of the vendor.
+          format: uuid
+        priority:
+          type: integer
+          description: Approval priority (lower means earlier).
+          format: int32
+        createdAt:
+          type: string
+          description: Timestamp when the approver entry was created.
+          format: date-time
+      description: List of vendor approvers.
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    PhoneNumber:
+      type: object
+      properties:
+        countryCode:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        localNumber:
+          type: string
+      description: Vendor phone number.
+      nullable: true
+    ExternalCreateDefaultVendorCompanyEntityRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type: string
+          description: ID of the company entity.
+          format: uuid
+        accountId:
+          type: string
+          description: ID of the ledger account to use for this vendor.
+          format: uuid
+          nullable: true
+        taxCodeId:
+          type: string
+          description: ID of the tax code to use for this vendor.
+          format: uuid
+          nullable: true
+        costCenterId:
+          type: string
+          description: ID of the cost center to use for this vendor.
+          format: uuid
+          nullable: true
+        senderBankAccountId:
+          type: string
+          description: ID of the sender bank account to use for payments to this vendor.
+          format: uuid
+          nullable: true
+      description: Default company entity configuration for this vendor, if any.
+      nullable: true
+    ExternalUiClientExceptionErrorV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A string code identifying the error type
+        message:
+          type: string
+          description: A human-readable message providing more details about the error
+        path:
+          type: array
+          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+          nullable: true
+          items:
+            type: string
+            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+            nullable: true
+        context:
+          type: object
+          additionalProperties:
+            type: object
+            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+            nullable: true
+          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+          nullable: true
+      description: List of errors providing details about what went wrong
+    ExternalUpdateDefaultVendorCompanyEntityRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type: string
+          description: ID of the company entity.
+          format: uuid
+        accountId:
+          type: string
+          description: ID of the ledger account to use for this vendor.
+          format: uuid
+          nullable: true
+        taxCodeId:
+          type: string
+          description: ID of the tax code to use for this vendor.
+          format: uuid
+          nullable: true
+        costCenterId:
+          type: string
+          description: ID of the cost center to use for this vendor.
+          format: uuid
+          nullable: true
+        senderBankAccountId:
+          type: string
+          description: ID of the sender bank account to use for payments to this vendor.
+          format: uuid
+          nullable: true
+      description: Default company entity configuration for this vendor, if any.
+      nullable: true
+    ExternalDefaultVendorCompanyEntityV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the default company entity configuration.
+          format: uuid
+        vendorId:
+          type: string
+          description: ID of the vendor.
+          format: uuid
+        companyEntityId:
+          type: string
+          description: ID of the company entity.
+          format: uuid
+          nullable: true
+        accountId:
+          type: string
+          description: ID of the ledger account to use for this vendor.
+          format: uuid
+          nullable: true
+        taxCodeId:
+          type: string
+          description: ID of the tax code to use for this vendor.
+          format: uuid
+          nullable: true
+        costCenterId:
+          type: string
+          description: ID of the cost center to use for this vendor.
+          format: uuid
+          nullable: true
+        senderBankAccountId:
+          type: string
+          description: ID of the sender bank account to use for payments to this vendor.
+          format: uuid
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the configuration was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the configuration was last updated.
+          format: date-time
+      description: Default company entity configuration for this vendor, if any.
+      nullable: true
+    ExternalUiClientExceptionV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
+      nullable: true
+    SetCustomPropertyRequestV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          format: uuid
+        valueIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        inlineValues:
+          type: array
+          items:
+            type: string
+      description: List of custom properties to set on the vendor.
+      nullable: true
+    ExternalSetCustomPropertyRequestV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type: array
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          nullable: true
+          items:
+            type: string
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+            nullable: true
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+      nullable: true
+    ExternalCustomPropertyV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+      nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

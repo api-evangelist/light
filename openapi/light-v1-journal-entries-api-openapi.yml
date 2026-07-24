@@ -1,0 +1,553 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Journal Entries API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Journal Entries
+paths:
+  /v1/journal-entries/{journalEntryId}/archive:
+    post:
+      tags:
+      - v1 - Journal Entries
+      summary: Archive journal entry
+      description: Archives the given journal entry. Drafts are archived directly; posted entries are reversed and marked as archived.
+      operationId: archiveJournalEntry
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      - name: journalEntryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalJournalEntryV1Model'
+  /v1/journal-entries:
+    post:
+      tags:
+      - v1 - Journal Entries
+      summary: Create journal entry
+      description: Creates a new journal entry
+      operationId: createJournalEntry
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateJournalEntryRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalJournalEntryV1Model'
+  /v1/journal-entries/{journalEntryId}:
+    patch:
+      tags:
+      - v1 - Journal Entries
+      summary: Update journal entry
+      description: Updates the given draft journal entry. Only the fields present in the request body are modified; fields set explicitly to null are cleared.
+      operationId: updateJournalEntry
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      - name: journalEntryId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateJournalEntryRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalJournalEntryV1Model'
+components:
+  schemas:
+    ExternalJournalEntryV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        documentNumber:
+          type: string
+        companyEntityId:
+          type: string
+          format: uuid
+        ledgerName:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PRIMARY
+          - ELIMINATION
+        createdBy:
+          type: string
+          format: uuid
+        updatedBy:
+          type: string
+          format: uuid
+        documentSequenceId:
+          type: string
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - DRAFT
+          - APPROVAL_PENDING
+          - APPROVED
+          - POSTED
+          - PARTIALLY_CLEARED
+          - CLEARED
+          - ARCHIVED
+        description:
+          type: string
+        currency:
+          type: string
+          example: USD
+        postingDate:
+          type: string
+          format: date
+        documentDate:
+          type: string
+          format: date
+        valuationDate:
+          type: string
+          format: date
+        localCurrencyFxRate:
+          type: number
+          description: Custom foreign exchange rate for the ledger's local currency. If not provided, Light uses official ECB rates
+          nullable: true
+        groupCurrencyFxRate:
+          type: number
+          description: Custom foreign exchange rate for the ledger's group currency. If not provided, Light uses official ECB rates
+          nullable: true
+        areLinesWithTax:
+          type: boolean
+        failureContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalJournalEntryLineV1Model'
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        businessPartnerName:
+          type: string
+        businessPartnerId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        totalNetTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        totalTaxTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        totalGrossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        multiJournalEntryId:
+          type: string
+          format: uuid
+    ExternalCreateJournalEntryRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type: string
+          format: uuid
+        ledgerName:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PRIMARY
+          - ELIMINATION
+        documentNumber:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+          example: USD
+        postingDate:
+          type: string
+          format: date
+          nullable: true
+        valuationDate:
+          type: string
+          format: date
+          nullable: true
+        localCurrencyFxRateOverride:
+          type: number
+          description: Custom foreign exchange rate for the ledger's local currency. If not provided, Light uses official ECB rates
+          nullable: true
+        groupCurrencyFxRateOverride:
+          type: number
+          description: Custom foreign exchange rate for the ledger's group currency. If not provided, Light uses official ECB rates
+          nullable: true
+        documentDate:
+          type: string
+          format: date
+          nullable: true
+        areLinesWithTax:
+          type: boolean
+        lines:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCreateJournalEntryLineRequestV1Model'
+        businessPartnerName:
+          type: string
+          nullable: true
+        businessPartnerId:
+          type: string
+          format: uuid
+          nullable: true
+        shouldPost:
+          type: boolean
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    DirectedAmount:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        dcSign:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - D
+          - C
+    ExternalUpdateJournalEntryRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        ledgerName:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          nullable: true
+          enum:
+          - PRIMARY
+          - ELIMINATION
+        postingDate:
+          type: string
+          format: date
+          nullable: true
+        documentDate:
+          type: string
+          format: date
+          nullable: true
+        areLinesWithTax:
+          type: boolean
+          nullable: true
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        valuationDate:
+          type: string
+          format: date
+          nullable: true
+        localCurrencyFxRateOverride:
+          type: number
+          description: Custom foreign exchange rate for the ledger's local currency. If not provided, Light uses official ECB rates
+          nullable: true
+        groupCurrencyFxRateOverride:
+          type: number
+          description: Custom foreign exchange rate for the ledger's group currency. If not provided, Light uses official ECB rates
+          nullable: true
+        documentNumber:
+          type: string
+          nullable: true
+        businessPartnerName:
+          type: string
+          nullable: true
+        businessPartnerId:
+          type: string
+          format: uuid
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        currency:
+          type: string
+          nullable: true
+          example: USD
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalCreateJournalEntryLineRequestV1Model:
+      type: object
+      properties:
+        netTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        grossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        taxAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        description:
+          type: string
+          nullable: true
+        targetCompanyEntityId:
+          type: string
+          format: uuid
+          nullable: true
+        ledgerTaxId:
+          type: string
+          format: uuid
+          nullable: true
+        ledgerAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        costCenterId:
+          type: string
+          format: uuid
+          nullable: true
+        amortizationTemplateId:
+          type: string
+          format: uuid
+          nullable: true
+        amortizationStartDate:
+          type: string
+          format: date
+          nullable: true
+        amortizationEndDate:
+          type: string
+          format: date
+          nullable: true
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalUiClientExceptionErrorV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A string code identifying the error type
+        message:
+          type: string
+          description: A human-readable message providing more details about the error
+        path:
+          type: array
+          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+          nullable: true
+          items:
+            type: string
+            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+            nullable: true
+        context:
+          type: object
+          additionalProperties:
+            type: object
+            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+            nullable: true
+          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+          nullable: true
+      description: List of errors providing details about what went wrong
+    ExternalJournalEntryLineV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        journalEntryId:
+          type: string
+          format: uuid
+        netTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        grossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        taxTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        description:
+          type: string
+        targetCompanyEntityId:
+          type: string
+          format: uuid
+        ledgerTaxId:
+          type: string
+          format: uuid
+        ledgerAccountId:
+          type: string
+          format: uuid
+        costCenterId:
+          type: string
+          format: uuid
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        amortizationTemplateId:
+          type: string
+          format: uuid
+        amortizationStartDate:
+          type: string
+          format: date
+        amortizationEndDate:
+          type: string
+          format: date
+    ExternalUiClientExceptionV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
+      nullable: true
+    ExternalSetCustomPropertyRequestV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type: array
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          nullable: true
+          items:
+            type: string
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+            nullable: true
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+      nullable: true
+    ExternalCustomPropertyV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+      nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

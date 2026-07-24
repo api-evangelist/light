@@ -1,0 +1,448 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Custom Properties API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Custom Properties
+paths:
+  /v1/custom-properties/groups/{groupId}/values:
+    get:
+      tags:
+      - v1 - Custom Properties
+      summary: List custom property values
+      description: Returns a paginated list of custom property values
+      operationId: listPaginatedCustomPropertyValues
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `label`, `value`, `createdAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `label`, `value`, `createdAt`, `updatedAt`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalCustomPropertyValueV1Model'
+    post:
+      tags:
+      - v1 - Custom Properties
+      summary: Create custom property value
+      description: Creates a new custom property value in the specified group
+      operationId: createCustomPropertyValue
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateCustomPropertyValueRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+  /v1/custom-properties/groups/{groupId}/values/{valueId}:
+    get:
+      tags:
+      - v1 - Custom Properties
+      summary: Get custom property value
+      description: Returns a custom property value by ID
+      operationId: getCustomPropertyValueById
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: valueId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+    delete:
+      tags:
+      - v1 - Custom Properties
+      summary: Delete custom property value
+      description: Deletes a custom property value by ID
+      operationId: deleteCustomPropertyValue
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: valueId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8: {}
+    patch:
+      tags:
+      - v1 - Custom Properties
+      summary: Update custom property value
+      description: Updates an existing custom property value
+      operationId: updateCustomPropertyValue
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: valueId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateCustomPropertyValueRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+  /v1/custom-properties/groups/{groupId}:
+    get:
+      tags:
+      - v1 - Custom Properties
+      summary: Get custom property group
+      description: Returns a custom property group by ID
+      operationId: getCustomPropertyGroupById
+      parameters:
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomPropertyGroupV1Model'
+  /v1/custom-properties/groups:
+    get:
+      tags:
+      - v1 - Custom Properties
+      summary: List custom property groups
+      description: Returns a paginated list of custom property groups
+      operationId: listPaginatedCustomPropertyGroups
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `label`, `createdAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `internalName`, `label`, `objectLevel`, `objectType`, `objectTypeStatus`, `inputType`, `isRequired`, `isDeleted`, `createdAt`, `updatedAt`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      - name: includeValues
+        in: query
+        schema:
+          type: boolean
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalCustomPropertyGroupV1Model'
+components:
+  schemas:
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalPaginatedResponseV1ModelExternalCustomPropertyGroupV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyGroupV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalUpdateCustomPropertyValueRequestV1Model:
+      type: object
+      properties:
+        label:
+          type: string
+          description: Display label for the custom property value.
+          nullable: true
+        context:
+          type: string
+          description: Optional context or description for the custom property value.
+          nullable: true
+    ExternalPaginatedResponseV1ModelExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalCustomPropertyGroupV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        label:
+          type: string
+        internalName:
+          type: string
+        inputType:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - SINGLE_SELECT
+          - MULTI_SELECT
+          - NUMERIC
+          - TEXT
+          - BOOLEAN
+          - DATE
+        objectLevel:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - HEADER
+          - LINE
+        objectTypes:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+            description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+            enum:
+            - BILL
+            - CARD_TRANSACTION
+            - CREDIT_NOTE
+            - CONTRACT
+            - CUSTOMER
+            - CUSTOMER_CREDIT
+            - INVOICE
+            - JOURNAL_ENTRY
+            - LEDGER_ACCOUNT
+            - PRODUCT
+            - PURCHASE_ORDER
+            - PURCHASE_REQUEST
+            - REIMBURSEMENT
+            - VENDOR
+        objectTypeStatuses:
+          type: object
+          additionalProperties:
+            type: string
+            description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+            enum:
+            - ACTIVE
+            - DELETED
+        context:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        required:
+          type: boolean
+      description: List of records for the current page
+    ExternalCreateCustomPropertyValueRequestV1Model:
+      type: object
+      properties:
+        internalName:
+          type: string
+          description: Unique internal name for the custom property value.
+        label:
+          type: string
+          description: Display label for the custom property value.
+        context:
+          type: string
+          description: Optional context or description for the custom property value.
+          nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,946 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Customers API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Customers
+paths:
+  /v1/customers/{customerId}/activate:
+    post:
+      tags:
+      - v1 - Customers
+      summary: Activate customer
+      description: Activate the given customer
+      operationId: activateCustomer
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomerV1Model'
+  /v1/customers/{customerId}/archive:
+    post:
+      tags:
+      - v1 - Customers
+      summary: Archive customer
+      description: Archive the given customer
+      operationId: archiveCustomer
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomerV1Model'
+  /v1/customers:
+    get:
+      tags:
+      - v1 - Customers
+      summary: List customers
+      description: Returns a paginated list of customers
+      operationId: listCustomers
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `name`, `email`, `createdAt`, `updatedAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `billingAddressCity`, `billingAddressCountry`, `businessRegistrationNumber`, `createdAt`, `description`, `email`, `id`, `name`, `status`, `updatedAt`, `vatNumber`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: searchTerm
+        in: query
+        description: Search term to filter results by. Performs a case-insensitive partial match across searchable fields.
+        schema:
+          type: string
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalCustomerV1Model'
+    post:
+      tags:
+      - v1 - Customers
+      summary: Create customer
+      description: Creates a new customer
+      operationId: createCustomer
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalCreateCustomerRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomerV1Model'
+  /v1/customers/{customerId}:
+    get:
+      tags:
+      - v1 - Customers
+      summary: Get customer
+      description: Returns a customer by ID
+      operationId: getCustomerById
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomerV1Model'
+    patch:
+      tags:
+      - v1 - Customers
+      summary: Update customer
+      description: Updates an existing customer
+      operationId: updateCustomer
+      parameters:
+      - name: X-Idempotency-Key
+        in: header
+        schema:
+          type: string
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/json;charset=UTF-8:
+            schema:
+              $ref: '#/components/schemas/ExternalUpdateCustomerRequestV1Model'
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCustomerV1Model'
+components:
+  schemas:
+    ExternalCreateCustomerRequestV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/Address'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        domain:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        vatNumber:
+          type: string
+          nullable: true
+        businessRegistrationNumber:
+          type: string
+          nullable: true
+        easCode:
+          type: string
+          nullable: true
+        einvoiceAddress:
+          type: string
+          nullable: true
+        einvoiceNetwork:
+          type: string
+          description: '- `MYDATA` - Greece myDATA e-invoice network
+
+            - `NEMHANDEL` - NemHandel e-invoice network
+
+            - `PEPPOL` - Peppol e-invoice network
+
+            - `PORTUGUESE_TAX_REPORTING` - Portuguese tax reporting (ATCUD) e-invoice network
+
+            - `SDI` - SDI (Sistema di Interscambio) e-invoice network
+
+            - `VERIFACTU` - Spain VERI*FACTU tax reporting e-invoice network
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          enum:
+          - MYDATA
+          - NEMHANDEL
+          - PEPPOL
+          - PORTUGUESE_TAX_REPORTING
+          - SDI
+          - VERIFACTU
+        type:
+          type: string
+          description: '- `BUSINESS` - Business customer
+
+            - `CONSUMER` - Consumer customer
+
+            - `GOVERNMENT` - Government customer
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          enum:
+          - BUSINESS
+          - CONSUMER
+          - GOVERNMENT
+        logoUrl:
+          type: string
+          nullable: true
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        recipientEmails:
+          type: array
+          description: Billing email recipients ("Send to") used when sending invoices to this customer
+          nullable: true
+          items:
+            type: string
+            description: Billing email recipients ("Send to") used when sending invoices to this customer
+            nullable: true
+        ccEmails:
+          type: array
+          description: Billing email CC recipients used when sending invoices to this customer
+          nullable: true
+          items:
+            type: string
+            description: Billing email CC recipients used when sending invoices to this customer
+            nullable: true
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        street:
+          type: string
+        street2:
+          type: string
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalPaginatedResponseV1ModelExternalCustomerV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCustomerV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalApiExternalSourceV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 'The name of the external source
+
+
+            - `CHARGEBEE` - Data synced from Chargebee
+
+            - `HUBSPOT` - Data synced from HubSpot
+
+            - `SALESFORCE` - Data synced from Salesforce
+
+            - `STRIPE` - Data synced from Stripe
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - CHARGEBEE
+          - HUBSPOT
+          - SALESFORCE
+          - STRIPE
+        externalId:
+          type: string
+          description: The ID of the object in the external source system
+      description: The external system where this product was synced from
+      nullable: true
+    ExternalCustomerV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        name:
+          type: string
+          description: Name of the customer
+        email:
+          type: string
+          description: Email address of the customer
+          nullable: true
+        address:
+          $ref: '#/components/schemas/Address'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        status:
+          type: string
+          description: 'Current status of the customer
+
+
+            - `ACTIVE` - The customer is active and can be used in invoices and contracts
+
+            - `ARCHIVED` - The customer is archived and cannot be used in new invoices or contracts
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: false
+          deprecated: false
+          enum:
+          - ACTIVE
+          - ARCHIVED
+        description:
+          type: string
+          description: Description or notes about the customer
+          nullable: true
+        vatNumber:
+          type: string
+          description: VAT number of the customer
+          nullable: true
+        businessRegistrationNumber:
+          type: string
+          description: Business registration number of the customer
+          nullable: true
+        easCode:
+          type: string
+          description: Electronic Address Scheme code used for sending e-invoices
+          nullable: true
+        einvoiceAddress:
+          type: string
+          description: E-invoice address for the customer
+          nullable: true
+        einvoiceNetwork:
+          type: string
+          description: 'E-invoice network the customer is registered on
+
+
+            - `MYDATA` - Greece myDATA e-invoice network
+
+            - `NEMHANDEL` - NemHandel e-invoice network
+
+            - `PEPPOL` - Peppol e-invoice network
+
+            - `PORTUGUESE_TAX_REPORTING` - Portuguese tax reporting (ATCUD) e-invoice network
+
+            - `SDI` - SDI (Sistema di Interscambio) e-invoice network
+
+            - `VERIFACTU` - Spain VERI*FACTU tax reporting e-invoice network
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - MYDATA
+          - NEMHANDEL
+          - PEPPOL
+          - PORTUGUESE_TAX_REPORTING
+          - SDI
+          - VERIFACTU
+        type:
+          type: string
+          description: 'Type of customer
+
+
+            - `BUSINESS` - Business customer
+
+            - `CONSUMER` - Consumer customer
+
+            - `GOVERNMENT` - Government customer
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          deprecated: false
+          enum:
+          - BUSINESS
+          - CONSUMER
+          - GOVERNMENT
+        logoUrl:
+          type: string
+          description: URL to the customer's logo
+          nullable: true
+        domain:
+          type: string
+          description: Domain of the customer's website
+          nullable: true
+        externalSource:
+          $ref: '#/components/schemas/ExternalApiExternalSourceV1Model'
+        createdAt:
+          type: string
+          description: Timestamp when the customer was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the customer was last updated
+          format: date-time
+        customProperties:
+          type: array
+          description: List of custom properties associated with the customer
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        recipientEmails:
+          type: array
+          description: Billing email recipients ("Send to") used when sending invoices to this customer
+          items:
+            type: string
+            description: Billing email recipients ("Send to") used when sending invoices to this customer
+        ccEmails:
+          type: array
+          description: Billing email CC recipients used when sending invoices to this customer
+          items:
+            type: string
+            description: Billing email CC recipients used when sending invoices to this customer
+    ExternalUpdateCustomerRequestV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+        email:
+          type: string
+          nullable: true
+        address:
+          $ref: '#/components/schemas/Address'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        domain:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        vatNumber:
+          type: string
+          nullable: true
+        businessRegistrationNumber:
+          type: string
+          nullable: true
+        easCode:
+          type: string
+          nullable: true
+        einvoiceAddress:
+          type: string
+          nullable: true
+        einvoiceNetwork:
+          type: string
+          description: '- `MYDATA` - Greece myDATA e-invoice network
+
+            - `NEMHANDEL` - NemHandel e-invoice network
+
+            - `PEPPOL` - Peppol e-invoice network
+
+            - `PORTUGUESE_TAX_REPORTING` - Portuguese tax reporting (ATCUD) e-invoice network
+
+            - `SDI` - SDI (Sistema di Interscambio) e-invoice network
+
+            - `VERIFACTU` - Spain VERI*FACTU tax reporting e-invoice network
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          enum:
+          - MYDATA
+          - NEMHANDEL
+          - PEPPOL
+          - PORTUGUESE_TAX_REPORTING
+          - SDI
+          - VERIFACTU
+        type:
+          type: string
+          description: '- `BUSINESS` - Business customer
+
+            - `CONSUMER` - Consumer customer
+
+            - `GOVERNMENT` - Government customer
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          nullable: true
+          enum:
+          - BUSINESS
+          - CONSUMER
+          - GOVERNMENT
+        logoUrl:
+          type: string
+          nullable: true
+        recipientEmails:
+          type: array
+          description: Billing email recipients ("Send to"). Omit to leave unchanged; send an empty list to clear.
+          nullable: true
+          items:
+            type: string
+            description: Billing email recipients ("Send to"). Omit to leave unchanged; send an empty list to clear.
+            nullable: true
+        ccEmails:
+          type: array
+          description: Billing email CC recipients. Omit to leave unchanged; send an empty list to clear.
+          nullable: true
+          items:
+            type: string
+            description: Billing email CC recipients. Omit to leave unchanged; send an empty list to clear.
+            nullable: true
+    ExternalSetCustomPropertyRequestV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type: array
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          nullable: true
+          items:
+            type: string
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+            nullable: true
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+      nullable: true
+    ExternalCustomPropertyV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+      nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

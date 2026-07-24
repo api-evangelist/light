@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Companies API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Companies
+paths:
+  /v1/companies/current:
+    get:
+      tags:
+      - v1 - Companies
+      summary: Get current company
+      description: Returns the current company information
+      operationId: getCurrentCompany
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalCompanyV1Model'
+components:
+  schemas:
+    ExternalCompanyV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        invoiceEmail:
+          type: string
+        receiptEmail:
+          type: string
+          nullable: true
+        contractEmail:
+          type: string
+          nullable: true
+        logoUrl:
+          type: string
+          nullable: true
+        baseCurrency:
+          type: string
+          example: USD
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

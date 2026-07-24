@@ -1,0 +1,602 @@
+openapi: 3.0.1
+info:
+  title: Light Authorization v1 - Ledger accounts API
+  version: 1.0.0
+security:
+- apiKeyAuth: []
+- bearerAuth: []
+tags:
+- name: v1 - Ledger accounts
+paths:
+  /v1/ledger-accounts:
+    get:
+      tags:
+      - v1 - Ledger accounts
+      summary: List ledger accounts
+      description: Returns a paginated list of ledger accounts
+      operationId: getLedgerAccounts
+      parameters:
+      - name: sort
+        in: query
+        schema:
+          type: string
+          description: "Sort string in the format `field:direction`. To provide multiple sort fields, separate them with commas.\n\nAvailable directions: `asc`, `desc`. \n\nAvailable fields: `code`, `label`, `context`, `type`, `category`, `status`, `createdAt`, `updatedAt`."
+          example: amount:desc,createdAt:asc
+      - name: filter
+        in: query
+        schema:
+          type: string
+          description: "Filter string in the format `field:operator:value`. To provide multiple filters, separate them with commas.\n\nAvailable operators: `eq`, `ne`, `in`, `not_in`, `gt`, `gte`, `lt`, `lte`.\n - For `in` and `not_in` operators, provide multiple values separated by the pipe character (`|`). \n\nAvailable fields: `id`, `companyEntityId`, `code`, `sourceType`, `status`, `type`, `category`, `createdAt`, `updatedAt`."
+          example: state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null
+      - name: limit
+        in: query
+        description: Maximum number of items to return. Default is 50, maximum is 200.
+        schema:
+          maximum: 200
+          type: integer
+          format: int32
+      - name: offset
+        in: query
+        description: Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead.
+        deprecated: true
+        schema:
+          type: integer
+          format: int64
+      - name: cursor
+        in: query
+        description: 'The cursor position to start returning results from.
+
+          To opt-in into cursor-based pagination, provide `0` for the initial request.
+
+          For subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.
+
+          Cursor values are opaque and should not be constructed manually.'
+        schema:
+          type: string
+      - name: ledgerFeature
+        in: query
+        schema:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ALL
+          - CARD_TRANSACTIONS
+          - INVOICE_PAYABLES
+          - INVOICE_RECEIVABLES
+          - JOURNAL_ENTRIES
+          - PURCHASE_ORDERS
+          - REIMBURSEMENTS
+      - name: includeCustomProperties
+        in: query
+        description: Whether to include custom properties in the response
+        schema:
+          type: boolean
+      responses:
+        default:
+          description: default response
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalLedgerAccountV1Model'
+components:
+  schemas:
+    ExternalPaginatedResponseV1ModelExternalLedgerAccountV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalLedgerAccountV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type: integer
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          nullable: true
+          deprecated: true
+        nextCursor:
+          type: string
+          description: Cursor for fetching the next page (only for cursor pagination)
+          nullable: true
+        prevCursor:
+          type: string
+          description: Cursor for fetching the previous page (only for cursor pagination)
+          nullable: true
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type: string
+          description: Context/description of the custom property value
+          nullable: true
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalLedgerAccountV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        bankAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        cardAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        cashAndEquivalentsAccountId:
+          type: string
+          format: uuid
+          nullable: true
+        code:
+          type: integer
+          format: int32
+        label:
+          type: string
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - BANK
+          - CARD
+          - CASH_AND_EQUIVALENTS
+          - ACCOUNTS_RECEIVABLE
+          - INVENTORY
+          - CORPORATE_TAX_RECEIVABLE
+          - OTHER_CURRENT_ASSET
+          - INTANGIBLE_NON_CURRENT_ASSET
+          - TANGIBLE_NON_CURRENT_ASSET
+          - FINANCIAL_NON_CURRENT_ASSET
+          - CORPORATE_TAX_DEFERRED_ASSET
+          - OTHER_NON_CURRENT_ASSET
+          - ACCOUNTS_PAYABLE
+          - OVERDRAFT_FACILITY
+          - CORPORATE_TAX_PAYABLE
+          - OTHER_CURRENT_LIABILITY
+          - LONG_TERM_LOAN
+          - CORPORATE_TAX_DEFERRED_LIABILITY
+          - OTHER_LONG_TERM_LIABILITY
+          - CONTRIBUTED_CAPITAL
+          - RETAINED_EARNINGS
+          - ACCUMULATED_OTHER_COMPREHENSIVE_INCOME
+          - OTHER_EQUITY
+          - COST_OF_SALES
+          - DISTRIBUTION_COST
+          - GENERAL_AND_ADMINISTRATIVE_EXPENSE
+          - PERSONNEL_COST
+          - OTHER_OPERATING_EXPENSE
+          - INCOME_TAX
+          - DEPRECIATION_AND_AMORTIZATION
+          - NON_OPERATING_EXPENSE
+          - INTEREST_EXPENSE
+          - EXCHANGE_RATE_LOSS_REALIZED
+          - EXCHANGE_RATE_LOSS_UNREALIZED
+          - OTHER_FINANCIAL_EXPENSE
+          - REVENUE
+          - DISCOUNT
+          - NON_OPERATING_INCOME
+          - INTEREST_INCOME
+          - EXCHANGE_RATE_GAIN_REALIZED
+          - EXCHANGE_RATE_GAIN_UNREALIZED
+          - OTHER_FINANCIAL_INCOME
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - DISABLED_EXTERNALLY
+          - DISABLED
+        context:
+          type: string
+          nullable: true
+        revaluateFxBalance:
+          type: boolean
+        companyEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCompanyEntityV1Model'
+        customProperties:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      description: List of records for the current page
+    Address:
+      type: object
+      properties:
+        country:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        street:
+          type: string
+        street2:
+          type: string
+    ExternalCompanyEntityV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        code:
+          type: string
+        parentCompanyEntityId:
+          type: string
+          format: uuid
+        localCurrency:
+          type: string
+          example: USD
+        displayName:
+          type: string
+        vatNumber:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - HIDDEN
+          - INACTIVE
+        seedInvoiceNumber:
+          type: integer
+          description: This field is used to offset the invoice number sequence for this company entity. The first invoice issued for this company entity will have the number seedInvoiceNumber. This field is optional (default is 1) and can be used to set a custom starting point for invoice numbering or to synchronize with an existing invoicing system. After the first invoice is issued, the sequence will continue without gaps and the seedInvoiceNumber will be ignored.
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    ExternalCustomPropertyV1Model:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+      nullable: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      description: Basic authentication header of the form **Basic** **<api_key>**, where **<api_key>** is your api key.
+      name: Authorization
+      in: header
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
