@@ -1,27 +1,569 @@
 aid: light
-name: light
-description: light is a company surfaced as a portfolio company of balderton-capital, seedcamp and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+name: Light
+description: >-
+  Light is an agentic accounting and financial-operations platform positioned as an alternative
+  to traditional ERPs and fragmented finance stacks. It combines a multi-entity general ledger
+  and consolidation engine with accounts payable, accounts receivable, spend management and
+  corporate cards, contracts and subscription billing, purchase orders and expense
+  reimbursement. The Light API is a REST API over HTTPS returning camelCase JSON, covering 183
+  operations across 28 resource groups — invoice payables and receivables, credit notes,
+  customer credits, journal entries, ledger accounts, bank accounts and transactions, cards and
+  card transactions, contracts, purchase orders, products, vendors, customers and users.
+  Authentication is either an API key sent as HTTP Basic or an OAuth 2.0 access token, access is
+  governed by the same roles as user accounts, and writes on 14 operations accept an
+  X-Idempotency-Key header. Light also publishes a live Model Context Protocol server over its
+  documentation and markets a Claude MCP integration against the live ledger.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://light.inc/assets/images/og-home.jpg
 url: https://raw.githubusercontent.com/api-evangelist/light/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - balderton-capital
 - seedcamp
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: real-openapi-and-docs
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
+- Accounting
+- Finance
+- ERP
+- Accounts Payable
+- Accounts Receivable
+- General Ledger
+- Spend Management
+- Invoicing
+- Corporate Cards
+- Expense Management
+- Financial Operations
+- Agents
 - Company
-apis: []
+apis:
+- aid: light:light-authorization-api
+  name: Light Authorization API
+  description: The Authorization API from Light — 2 operation(s) for authorization.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - Authorization
+  properties:
+  - type: OpenAPI
+    url: openapi/light-authorization-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-accounting-documents-api
+  name: Light v1 - Accounting Documents API
+  description: >-
+    The v1 - Accounting Documents API from Light — 1 operation(s) for v1 - accounting documents.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Accounting Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-accounting-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-attachments-api
+  name: Light v1 - Attachments API
+  description: The v1 - Attachments API from Light — 4 operation(s) for v1 - attachments.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-attachments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-bank-accounts-api
+  name: Light v1 - Bank Accounts API
+  description: The v1 - Bank Accounts API from Light — 4 operation(s) for v1 - bank accounts.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Bank Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-bank-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-card-balance-accounts-api
+  name: Light v1 - Card Balance Accounts API
+  description: >-
+    The v1 - Card Balance Accounts API from Light — 4 operation(s) for v1 - card balance accounts.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Card Balance Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-card-balance-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-card-customers-api
+  name: Light v1 - Card Customers API
+  description: The v1 - Card Customers API from Light — 1 operation(s) for v1 - card customers.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Card Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-card-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-card-transactions-api
+  name: Light v1 - Card Transactions API
+  description: The v1 - Card Transactions API from Light — 9 operation(s) for v1 - card transactions.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Card Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-card-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-cards-api
+  name: Light v1 - Cards API
+  description: The v1 - Cards API from Light — 4 operation(s) for v1 - cards.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-cards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-companies-api
+  name: Light v1 - Companies API
+  description: The v1 - Companies API from Light — 1 operation(s) for v1 - companies.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-companies-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-contracts-api
+  name: Light v1 - Contracts API
+  description: The v1 - Contracts API from Light — 10 operation(s) for v1 - contracts.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Contracts
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-contracts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-credit-notes-api
+  name: Light v1 - Credit Notes API
+  description: The v1 - Credit Notes API from Light — 10 operation(s) for v1 - credit notes.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Credit Notes
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-credit-notes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-custom-properties-api
+  name: Light v1 - Custom Properties API
+  description: The v1 - Custom Properties API from Light — 4 operation(s) for v1 - custom properties.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Custom Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-custom-properties-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-customer-credits-api
+  name: Light v1 - Customer Credits API
+  description: The v1 - Customer Credits API from Light — 12 operation(s) for v1 - customer credits.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Customer Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-customer-credits-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-customers-api
+  name: Light v1 - Customers API
+  description: The v1 - Customers API from Light — 4 operation(s) for v1 - customers.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-entities-api
+  name: Light v1 - Entities API
+  description: The v1 - Entities API from Light — 1 operation(s) for v1 - entities.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-entities-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-exchange-api
+  name: Light v1 - Exchange API
+  description: The v1 - Exchange API from Light — 2 operation(s) for v1 - exchange.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Exchange
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-exchange-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-expenses-api
+  name: Light v1 - Expenses API
+  description: The v1 - Expenses API from Light — 8 operation(s) for v1 - expenses.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Expenses
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-expenses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-invoice-approvals-api
+  name: Light v1 - Invoice Approvals API
+  description: The v1 - Invoice Approvals API from Light — 1 operation(s) for v1 - invoice approvals.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Invoice Approvals
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-invoice-approvals-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-invoice-payables-api
+  name: Light v1 - Invoice Payables API
+  description: The v1 - Invoice Payables API from Light — 17 operation(s) for v1 - invoice payables.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Invoice Payables
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-invoice-payables-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-invoice-receivables-api
+  name: Light v1 - Invoice Receivables API
+  description: >-
+    The v1 - Invoice Receivables API from Light — 11 operation(s) for v1 - invoice receivables.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Invoice Receivables
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-invoice-receivables-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-journal-entries-api
+  name: Light v1 - Journal Entries API
+  description: The v1 - Journal Entries API from Light — 3 operation(s) for v1 - journal entries.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Journal Entries
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-journal-entries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-ledger-accounts-api
+  name: Light v1 - Ledger accounts API
+  description: The v1 - Ledger accounts API from Light — 1 operation(s) for v1 - ledger accounts.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Ledger accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-ledger-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-ledger-transactions-api
+  name: Light v1 - Ledger Transactions API
+  description: >-
+    The v1 - Ledger Transactions API from Light — 1 operation(s) for v1 - ledger transactions.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Ledger Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-ledger-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-products-api
+  name: Light v1 - Products API
+  description: The v1 - Products API from Light — 3 operation(s) for v1 - products.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-products-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-purchase-orders-api
+  name: Light v1 - Purchase Orders API
+  description: The v1 - Purchase Orders API from Light — 9 operation(s) for v1 - purchase orders.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Purchase Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-purchase-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-user-comments-api
+  name: Light v1 - User Comments API
+  description: The v1 - User Comments API from Light — 2 operation(s) for v1 - user comments.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - User Comments
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-user-comments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-users-api
+  name: Light v1 - Users API
+  description: The v1 - Users API from Light — 5 operation(s) for v1 - users.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-users-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
+- aid: light:light-v1-vendors-api
+  name: Light v1 - Vendors API
+  description: The v1 - Vendors API from Light — 2 operation(s) for v1 - vendors.
+  humanURL: https://docs.light.inc/getting-started/introduction
+  baseURL: https://api.light.inc
+  tags:
+  - v1 - Vendors
+  properties:
+  - type: OpenAPI
+    url: openapi/light-v1-vendors-api-openapi.yml
+  - type: Documentation
+    url: https://docs.light.inc/getting-started/introduction
+  - type: Authentication
+    url: https://docs.light.inc/getting-started/authentication
+  - type: RateLimits
+    url: https://docs.light.inc/getting-started/rate-limits
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/light-agentic-access.yml
 - type: Website
   url: https://light.inc/
+- type: DeveloperPortal
+  url: https://docs.light.inc/getting-started/introduction
+- type: Documentation
+  url: https://docs.light.inc/getting-started/introduction
+- type: APIReference
+  url: https://docs.light.inc/api-reference/customers/001-overview
+- type: GettingStarted
+  url: https://docs.light.inc/getting-started/introduction
+- type: Support
+  url: https://light.inc/help
+- type: Blog
+  url: https://light.inc/blog
+- type: SignUp
+  url: https://light.inc/book-a-demo
+- type: Login
+  url: https://app.light.inc/
+- type: TermsOfService
+  url: https://light.inc/terms
+- type: PrivacyPolicy
+  url: https://light.inc/privacy
+- type: Compliance
+  url: https://light.inc/soc-2
+- type: TrustCenter
+  url: security/light-trust-center.yml
+- type: DomainSecurity
+  url: security/light-domain-security.yml
+- type: Authentication
+  url: authentication/light-authentication.yml
+- type: Conventions
+  url: conventions/light-conventions.yml
+- type: Idempotency
+  url: conventions/light-conventions.yml
+- type: ErrorCatalog
+  url: errors/light-problem-types.yml
+- type: RateLimits
+  url: rate-limits/light-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/light-lifecycle.yml
+- type: Conformance
+  url: conformance/light-conformance.yml
+- type: DataModel
+  url: data-model/light-data-model.yml
+- type: MCPServer
+  url: mcp/light-mcp.yml
+- type: LLMsTxt
+  url: llms/light-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
