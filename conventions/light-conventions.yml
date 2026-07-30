@@ -1,0 +1,198 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.light.inc/getting-started/introduction
+sources:
+- https://docs.light.inc/getting-started/introduction
+- https://docs.light.inc/getting-started/authentication
+- https://docs.light.inc/getting-started/rate-limits
+- openapi/light-openapi-original.json
+
+style:
+  protocol: REST
+  transport: HTTPS only (plain HTTP calls fail)
+  media_type: application/json;charset=UTF-8
+  field_casing: camelCase
+  notes: >-
+    The Light API is organized around REST and uses standard HTTP response codes,
+    authentication and verbs. Most endpoints accept and return JSON-encoded data
+    in camelCase.
+
+authentication:
+  styles:
+  - type: apiKey
+    header: Authorization
+    scheme: Basic
+    example: 'Authorization: Basic YOUR_API_KEY'
+    notes: Keys are created in Settings > API Keys and inherit roles the same way user accounts do.
+  - type: oauth2
+    header: Authorization
+    scheme: Bearer
+    bearerFormat: JWT
+    notes: OAuth 2.0 authorization-code flow; contact help@light.inc to enable OAuth for an account.
+  redirect_behavior: >-
+    Clients must follow redirects AND forward the Authorization header, because some
+    endpoints redirect to other URLs.
+  artifact: authentication/light-authentication.yml
+
+idempotency:
+  supported: true
+  header: X-Idempotency-Key
+  in: header
+  required: false
+  scope: per write operation
+  operations_count: 14
+  operations:
+  - createCard
+  - freezeCard
+  - unfreezeCard
+  - createCreditNote
+  - createCustomerCredit
+  - updateCustomerCredit
+  - createCustomer
+  - updateCustomer
+  - createInvoice
+  - archiveJournalEntry
+  - createJournalEntry
+  - updateJournalEntry
+  - createProduct
+  - updateProduct
+  coverage_note: >-
+    Idempotency is opt-in and partial — 14 of 183 operations accept the header. Notably
+    createInvoicePayableDetails, postInvoicePayable and markInvoicePayableAsPaid do NOT.
+  source: openapi/light-openapi-original.json
+  natural_key_idempotency:
+  - operation: createCreditNote
+    field: documentNumber
+    behavior: >-
+      When documentNumber is provided it is used for idempotency — retrying a create with
+      the same documentNumber returns the existing credit note instead of creating a duplicate.
+  - operation: createBankTransactions
+    field: transactionId
+    idempotency_header: false
+    behavior: >-
+      Batch create silently skips duplicate transactions (same transactionId for the same
+      bank account). Maximum 500 transactions per request.
+  - operation: upsertBankAccountBalance
+    field: bankAccountId
+    behavior: Only one balance per bank account; subsequent calls update the existing balance.
+  notes: >-
+    Retention/expiry window for X-Idempotency-Key is not published in the documentation.
+
+pagination:
+  style: cursor-and-offset
+  parameters:
+  - name: cursor
+    in: query
+    description: Opaque cursor for the next page.
+  - name: limit
+    in: query
+    description: Page size.
+  - name: offset
+    in: query
+    description: Offset-based alternative to cursor paging.
+  list_endpoints: 22
+  response_envelope: ExternalPaginatedResponseV1Model<T>
+  source: openapi/light-openapi-original.json
+
+filtering:
+  parameter: filter
+  format: 'field:operator:value (comma-separated for multiple filters)'
+  operators: [eq, ne, in, not_in, gt, gte, lt, lte]
+  multi_value_separator: '|'
+  example: 'state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null'
+
+sorting:
+  parameter: sort
+  format: 'field:direction (comma-separated for multiple fields)'
+  directions: [asc, desc]
+  example: 'amount:desc,createdAt:asc'
+
+search:
+  parameter: searchTerm
+  description: Case-insensitive partial match across searchable fields.
+
+null_semantics:
+  behavior: >-
+    On update (PATCH) operations, fields sent as null clear the value; omitted fields
+    remain unchanged.
+  evidence: updateCreditNote, updateCustomerCredit, updateJournalEntry, updateInvoicePayable
+
+error_envelope:
+  format: custom
+  rfc9457: false
+  shape:
+    name: string
+    type: enum
+    errors:
+    - type: string
+      message: string
+      path: [field]
+      context: {}
+  type_values: [BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT, UNPROCESSABLE_CONTENT]
+  artifact: errors/light-problem-types.yml
+
+rate_limit_signaling:
+  status: 429
+  headers:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - Retry-After
+  artifact: rate-limits/light-rate-limits.yml
+  docs: https://docs.light.inc/getting-started/rate-limits
+
+versioning:
+  scheme: uri-path
+  current: v1
+  prefix: /v1
+  forward_compatibility: >-
+    Enum values are documented but NOT guaranteed exhaustive. New enum values may be
+    introduced over time; clients must handle unknown enum values gracefully and avoid
+    exhaustive matching. This policy lets Light extend functionality without breaking consumers.
+  artifact: lifecycle/light-lifecycle.yml
+
+file_uploads:
+  pattern: presigned-upload-url
+  description: >-
+    Binary attachments (invoice documents, receipts, contract PDFs, expense receipts) are
+    uploaded by first requesting a short-lived pre-signed upload URL, then PUTting the file
+    to that URL.
+  operations:
+  - createAttachmentUploadUrl
+  - generateUploadUrlForCardTransaction
+  - createInvoicePayableDocumentUploadUrl
+  - generateContractDocumentUploadUrl
+  - generateUploadUrl
+  docs: https://docs.light.inc/examples/upload-receipt
+
+async_document_generation:
+  pattern: poll-until-ready
+  description: >-
+    Generated PDFs are produced asynchronously — poll the generate endpoint until status is
+    READY, then download from the temporary signed url field. Signed URLs are temporary and
+    must not be stored and reused.
+  operations:
+  - generateInvoiceReceivableDocument
+  - generateCardBalanceAccountStatement
+
+request_tracing:
+  request_id_header: null
+  notes: No request-id / correlation-id header is documented.
+
+expansion:
+  supported: false
+  notes: >-
+    No field-expansion or sparse-fieldset parameter is documented; several create endpoints
+    instead accept inline child collections (e.g. createInvoicePayableDetails accepts lineItems).
+
+metadata:
+  mechanism: custom properties
+  description: >-
+    User-defined fields are modelled as custom property groups and values rather than a free
+    -form metadata map.
+  operations:
+  - listPaginatedCustomPropertyGroups
+  - listPaginatedCustomPropertyValues
+  - createCustomPropertyValue
+  - updateCustomPropertyValue
+  - updateInvoicePayableCustomProperties

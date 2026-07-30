@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: probed
+source: live HTTP probes of Light hosts
+probed: '2026-07-19'
+result: none
+summary: >-
+  No /.well-known/ discovery documents are published on any Light host. Every probed path
+  returned 404. Recorded as verified absence — no raw files were saved because nothing
+  returned 200.
+
+hosts:
+- host: https://api.light.inc
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://light.inc
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+- host: https://docs.light.inc
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+
+gaps:
+- No RFC 9116 security.txt — Light publishes no machine-readable security contact.
+- No RFC 8414 OAuth authorization-server metadata, despite operating an OAuth 2.0 flow
+  at https://api.light.inc/oauth/authorize and /oauth/token.
+- No RFC 9727 api-catalog.
+
+note: >-
+  No WellKnown pointer is wired into apis.yml: the artifact records an absence, and emitting a
+  discovery pointer for a surface that does not exist would misrepresent the provider.

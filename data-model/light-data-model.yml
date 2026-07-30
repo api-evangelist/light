@@ -1,0 +1,245 @@
+generated: '2026-07-19'
+method: derived
+source: openapi/light-openapi-original.json
+derivation: >-
+  Entities taken from the 28 OpenAPI tag groups and their External*V1Model schemas (226
+  schemas). Relationships derived from id-reference properties (*Id fields) across those
+  schemas and from the path hierarchy. Cardinality is inferred from the operation set
+  (a list* operation scoped to a parent implies has_many).
+
+tenancy:
+  root: company
+  entity_scope: companyEntityId
+  notes: >-
+    Nearly every model carries companyId (43 schemas) and most carry companyEntityId (38),
+    reflecting Light's multi-entity / multi-book consolidation model: one company contains many
+    legal entities, and accounting documents are booked against an entity.
+
+entities:
+
+- name: Company
+  schema: ExternalCompanyV1Model
+  operations: [getCurrentCompany]
+  relationships:
+  - {type: has_many, target: CompanyEntity, via: companyId}
+  - {type: has_many, target: User, via: companyId}
+
+- name: CompanyEntity
+  operations: [getCompanyEntities]
+  description: A legal entity within the company; the booking scope for accounting documents.
+  relationships:
+  - {type: belongs_to, target: Company, via: companyId}
+
+- name: User
+  operations: [listUsers, createUser, updateUser, updateUserStatus, getUserReimbursementConfig, upsertUserReimbursementConfig, getLatestReimbursement]
+  relationships:
+  - {type: belongs_to, target: Company, via: companyId}
+  - {type: has_many, target: Expense, via: userId}
+
+- name: Customer
+  operations: [listCustomers, createCustomer, getCustomerById, updateCustomer, activateCustomer, archiveCustomer]
+  relationships:
+  - {type: has_many, target: InvoiceReceivable, via: customerId}
+  - {type: has_many, target: CustomerCredit, via: customerId}
+  - {type: has_many, target: Contract, via: customerId}
+
+- name: Vendor
+  operations: [listVendors, createVendor, getVendor, updateVendor]
+  relationships:
+  - {type: has_many, target: InvoicePayable, via: vendorId}
+  - {type: has_many, target: PurchaseOrder, via: vendorId}
+  - {type: has_many, target: Card, via: vendorId}
+
+- name: Product
+  operations: [listProducts, createProduct, getProductById, updateProduct, archiveProduct]
+  relationships:
+  - {type: has_many, target: InvoiceReceivableLine, via: productId}
+  - {type: has_many, target: ContractLine, via: productId}
+
+- name: InvoicePayable
+  description: A vendor bill (accounts payable).
+  operations: [listInvoicePayables, createInvoicePayableDetails, getInvoicePayableDetails, updateInvoicePayable, submitInvoicePayableForApproval, approveInvoicePayable, declineInvoicePayable, postInvoicePayable, markInvoicePayableAsPaid, reverseInvoicePayableClearing, cancelInvoicePayable, listInvoicePayablePayments, getLinkedCreditNotes, updateInvoicePayableCustomProperties]
+  relationships:
+  - {type: belongs_to, target: Vendor, via: vendorId}
+  - {type: belongs_to, target: CompanyEntity, via: companyEntityId}
+  - {type: has_many, target: InvoicePayableLineItem, via: invoicePayableId}
+  - {type: has_many, target: CreditNote, via: invoicePayableId, join: link}
+  - {type: has_one, target: AccountingDocument, via: accountingDocumentId}
+  states: [IN_DRAFT, SCHEDULED, PAID, PARTIALLY_PAID, COMPLETED, CANCELLED]
+
+- name: InvoicePayableLineItem
+  operations: [createInvoicePayableLineItem, getInvoicePayableLineItem, updateInvoicePayableLineItem, deleteInvoicePayableLineItem]
+  relationships:
+  - {type: belongs_to, target: InvoicePayable, via: invoicePayableId}
+  - {type: belongs_to, target: LedgerAccount, via: accountId}
+  - {type: belongs_to, target: TaxCode, via: taxCodeId}
+  - {type: belongs_to, target: CostCenter, via: costCenterId}
+
+- name: InvoiceReceivable
+  description: A sales invoice (accounts receivable).
+  operations: [listInvoiceReceivables, createInvoice, getInvoiceReceivable, updateInvoiceReceivable, openInvoiceReceivable, resetInvoiceReceivable, recordInvoicePayment, listInvoiceReceivablePayments, sendInvoiceReceivableEmail, generateInvoiceReceivableDocument, archiveInvoiceReceivable, unarchiveInvoiceReceivable]
+  relationships:
+  - {type: belongs_to, target: Customer, via: customerId}
+  - {type: belongs_to, target: CompanyEntity, via: companyEntityId}
+  - {type: has_many, target: InvoiceReceivableLine, via: invoiceReceivableId}
+  - {type: has_many, target: CustomerCredit, via: invoiceReceivableId, join: link}
+  states: [DRAFT, OPEN, PAID, PARTIALLY_PAID, ARCHIVED]
+
+- name: InvoiceReceivableLine
+  operations: [createInvoiceLine, updateInvoiceLine, deleteInvoiceLine]
+  relationships:
+  - {type: belongs_to, target: InvoiceReceivable, via: invoiceReceivableId}
+  - {type: belongs_to, target: Product, via: productId}
+
+- name: CreditNote
+  description: A vendor-side credit note, cleared against invoice payables.
+  operations: [listCreditNotes, createCreditNote, getCreditNote, updateCreditNote, postCreditNote, archiveCreditNote, createCreditNoteFromInvoicePayable, createCreditNoteLine, updateCreditNoteLine, deleteCreditNoteLine, linkCreditNoteToInvoicePayable, unlinkFromInvoicePayable, updateLinkedInvoicePayable, getLinkedInvoicePayables, getAttachedDocument]
+  relationships:
+  - {type: belongs_to, target: CompanyEntity, via: companyEntityId}
+  - {type: belongs_to, target: Vendor, via: businessPartnerId}
+  - {type: has_many, target: InvoicePayable, via: invoicePayableId, join: link}
+  states: [DRAFT, POSTED, ARCHIVED]
+
+- name: CustomerCredit
+  description: A customer-side credit, applied to sales invoices.
+  operations: [listCustomerCredits, createCustomerCredit, getCustomerCredit, updateCustomerCredit, postCustomerCredit, postAndSendCustomerCredit, submitCustomerCreditEInvoice, archiveCustomerCredit, unarchiveCustomerCredit, createCustomerCreditLine, updateCustomerCreditLine, deleteCustomerCreditLine, linkCustomerCredit, linkCustomerCreditToInvoice, unlinkCustomerCreditFromInvoice]
+  relationships:
+  - {type: belongs_to, target: Customer, via: customerId}
+  - {type: has_many, target: InvoiceReceivable, via: invoiceReceivableId, join: link}
+  states: [DRAFT, POSTED, CLEARED, PARTIALLY_CLEARED, ARCHIVED]
+
+- name: Contract
+  description: A subscription/recurring revenue contract feeding revenue recognition.
+  operations: [listContracts, createContract, getContract, updateContract, deleteContract, publishContract, renewContract, terminateContract, cancelContractTermination, resetContract, createContractLine, updateContractLine, deleteContractLine, generateContractDocumentUploadUrl]
+  relationships:
+  - {type: belongs_to, target: Customer, via: customerId}
+  - {type: has_many, target: ContractLine, via: contractId}
+  states: [CREATED, ACTIVE, TERMINATED]
+
+- name: ContractLine
+  operations: [createContractLine, updateContractLine, deleteContractLine]
+  relationships:
+  - {type: belongs_to, target: Contract, via: contractId}
+  - {type: belongs_to, target: Product, via: productId}
+  - {type: belongs_to, target: AmortizationTemplate, via: amortizationTemplateId}
+
+- name: PurchaseOrder
+  operations: [listPurchaseOrders, createPurchaseOrder, getPurchaseOrder, updatePurchaseOrder, locksPurchaseOrder, closePurchaseOrder, cancelPurchaseOrder, resetPurchaseOrder, createPurchaseOrderLine, updatePurchaseOrderLine, deletePurchaseOrderLine, bulkCreatePurchaseOrderLines, batchUpdatePurchaseOrderLines]
+  relationships:
+  - {type: belongs_to, target: Vendor, via: vendorId}
+  - {type: has_many, target: PurchaseOrderLine, via: purchaseOrderId}
+
+- name: BankAccount
+  operations: [getBankAccountsForCompany, createBankAccount, getBankAccountBalance, upsertBankAccountBalance]
+  relationships:
+  - {type: belongs_to, target: CompanyEntity, via: companyEntityId}
+  - {type: has_one, target: LedgerAccount, via: ledgerAccountId}
+  - {type: has_many, target: BankTransaction, via: bankAccountId}
+  notes: >-
+    createBankAccount creates the bank account and its linked chart-of-accounts entry in a
+    single transaction; the ledger account code must be a unique 6-digit integer.
+
+- name: BankTransaction
+  operations: [listBankTransactions, createBankTransactions, getBankTransaction]
+  relationships:
+  - {type: belongs_to, target: BankAccount, via: bankAccountId}
+  natural_key: transactionId
+
+- name: Card
+  operations: [listCards, createCard, getCard, freezeCard, unfreezeCard]
+  types: [VENDOR, EMPLOYEE]
+  relationships:
+  - {type: belongs_to, target: CardBalanceAccount, via: cardBalanceAccountId}
+  - {type: belongs_to, target: User, via: ownerId}
+  - {type: has_many, target: CardTransaction, via: cardId}
+
+- name: CardBalanceAccount
+  operations: [listCardBalanceAccounts, getCardBalanceAccount, getCardBalanceAccountTotalSpend, generateCardBalanceAccountStatement]
+  relationships:
+  - {type: has_many, target: Card, via: cardBalanceAccountId}
+
+- name: CardTransaction
+  operations: [listCardTransactions, getCardTransaction, updateCardTransaction, updateCardTransactionLine, batchUpdateCardTransactions, postCardTransaction, resetCardTransaction, generateUploadUrlForCardTransaction, getAttachedCardTransactionReceiptDocument, removeReceipt]
+  relationships:
+  - {type: belongs_to, target: Card, via: cardId}
+  - {type: has_one, target: Attachment, via: resourceId}
+
+- name: Expense
+  operations: [listExpenses, getExpense, updateExpense, cancelExpense, submitReimbursement, createExpenseLineItem, updateExpenseLineItem, deleteExpenseLineItem, generateUploadUrl, getAttachedDocument_1]
+  relationships:
+  - {type: belongs_to, target: User, via: userId}
+  - {type: has_many, target: ExpenseLineItem, via: expenseId}
+
+- name: JournalEntry
+  operations: [createJournalEntry, updateJournalEntry, archiveJournalEntry]
+  relationships:
+  - {type: belongs_to, target: CompanyEntity, via: companyEntityId}
+  - {type: has_many, target: LedgerTransactionLine, via: accountingDocumentId}
+  notes: Drafts are archived directly; posted entries are reversed and marked archived.
+
+- name: LedgerAccount
+  description: Chart-of-accounts entry.
+  operations: [getLedgerAccounts]
+  relationships:
+  - {type: has_many, target: LedgerTransactionLine, via: accountId}
+
+- name: LedgerTransactionLine
+  operations: [listLedgerTransactionLines]
+  relationships:
+  - {type: belongs_to, target: LedgerAccount, via: accountId}
+  - {type: belongs_to, target: AccountingDocument, via: accountingDocumentId}
+
+- name: AccountingDocument
+  description: >-
+    The polymorphic ledger-posting record every posted document (invoice payable, credit note,
+    customer credit, journal entry, card transaction, bank payment) resolves to.
+  operations: [listAccountingDocuments]
+  relationships:
+  - {type: has_many, target: LedgerTransactionLine, via: accountingDocumentId}
+
+- name: Attachment
+  description: Polymorphic file attachment addressed by resourceId.
+  operations: [getAttachments, createAttachment, createAttachmentUploadUrl, deleteAttachment, getAttachmentDocument]
+  relationships:
+  - {type: belongs_to, target: '*', via: resourceId, polymorphic: true}
+
+- name: CustomProperty
+  description: User-defined field groups and values, Light's metadata mechanism.
+  operations: [listPaginatedCustomPropertyGroups, getCustomPropertyGroupById, listPaginatedCustomPropertyValues, createCustomPropertyValue, getCustomPropertyValueById, updateCustomPropertyValue, deleteCustomPropertyValue]
+  relationships:
+  - {type: belongs_to, target: CustomPropertyGroup, via: groupId}
+
+- name: UserComment
+  description: Polymorphic comment thread on any resource.
+  operations: [listUserComments, createUserComment, updateUserComment, deleteUserComment]
+  relationships:
+  - {type: belongs_to, target: '*', via: resourceId, polymorphic: true}
+
+- name: ExchangeRate
+  operations: [getRate, getRates]
+
+top_reference_fields:
+- {field: companyId, schemas: 43}
+- {field: companyEntityId, schemas: 38}
+- {field: accountId, schemas: 25}
+- {field: taxCodeId, schemas: 21}
+- {field: costCenterId, schemas: 19}
+- {field: vendorId, schemas: 13}
+- {field: amortizationTemplateId, schemas: 11}
+- {field: productId, schemas: 9}
+- {field: customerId, schemas: 9}
+- {field: businessPartnerId, schemas: 8}
+- {field: ledgerAccountId, schemas: 8}
+
+id_format:
+  type: uuid
+  prefixed: false
+  notes: Identifiers are plain UUIDs; Light does not use type-prefixed ids.
+
+posting_model:
+  description: >-
+    The recurring lifecycle across Light's document types is draft -> post -> clear/reverse.
+    Documents are editable while in draft, become immutable once posted to the ledger, and are
+    unwound by an explicit reset/reverse operation that writes reversing ledger entries rather
+    than deleting history.
+  reset_operations: [resetContract, resetInvoiceReceivable, resetCardTransaction, resetPurchaseOrder, reverseInvoicePayableClearing]

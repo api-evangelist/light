@@ -1,0 +1,42 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.light.inc/getting-started/rate-limits
+docs: https://docs.light.inc/getting-started/rate-limits
+
+rate_limits:
+- name: Requests per minute
+  limit: 300
+  window: minute
+  scope: per API key or OAuth token
+  notes: Applied individually to each user in your organization.
+- name: Daily limit
+  limit: 100000
+  window: day
+  scope: per organization
+  reset: midnight UTC
+  notes: Shared across all users in your organization.
+
+exceeded:
+  status: 429
+  status_text: Too Many Requests
+
+headers:
+- name: X-RateLimit-Limit
+  description: Maximum capacity (e.g. 300 for the requests-per-minute limit).
+- name: X-RateLimit-Remaining
+  description: Remaining capacity.
+- name: X-RateLimit-Reset
+  description: Unix timestamp when the rate limit will go back to full capacity.
+- name: Retry-After
+  description: Recommended seconds to wait before retrying.
+
+best_practices:
+- Monitor X-RateLimit-Remaining before making large batch requests.
+- Implement exponential backoff between retries (1s, 2s, 4s, 8s).
+- Always respect Retry-After before retrying.
+- Spread out scheduled jobs rather than running all batch operations at once.
+
+custom_limits:
+  available: true
+  contact: help@light.inc
+  notes: Higher limits are negotiated with Light support.

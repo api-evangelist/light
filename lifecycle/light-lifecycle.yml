@@ -1,0 +1,74 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.light.inc/getting-started/introduction
+sources:
+- https://docs.light.inc/getting-started/introduction
+- openapi/light-openapi-original.json
+
+versioning:
+  scheme: uri-path
+  current: v1
+  prefix: /v1
+  spec_version: 1.0.0
+  docs: https://docs.light.inc/getting-started/introduction
+
+forward_compatibility:
+  policy: non-exhaustive-enums
+  statement: >-
+    Enum values are fully documented but not guaranteed to be exhaustive. New enum values may
+    be introduced over time as the system evolves. Consumers must handle unexpected or unknown
+    enum values gracefully, avoid assuming the list is complete or immutable, and prefer
+    string-based comparisons or a safe fallback over exhaustive matching. This policy allows
+    Light to extend functionality without introducing breaking changes for consumers who
+    implement robust handling.
+  docs: https://docs.light.inc/getting-started/introduction
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  practice: in-band-operation-deprecation
+  notes: >-
+    Light has no published deprecation or sunset policy and does not document RFC 8594
+    Sunset/Deprecation headers. Deprecations are signalled in-band by marking the operation
+    deprecated in the OpenAPI and naming the replacement in the description.
+
+deprecated_operations:
+- operation: unlinkCustomerCredit
+  method: DELETE
+  path: /v1/customer-credits/{customerCreditId}/invoice-receivables/{invoiceReceivableId}
+  source: openapi/light-openapi-original.json
+  replacement: POST /{customerCreditId}/invoice-receivables/{invoiceReceivableId}/unlink
+  replacement_operation: unlinkCustomerCreditFromInvoice
+  note: >-
+    "Deprecated: Use POST /{customerCreditId}/invoice-receivables/{invoiceReceivableId}/unlink
+    instead."
+
+sla:
+  url: null
+  uptime_target: null
+  published: false
+
+status_page:
+  url: null
+  published: false
+  probed:
+  - {url: 'https://status.light.inc', status: 000, result: no DNS/connection}
+  - {url: 'https://light.inc/status', status: 404}
+
+changelog:
+  url: null
+  published: false
+  notes: >-
+    No dated changelog or release-notes page was found on light.inc or docs.light.inc
+    (/changelog returns 404 on both hosts and llms.txt lists no changelog page).
+
+roadmap:
+  url: null
+  published: false
+
+gaps:
+- No public status page.
+- No published deprecation/sunset policy or SLA.
+- No dated changelog / release notes.

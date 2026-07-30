@@ -1,0 +1,201 @@
+# Light API documentation
+
+## Docs
+
+- [Create access token](https://docs.light.inc/api-reference/authorization/create-access-token.md): Exchanges an authorization code or refresh token for an access token
+- [Start authorization flow](https://docs.light.inc/api-reference/authorization/start-authorization-flow.md): Redirects the user to the authorization page to start the OAuth V2 authorization flow
+- [Overview](https://docs.light.inc/api-reference/customers/001-overview.md)
+- [Overview](https://docs.light.inc/api-reference/invoice-receivables/001-overview.md)
+- [Overview](https://docs.light.inc/api-reference/products/001-overview.md)
+- [List accounting documents](https://docs.light.inc/api-reference/v1--accounting-documents/list-accounting-documents.md): Returns a paginated list of accounting documents
+- [Create attachment](https://docs.light.inc/api-reference/v1--attachments/create-attachment.md): Creates a new attachment record
+- [Delete attachment](https://docs.light.inc/api-reference/v1--attachments/delete-attachment.md): Deletes a specific attachment and its associated file
+- [Generate attachment upload URL](https://docs.light.inc/api-reference/v1--attachments/generate-attachment-upload-url.md): Generates a secure upload URL for attachment files
+- [Get attachment document](https://docs.light.inc/api-reference/v1--attachments/get-attachment-document.md): Returns the document file for a specific attachment
+- [Get attachment options](https://docs.light.inc/api-reference/v1--attachments/get-attachment-options.md): Handles CORS preflight requests for attachment document access
+- [List attachments](https://docs.light.inc/api-reference/v1--attachments/list-attachments.md): Returns a list of attachments associated with a specific resource
+- [Create bank account](https://docs.light.inc/api-reference/v1--bank-accounts/create-bank-account.md): Creates a bank account along with its linked ledger (chart-of-accounts) entry in a single transaction. The ledger account code must be a unique 6-digit integer within the company's chart of accounts.
+- [Create bank transactions](https://docs.light.inc/api-reference/v1--bank-accounts/create-bank-transactions.md): Creates bank transactions in batch. Maximum 500 transactions per request. Duplicate transactions (same transactionId for the same bank account) are silently skipped.
+- [Get bank account balance](https://docs.light.inc/api-reference/v1--bank-accounts/get-bank-account-balance.md): Returns the bank statement balance and ledger balance for a bank account as of the given date. If `asOf` is omitted, today's balance is returned. The bank balance is derived from the opening balance plus all bank transactions on or before `asOf`; the ledger balance is the sum of ledger transaction l…
+- [Get bank accounts of the company](https://docs.light.inc/api-reference/v1--bank-accounts/get-bank-accounts-of-the-company.md): Returns all bank accounts of the company
+- [Get bank transaction](https://docs.light.inc/api-reference/v1--bank-accounts/get-bank-transaction.md): Returns a specific bank transaction by ID
+- [List bank transactions](https://docs.light.inc/api-reference/v1--bank-accounts/list-bank-transactions.md): Returns a paginated list of bank transactions for the specified bank account, including the balance
+- [Upsert bank account balance](https://docs.light.inc/api-reference/v1--bank-accounts/upsert-bank-account-balance.md): Creates or updates the opening balance for a bank account. Only one balance per bank account is allowed — subsequent calls update the existing balance.
+- [Generate a card balance account statement](https://docs.light.inc/api-reference/v1--card-balance-accounts/generate-a-card-balance-account-statement.md): Generates a statement for a card balance account over a period. Dates are interpreted as UTC day boundaries and all timestamps in the response are in UTC. Runs a fresh provider sync inline so the statement reflects the latest activity.
+- [Get card balance account](https://docs.light.inc/api-reference/v1--card-balance-accounts/get-card-balance-account.md): Returns a card balance account by ID, including balance details
+- [Get total spend for a card balance account](https://docs.light.inc/api-reference/v1--card-balance-accounts/get-total-spend-for-a-card-balance-account.md): Returns the total spend for a card balance account within a date range
+- [List card balance accounts](https://docs.light.inc/api-reference/v1--card-balance-accounts/list-card-balance-accounts.md): Returns a list of card balance accounts
+- [Get card integration public key](https://docs.light.inc/api-reference/v1--card-customers/get-card-integration-public-key.md): Returns the public key for the cards integration service
+- [Batch update card transactions](https://docs.light.inc/api-reference/v1--card-transactions/batch-update-card-transactions.md): Updates multiple card transactions in a single operation
+- [Generate receipt upload URL](https://docs.light.inc/api-reference/v1--card-transactions/generate-receipt-upload-url.md): Generates a secure upload URL for receipt documents
+- [Get card transaction](https://docs.light.inc/api-reference/v1--card-transactions/get-card-transaction.md): Returns a card transaction by ID
+- [Get transaction receipt](https://docs.light.inc/api-reference/v1--card-transactions/get-transaction-receipt.md): Returns the attached receipt document for a card transaction
+- [List card transactions](https://docs.light.inc/api-reference/v1--card-transactions/list-card-transactions.md): Returns a paginated list of card transactions
+- [Options v1card transactions receipt](https://docs.light.inc/api-reference/v1--card-transactions/options-v1card-transactions-receipt.md)
+- [Post card transaction](https://docs.light.inc/api-reference/v1--card-transactions/post-card-transaction.md): Posts a card transaction to the ledger
+- [Remove transaction receipt](https://docs.light.inc/api-reference/v1--card-transactions/remove-transaction-receipt.md): Removes the attached receipt document from a card transaction
+- [Reset card transaction](https://docs.light.inc/api-reference/v1--card-transactions/reset-card-transaction.md): Reverses a posted card transaction's ledger entries and returns it to an editable state
+- [Update card transaction](https://docs.light.inc/api-reference/v1--card-transactions/update-card-transaction.md): Updates an existing card transaction
+- [Update card transaction line](https://docs.light.inc/api-reference/v1--card-transactions/update-card-transaction-line.md): Updates a specific card transaction line item
+- [Create card](https://docs.light.inc/api-reference/v1--cards/create-card.md): Creates a new card. Use metadata type 'VENDOR' for vendor cards or 'EMPLOYEE' for employee cards.
+- [Freeze card](https://docs.light.inc/api-reference/v1--cards/freeze-card.md): Freezes a card to block transactions
+- [Get card](https://docs.light.inc/api-reference/v1--cards/get-card.md): Returns a card by ID
+- [List cards](https://docs.light.inc/api-reference/v1--cards/list-cards.md): Returns a paginated list of cards
+- [Unfreeze card](https://docs.light.inc/api-reference/v1--cards/unfreeze-card.md): Unfreezes a card to allow transactions. For physical cards, this confirms the cardholder is in possession of the card.
+- [Get current company](https://docs.light.inc/api-reference/v1--companies/get-current-company.md): Returns the current company information
+- [Cancel scheduled termination](https://docs.light.inc/api-reference/v1--contracts/cancel-scheduled-termination.md): Cancels a scheduled termination, returning the contract to active
+- [Create contract](https://docs.light.inc/api-reference/v1--contracts/create-contract.md): Creates a new contract
+- [Create contract line](https://docs.light.inc/api-reference/v1--contracts/create-contract-line.md): Creates a new contract line item
+- [Delete contract](https://docs.light.inc/api-reference/v1--contracts/delete-contract.md): Deletes a contract by ID
+- [Delete contract line](https://docs.light.inc/api-reference/v1--contracts/delete-contract-line.md): Deletes a contract line item
+- [Generate document upload URL](https://docs.light.inc/api-reference/v1--contracts/generate-document-upload-url.md): Generates a pre-signed URL to upload the main contract document (PDF). After uploading to this URL, the document will appear in the contract's document preview.
+- [Get contract](https://docs.light.inc/api-reference/v1--contracts/get-contract.md): Returns a specific contract by ID
+- [List contracts](https://docs.light.inc/api-reference/v1--contracts/list-contracts.md): Returns a paginated list of contracts
+- [Publish contract](https://docs.light.inc/api-reference/v1--contracts/publish-contract.md): Publishes a contract, transitioning it to ACTIVE state
+- [Renew contract](https://docs.light.inc/api-reference/v1--contracts/renew-contract.md): Renews a contract by extending its end date
+- [Reset contract](https://docs.light.inc/api-reference/v1--contracts/reset-contract.md): Resets a contract to CREATED state
+- [Terminate contract](https://docs.light.inc/api-reference/v1--contracts/terminate-contract.md): Terminates a contract
+- [Update contract](https://docs.light.inc/api-reference/v1--contracts/update-contract.md): Updates a contract
+- [Update contract line](https://docs.light.inc/api-reference/v1--contracts/update-contract-line.md): Updates a contract line item
+- [Archive credit note](https://docs.light.inc/api-reference/v1--credit-notes/archive-credit-note.md): Archives the credit note. If the credit note has been posted, it will be reversed in the ledger. A credit note with active links to invoice payables cannot be archived — unlink first.
+- [Create credit note](https://docs.light.inc/api-reference/v1--credit-notes/create-credit-note.md): Creates a new credit note in draft status. The credit note can be created with or without line items. When `documentNumber` is provided, it is used for idempotency — retrying a create with the same `documentNumber` returns the existing credit note instead of creating a duplicate. The `areLinesWithTa…
+- [Create credit note from invoice payable](https://docs.light.inc/api-reference/v1--credit-notes/create-credit-note-from-invoice-payable.md): Creates a credit note from an existing invoice payable
+- [Create credit note line](https://docs.light.inc/api-reference/v1--credit-notes/create-credit-note-line.md): Creates a new line item on a credit note in draft status.
+- [Delete credit note line](https://docs.light.inc/api-reference/v1--credit-notes/delete-credit-note-line.md): Deletes a line item from a credit note in draft status.
+- [Get credit note](https://docs.light.inc/api-reference/v1--credit-notes/get-credit-note.md): Returns a credit note by ID
+- [Get credit note document](https://docs.light.inc/api-reference/v1--credit-notes/get-credit-note-document.md): Returns the attached PDF document for a credit note
+- [Get linked invoice payables](https://docs.light.inc/api-reference/v1--credit-notes/get-linked-invoice-payables.md): Returns all invoice payables linked to the credit note
+- [Link credit note to invoice payable](https://docs.light.inc/api-reference/v1--credit-notes/link-credit-note-to-invoice-payable.md): Links a credit note to an invoice payable for clearing (offsetting balances). Because credit notes cannot be applied in the ledger until the invoice payable is posted, this creates a 'link' record that will be used during posting to automatically clear the credit note balance against the invoice pay…
+- [List credit notes](https://docs.light.inc/api-reference/v1--credit-notes/list-credit-notes.md): Returns a paginated list of credit notes
+- [Post credit note](https://docs.light.inc/api-reference/v1--credit-notes/post-credit-note.md): Posts the credit note to the ledger. The credit note must be in draft status with at least one line item. A valid `companyEntityId`, `businessPartnerId`, and `currency` are required. After posting, the credit note can be linked to invoice payables for balance clearing.
+- [Unlink credit note from invoice payable](https://docs.light.inc/api-reference/v1--credit-notes/unlink-credit-note-from-invoice-payable.md): Removes the link between a credit note and an invoice payable
+- [Update clearing amount](https://docs.light.inc/api-reference/v1--credit-notes/update-clearing-amount.md): Updates the clearing amount of a linked invoice payable
+- [Update credit note](https://docs.light.inc/api-reference/v1--credit-notes/update-credit-note.md): Updates a credit note in draft status. Fields sent as `null` clear the value; omitted fields remain unchanged.
+- [Update credit note line](https://docs.light.inc/api-reference/v1--credit-notes/update-credit-note-line.md): Updates a line item on a credit note in draft status. Fields sent as `null` clear the value; omitted fields remain unchanged.
+- [Create custom property value](https://docs.light.inc/api-reference/v1--custom-properties/create-custom-property-value.md): Creates a new custom property value in the specified group
+- [Delete custom property value](https://docs.light.inc/api-reference/v1--custom-properties/delete-custom-property-value.md): Deletes a custom property value by ID
+- [Get custom property group](https://docs.light.inc/api-reference/v1--custom-properties/get-custom-property-group.md): Returns a custom property group by ID
+- [Get custom property value](https://docs.light.inc/api-reference/v1--custom-properties/get-custom-property-value.md): Returns a custom property value by ID
+- [List custom property groups](https://docs.light.inc/api-reference/v1--custom-properties/list-custom-property-groups.md): Returns a paginated list of custom property groups
+- [List custom property values](https://docs.light.inc/api-reference/v1--custom-properties/list-custom-property-values.md): Returns a paginated list of custom property values
+- [Update custom property value](https://docs.light.inc/api-reference/v1--custom-properties/update-custom-property-value.md): Updates an existing custom property value
+- [Archive customer credit](https://docs.light.inc/api-reference/v1--customer-credits/archive-customer-credit.md): Archives the given customer credit
+- [Create customer credit](https://docs.light.inc/api-reference/v1--customer-credits/create-customer-credit.md): Creates a new customer credit
+- [Create customer credit line](https://docs.light.inc/api-reference/v1--customer-credits/create-customer-credit-line.md): Creates a new line for the given customer credit
+- [Delete customer credit line](https://docs.light.inc/api-reference/v1--customer-credits/delete-customer-credit-line.md): Deletes the given customer credit line
+- [Get customer credit](https://docs.light.inc/api-reference/v1--customer-credits/get-customer-credit.md): Returns a customer credit by ID
+- [Link customer credit](https://docs.light.inc/api-reference/v1--customer-credits/link-customer-credit.md): Links a customer credit to a sales invoice
+- [Link customer credit to invoice](https://docs.light.inc/api-reference/v1--customer-credits/link-customer-credit-to-invoice.md): Links a customer credit to a sales invoice
+- [List customer credits](https://docs.light.inc/api-reference/v1--customer-credits/list-customer-credits.md): Returns a paginated list of customer credits
+- [Post and send customer credit](https://docs.light.inc/api-reference/v1--customer-credits/post-and-send-customer-credit.md): Posts the customer credit and sends it via email. Optionally submits to e-invoicing if shouldSubmitEInvoice is set.
+- [Post customer credit](https://docs.light.inc/api-reference/v1--customer-credits/post-customer-credit.md): Posts the given customer credit and applies to invoice if linked
+- [Submit e-invoice for customer credit](https://docs.light.inc/api-reference/v1--customer-credits/submit-e-invoice-for-customer-credit.md): Submits an e-invoice for the given customer credit. The customer credit must be posted.
+- [Unarchive customer credit](https://docs.light.inc/api-reference/v1--customer-credits/unarchive-customer-credit.md): Unarchives the given customer credit and reverts it to draft
+- [Unlink customer credit](https://docs.light.inc/api-reference/v1--customer-credits/unlink-customer-credit.md): Deprecated: Use POST /{customerCreditId}/invoice-receivables/{invoiceReceivableId}/unlink instead. Unlinks a customer credit from a sales invoice. If the customer credit has already been applied (CLEARED or PARTIALLY_CLEARED status), this will reverse the clearing entries in the ledger.
+- [Unlink customer credit from invoice](https://docs.light.inc/api-reference/v1--customer-credits/unlink-customer-credit-from-invoice.md): Unlinks a customer credit from a sales invoice. If the customer credit has already been applied (CLEARED or PARTIALLY_CLEARED status), this will reverse the clearing entries in the ledger.
+- [Update customer credit](https://docs.light.inc/api-reference/v1--customer-credits/update-customer-credit.md): Updates the given customer credit
+- [Update customer credit line](https://docs.light.inc/api-reference/v1--customer-credits/update-customer-credit-line.md): Updates the given customer credit line
+- [Activate customer](https://docs.light.inc/api-reference/v1--customers/activate-customer.md): Activate the given customer
+- [Archive customer](https://docs.light.inc/api-reference/v1--customers/archive-customer.md): Archive the given customer
+- [Create customer](https://docs.light.inc/api-reference/v1--customers/create-customer.md): Creates a new customer
+- [Get customer](https://docs.light.inc/api-reference/v1--customers/get-customer.md): Returns a customer by ID
+- [List customers](https://docs.light.inc/api-reference/v1--customers/list-customers.md): Returns a paginated list of customers
+- [Update customer](https://docs.light.inc/api-reference/v1--customers/update-customer.md): Updates an existing customer
+- [List company entities](https://docs.light.inc/api-reference/v1--entities/list-company-entities.md): Returns a paginated list of company entities
+- [Get currency exchange rates](https://docs.light.inc/api-reference/v1--exchange/get-currency-exchange-rates.md): Returns exchange rates for the given currency against all available currencies
+- [Get exchange rate](https://docs.light.inc/api-reference/v1--exchange/get-exchange-rate.md): Returns an exchange rate between base and target currencies for a given date
+- [Cancel expense](https://docs.light.inc/api-reference/v1--expenses/cancel-expense.md): Cancels an existing expense
+- [Create line item](https://docs.light.inc/api-reference/v1--expenses/create-line-item.md): Creates a new line item
+- [Create upload URL](https://docs.light.inc/api-reference/v1--expenses/create-upload-url.md): Creates a pre-signed URL for uploading an expense receipt document
+- [Delete line item](https://docs.light.inc/api-reference/v1--expenses/delete-line-item.md): Deletes an existing line item
+- [Get expense](https://docs.light.inc/api-reference/v1--expenses/get-expense.md): Returns an expense by ID including all line items
+- [Get expense document](https://docs.light.inc/api-reference/v1--expenses/get-expense-document.md): Returns the attached receipt document as a PDF download
+- [List expenses](https://docs.light.inc/api-reference/v1--expenses/list-expenses.md): Returns a paginated list of expenses
+- [Submit reimbursement](https://docs.light.inc/api-reference/v1--expenses/submit-reimbursement.md): Submits all pending expenses from the current user for administrator review and approval
+- [Update expense](https://docs.light.inc/api-reference/v1--expenses/update-expense.md): Updates an existing expense
+- [Update line item](https://docs.light.inc/api-reference/v1--expenses/update-line-item.md): Updates an existing expense line item
+- [Get invoice approvals](https://docs.light.inc/api-reference/v1--invoice-approvals/get-invoice-approvals.md): Returns approval records for specified invoice payables
+- [Approve invoice payable](https://docs.light.inc/api-reference/v1--invoice-payables/approve-invoice-payable.md): Approves an invoice payable for payment processing
+- [Cancel invoice payable](https://docs.light.inc/api-reference/v1--invoice-payables/cancel-invoice-payable.md): Cancels an invoice payable
+- [Create invoice payable](https://docs.light.inc/api-reference/v1--invoice-payables/create-invoice-payable.md): Creates a new invoice payable document. Supports inline line items via the `lineItems` field for single-request creation.
+- [Create invoice payable line item](https://docs.light.inc/api-reference/v1--invoice-payables/create-invoice-payable-line-item.md): Creates an invoice payable line item
+- [Decline invoice payable](https://docs.light.inc/api-reference/v1--invoice-payables/decline-invoice-payable.md): Declines an invoice payable
+- [Delete invoice payable line item](https://docs.light.inc/api-reference/v1--invoice-payables/delete-invoice-payable-line-item.md): Deletes an invoice payable line item
+- [Generate document upload URL](https://docs.light.inc/api-reference/v1--invoice-payables/generate-document-upload-url.md): Generates a secure upload URL for invoice payable documents
+- [Get invoice document](https://docs.light.inc/api-reference/v1--invoice-payables/get-invoice-document.md): Returns the attached document for an invoice payable
+- [Get invoice payable](https://docs.light.inc/api-reference/v1--invoice-payables/get-invoice-payable.md): Returns a specific invoice payable by ID
+- [Get invoice payable line item](https://docs.light.inc/api-reference/v1--invoice-payables/get-invoice-payable-line-item.md): Gets an invoice payable line item
+- [Get linked credit notes](https://docs.light.inc/api-reference/v1--invoice-payables/get-linked-credit-notes.md): Returns all credit notes linked to the invoice payable
+- [List invoice payable payments](https://docs.light.inc/api-reference/v1--invoice-payables/list-invoice-payable-payments.md): Returns all clearings (bank payments and credit notes) linked to the invoice payable. Each entry carries a `type` discriminator (`BP` for bank payments, `CN` for credit notes) so consumers can filter client-side if only one kind is needed. Reversed clearings are excluded.
+- [List invoice payables](https://docs.light.inc/api-reference/v1--invoice-payables/list-invoice-payables.md): Returns a paginated list of invoice payables
+- [Mark invoice payable as paid](https://docs.light.inc/api-reference/v1--invoice-payables/mark-invoice-payable-as-paid.md): Marks an invoice payable as paid by recording a bank payment that clears it. Use `paymentOption=FULL` to clear the remaining outstanding balance, or `paymentOption=PARTIAL` to record an installment. The invoice transitions to `PAID` (full) or `PARTIALLY_PAID` (partial).
+- [Post invoice payable without approval](https://docs.light.inc/api-reference/v1--invoice-payables/post-invoice-payable-without-approval.md): Posts an invoice payable directly to the ledger without going through the approval workflow. The invoice must be in `IN_DRAFT` state. After posting, linked credit notes are applied and unlinked credit notes may be auto-allocated. If the invoice is fully cleared by credit notes, it transitions to `CO…
+- [Reverse invoice payable payment](https://docs.light.inc/api-reference/v1--invoice-payables/reverse-invoice-payable-payment.md): Reverses a clearing applied to an invoice payable — either a bank payment (`BP`) or a credit note (`CN`) — identified by its accounting document ID. Use the `List invoice payable payments` endpoint to obtain the `accountingDocumentId` and `type` of the clearing to reverse. Reversing removes the clea…
+- [Submit for approval](https://docs.light.inc/api-reference/v1--invoice-payables/submit-for-approval.md): Submits an invoice for approval
+- [Update invoice payable](https://docs.light.inc/api-reference/v1--invoice-payables/update-invoice-payable.md): Updates an existing invoice payable document header
+- [Update invoice payable line item](https://docs.light.inc/api-reference/v1--invoice-payables/update-invoice-payable-line-item.md): Updates an invoice payable line item
+- [Update the custom properties of a posted invoice payable](https://docs.light.inc/api-reference/v1--invoice-payables/update-the-custom-properties-of-a-posted-invoice-payable.md): Replaces all custom fields on an invoice payable after it has been posted/approved (e.g. ready for payment release, scheduled, unpaid, partially paid, completed). Any custom property group not included in the request is removed. Use this to set fields such as a reconciliation link once the invoice h…
+- [Archive invoice](https://docs.light.inc/api-reference/v1--invoice-receivables/archive-invoice.md): Archives an invoice receivable
+- [Create invoice](https://docs.light.inc/api-reference/v1--invoice-receivables/create-invoice.md): Creates a new sales invoice
+- [Create line](https://docs.light.inc/api-reference/v1--invoice-receivables/create-line.md): Creates a new invoice line item
+- [Delete invoice line](https://docs.light.inc/api-reference/v1--invoice-receivables/delete-invoice-line.md): Deletes an invoice line item
+- [Enter invoice payment](https://docs.light.inc/api-reference/v1--invoice-receivables/enter-invoice-payment.md): Enters a payment for an invoice receivable. If the total amount paid equals the invoice total, the invoice status will be changed to PAID, otherwise it will be PARTIALLY_PAID.
+- [Generate invoice PDF](https://docs.light.inc/api-reference/v1--invoice-receivables/generate-invoice-pdf.md): Generates the PDF document for an invoice receivable. Poll this endpoint until status is `READY`, then use the `url` field to download the PDF. The signed URL is temporary and should not be stored and reused. To download again, call this endpoint to get a fresh URL.
+- [Get invoice](https://docs.light.inc/api-reference/v1--invoice-receivables/get-invoice.md): Returns a specific invoice receivable by ID
+- [List invoice payments](https://docs.light.inc/api-reference/v1--invoice-receivables/list-invoice-payments.md): Returns a list of payments for an invoice receivable
+- [List invoices](https://docs.light.inc/api-reference/v1--invoice-receivables/list-invoices.md): Returns a paginated list of invoice receivables
+- [Open invoice](https://docs.light.inc/api-reference/v1--invoice-receivables/open-invoice.md): Initiates the process of opening an invoice receivable. This assigns an invoice number, locks the invoice for editing, and optionally sends it via email or submits it to e-invoicing systems. The request body is optional - if not provided, the invoice will be opened with default settings (no email se…
+- [Reset invoice](https://docs.light.inc/api-reference/v1--invoice-receivables/reset-invoice.md): Resets an invoice receivable to draft
+- [Send invoice email](https://docs.light.inc/api-reference/v1--invoice-receivables/send-invoice-email.md): Sends an invoice receivable email with the given email information
+- [Unarchive invoice](https://docs.light.inc/api-reference/v1--invoice-receivables/unarchive-invoice.md): Unarchives an invoice receivable and reverts it to draft
+- [Update invoice](https://docs.light.inc/api-reference/v1--invoice-receivables/update-invoice.md): Updates an invoice receivable
+- [Update invoice line](https://docs.light.inc/api-reference/v1--invoice-receivables/update-invoice-line.md): Updates an invoice line item
+- [Archive journal entry](https://docs.light.inc/api-reference/v1--journal-entries/archive-journal-entry.md): Archives the given journal entry. Drafts are archived directly; posted entries are reversed and marked as archived.
+- [Create journal entry](https://docs.light.inc/api-reference/v1--journal-entries/create-journal-entry.md): Creates a new journal entry
+- [Update journal entry](https://docs.light.inc/api-reference/v1--journal-entries/update-journal-entry.md): Updates the given draft journal entry. Only the fields present in the request body are modified; fields set explicitly to null are cleared.
+- [List ledger accounts](https://docs.light.inc/api-reference/v1--ledger-accounts/list-ledger-accounts.md): Returns a paginated list of ledger accounts
+- [List ledger transaction lines](https://docs.light.inc/api-reference/v1--ledger-transactions/list-ledger-transaction-lines.md): Returns a paginated list of ledger transaction lines
+- [Archive product](https://docs.light.inc/api-reference/v1--products/archive-product.md): Archive the given product
+- [Create product](https://docs.light.inc/api-reference/v1--products/create-product.md): Creates a new product
+- [Get product](https://docs.light.inc/api-reference/v1--products/get-product.md): Returns a product by ID
+- [List products](https://docs.light.inc/api-reference/v1--products/list-products.md): Returns a list of products
+- [Update product](https://docs.light.inc/api-reference/v1--products/update-product.md): Updates an existing product
+- [Batch update purchase order lines](https://docs.light.inc/api-reference/v1--purchase-orders/batch-update-purchase-order-lines.md): Updates multiple purchase order line items
+- [Bulk create purchase order lines](https://docs.light.inc/api-reference/v1--purchase-orders/bulk-create-purchase-order-lines.md): Creates multiple purchase order line items
+- [Cancel purchase order](https://docs.light.inc/api-reference/v1--purchase-orders/cancel-purchase-order.md): Cancels a purchase order
+- [Close purchase order](https://docs.light.inc/api-reference/v1--purchase-orders/close-purchase-order.md): Closes a purchase order
+- [Create purchase order](https://docs.light.inc/api-reference/v1--purchase-orders/create-purchase-order.md): Creates a new purchase order
+- [Create purchase order line](https://docs.light.inc/api-reference/v1--purchase-orders/create-purchase-order-line.md): Creates a new purchase order line item
+- [Delete purchase order line](https://docs.light.inc/api-reference/v1--purchase-orders/delete-purchase-order-line.md): Deletes a purchase order line item
+- [Get purchase order](https://docs.light.inc/api-reference/v1--purchase-orders/get-purchase-order.md): Returns a purchase order by ID
+- [List purchase orders](https://docs.light.inc/api-reference/v1--purchase-orders/list-purchase-orders.md): Returns a paginated list of purchase orders
+- [Lock purchase order](https://docs.light.inc/api-reference/v1--purchase-orders/lock-purchase-order.md): Locks a purchase order to prevent modifications
+- [Reset purchase order](https://docs.light.inc/api-reference/v1--purchase-orders/reset-purchase-order.md): Resets a purchase order to its initial state
+- [Update purchase order](https://docs.light.inc/api-reference/v1--purchase-orders/update-purchase-order.md): Updates an existing purchase order
+- [Update purchase order line](https://docs.light.inc/api-reference/v1--purchase-orders/update-purchase-order-line.md): Updates a purchase order line item
+- [Create user comment](https://docs.light.inc/api-reference/v1--user-comments/create-user-comment.md): Creates a new user comment
+- [Delete user comment](https://docs.light.inc/api-reference/v1--user-comments/delete-user-comment.md): Deletes the given user comment
+- [List user comments](https://docs.light.inc/api-reference/v1--user-comments/list-user-comments.md): List user comments for a given resource
+- [Update user comment](https://docs.light.inc/api-reference/v1--user-comments/update-user-comment.md): Updates the given user comment
+- [Create user](https://docs.light.inc/api-reference/v1--users/create-user.md): Creates a new user
+- [Get latest reimbursement](https://docs.light.inc/api-reference/v1--users/get-latest-reimbursement.md): Returns the most recent reimbursement for a user
+- [Get reimbursement config](https://docs.light.inc/api-reference/v1--users/get-reimbursement-config.md): Returns the reimbursement configuration for a user
+- [List users](https://docs.light.inc/api-reference/v1--users/list-users.md): Returns a paginated list of users
+- [Update reimbursement config](https://docs.light.inc/api-reference/v1--users/update-reimbursement-config.md): Creates or updates the reimbursement configuration for a user
+- [Update user](https://docs.light.inc/api-reference/v1--users/update-user.md): Updates the given user
+- [Update user status](https://docs.light.inc/api-reference/v1--users/update-user-status.md): Updates the given user's status
+- [Create vendor](https://docs.light.inc/api-reference/v1--vendors/create-vendor.md): Creates a new vendor
+- [Get vendor](https://docs.light.inc/api-reference/v1--vendors/get-vendor.md): Returns a vendor by ID
+- [List vendors](https://docs.light.inc/api-reference/v1--vendors/list-vendors.md): Returns a paginated list of vendors
+- [Update vendor](https://docs.light.inc/api-reference/v1--vendors/update-vendor.md): Updates an existing vendor
+- [Create an Invoice Payable](https://docs.light.inc/examples/create-invoice-payable.md): End-to-end example: create a vendor invoice with line items and a document
+- [OAuth Callback](https://docs.light.inc/examples/oauth-callback.md)
+- [Upload a Receipt](https://docs.light.inc/examples/upload-receipt.md): Upload receipts for expenses and card transactions using presigned URLs
+- [Authentication](https://docs.light.inc/getting-started/authentication.md)
+- [Introduction](https://docs.light.inc/getting-started/introduction.md): Welcome to the Light API documentation
+- [Rate limits](https://docs.light.inc/getting-started/rate-limits.md)
+
+## OpenAPI Specs
+
+- [openapi-public](https://docs.light.inc/openapi-public.json)
+- [openapi](https://docs.light.inc/api-reference/openapi.json)

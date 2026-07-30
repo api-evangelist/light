@@ -1,0 +1,95 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Light API
+  version: 1.0.0
+extends: openapi/light-openapi-original.json
+x-generated: '2026-07-19'
+x-method: generated
+x-source: >-
+  Enhancements derived from https://docs.light.inc documentation pages that the published
+  OpenAPI omits. The original spec is never mutated.
+actions:
+
+# The published spec has NO servers[] block at all, so generated clients have no base URL.
+# The production host is documented in the authentication guide (api.light.inc/oauth/*).
+- target: $
+  update:
+    servers:
+    - url: https://api.light.inc
+      description: Light production API
+
+- target: $.info
+  update:
+    description: >-
+      The Light API is organized around REST and uses standard HTTP response codes,
+      authentication and verbs. Most endpoints accept and return JSON-encoded data in
+      camelCase. Light is an agentic accounting and financial-operations platform: general
+      ledger, accounts payable and receivable, spend management and cards, contracts and
+      subscriptions, purchase orders, and multi-entity consolidation.
+    contact:
+      name: Light Support
+      email: help@light.inc
+      url: https://light.inc/help
+    x-apievangelist-enriched: '2026-07-19'
+    x-logo:
+      url: https://light.inc/assets/images/og-home.jpg
+
+# Authentication: the spec declares apiKey + bearer but omits the documented OAuth 2.0 flow.
+- target: $.components.securitySchemes
+  update:
+    oauth2:
+      type: oauth2
+      description: >-
+        OAuth 2.0 authorization-code flow. Contact help@light.inc to have an account enabled
+        and to receive a client_id/client_secret and register a redirect URI. Refresh tokens
+        are rotated — the old refresh token is invalidated after use.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.light.inc/oauth/authorize
+          tokenUrl: https://api.light.inc/oauth/token
+          refreshUrl: https://api.light.inc/oauth/token
+          scopes: {}
+
+# Cross-cutting runtime semantics documented outside the spec.
+- target: $.info
+  update:
+    x-rate-limits:
+      requests_per_minute: 300
+      requests_per_minute_scope: per API key or OAuth token
+      requests_per_day: 100000
+      requests_per_day_scope: per organization
+      reset: midnight UTC
+      status_on_exceeded: 429
+      headers: [X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After]
+      docs: https://docs.light.inc/getting-started/rate-limits
+    x-idempotency:
+      header: X-Idempotency-Key
+      operations: 14
+      docs: conventions/light-conventions.yml
+    x-pagination:
+      style: cursor-and-offset
+      parameters: [cursor, limit, offset]
+      also: [sort, filter, searchTerm]
+    x-error-envelope:
+      format: custom
+      rfc9457: false
+      shape: '{name, type, errors[{type, message, path, context}]}'
+      types: [BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, NOT_FOUND, CONFLICT, UNPROCESSABLE_CONTENT]
+    x-forward-compatibility:
+      enums: non-exhaustive
+      guidance: >-
+        Enum values are documented but not guaranteed exhaustive. Handle unknown enum values
+        gracefully; do not rely on exhaustive matching.
+    x-client-requirements:
+    - Follow redirects and forward the Authorization header — some endpoints redirect.
+    - HTTPS only; plain HTTP calls fail.
+
+# The deprecated operation names its replacement only in prose; make it machine-readable.
+- target: $.paths['/v1/customer-credits/{customerCreditId}/invoice-receivables/{invoiceReceivableId}'].delete
+  update:
+    x-deprecation:
+      replacement_operation_id: unlinkCustomerCreditFromInvoice
+      replacement_path: /v1/customer-credits/{customerCreditId}/invoice-receivables/{invoiceReceivableId}/unlink
+      replacement_method: post
+      sunset: null
+      source: openapi/light-openapi-original.json

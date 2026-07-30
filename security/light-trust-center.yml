@@ -1,0 +1,68 @@
+generated: '2026-07-19'
+method: searched
+probe: true
+source: https://light.inc/security
+url: https://light.inc/security
+corrected: '2026-07-19'
+correction_note: >-
+  The automated probe keyword-matched "ISO 27001" and "HIPAA" on the security page and
+  recorded them as Light certifications. Reading the surrounding sentences shows both are
+  claims about Light's INFRASTRUCTURE PROVIDERS (cloud data centers / the AWS deployment),
+  not certifications held by Light. They have been moved to vendor_scoped_claims. SOC 1 Type
+  II and SOX were missed by the probe and have been added.
+
+trust_center:
+  dedicated_trust_center: false
+  notes: >-
+    The site footer carries a "Trust Center" item, but its href is "#" — an unimplemented
+    placeholder, not a link to a trust portal. Light's published trust surface is the
+    /security page plus the dedicated /soc-2, /soc-1 and /sox-compliance pages.
+
+certifications:
+- name: SOC 2 Type II
+  url: https://light.inc/soc-2
+  evidence: >-
+    "Light is SOC 2 Type II compliant, meaning that the way we process and store client data is
+    secure and protected, based on standards set by the AICPA."
+- name: SOC 1 Type II
+  url: https://light.inc/soc-1
+  evidence: Listed as "SOC 1, Type 2" in the site compliance footer.
+- name: SOX / Sarbanes-Oxley compliance
+  url: https://light.inc/sox-compliance
+  evidence: Dedicated "Sarbanes-Oxley Act & SOX compliance" page.
+
+regulatory:
+- name: GDPR
+  url: https://light.inc/gdpr
+- name: CCPA
+  evidence: '"Compliant with GDPR (& CCPA)"'
+- name: DPA
+  url: https://light.inc/dpa
+
+vendor_scoped_claims:
+- standard: ISO 27001
+  scope: cloud providers
+  evidence: >-
+    "we ... only work with cloud providers whose data centers are SOC 2 and ISO 27001 certified"
+- standard: ISO (unspecified)
+  scope: Light servers
+  evidence: '"All Light servers are ISO-certified." — standard and certification body not named.'
+- standard: HIPAA
+  scope: AWS deployment
+  evidence: '"Our own core backend application is located in our HIPAA-compliant AWS deployment."'
+- standard: PCI
+  scope: AWS Secrets Manager
+  evidence: >-
+    "The secrets we store with enterprise-grade AWS Secrets Manager which is both PCI and SOC 2
+    compliant."
+
+security_practices:
+- Encryption in transit and at rest.
+- Multi-factor authentication; 2FA and secure password generators used internally.
+- Data residency in the European Union.
+- Minimal OAuth scopes requested from connected systems.
+- Backups replicated to different locations.
+
+evidence:
+- source: https://light.inc/security
+  keywords: [soc 2, soc 1, sox, gdpr, ccpa, encryption, mfa]

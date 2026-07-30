@@ -1,0 +1,51 @@
+generated: '2026-07-19'
+method: generated
+source: openapi/light-openapi-original.json
+grounding: >-
+  Every operationId referenced in these skills was verified verbatim against
+  openapi/light-openapi-original.json (183 operations). Cross-cutting rules (auth, idempotency,
+  pagination, error envelope, rate limits, non-exhaustive enums) come from
+  conventions/light-conventions.yml, errors/light-problem-types.yml and
+  rate-limits/light-rate-limits.yml.
+
+skills:
+- file: light-bill-to-payment.md
+  name: Record and pay a vendor bill in Light
+  summary: >-
+    Accounts payable: create a vendor invoice payable with line items and a document, route it
+    through approval, post it to the ledger, pay it and reverse a clearing.
+  api: openapi/light-openapi-original.json
+  operations: [listVendors, createVendor, createInvoicePayableDetails, createInvoicePayableLineItem,
+    createInvoicePayableDocumentUploadUrl, submitInvoicePayableForApproval, approveInvoicePayable,
+    postInvoicePayable, markInvoicePayableAsPaid, listInvoicePayablePayments, reverseInvoicePayableClearing]
+- file: light-invoice-to-cash.md
+  name: Invoice a customer and collect cash in Light
+  summary: >-
+    Accounts receivable: create and open a sales invoice, email it, generate the PDF, record
+    payment, and apply or unlink a customer credit.
+  api: openapi/light-openapi-original.json
+  operations: [listCustomers, createCustomer, listProducts, createInvoice, createInvoiceLine,
+    openInvoiceReceivable, sendInvoiceReceivableEmail, generateInvoiceReceivableDocument,
+    recordInvoicePayment, listInvoiceReceivablePayments, resetInvoiceReceivable,
+    createCustomerCredit, postCustomerCredit, linkCustomerCreditToInvoice]
+- file: light-spend-and-cards.md
+  name: Manage cards, card spend and expense reimbursement in Light
+  summary: >-
+    Spend management: issue and freeze vendor/employee cards, code and post card transactions
+    with receipts, and submit employee expenses for reimbursement.
+  api: openapi/light-openapi-original.json
+  operations: [listCardBalanceAccounts, generateCardBalanceAccountStatement, createCard, freezeCard,
+    unfreezeCard, listCardTransactions, updateCardTransaction, batchUpdateCardTransactions,
+    generateUploadUrlForCardTransaction, postCardTransaction, resetCardTransaction, listExpenses,
+    submitReimbursement]
+- file: light-ledger-and-close.md
+  name: Post journal entries and reconcile the ledger in Light
+  summary: >-
+    General ledger and close: resolve company entities, read the chart of accounts and ledger
+    lines, post and reverse journal entries, batch-load bank transactions and reconcile bank
+    versus ledger balances across currencies.
+  api: openapi/light-openapi-original.json
+  operations: [getCurrentCompany, getCompanyEntities, getLedgerAccounts, listLedgerTransactionLines,
+    listAccountingDocuments, createJournalEntry, updateJournalEntry, archiveJournalEntry,
+    getBankAccountsForCompany, createBankAccount, createBankTransactions, getBankAccountBalance,
+    upsertBankAccountBalance, getRate, getRates]

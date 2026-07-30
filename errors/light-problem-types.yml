@@ -1,0 +1,116 @@
+generated: '2026-07-19'
+method: searched
+source: https://docs.light.inc/api-reference/v1--invoice-payables/create-invoice-payable
+sources:
+- https://docs.light.inc/api-reference/v1--invoice-payables/create-invoice-payable
+- openapi/light-openapi-original.json
+format: custom
+rfc9457: false
+
+envelope:
+  description: >-
+    Light returns a structured error envelope rather than RFC 9457 problem+json. The envelope
+    carries a machine-readable type discriminator plus an errors[] array of field-level
+    validation failures.
+  media_type: application/json
+  shape:
+    name: string
+    type: enum (see problems[] below)
+    errors:
+    - type: string
+      message: string
+      path: [field]
+      context: {}
+  field_notes:
+    name: Error name identifier.
+    type: Coarse error class, maps to the HTTP status.
+    errors: Field-level detail; path locates the offending property in the request body.
+    context: Free-form additional context for the individual error.
+
+observed_live:
+  probed: '2026-07-19'
+  note: >-
+    Unauthenticated probes against the live host confirm a SECOND, shorter envelope variant used
+    for gateway-level failures: {"type": "...", "message": "..."} with no name or errors[] array.
+    Clients must handle both shapes — read `type` first, then fall back from `errors[]` to
+    `message`.
+  samples:
+  - request: GET https://api.light.inc/v1/customers (no credentials)
+    status: 401
+    body: '{"type":"UNAUTHORIZED","message":"Credentials are required to access this resource"}'
+  - request: GET https://api.light.inc/v1/companies/current (no credentials)
+    status: 401
+    body: '{"type":"UNAUTHORIZED","message":"Credentials are required to access this resource"}'
+  - request: GET https://api.light.inc/oauth/authorize (no parameters)
+    status: 400
+    body: '{"type":"MISSING_PARAMETER","message":"Missing parameter ''redirectUri''"}'
+  additional_type_values_observed:
+  - MISSING_PARAMETER
+
+problems:
+- status: 400
+  type: BAD_REQUEST
+  title: Bad request
+  description: The request was malformed or failed validation.
+  remediation: >-
+    Inspect errors[].path and errors[].message to find the offending fields and correct the
+    request body.
+- status: 401
+  type: UNAUTHORIZED
+  title: Unauthorized
+  description: Missing, malformed or expired credentials.
+  remediation: >-
+    Send an Authorization header — "Basic <api_key>" for API keys or "Bearer <access_token>"
+    for OAuth. If using OAuth, refresh the access token. Requests without authentication fail.
+- status: 403
+  type: FORBIDDEN
+  title: Forbidden
+  description: >-
+    The credential is valid but the roles attached to the API key or user do not permit the action.
+  remediation: Grant the required role to the API key or user in Light Settings.
+- status: 404
+  type: NOT_FOUND
+  title: Not found
+  description: The referenced resource does not exist or is not visible to the caller.
+- status: 409
+  type: CONFLICT
+  title: Conflict
+  description: >-
+    The request conflicts with the current state of the resource — for example editing a
+    document that has already been posted, or archiving a credit note that still has active
+    links to invoice payables.
+  remediation: >-
+    Reset or unlink the document first (e.g. resetContract, resetInvoiceReceivable,
+    resetCardTransaction, unlinkFromInvoicePayable) then retry.
+- status: 422
+  type: UNPROCESSABLE_CONTENT
+  title: Unprocessable content
+  description: >-
+    The request is syntactically valid but violates a business/accounting rule — for example
+    posting a credit note without line items, or without a valid companyEntityId,
+    businessPartnerId or currency.
+  remediation: Satisfy the documented preconditions for the state transition, then retry.
+- status: 429
+  type: TOO_MANY_REQUESTS
+  title: Too many requests
+  description: A rate limit was exceeded (300 requests/minute per key, 100,000/day per organization).
+  remediation: >-
+    Wait at least Retry-After seconds and retry with exponential backoff. Monitor
+    X-RateLimit-Remaining.
+  reference: rate-limits/light-rate-limits.yml
+  docs: https://docs.light.inc/getting-started/rate-limits
+
+spec_coverage:
+  note: >-
+    The published OpenAPI models responses almost entirely as a single "default" response
+    (179 of 183 operations) with the success schema, plus 4 explicit 200s and 2 explicit 400s.
+    Per-status error responses are therefore NOT enumerated in the spec; the classes above are
+    taken from the documented error envelope and the documented rate-limit behaviour.
+  explicit_200_responses: 4
+  explicit_400_responses: 2
+  default_responses: 179
+
+gaps:
+- The OpenAPI does not enumerate 401/403/404/409/422/429 responses per operation.
+- No stable per-error code registry (e.g. numeric or dotted error codes) is published.
+- No documentation URL dedicated to an error reference was found on docs.light.inc.
