@@ -510,6 +510,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Overlay
+  url: overlays/light-openapi-overlay.yaml
 - type: AgenticAccess
   url: agentic-access/light-agentic-access.yml
 - type: Website
