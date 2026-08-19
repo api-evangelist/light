@@ -1,0 +1,507 @@
+{
+  "item": [
+    {
+      "id": "bf98d722-3cc0-45c0-903c-76632f262a7c",
+      "name": "v1 - Vendors",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ddd41bf7-1baf-4afb-b817-1a3f6aaa47b6",
+          "name": "List vendors",
+          "request": {
+            "name": "List vendors",
+            "description": {
+              "content": "Returns a paginated list of vendors",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTerm",
+                  "value": "<string>",
+                  "description": "Search term to filter results by. Performs a case-insensitive partial match across searchable fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69b20348-f37b-4f17-bafe-426608270cab",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"type\": \"USER\",\n      \"vendorId\": \"fb6b3496-0f5f-22cd-9f8c-62b2a7016fa2\",\n      \"companyId\": \"4dfeae22-95a7-92a3-b851-353b9c87c1d9\",\n      \"companyEntityIds\": [\n        \"4ff7218e-b7de-142c-4c2f-76d93e041bfb\",\n        \"0b87c895-f96c-5335-fe6e-22121a8f369f\"\n      ],\n      \"defaultCompanyEntity\": {\n        \"id\": \"8544090e-2cc7-149e-67eb-0fad256da12d\",\n        \"vendorId\": \"e27a7088-52aa-a73c-dbda-59dd6c45b16c\",\n        \"companyEntityId\": \"77331279-f18f-065e-1c27-b44f51ebf278\",\n        \"accountId\": \"06882cbb-3426-6c81-dc94-930bc57b0392\",\n        \"taxCodeId\": \"2ec9185e-9ab5-3597-dd83-8cdb25d5d3b5\",\n        \"costCenterId\": \"6d6b333f-2e2a-3858-8c8a-04fa566b622e\",\n        \"senderBankAccountId\": \"9912a79b-afa5-dfd0-c590-7a3ded35a2e9\",\n        \"createdAt\": \"1950-02-24T02:22:21.348Z\",\n        \"updatedAt\": \"1978-02-19T17:10:45.109Z\"\n      },\n      \"vatId\": \"string\",\n      \"businessRegistrationNumber\": \"string\",\n      \"identifier\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"email\": \"string\",\n      \"phoneNumber\": {\n        \"countryCode\": \"IM\",\n        \"localNumber\": \"string\"\n      },\n      \"website\": \"string\",\n      \"country\": \"SZ\",\n      \"city\": \"string\",\n      \"address\": \"string\",\n      \"zipcode\": \"string\",\n      \"bankName\": \"string\",\n      \"bankCountry\": \"SY\",\n      \"bankCity\": \"string\",\n      \"bankAddress\": \"string\",\n      \"bankZipcode\": \"string\",\n      \"bankAccountNumber\": \"string\",\n      \"bankAccountBic\": \"string\",\n      \"domesticBankAccountNumber\": \"string\",\n      \"domesticBankAccountCode\": \"string\",\n      \"swedishBankgiroNumber\": \"string\",\n      \"swedishPlusgiroNumber\": \"string\",\n      \"bankRecipientName\": \"string\",\n      \"vendorCreatedAt\": \"2003-08-10T21:48:42.402Z\",\n      \"approvers\": [\n        {\n          \"id\": \"940e62c5-06a8-c279-768f-a06c08d470be\",\n          \"userId\": \"549e54b9-9841-277e-98ee-f00b3b62065b\",\n          \"vendorId\": \"e31031a1-8514-a61c-6ab5-f777365f9070\",\n          \"priority\": 1342,\n          \"createdAt\": \"2007-10-31T20:42:07.056Z\"\n        },\n        {\n          \"id\": \"460b7d46-139c-dad6-62f8-7823adee6b34\",\n          \"userId\": \"d15a418e-0e2f-f53e-f4c0-16f0f33e378f\",\n          \"vendorId\": \"9dd43bc0-96b6-85e2-c3b4-a0b75e276046\",\n          \"priority\": 2991,\n          \"createdAt\": \"2006-01-26T13:35:18.907Z\"\n        }\n      ],\n      \"notes\": [\n        {\n          \"id\": \"dcab3b68-f08a-5abc-2dc6-a3c740e115c3\",\n          \"vendorId\": \"966ce3d6-0bcc-c4ad-7ad3-eab4d767f83f\",\n          \"authorId\": \"51292143-d6de-3699-e68a-6b2f429bcb76\",\n          \"companyId\": \"2c2718d2-06c1-6ea9-0e1b-34725ae6d29e\",\n          \"channel\": \"WEB_APP\",\n          \"content\": \"string\",\n          \"createdAt\": \"1959-01-21T19:44:28.952Z\",\n          \"updatedAt\": \"1956-01-27T21:51:43.275Z\"\n        },\n        {\n          \"id\": \"13807999-160a-259f-c89c-8ea85bf66dcc\",\n          \"vendorId\": \"071214f2-1db5-74d4-b4b0-255f102bc05f\",\n          \"authorId\": \"ca78a9ab-54c9-99da-0794-a9d046ee455f\",\n          \"companyId\": \"42ff6c32-abd7-4575-92ad-ca81143a97a9\",\n          \"channel\": \"SLACK\",\n          \"content\": \"string\",\n          \"createdAt\": \"1993-05-04T08:32:39.138Z\",\n          \"updatedAt\": \"1963-10-01T18:00:17.065Z\"\n        }\n      ],\n      \"currency\": \"USD\",\n      \"contractValue\": 5225,\n      \"createdBy\": \"8483bae2-25c8-5105-f4ea-80c3e314ea07\",\n      \"status\": \"FAILED\",\n      \"failureContext\": {\n        \"name\": \"string\",\n        \"type\": \"FORBIDDEN\",\n        \"errors\": [\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      },\n      \"version\": 1144,\n      \"updatedAt\": \"1981-08-10T23:04:08.319Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"063d3636-256d-5bd8-b58c-ff54cadd9919\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"b14b3e99-4825-1459-f289-cc5e080d8978\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"lastMtdSpendInGroupCurrency\": 5132,\n      \"groupCurrency\": \"USD\"\n    },\n    {\n      \"type\": \"EXTERNAL\",\n      \"vendorId\": \"a2d71f45-d842-b2a5-e9b5-efea412f3fed\",\n      \"companyId\": \"ed2c80f5-61fc-396e-584c-aba77c3ef5ff\",\n      \"companyEntityIds\": [\n        \"26b93fe4-a1c0-ad2b-5f43-f9206a63704b\",\n        \"53e02756-7d26-a459-0c65-07838221c7c8\"\n      ],\n      \"defaultCompanyEntity\": {\n        \"id\": \"ef5894d0-c8e6-1246-337f-ac52ee1ee0a1\",\n        \"vendorId\": \"a198ccf0-c202-f37d-adf9-0be307ed03da\",\n        \"companyEntityId\": \"6a7b9761-4bdd-976e-6f42-f25d6b5de776\",\n        \"accountId\": \"2c5fecb2-99c0-a5c4-252e-3158a7efc075\",\n        \"taxCodeId\": \"55cfb248-8410-300c-4f5e-51111d41bd0e\",\n        \"costCenterId\": \"5adf4826-55ed-42d9-1aac-82cca855a5c5\",\n        \"senderBankAccountId\": \"1e179eac-1de9-7cf2-5bd9-879be0a1c893\",\n        \"createdAt\": \"1960-11-30T04:32:55.534Z\",\n        \"updatedAt\": \"1985-05-16T14:49:13.528Z\"\n      },\n      \"vatId\": \"string\",\n      \"businessRegistrationNumber\": \"string\",\n      \"identifier\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"avatarUrl\": \"string\",\n      \"email\": \"string\",\n      \"phoneNumber\": {\n        \"countryCode\": \"BL\",\n        \"localNumber\": \"string\"\n      },\n      \"website\": \"string\",\n      \"country\": \"BD\",\n      \"city\": \"string\",\n      \"address\": \"string\",\n      \"zipcode\": \"string\",\n      \"bankName\": \"string\",\n      \"bankCountry\": \"BG\",\n      \"bankCity\": \"string\",\n      \"bankAddress\": \"string\",\n      \"bankZipcode\": \"string\",\n      \"bankAccountNumber\": \"string\",\n      \"bankAccountBic\": \"string\",\n      \"domesticBankAccountNumber\": \"string\",\n      \"domesticBankAccountCode\": \"string\",\n      \"swedishBankgiroNumber\": \"string\",\n      \"swedishPlusgiroNumber\": \"string\",\n      \"bankRecipientName\": \"string\",\n      \"vendorCreatedAt\": \"2008-02-10T19:25:42.807Z\",\n      \"approvers\": [\n        {\n          \"id\": \"54d38fdb-f729-6667-6eab-643181f718e2\",\n          \"userId\": \"0b779621-fd46-660f-9f3f-9756b8405414\",\n          \"vendorId\": \"34c70cef-e728-b0a9-bb9f-23473478f0f9\",\n          \"priority\": 8694,\n          \"createdAt\": \"1966-04-29T03:48:10.924Z\"\n        },\n        {\n          \"id\": \"5d401606-75df-85f0-f23d-6ef6c0b5f944\",\n          \"userId\": \"36398518-f1d6-bcea-a1dc-b81593dbf0af\",\n          \"vendorId\": \"6136c320-aff7-0a15-fc1f-7abd55a4da6f\",\n          \"priority\": 1111,\n          \"createdAt\": \"1979-10-05T04:20:55.306Z\"\n        }\n      ],\n      \"notes\": [\n        {\n          \"id\": \"b2cfa4e8-a2e2-94a0-7ef1-fffc1122d442\",\n          \"vendorId\": \"d0f9d11e-bc9c-2e00-dd98-988048200d68\",\n          \"authorId\": \"fb97738b-aa6e-8cdc-64f5-439c48970a51\",\n          \"companyId\": \"e5e8199b-ce0a-f016-0a13-0ef577e37965\",\n          \"channel\": \"SLACK\",\n          \"content\": \"string\",\n          \"createdAt\": \"2000-11-17T03:55:39.875Z\",\n          \"updatedAt\": \"2002-08-23T09:31:48.216Z\"\n        },\n        {\n          \"id\": \"c181c9f0-ca4d-11ac-de2a-52926afca07c\",\n          \"vendorId\": \"af22d92f-8248-452a-a89f-0fb56bed245b\",\n          \"authorId\": \"6ee36fb0-ca59-b0d5-db19-801f99251bd0\",\n          \"companyId\": \"bf1496e8-dd16-a536-4944-2a2c474d668c\",\n          \"channel\": \"SLACK\",\n          \"content\": \"string\",\n          \"createdAt\": \"2026-07-13T09:09:11.998Z\",\n          \"updatedAt\": \"1975-05-23T09:59:20.992Z\"\n        }\n      ],\n      \"currency\": \"USD\",\n      \"contractValue\": 3882,\n      \"createdBy\": \"ed4aeb2b-6a89-ea99-7364-3ade863e83ca\",\n      \"status\": \"IN_REVIEW\",\n      \"failureContext\": {\n        \"name\": \"string\",\n        \"type\": \"BAD_REQUEST\",\n        \"errors\": [\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      },\n      \"version\": 7924,\n      \"updatedAt\": \"2021-10-29T21:53:35.424Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"07411ca4-54e4-cd28-ed4c-67bdaf7528c8\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"a2fe7740-927a-44f9-9776-8d0ccb0d237b\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"lastMtdSpendInGroupCurrency\": 3774,\n      \"groupCurrency\": \"USD\"\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 2210,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c85f38c4-9811-4008-a8d3-e0edcfc30c14",
+          "name": "Create vendor",
+          "request": {
+            "name": "Create vendor",
+            "description": {
+              "content": "Creates a new vendor",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vendors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"defaultCompanyEntity\": {\n    \"companyEntityId\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"taxCodeId\": \"<uuid>\",\n    \"costCenterId\": \"<uuid>\",\n    \"senderBankAccountId\": \"<uuid>\"\n  },\n  \"companyEntityIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"vatId\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"website\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"bankName\": \"<string>\",\n  \"bankCountry\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankAccountNumber\": \"<string>\",\n  \"bankAccountBic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankAccountCode\": \"<string>\",\n  \"swedishBankgiroNumber\": \"<string>\",\n  \"swedishPlusgiroNumber\": \"<string>\",\n  \"bankRecipientName\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0216123-7b47-4f15-aaaf-7cb0b1551fe9",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vendors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"defaultCompanyEntity\": {\n    \"companyEntityId\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"taxCodeId\": \"<uuid>\",\n    \"costCenterId\": \"<uuid>\",\n    \"senderBankAccountId\": \"<uuid>\"\n  },\n  \"companyEntityIds\": [\n    \"<uuid>\"\n  ],\n  \"vatId\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"website\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"bankName\": \"<string>\",\n  \"bankCountry\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankAccountNumber\": \"<string>\",\n  \"bankAccountBic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankAccountCode\": \"<string>\",\n  \"swedishBankgiroNumber\": \"<string>\",\n  \"swedishPlusgiroNumber\": \"<string>\",\n  \"bankRecipientName\": \"<string>\",\n  \"currency\": \"USD\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"EXTERNAL\",\n  \"vendorId\": \"ef560ed1-e72f-4d13-c7ca-18d8cf5e1246\",\n  \"companyId\": \"cff0f349-bc31-3cab-355b-a08ef48f4093\",\n  \"companyEntityIds\": [\n    \"52cb00b1-2d25-d1a1-652b-204d0e9df843\",\n    \"54255b93-d93d-1dd5-1d99-42df47625141\"\n  ],\n  \"defaultCompanyEntity\": {\n    \"id\": \"1f3f2c07-5078-ac20-142e-19eaccb794de\",\n    \"vendorId\": \"978308e1-d49c-7c43-9e26-e99c7b5f9ae1\",\n    \"companyEntityId\": \"dca5b2b8-d520-537a-11b0-301d1b83c487\",\n    \"accountId\": \"2704a68f-c7cc-ce7d-2995-219bf0980a63\",\n    \"taxCodeId\": \"e94db227-a7e1-57a0-ff72-869b5e6ce05a\",\n    \"costCenterId\": \"4ec5c807-424e-e12b-0c99-a48d3791ca94\",\n    \"senderBankAccountId\": \"f029424c-258f-3cb1-6150-826ec470e0c6\",\n    \"createdAt\": \"2007-02-01T11:41:53.211Z\",\n    \"updatedAt\": \"2002-05-28T03:51:15.019Z\"\n  },\n  \"vatId\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"identifier\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"avatarUrl\": \"string\",\n  \"email\": \"string\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"website\": \"string\",\n  \"country\": \"MU\",\n  \"city\": \"string\",\n  \"address\": \"string\",\n  \"zipcode\": \"string\",\n  \"bankName\": \"string\",\n  \"bankCountry\": \"FR\",\n  \"bankCity\": \"string\",\n  \"bankAddress\": \"string\",\n  \"bankZipcode\": \"string\",\n  \"bankAccountNumber\": \"string\",\n  \"bankAccountBic\": \"string\",\n  \"domesticBankAccountNumber\": \"string\",\n  \"domesticBankAccountCode\": \"string\",\n  \"swedishBankgiroNumber\": \"string\",\n  \"swedishPlusgiroNumber\": \"string\",\n  \"bankRecipientName\": \"string\",\n  \"vendorCreatedAt\": \"1998-03-22T20:06:02.124Z\",\n  \"approvers\": [\n    {\n      \"id\": \"ed0accfe-4175-fab8-18ec-6e75eefd231a\",\n      \"userId\": \"c152e30d-cc80-8de6-977f-a45ba224d339\",\n      \"vendorId\": \"0d360cf1-73e1-800b-5adf-998f3fc45587\",\n      \"priority\": 4139,\n      \"createdAt\": \"1976-08-05T06:30:04.914Z\"\n    },\n    {\n      \"id\": \"81c76739-ee32-eb40-ed34-ede70a41f3af\",\n      \"userId\": \"624cbb7a-b72c-0c75-4896-9c4ea05eb976\",\n      \"vendorId\": \"2265ccc8-8dcd-1e63-2f9e-79e4b8320639\",\n      \"priority\": 4541,\n      \"createdAt\": \"1994-02-28T03:39:30.156Z\"\n    }\n  ],\n  \"notes\": [\n    {\n      \"id\": \"500e7527-d179-43f3-d0af-9b1505823980\",\n      \"vendorId\": \"c65baf0d-97d3-2b7c-98ee-0ac3a53da8aa\",\n      \"authorId\": \"50fb8bf1-cc89-1541-47a4-7b8f6a9f49ff\",\n      \"companyId\": \"77957855-8bb3-9d30-ac9d-8b7b7543893a\",\n      \"channel\": \"SLACK\",\n      \"content\": \"string\",\n      \"createdAt\": \"1975-12-12T16:41:34.588Z\",\n      \"updatedAt\": \"1996-02-27T00:42:35.129Z\"\n    },\n    {\n      \"id\": \"9439b499-b647-c904-3f90-1ae2601137bd\",\n      \"vendorId\": \"960accd5-c251-eb8b-5da4-3c0e8d2370c7\",\n      \"authorId\": \"eb0d3cf7-0968-eb14-15d0-57a3e5f041b9\",\n      \"companyId\": \"3bc17be2-8a8f-0612-4a79-69529c7eda52\",\n      \"channel\": \"SLACK\",\n      \"content\": \"string\",\n      \"createdAt\": \"1973-08-09T19:49:14.960Z\",\n      \"updatedAt\": \"1957-11-09T02:05:57.979Z\"\n    }\n  ],\n  \"currency\": \"USD\",\n  \"contractValue\": 528,\n  \"createdBy\": \"d3729221-b606-82c0-63b2-b03f282adc9a\",\n  \"status\": \"IN_REVIEW\",\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"BAD_REQUEST\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  },\n  \"version\": 1057,\n  \"updatedAt\": \"1997-12-31T00:37:58.726Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"7e34db3c-9b2f-c572-43b0-1012d23bb023\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"d382335c-2db9-c317-d7b9-80638e819350\",\n          \"groupId\": \"38c805a4-0a2d-35a4-51fa-57c87417445e\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"f53ea2c8-f8fc-94bc-3e3e-22394d54c03e\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2013-09-28T11:46:21.046Z\",\n          \"updatedAt\": \"1970-09-27T19:04:44.186Z\"\n        },\n        {\n          \"id\": \"640e9b26-1c8e-af65-fd47-05f863f2ec47\",\n          \"groupId\": \"34e08e05-8063-8e41-0acb-a2864ce331dd\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"73f96408-ad4a-1d38-29ec-c0a606190325\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1956-05-31T19:32:26.046Z\",\n          \"updatedAt\": \"2000-11-08T04:11:13.900Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"ace159aa-b43f-d7a9-4540-836c1dc53942\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"666d0b94-a6e6-c88e-e0e7-6b7fb29f725e\",\n          \"groupId\": \"c3b16b9d-6e98-d3bc-4ad4-4b9d5f78fd4a\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"5d2c6de1-2b87-32a8-6b92-d68e0df99028\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2019-03-27T05:12:41.105Z\",\n          \"updatedAt\": \"1946-09-12T07:07:55.256Z\"\n        },\n        {\n          \"id\": \"de8da024-0031-e933-41e2-4f0e7cbbd691\",\n          \"groupId\": \"267880d4-54d7-1407-8528-ea38eaacd8a3\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"fdadcfb0-b399-45cb-de5d-065fe9d45cf8\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1983-10-01T04:13:53.772Z\",\n          \"updatedAt\": \"1972-08-05T19:17:57.343Z\"\n        }\n      ]\n    }\n  ],\n  \"lastMtdSpendInGroupCurrency\": 5008,\n  \"groupCurrency\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9845bff5-1efd-4357-92c5-cf87870c440f",
+          "name": "Get vendor",
+          "request": {
+            "name": "Get vendor",
+            "description": {
+              "content": "Returns a vendor by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vendors",
+                ":vendorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vendorId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d1b15834-41b8-49ea-bacf-fb953fbf2cc1",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vendors",
+                    ":vendorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vendorId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"EXTERNAL\",\n  \"vendorId\": \"ef560ed1-e72f-4d13-c7ca-18d8cf5e1246\",\n  \"companyId\": \"cff0f349-bc31-3cab-355b-a08ef48f4093\",\n  \"companyEntityIds\": [\n    \"52cb00b1-2d25-d1a1-652b-204d0e9df843\",\n    \"54255b93-d93d-1dd5-1d99-42df47625141\"\n  ],\n  \"defaultCompanyEntity\": {\n    \"id\": \"1f3f2c07-5078-ac20-142e-19eaccb794de\",\n    \"vendorId\": \"978308e1-d49c-7c43-9e26-e99c7b5f9ae1\",\n    \"companyEntityId\": \"dca5b2b8-d520-537a-11b0-301d1b83c487\",\n    \"accountId\": \"2704a68f-c7cc-ce7d-2995-219bf0980a63\",\n    \"taxCodeId\": \"e94db227-a7e1-57a0-ff72-869b5e6ce05a\",\n    \"costCenterId\": \"4ec5c807-424e-e12b-0c99-a48d3791ca94\",\n    \"senderBankAccountId\": \"f029424c-258f-3cb1-6150-826ec470e0c6\",\n    \"createdAt\": \"2007-02-01T11:41:53.211Z\",\n    \"updatedAt\": \"2002-05-28T03:51:15.019Z\"\n  },\n  \"vatId\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"identifier\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"avatarUrl\": \"string\",\n  \"email\": \"string\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"website\": \"string\",\n  \"country\": \"MU\",\n  \"city\": \"string\",\n  \"address\": \"string\",\n  \"zipcode\": \"string\",\n  \"bankName\": \"string\",\n  \"bankCountry\": \"FR\",\n  \"bankCity\": \"string\",\n  \"bankAddress\": \"string\",\n  \"bankZipcode\": \"string\",\n  \"bankAccountNumber\": \"string\",\n  \"bankAccountBic\": \"string\",\n  \"domesticBankAccountNumber\": \"string\",\n  \"domesticBankAccountCode\": \"string\",\n  \"swedishBankgiroNumber\": \"string\",\n  \"swedishPlusgiroNumber\": \"string\",\n  \"bankRecipientName\": \"string\",\n  \"vendorCreatedAt\": \"1998-03-22T20:06:02.124Z\",\n  \"approvers\": [\n    {\n      \"id\": \"ed0accfe-4175-fab8-18ec-6e75eefd231a\",\n      \"userId\": \"c152e30d-cc80-8de6-977f-a45ba224d339\",\n      \"vendorId\": \"0d360cf1-73e1-800b-5adf-998f3fc45587\",\n      \"priority\": 4139,\n      \"createdAt\": \"1976-08-05T06:30:04.914Z\"\n    },\n    {\n      \"id\": \"81c76739-ee32-eb40-ed34-ede70a41f3af\",\n      \"userId\": \"624cbb7a-b72c-0c75-4896-9c4ea05eb976\",\n      \"vendorId\": \"2265ccc8-8dcd-1e63-2f9e-79e4b8320639\",\n      \"priority\": 4541,\n      \"createdAt\": \"1994-02-28T03:39:30.156Z\"\n    }\n  ],\n  \"notes\": [\n    {\n      \"id\": \"500e7527-d179-43f3-d0af-9b1505823980\",\n      \"vendorId\": \"c65baf0d-97d3-2b7c-98ee-0ac3a53da8aa\",\n      \"authorId\": \"50fb8bf1-cc89-1541-47a4-7b8f6a9f49ff\",\n      \"companyId\": \"77957855-8bb3-9d30-ac9d-8b7b7543893a\",\n      \"channel\": \"SLACK\",\n      \"content\": \"string\",\n      \"createdAt\": \"1975-12-12T16:41:34.588Z\",\n      \"updatedAt\": \"1996-02-27T00:42:35.129Z\"\n    },\n    {\n      \"id\": \"9439b499-b647-c904-3f90-1ae2601137bd\",\n      \"vendorId\": \"960accd5-c251-eb8b-5da4-3c0e8d2370c7\",\n      \"authorId\": \"eb0d3cf7-0968-eb14-15d0-57a3e5f041b9\",\n      \"companyId\": \"3bc17be2-8a8f-0612-4a79-69529c7eda52\",\n      \"channel\": \"SLACK\",\n      \"content\": \"string\",\n      \"createdAt\": \"1973-08-09T19:49:14.960Z\",\n      \"updatedAt\": \"1957-11-09T02:05:57.979Z\"\n    }\n  ],\n  \"currency\": \"USD\",\n  \"contractValue\": 528,\n  \"createdBy\": \"d3729221-b606-82c0-63b2-b03f282adc9a\",\n  \"status\": \"IN_REVIEW\",\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"BAD_REQUEST\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  },\n  \"version\": 1057,\n  \"updatedAt\": \"1997-12-31T00:37:58.726Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"7e34db3c-9b2f-c572-43b0-1012d23bb023\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"d382335c-2db9-c317-d7b9-80638e819350\",\n          \"groupId\": \"38c805a4-0a2d-35a4-51fa-57c87417445e\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"f53ea2c8-f8fc-94bc-3e3e-22394d54c03e\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2013-09-28T11:46:21.046Z\",\n          \"updatedAt\": \"1970-09-27T19:04:44.186Z\"\n        },\n        {\n          \"id\": \"640e9b26-1c8e-af65-fd47-05f863f2ec47\",\n          \"groupId\": \"34e08e05-8063-8e41-0acb-a2864ce331dd\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"73f96408-ad4a-1d38-29ec-c0a606190325\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1956-05-31T19:32:26.046Z\",\n          \"updatedAt\": \"2000-11-08T04:11:13.900Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"ace159aa-b43f-d7a9-4540-836c1dc53942\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"666d0b94-a6e6-c88e-e0e7-6b7fb29f725e\",\n          \"groupId\": \"c3b16b9d-6e98-d3bc-4ad4-4b9d5f78fd4a\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"5d2c6de1-2b87-32a8-6b92-d68e0df99028\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2019-03-27T05:12:41.105Z\",\n          \"updatedAt\": \"1946-09-12T07:07:55.256Z\"\n        },\n        {\n          \"id\": \"de8da024-0031-e933-41e2-4f0e7cbbd691\",\n          \"groupId\": \"267880d4-54d7-1407-8528-ea38eaacd8a3\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"fdadcfb0-b399-45cb-de5d-065fe9d45cf8\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1983-10-01T04:13:53.772Z\",\n          \"updatedAt\": \"1972-08-05T19:17:57.343Z\"\n        }\n      ]\n    }\n  ],\n  \"lastMtdSpendInGroupCurrency\": 5008,\n  \"groupCurrency\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "070ac32e-ece0-4713-9bb2-0dc13f9bd98b",
+          "name": "Update vendor",
+          "request": {
+            "name": "Update vendor",
+            "description": {
+              "content": "Updates an existing vendor",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "vendors",
+                ":vendorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "vendorId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"defaultCompanyEntity\": {\n    \"companyEntityId\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"taxCodeId\": \"<uuid>\",\n    \"costCenterId\": \"<uuid>\",\n    \"senderBankAccountId\": \"<uuid>\"\n  },\n  \"companyEntityIds\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"vatId\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"website\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"bankName\": \"<string>\",\n  \"bankCountry\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankAccountNumber\": \"<string>\",\n  \"bankAccountBic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankAccountCode\": \"<string>\",\n  \"swedishBankgiroNumber\": \"<string>\",\n  \"swedishPlusgiroNumber\": \"<string>\",\n  \"bankRecipientName\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eeab2c84-b3b1-4616-af35-fc25331006ce",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "vendors",
+                    ":vendorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "vendorId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"defaultCompanyEntity\": {\n    \"companyEntityId\": \"<uuid>\",\n    \"accountId\": \"<uuid>\",\n    \"taxCodeId\": \"<uuid>\",\n    \"costCenterId\": \"<uuid>\",\n    \"senderBankAccountId\": \"<uuid>\"\n  },\n  \"companyEntityIds\": [\n    \"<uuid>\"\n  ],\n  \"vatId\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"identifier\": \"<string>\",\n  \"description\": \"<string>\",\n  \"avatarUrl\": \"<string>\",\n  \"email\": \"<string>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"website\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"bankName\": \"<string>\",\n  \"bankCountry\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankAccountNumber\": \"<string>\",\n  \"bankAccountBic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankAccountCode\": \"<string>\",\n  \"swedishBankgiroNumber\": \"<string>\",\n  \"swedishPlusgiroNumber\": \"<string>\",\n  \"bankRecipientName\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"type\": \"EXTERNAL\",\n  \"vendorId\": \"ef560ed1-e72f-4d13-c7ca-18d8cf5e1246\",\n  \"companyId\": \"cff0f349-bc31-3cab-355b-a08ef48f4093\",\n  \"companyEntityIds\": [\n    \"52cb00b1-2d25-d1a1-652b-204d0e9df843\",\n    \"54255b93-d93d-1dd5-1d99-42df47625141\"\n  ],\n  \"defaultCompanyEntity\": {\n    \"id\": \"1f3f2c07-5078-ac20-142e-19eaccb794de\",\n    \"vendorId\": \"978308e1-d49c-7c43-9e26-e99c7b5f9ae1\",\n    \"companyEntityId\": \"dca5b2b8-d520-537a-11b0-301d1b83c487\",\n    \"accountId\": \"2704a68f-c7cc-ce7d-2995-219bf0980a63\",\n    \"taxCodeId\": \"e94db227-a7e1-57a0-ff72-869b5e6ce05a\",\n    \"costCenterId\": \"4ec5c807-424e-e12b-0c99-a48d3791ca94\",\n    \"senderBankAccountId\": \"f029424c-258f-3cb1-6150-826ec470e0c6\",\n    \"createdAt\": \"2007-02-01T11:41:53.211Z\",\n    \"updatedAt\": \"2002-05-28T03:51:15.019Z\"\n  },\n  \"vatId\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"identifier\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"avatarUrl\": \"string\",\n  \"email\": \"string\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"website\": \"string\",\n  \"country\": \"MU\",\n  \"city\": \"string\",\n  \"address\": \"string\",\n  \"zipcode\": \"string\",\n  \"bankName\": \"string\",\n  \"bankCountry\": \"FR\",\n  \"bankCity\": \"string\",\n  \"bankAddress\": \"string\",\n  \"bankZipcode\": \"string\",\n  \"bankAccountNumber\": \"string\",\n  \"bankAccountBic\": \"string\",\n  \"domesticBankAccountNumber\": \"string\",\n  \"domesticBankAccountCode\": \"string\",\n  \"swedishBankgiroNumber\": \"string\",\n  \"swedishPlusgiroNumber\": \"string\",\n  \"bankRecipientName\": \"string\",\n  \"vendorCreatedAt\": \"1998-03-22T20:06:02.124Z\",\n  \"approvers\": [\n    {\n      \"id\": \"ed0accfe-4175-fab8-18ec-6e75eefd231a\",\n      \"userId\": \"c152e30d-cc80-8de6-977f-a45ba224d339\",\n      \"vendorId\": \"0d360cf1-73e1-800b-5adf-998f3fc45587\",\n      \"priority\": 4139,\n      \"createdAt\": \"1976-08-05T06:30:04.914Z\"\n    },\n    {\n      \"id\": \"81c76739-ee32-eb40-ed34-ede70a41f3af\",\n      \"userId\": \"624cbb7a-b72c-0c75-4896-9c4ea05eb976\",\n      \"vendorId\": \"2265ccc8-8dcd-1e63-2f9e-79e4b8320639\",\n      \"priority\": 4541,\n      \"createdAt\": \"1994-02-28T03:39:30.156Z\"\n    }\n  ],\n  \"notes\": [\n    {\n      \"id\": \"500e7527-d179-43f3-d0af-9b1505823980\",\n      \"vendorId\": \"c65baf0d-97d3-2b7c-98ee-0ac3a53da8aa\",\n      \"authorId\": \"50fb8bf1-cc89-1541-47a4-7b8f6a9f49ff\",\n      \"companyId\": \"77957855-8bb3-9d30-ac9d-8b7b7543893a\",\n      \"channel\": \"SLACK\",\n      \"content\": \"string\",\n      \"createdAt\": \"1975-12-12T16:41:34.588Z\",\n      \"updatedAt\": \"1996-02-27T00:42:35.129Z\"\n    },\n    {\n      \"id\": \"9439b499-b647-c904-3f90-1ae2601137bd\",\n      \"vendorId\": \"960accd5-c251-eb8b-5da4-3c0e8d2370c7\",\n      \"authorId\": \"eb0d3cf7-0968-eb14-15d0-57a3e5f041b9\",\n      \"companyId\": \"3bc17be2-8a8f-0612-4a79-69529c7eda52\",\n      \"channel\": \"SLACK\",\n      \"content\": \"string\",\n      \"createdAt\": \"1973-08-09T19:49:14.960Z\",\n      \"updatedAt\": \"1957-11-09T02:05:57.979Z\"\n    }\n  ],\n  \"currency\": \"USD\",\n  \"contractValue\": 528,\n  \"createdBy\": \"d3729221-b606-82c0-63b2-b03f282adc9a\",\n  \"status\": \"IN_REVIEW\",\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"BAD_REQUEST\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {},\n          \"key_3\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  },\n  \"version\": 1057,\n  \"updatedAt\": \"1997-12-31T00:37:58.726Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"7e34db3c-9b2f-c572-43b0-1012d23bb023\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"d382335c-2db9-c317-d7b9-80638e819350\",\n          \"groupId\": \"38c805a4-0a2d-35a4-51fa-57c87417445e\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"f53ea2c8-f8fc-94bc-3e3e-22394d54c03e\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2013-09-28T11:46:21.046Z\",\n          \"updatedAt\": \"1970-09-27T19:04:44.186Z\"\n        },\n        {\n          \"id\": \"640e9b26-1c8e-af65-fd47-05f863f2ec47\",\n          \"groupId\": \"34e08e05-8063-8e41-0acb-a2864ce331dd\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"73f96408-ad4a-1d38-29ec-c0a606190325\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1956-05-31T19:32:26.046Z\",\n          \"updatedAt\": \"2000-11-08T04:11:13.900Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"ace159aa-b43f-d7a9-4540-836c1dc53942\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"666d0b94-a6e6-c88e-e0e7-6b7fb29f725e\",\n          \"groupId\": \"c3b16b9d-6e98-d3bc-4ad4-4b9d5f78fd4a\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"5d2c6de1-2b87-32a8-6b92-d68e0df99028\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2019-03-27T05:12:41.105Z\",\n          \"updatedAt\": \"1946-09-12T07:07:55.256Z\"\n        },\n        {\n          \"id\": \"de8da024-0031-e933-41e2-4f0e7cbbd691\",\n          \"groupId\": \"267880d4-54d7-1407-8528-ea38eaacd8a3\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"fdadcfb0-b399-45cb-de5d-065fe9d45cf8\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1983-10-01T04:13:53.772Z\",\n          \"updatedAt\": \"1972-08-05T19:17:57.343Z\"\n        }\n      ]\n    }\n  ],\n  \"lastMtdSpendInGroupCurrency\": 5008,\n  \"groupCurrency\": \"USD\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d9b9e9e9-b5a6-4638-9308-2c7718defc27",
+    "name": "Light Authorization v1 - Vendors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,621 @@
+{
+  "item": [
+    {
+      "id": "2683c356-e7a8-45cb-8b27-14ecf71fec53",
+      "name": "v1 - Products",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "92bcb051-27a1-4f2e-9a8c-ecad1a55ea5d",
+          "name": "Archive product",
+          "request": {
+            "name": "Archive product",
+            "description": {
+              "content": "Archive the given product",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products",
+                ":productId",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "productId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26b1f968-306c-447d-9f05-48edeed164fb",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":productId",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"0868f6a7-ecf5-a15f-76ec-eb2d02bd4490\",\n  \"companyId\": \"269e3a3e-0d5f-48ce-dd4f-4b76692efce3\",\n  \"name\": \"string\",\n  \"pricingType\": \"PACKAGE\",\n  \"billingRecurrence\": \"ONE_TIME\",\n  \"pricings\": [\n    {\n      \"currency\": \"USD\",\n      \"amount\": 8999\n    },\n    {\n      \"currency\": \"USD\",\n      \"amount\": 532\n    }\n  ],\n  \"state\": \"ARCHIVED\",\n  \"defaultTaxId\": \"16d7bd86-55b5-99a0-a97c-9f769dc6f98e\",\n  \"defaultAvataxCode\": \"string\",\n  \"defaultLedgerAccountId\": \"7d43b639-9e2b-765c-5810-80a501407982\",\n  \"externalSource\": {\n    \"name\": \"CHARGEBEE\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"1960-09-27T18:23:33.334Z\",\n  \"updatedAt\": \"1991-03-02T13:44:25.887Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"df9927c0-41e2-ffde-6a06-f451b02c0c1f\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"58eddfc7-a87c-46f3-0733-d2f4d1204cb9\",\n          \"groupId\": \"f4e37a29-3c7f-984e-da39-18b596391639\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"745a8717-86c3-6fe0-30fd-3a06ce88e494\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1967-08-20T02:01:41.006Z\",\n          \"updatedAt\": \"1972-06-18T09:09:30.248Z\"\n        },\n        {\n          \"id\": \"37b8f7f9-f2a9-3c8a-3573-9c14b32cde99\",\n          \"groupId\": \"67db973e-1b22-d33f-7981-8fde634dd38e\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"a436ec05-5767-f6ab-a727-342996ec293b\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1989-08-13T22:30:40.514Z\",\n          \"updatedAt\": \"2006-11-03T10:16:58.603Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"aa63781d-831e-5009-44f6-fa48238076ab\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"5b3e8bdb-6659-8ad6-16f2-d41f9ba3a9a4\",\n          \"groupId\": \"d47188c5-8db1-149e-30b2-019837a02f42\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"8ca8f615-77e9-f6b8-7145-908641c7b7f6\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1949-10-06T03:53:06.333Z\",\n          \"updatedAt\": \"1971-12-20T21:25:21.071Z\"\n        },\n        {\n          \"id\": \"e100c489-1171-28bf-7694-8a8f931d3a9b\",\n          \"groupId\": \"563b72f1-02bc-184c-3286-f36cb191e522\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"b4bff638-b0e3-6d66-d340-58f2777e2ee2\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1976-12-25T11:59:57.250Z\",\n          \"updatedAt\": \"1949-09-03T13:26:39.624Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "943f5b39-0b04-4a79-b506-f36fe6e0d815",
+          "name": "List products",
+          "request": {
+            "name": "List products",
+            "description": {
+              "content": "Returns a list of products",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0aa9219-075a-4457-ac01-c1bd6a0777dc",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"7ada1e3d-9cde-d5df-d43b-7ad049c2d38b\",\n      \"companyId\": \"702ad6d4-3b74-7de9-6b77-2df84c608afe\",\n      \"name\": \"string\",\n      \"pricingType\": \"FIXED\",\n      \"billingRecurrence\": \"MONTHLY\",\n      \"pricings\": [\n        {\n          \"currency\": \"USD\",\n          \"amount\": 1011\n        },\n        {\n          \"currency\": \"USD\",\n          \"amount\": 8065\n        }\n      ],\n      \"state\": \"ACTIVE\",\n      \"defaultTaxId\": \"daff6cf7-82a2-e722-0701-a6a51c054a20\",\n      \"defaultAvataxCode\": \"string\",\n      \"defaultLedgerAccountId\": \"227c1265-ec78-bfa4-b407-94de4e1a3a8f\",\n      \"externalSource\": {\n        \"name\": \"STRIPE\",\n        \"externalId\": \"string\"\n      },\n      \"createdAt\": \"1951-06-23T18:11:37.215Z\",\n      \"updatedAt\": \"1950-12-25T09:59:30.271Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"b7c3d3ee-354e-07a6-e205-6b8c7bd7ad44\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"66d5351e-9124-b87d-3287-63582b6ad49e\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"3a89c1b1-bda0-547b-fa76-81b2af3acffb\",\n      \"companyId\": \"09610b97-2f4b-f208-1cab-5165575e55b6\",\n      \"name\": \"string\",\n      \"pricingType\": \"FIXED\",\n      \"billingRecurrence\": \"HALF_YEARLY\",\n      \"pricings\": [\n        {\n          \"currency\": \"USD\",\n          \"amount\": 1158\n        },\n        {\n          \"currency\": \"USD\",\n          \"amount\": 2595\n        }\n      ],\n      \"state\": \"ARCHIVED\",\n      \"defaultTaxId\": \"9fee6edf-c8ed-da54-4a4b-7c5fef592346\",\n      \"defaultAvataxCode\": \"string\",\n      \"defaultLedgerAccountId\": \"cdd64930-186f-fba6-3fc3-31ca8ed87d41\",\n      \"externalSource\": {\n        \"name\": \"SALESFORCE\",\n        \"externalId\": \"string\"\n      },\n      \"createdAt\": \"1958-02-17T16:46:44.898Z\",\n      \"updatedAt\": \"1963-04-14T05:51:36.281Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"2ae0c497-d17e-1fd5-f998-6388188dbc38\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"3f20ee1b-d057-45f4-00de-66e089caa698\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"hasMore\": true,\n  \"total\": 8396,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f7ccfe3-5b7e-44bc-86fa-d6226a554fee",
+          "name": "Create product",
+          "request": {
+            "name": "Create product",
+            "description": {
+              "content": "Creates a new product",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"pricingType\": \"<string>\",\n  \"billingRecurrence\": \"<string>\",\n  \"pricings\": [\n    {\n      \"currency\": \"<string>\",\n      \"amount\": \"<long>\"\n    },\n    {\n      \"currency\": \"<string>\",\n      \"amount\": \"<long>\"\n    }\n  ],\n  \"defaultAvataxCode\": \"<string>\",\n  \"defaultTaxId\": \"<uuid>\",\n  \"defaultLedgerAccountId\": \"<uuid>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3f2d7c5c-74ee-4841-a761-c761fef862f0",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"pricingType\": \"<string>\",\n  \"billingRecurrence\": \"<string>\",\n  \"pricings\": [\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    },\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    }\n  ],\n  \"defaultAvataxCode\": \"<string>\",\n  \"defaultTaxId\": \"<uuid>\",\n  \"defaultLedgerAccountId\": \"<uuid>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"9d595e7e-7615-94dc-a51c-9b026d8b5105\",\n  \"companyId\": \"fab58d18-417c-e40e-c37a-1e33e02b07ee\",\n  \"name\": \"string\",\n  \"pricingType\": \"PACKAGE\",\n  \"billingRecurrence\": \"HALF_YEARLY\",\n  \"pricings\": [\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    },\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    }\n  ],\n  \"state\": \"ACTIVE\",\n  \"defaultTaxId\": \"348386a2-d8fa-9d4c-dfc2-20e9a7eece04\",\n  \"defaultAvataxCode\": \"string\",\n  \"defaultLedgerAccountId\": \"1a4e6d98-7152-8b47-16ef-89f8019b08d2\",\n  \"externalSource\": {\n    \"name\": \"CHARGEBEE\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"2019-05-12T22:57:55.656Z\",\n  \"updatedAt\": \"1998-01-16T17:56:41.861Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"cfdf7753-c8e9-38d7-8255-5a57091ccb2d\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"b86b51c1-1b5b-f9fb-b752-b8e0f0654eac\",\n          \"groupId\": \"7ddf6c91-9e2b-96b7-5d40-b78fdd8731d0\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"5b97e4a1-01a7-f2f4-5088-97cbaeed5d00\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1961-09-24T17:59:11.631Z\",\n          \"updatedAt\": \"2008-05-12T19:40:55.468Z\"\n        },\n        {\n          \"id\": \"66eeb7fa-20a6-d810-57ff-79e6b3c1f761\",\n          \"groupId\": \"bf242ac0-face-3e68-8d97-419b8400bab1\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"22c13022-6644-8dd0-7faa-73a17fc14167\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1968-06-10T01:30:17.070Z\",\n          \"updatedAt\": \"2022-05-23T22:34:48.879Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"cffb04c1-6706-ebac-fb37-71de840b3de5\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"56fd83ed-90e0-5a58-bd70-144edd752f63\",\n          \"groupId\": \"28d08bf1-bd67-5341-9675-597ef4a3720a\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"9522f02e-1116-c562-e30d-c2254355862e\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1977-08-20T01:57:41.590Z\",\n          \"updatedAt\": \"2007-11-11T20:30:12.924Z\"\n        },\n        {\n          \"id\": \"b613c1d4-665b-2549-bd98-11dcac178924\",\n          \"groupId\": \"6735ab2b-8458-54b9-c0eb-6ddde054df5d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"877f94ae-72d8-b5f5-208e-8f9053005e70\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2006-07-02T18:43:21.521Z\",\n          \"updatedAt\": \"1968-12-30T22:40:18.046Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "024df66a-87e4-499e-948d-017b95fb05f0",
+          "name": "Get product",
+          "request": {
+            "name": "Get product",
+            "description": {
+              "content": "Returns a product by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products",
+                ":productId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "productId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "280ee439-3441-4371-ae78-f7dd9e96b09f",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"9d595e7e-7615-94dc-a51c-9b026d8b5105\",\n  \"companyId\": \"fab58d18-417c-e40e-c37a-1e33e02b07ee\",\n  \"name\": \"string\",\n  \"pricingType\": \"PACKAGE\",\n  \"billingRecurrence\": \"HALF_YEARLY\",\n  \"pricings\": [\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    },\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    }\n  ],\n  \"state\": \"ACTIVE\",\n  \"defaultTaxId\": \"348386a2-d8fa-9d4c-dfc2-20e9a7eece04\",\n  \"defaultAvataxCode\": \"string\",\n  \"defaultLedgerAccountId\": \"1a4e6d98-7152-8b47-16ef-89f8019b08d2\",\n  \"externalSource\": {\n    \"name\": \"CHARGEBEE\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"2019-05-12T22:57:55.656Z\",\n  \"updatedAt\": \"1998-01-16T17:56:41.861Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"cfdf7753-c8e9-38d7-8255-5a57091ccb2d\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"b86b51c1-1b5b-f9fb-b752-b8e0f0654eac\",\n          \"groupId\": \"7ddf6c91-9e2b-96b7-5d40-b78fdd8731d0\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"5b97e4a1-01a7-f2f4-5088-97cbaeed5d00\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1961-09-24T17:59:11.631Z\",\n          \"updatedAt\": \"2008-05-12T19:40:55.468Z\"\n        },\n        {\n          \"id\": \"66eeb7fa-20a6-d810-57ff-79e6b3c1f761\",\n          \"groupId\": \"bf242ac0-face-3e68-8d97-419b8400bab1\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"22c13022-6644-8dd0-7faa-73a17fc14167\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1968-06-10T01:30:17.070Z\",\n          \"updatedAt\": \"2022-05-23T22:34:48.879Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"cffb04c1-6706-ebac-fb37-71de840b3de5\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"56fd83ed-90e0-5a58-bd70-144edd752f63\",\n          \"groupId\": \"28d08bf1-bd67-5341-9675-597ef4a3720a\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"9522f02e-1116-c562-e30d-c2254355862e\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1977-08-20T01:57:41.590Z\",\n          \"updatedAt\": \"2007-11-11T20:30:12.924Z\"\n        },\n        {\n          \"id\": \"b613c1d4-665b-2549-bd98-11dcac178924\",\n          \"groupId\": \"6735ab2b-8458-54b9-c0eb-6ddde054df5d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"877f94ae-72d8-b5f5-208e-8f9053005e70\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2006-07-02T18:43:21.521Z\",\n          \"updatedAt\": \"1968-12-30T22:40:18.046Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11e7e9f5-bbd1-436f-ade1-6d83328a7183",
+          "name": "Update product",
+          "request": {
+            "name": "Update product",
+            "description": {
+              "content": "Updates an existing product",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "products",
+                ":productId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "productId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"pricingType\": \"<string>\",\n  \"billingRecurrence\": \"<string>\",\n  \"pricings\": [\n    {\n      \"currency\": \"<string>\",\n      \"amount\": \"<long>\"\n    },\n    {\n      \"currency\": \"<string>\",\n      \"amount\": \"<long>\"\n    }\n  ],\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"defaultAvataxCode\": \"<string>\",\n  \"defaultTaxId\": \"<uuid>\",\n  \"defaultLedgerAccountId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc2379b3-6b16-4ed5-a5ad-9eed40c5feba",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "products",
+                    ":productId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "productId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"pricingType\": \"<string>\",\n  \"billingRecurrence\": \"<string>\",\n  \"pricings\": [\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    },\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    }\n  ],\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"defaultAvataxCode\": \"<string>\",\n  \"defaultTaxId\": \"<uuid>\",\n  \"defaultLedgerAccountId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"9d595e7e-7615-94dc-a51c-9b026d8b5105\",\n  \"companyId\": \"fab58d18-417c-e40e-c37a-1e33e02b07ee\",\n  \"name\": \"string\",\n  \"pricingType\": \"PACKAGE\",\n  \"billingRecurrence\": \"HALF_YEARLY\",\n  \"pricings\": [\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    },\n    {\n      \"currency\": \"USD\",\n      \"amount\": \"<long>\"\n    }\n  ],\n  \"state\": \"ACTIVE\",\n  \"defaultTaxId\": \"348386a2-d8fa-9d4c-dfc2-20e9a7eece04\",\n  \"defaultAvataxCode\": \"string\",\n  \"defaultLedgerAccountId\": \"1a4e6d98-7152-8b47-16ef-89f8019b08d2\",\n  \"externalSource\": {\n    \"name\": \"CHARGEBEE\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"2019-05-12T22:57:55.656Z\",\n  \"updatedAt\": \"1998-01-16T17:56:41.861Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"cfdf7753-c8e9-38d7-8255-5a57091ccb2d\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"b86b51c1-1b5b-f9fb-b752-b8e0f0654eac\",\n          \"groupId\": \"7ddf6c91-9e2b-96b7-5d40-b78fdd8731d0\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"5b97e4a1-01a7-f2f4-5088-97cbaeed5d00\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1961-09-24T17:59:11.631Z\",\n          \"updatedAt\": \"2008-05-12T19:40:55.468Z\"\n        },\n        {\n          \"id\": \"66eeb7fa-20a6-d810-57ff-79e6b3c1f761\",\n          \"groupId\": \"bf242ac0-face-3e68-8d97-419b8400bab1\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"22c13022-6644-8dd0-7faa-73a17fc14167\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1968-06-10T01:30:17.070Z\",\n          \"updatedAt\": \"2022-05-23T22:34:48.879Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"cffb04c1-6706-ebac-fb37-71de840b3de5\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"56fd83ed-90e0-5a58-bd70-144edd752f63\",\n          \"groupId\": \"28d08bf1-bd67-5341-9675-597ef4a3720a\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"9522f02e-1116-c562-e30d-c2254355862e\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1977-08-20T01:57:41.590Z\",\n          \"updatedAt\": \"2007-11-11T20:30:12.924Z\"\n        },\n        {\n          \"id\": \"b613c1d4-665b-2549-bd98-11dcac178924\",\n          \"groupId\": \"6735ab2b-8458-54b9-c0eb-6ddde054df5d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"877f94ae-72d8-b5f5-208e-8f9053005e70\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2006-07-02T18:43:21.521Z\",\n          \"updatedAt\": \"1968-12-30T22:40:18.046Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f43615fa-422c-4d27-a7c2-72959264fb8a",
+    "name": "Light Authorization v1 - Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

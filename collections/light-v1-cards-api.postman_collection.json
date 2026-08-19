@@ -1,0 +1,614 @@
+{
+  "item": [
+    {
+      "id": "566e44d5-ce81-469b-8886-67883bc97b69",
+      "name": "v1 - Cards",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8302d26b-6878-43c0-af3c-2154793ef67e",
+          "name": "List cards",
+          "request": {
+            "name": "List cards",
+            "description": {
+              "content": "Returns a paginated list of cards",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d403ac5-03bb-4eaa-8d5a-fe913b256abb",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"2af20dcb-699a-5e8b-8d86-b5e407b04df9\",\n      \"companyEntityId\": \"c81323a4-464a-7ced-7e88-67b1c6be072c\",\n      \"companyEntityName\": \"string\",\n      \"companyId\": \"1773488c-d1c5-279e-7ffa-d32e61b653a3\",\n      \"ownerId\": \"f09b9959-b33d-c5c9-cdef-2a8847fe7951\",\n      \"ownerName\": \"string\",\n      \"cardBalanceAccountId\": \"ef6eeae2-6dbd-9630-fee6-ccde487097f3\",\n      \"cardBalanceAccountLabel\": \"string\",\n      \"currency\": \"USD\",\n      \"form\": \"VIRTUAL\",\n      \"status\": \"CLOSED\",\n      \"metadata\": {\n        \"type\": \"VENDOR\"\n      },\n      \"threeDs\": {\n        \"phoneNumber\": {\n          \"countryCode\": \"MC\",\n          \"localNumber\": \"string\"\n        },\n        \"password\": \"string\",\n        \"email\": \"string\"\n      },\n      \"vendorId\": \"d727326c-53d0-9f81-9093-1198d5a63869\",\n      \"vendorName\": \"string\",\n      \"vendorAvatarUrl\": \"string\",\n      \"description\": \"string\",\n      \"bin\": \"string\",\n      \"lastFour\": \"string\",\n      \"cardholderName\": \"string\",\n      \"limitIntervalSpend\": 3229,\n      \"limits\": [\n        {\n          \"id\": \"e780be12-0d77-9a10-858f-4ecd47e5ec9b\",\n          \"companyId\": \"6973bc6a-5c35-3b9d-5eea-adcb5869a6bf\",\n          \"cardId\": \"f8657435-aea2-731d-c647-576dfb297c8b\",\n          \"amount\": 4021,\n          \"currency\": \"USD\",\n          \"interval\": \"MONTHLY\",\n          \"createdAt\": \"1962-08-09T10:30:40.509Z\",\n          \"updatedAt\": \"1991-07-05T12:22:14.841Z\"\n        },\n        {\n          \"id\": \"5978e90c-b6b0-9cdf-2f86-502f2858042f\",\n          \"companyId\": \"6357f7f9-5e33-548f-4911-ea0f0e189f42\",\n          \"cardId\": \"15638487-ddae-1d04-988c-0bd80eab9c4c\",\n          \"amount\": 9872,\n          \"currency\": \"USD\",\n          \"interval\": \"MONTHLY\",\n          \"createdAt\": \"1981-12-10T07:55:58.840Z\",\n          \"updatedAt\": \"1959-03-13T09:45:23.951Z\"\n        }\n      ],\n      \"createdAt\": \"1987-07-09T20:39:22.129Z\",\n      \"updatedAt\": \"1963-01-02T18:06:21.376Z\",\n      \"type\": \"EMPLOYEE\"\n    },\n    {\n      \"id\": \"ab9ecb79-4a5d-7326-2b29-e8f4a7d91a28\",\n      \"companyEntityId\": \"8fbf41fc-63c2-cb1b-4c48-9a3190c6014e\",\n      \"companyEntityName\": \"string\",\n      \"companyId\": \"e4b78a04-f2b8-5997-e911-daf0d98a67a4\",\n      \"ownerId\": \"0f9d4ddd-24eb-952d-a3ff-7ab49d526075\",\n      \"ownerName\": \"string\",\n      \"cardBalanceAccountId\": \"70ed9dd0-91d5-8f2b-9a8f-2e11ae18a464\",\n      \"cardBalanceAccountLabel\": \"string\",\n      \"currency\": \"USD\",\n      \"form\": \"PHYSICAL\",\n      \"status\": \"CLOSED\",\n      \"metadata\": {\n        \"type\": \"VENDOR\"\n      },\n      \"threeDs\": {\n        \"phoneNumber\": {\n          \"countryCode\": \"NU\",\n          \"localNumber\": \"string\"\n        },\n        \"password\": \"string\",\n        \"email\": \"string\"\n      },\n      \"vendorId\": \"4adf503e-05ed-c48a-47b4-f90bc551f320\",\n      \"vendorName\": \"string\",\n      \"vendorAvatarUrl\": \"string\",\n      \"description\": \"string\",\n      \"bin\": \"string\",\n      \"lastFour\": \"string\",\n      \"cardholderName\": \"string\",\n      \"limitIntervalSpend\": 1149,\n      \"limits\": [\n        {\n          \"id\": \"43992454-05a7-9a51-db12-bd0b65c41bb4\",\n          \"companyId\": \"a411599f-b424-a4eb-f1b2-337f32d689f5\",\n          \"cardId\": \"fdafbb02-621a-d1a4-337f-6a2a73e1403e\",\n          \"amount\": 1819,\n          \"currency\": \"USD\",\n          \"interval\": \"PER_TRANSACTION\",\n          \"createdAt\": \"1969-03-25T23:32:54.667Z\",\n          \"updatedAt\": \"2022-07-14T14:30:55.048Z\"\n        },\n        {\n          \"id\": \"2d37cb4e-8239-e5e0-6d42-e74b5488e2b5\",\n          \"companyId\": \"9b5024c4-1489-77af-b6d9-2d0849dbc76f\",\n          \"cardId\": \"efdba56c-28d9-b313-2661-41b3b0f464c8\",\n          \"amount\": 2498,\n          \"currency\": \"USD\",\n          \"interval\": \"PER_TRANSACTION\",\n          \"createdAt\": \"1971-08-28T05:09:47.777Z\",\n          \"updatedAt\": \"1977-02-02T04:52:27.182Z\"\n        }\n      ],\n      \"createdAt\": \"2018-01-22T23:18:00.132Z\",\n      \"updatedAt\": \"2023-06-30T11:56:13.294Z\",\n      \"type\": \"EMPLOYEE\"\n    }\n  ],\n  \"hasMore\": true,\n  \"total\": 8451,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7150435-a90f-4e09-a52c-21e950832f1b",
+          "name": "Create card",
+          "request": {
+            "name": "Create card",
+            "description": {
+              "content": "Creates a new card. Use metadata type 'VENDOR' for vendor cards or 'EMPLOYEE' for employee cards.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"balanceAccountId\": \"<uuid>\",\n  \"ownerId\": \"<uuid>\",\n  \"metadata\": {\n    \"type\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"authentication\": {\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    },\n    \"email\": \"<string>\"\n  },\n  \"limits\": [\n    {\n      \"amount\": \"<long>\",\n      \"currency\": \"<string>\",\n      \"interval\": \"<string>\"\n    },\n    {\n      \"amount\": \"<long>\",\n      \"currency\": \"<string>\",\n      \"interval\": \"<string>\"\n    }\n  ],\n  \"formFactor\": \"<string>\",\n  \"deliveryContact\": {\n    \"address\": {\n      \"street\": \"<string>\",\n      \"houseNumberOrName\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"stateOrProvince\": \"<string>\"\n    },\n    \"name\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"company\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "09bbd697-e238-4996-a57b-e01625542656",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"balanceAccountId\": \"<uuid>\",\n  \"ownerId\": \"<uuid>\",\n  \"metadata\": {\n    \"type\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"authentication\": {\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    },\n    \"email\": \"<string>\"\n  },\n  \"limits\": [\n    {\n      \"amount\": \"<long>\",\n      \"currency\": \"USD\",\n      \"interval\": \"<string>\"\n    },\n    {\n      \"amount\": \"<long>\",\n      \"currency\": \"USD\",\n      \"interval\": \"<string>\"\n    }\n  ],\n  \"formFactor\": \"<string>\",\n  \"deliveryContact\": {\n    \"address\": {\n      \"street\": \"<string>\",\n      \"houseNumberOrName\": \"<string>\",\n      \"city\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"stateOrProvince\": \"<string>\"\n    },\n    \"name\": {\n      \"firstName\": \"<string>\",\n      \"lastName\": \"<string>\"\n    },\n    \"company\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"1b2f32e4-a6bc-6333-dc69-05835a60e0d9\",\n  \"companyEntityId\": \"d97dbdb2-b9cf-ff8f-a826-0c31da3bd108\",\n  \"companyId\": \"c52371aa-21b5-3d08-89a2-09b1b026295e\",\n  \"ownerId\": \"c8b80b5c-e20a-0325-4457-2d0d98933f8e\",\n  \"cardBalanceAccountId\": \"0fd3f04b-0a56-51ef-a805-0ae14ec25091\",\n  \"form\": \"PHYSICAL\",\n  \"status\": \"FROZEN\",\n  \"metadata\": {\n    \"type\": \"VENDOR\"\n  },\n  \"threeDs\": {\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    },\n    \"password\": \"string\",\n    \"email\": \"string\"\n  },\n  \"description\": \"string\",\n  \"bin\": \"string\",\n  \"lastFour\": \"string\",\n  \"cardholderName\": \"string\",\n  \"limits\": [\n    {\n      \"id\": \"a6ebf783-3699-a24a-34e8-9c27a92e68dc\",\n      \"companyId\": \"9fc3e9aa-441e-2d9e-cd4b-248a42a1b7a4\",\n      \"cardId\": \"ca66d307-ff74-3645-988a-e9d19cf66811\",\n      \"amount\": 1826,\n      \"currency\": \"USD\",\n      \"interval\": \"MONTHLY\",\n      \"createdAt\": \"1959-09-07T20:38:38.500Z\",\n      \"updatedAt\": \"1997-04-06T16:05:34.246Z\"\n    },\n    {\n      \"id\": \"04818127-12fc-1e98-d4b4-e28da52a479f\",\n      \"companyId\": \"9979bb4f-4b00-7da5-b483-361b4435ed1f\",\n      \"cardId\": \"08f12d76-2f6d-595b-98c8-9a5f5e479eb5\",\n      \"amount\": 9015,\n      \"currency\": \"USD\",\n      \"interval\": \"PER_TRANSACTION\",\n      \"createdAt\": \"1947-02-16T21:22:10.363Z\",\n      \"updatedAt\": \"1996-11-06T04:32:29.497Z\"\n    }\n  ],\n  \"createdAt\": \"2008-07-22T01:21:16.119Z\",\n  \"updatedAt\": \"1970-07-13T06:50:57.001Z\",\n  \"type\": \"VENDOR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bb72079-ca8f-4e72-a5f3-60946d784ef6",
+          "name": "Freeze card",
+          "request": {
+            "name": "Freeze card",
+            "description": {
+              "content": "Freezes a card to block transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "cards",
+                ":cardId",
+                "freeze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8e69157-b251-4a4d-8806-6c76eb3b278a",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cards",
+                    ":cardId",
+                    "freeze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"42c68bc5-1abe-4fe8-a8d2-6bc02600e5ad\",\n  \"companyEntityId\": \"46b9c0cf-9fb9-bdec-76b3-f0a246c05d85\",\n  \"companyId\": \"aa7ae367-f5e8-cf70-a7ef-39c272722233\",\n  \"ownerId\": \"72597b5e-e996-0b82-0de0-2d7946a1efd5\",\n  \"cardBalanceAccountId\": \"c5cb6533-21cf-e99c-868a-debdab44a662\",\n  \"form\": \"PHYSICAL\",\n  \"status\": \"UPDATE_IN_PROGRESS\",\n  \"metadata\": {\n    \"type\": \"VENDOR\"\n  },\n  \"threeDs\": {\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    },\n    \"password\": \"string\",\n    \"email\": \"string\"\n  },\n  \"description\": \"string\",\n  \"bin\": \"string\",\n  \"lastFour\": \"string\",\n  \"cardholderName\": \"string\",\n  \"limits\": [\n    {\n      \"id\": \"d357c16b-74b7-8dc6-3fb2-53f74812cdf8\",\n      \"companyId\": \"1ad849ad-b83f-fa8d-9bdf-f5d7833909ec\",\n      \"cardId\": \"e2229f4c-303a-b692-74d6-c5f6b3efb162\",\n      \"amount\": 7517,\n      \"currency\": \"USD\",\n      \"interval\": \"MONTHLY\",\n      \"createdAt\": \"2015-12-11T00:13:34.210Z\",\n      \"updatedAt\": \"1951-10-28T13:39:56.695Z\"\n    },\n    {\n      \"id\": \"61404cee-754c-9d40-79a9-2b6e260513c0\",\n      \"companyId\": \"898d9f89-808a-a3f5-7404-e9a432671a00\",\n      \"cardId\": \"fcdbb118-49d1-e782-6393-97836173fbbf\",\n      \"amount\": 2585,\n      \"currency\": \"USD\",\n      \"interval\": \"WEEKLY\",\n      \"createdAt\": \"2003-11-14T06:27:32.689Z\",\n      \"updatedAt\": \"1976-07-01T08:02:49.298Z\"\n    }\n  ],\n  \"createdAt\": \"1963-04-30T09:16:42.973Z\",\n  \"updatedAt\": \"2016-04-15T12:08:44.608Z\",\n  \"type\": \"VENDOR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e42c461a-9cf1-445a-bc21-088b83bdb043",
+          "name": "Get card",
+          "request": {
+            "name": "Get card",
+            "description": {
+              "content": "Returns a card by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "cards",
+                ":cardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "473fb6b3-520e-4017-9203-a1ec16fed90d",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cards",
+                    ":cardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"e8eb84fb-f25b-3184-ed7b-40e9e61c611e\",\n  \"companyEntityId\": \"bbb032af-c720-7f2d-91e7-855f02b13439\",\n  \"companyEntityName\": \"string\",\n  \"companyId\": \"5e6bed67-bdad-a0ba-7771-8fc9ed5e8226\",\n  \"ownerId\": \"3f485bf9-55e5-26c5-d804-1dd60a1d00ee\",\n  \"ownerName\": \"string\",\n  \"cardBalanceAccountId\": \"c1d90b9a-a7ab-6630-301a-0ed9cc97d1fe\",\n  \"cardBalanceAccountLabel\": \"string\",\n  \"currency\": \"USD\",\n  \"form\": \"PHYSICAL\",\n  \"status\": \"CLOSED\",\n  \"metadata\": {\n    \"type\": \"VENDOR\"\n  },\n  \"threeDs\": {\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    },\n    \"password\": \"string\",\n    \"email\": \"string\"\n  },\n  \"vendorId\": \"78155cab-6d1d-2df9-5e60-d4dfffe00cb9\",\n  \"vendorName\": \"string\",\n  \"vendorAvatarUrl\": \"string\",\n  \"description\": \"string\",\n  \"bin\": \"string\",\n  \"lastFour\": \"string\",\n  \"cardholderName\": \"string\",\n  \"limitIntervalSpend\": 9765,\n  \"limits\": [\n    {\n      \"id\": \"dd042f17-afc5-50d3-3063-aeb8712a1a71\",\n      \"companyId\": \"0bf131cd-265f-313a-7e85-72755c0b22db\",\n      \"cardId\": \"b48ebca0-af61-922b-5347-911605262ac5\",\n      \"amount\": 5885,\n      \"currency\": \"USD\",\n      \"interval\": \"MONTHLY\",\n      \"createdAt\": \"2017-03-21T22:52:55.629Z\",\n      \"updatedAt\": \"1960-01-19T15:26:35.858Z\"\n    },\n    {\n      \"id\": \"ad3f929b-0080-1128-4480-7d720c4745df\",\n      \"companyId\": \"5ae1346c-4c79-9556-56da-153d88d629b1\",\n      \"cardId\": \"1b85cc72-5cfe-fe09-1c80-1b9b0a633e8e\",\n      \"amount\": 9674,\n      \"currency\": \"USD\",\n      \"interval\": \"MONTHLY\",\n      \"createdAt\": \"2016-04-20T00:23:33.169Z\",\n      \"updatedAt\": \"1963-11-14T20:25:05.800Z\"\n    }\n  ],\n  \"createdAt\": \"1963-12-14T18:08:02.024Z\",\n  \"updatedAt\": \"1997-04-06T23:32:15.843Z\",\n  \"type\": \"EMPLOYEE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e03dd48a-03b8-41dc-8088-68ab5fdd6cd1",
+          "name": "Unfreeze card",
+          "request": {
+            "name": "Unfreeze card",
+            "description": {
+              "content": "Unfreezes a card to allow transactions. For physical cards, this confirms the cardholder is in possession of the card.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "cards",
+                ":cardId",
+                "unfreeze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cardId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bef23b2f-633c-49da-a6b0-46242ad4fc78",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "cards",
+                    ":cardId",
+                    "unfreeze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cardId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"42c68bc5-1abe-4fe8-a8d2-6bc02600e5ad\",\n  \"companyEntityId\": \"46b9c0cf-9fb9-bdec-76b3-f0a246c05d85\",\n  \"companyId\": \"aa7ae367-f5e8-cf70-a7ef-39c272722233\",\n  \"ownerId\": \"72597b5e-e996-0b82-0de0-2d7946a1efd5\",\n  \"cardBalanceAccountId\": \"c5cb6533-21cf-e99c-868a-debdab44a662\",\n  \"form\": \"PHYSICAL\",\n  \"status\": \"UPDATE_IN_PROGRESS\",\n  \"metadata\": {\n    \"type\": \"VENDOR\"\n  },\n  \"threeDs\": {\n    \"phoneNumber\": {\n      \"countryCode\": \"<string>\",\n      \"localNumber\": \"<string>\"\n    },\n    \"password\": \"string\",\n    \"email\": \"string\"\n  },\n  \"description\": \"string\",\n  \"bin\": \"string\",\n  \"lastFour\": \"string\",\n  \"cardholderName\": \"string\",\n  \"limits\": [\n    {\n      \"id\": \"d357c16b-74b7-8dc6-3fb2-53f74812cdf8\",\n      \"companyId\": \"1ad849ad-b83f-fa8d-9bdf-f5d7833909ec\",\n      \"cardId\": \"e2229f4c-303a-b692-74d6-c5f6b3efb162\",\n      \"amount\": 7517,\n      \"currency\": \"USD\",\n      \"interval\": \"MONTHLY\",\n      \"createdAt\": \"2015-12-11T00:13:34.210Z\",\n      \"updatedAt\": \"1951-10-28T13:39:56.695Z\"\n    },\n    {\n      \"id\": \"61404cee-754c-9d40-79a9-2b6e260513c0\",\n      \"companyId\": \"898d9f89-808a-a3f5-7404-e9a432671a00\",\n      \"cardId\": \"fcdbb118-49d1-e782-6393-97836173fbbf\",\n      \"amount\": 2585,\n      \"currency\": \"USD\",\n      \"interval\": \"WEEKLY\",\n      \"createdAt\": \"2003-11-14T06:27:32.689Z\",\n      \"updatedAt\": \"1976-07-01T08:02:49.298Z\"\n    }\n  ],\n  \"createdAt\": \"1963-04-30T09:16:42.973Z\",\n  \"updatedAt\": \"2016-04-15T12:08:44.608Z\",\n  \"type\": \"VENDOR\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "79bc1471-ed89-4cc6-a8cb-25a423ec161b",
+    "name": "Light Authorization v1 - Cards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

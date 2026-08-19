@@ -1,0 +1,940 @@
+{
+  "item": [
+    {
+      "id": "efa24c93-ff57-4769-a348-f2f5e9a11966",
+      "name": "v1 - Custom Properties",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b991dd1e-04a2-4187-84c4-d5fa1dd219e7",
+          "name": "List custom property values",
+          "request": {
+            "name": "List custom property values",
+            "description": {
+              "content": "Returns a paginated list of custom property values",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-properties",
+                "groups",
+                ":groupId",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9e4889cb-7ece-42f8-ae02-2268e0df23f8",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-properties",
+                    "groups",
+                    ":groupId",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"58f677d8-7ab5-c77d-55c6-959ffe8f5dff\",\n      \"groupId\": \"b3d45d0d-fdea-fcd1-4aa1-d1b9480c520e\",\n      \"groupInternalName\": \"string\",\n      \"companyId\": \"dd952123-af69-018d-2b06-d55f4cf54e03\",\n      \"internalName\": \"string\",\n      \"label\": \"string\",\n      \"context\": \"string\",\n      \"createdAt\": \"1981-07-10T22:41:16.230Z\",\n      \"updatedAt\": \"1994-05-27T08:48:25.342Z\"\n    },\n    {\n      \"id\": \"d056d2bd-3b3a-97c9-2ded-e0f213c6286f\",\n      \"groupId\": \"dbba5afb-0294-72cf-4f14-415ba4c7656a\",\n      \"groupInternalName\": \"string\",\n      \"companyId\": \"058c873b-db17-7993-0f3a-775fce9ade4d\",\n      \"internalName\": \"string\",\n      \"label\": \"string\",\n      \"context\": \"string\",\n      \"createdAt\": \"2022-12-15T08:00:05.028Z\",\n      \"updatedAt\": \"1974-12-01T23:23:26.116Z\"\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 712,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38455a3e-1909-40a5-bcac-306260945c98",
+          "name": "Create custom property value",
+          "request": {
+            "name": "Create custom property value",
+            "description": {
+              "content": "Creates a new custom property value in the specified group",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-properties",
+                "groups",
+                ":groupId",
+                "values"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"internalName\": \"<string>\",\n  \"label\": \"<string>\",\n  \"context\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aa7bdfc3-f408-43cd-99b6-bbd355175e26",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-properties",
+                    "groups",
+                    ":groupId",
+                    "values"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"internalName\": \"<string>\",\n  \"label\": \"<string>\",\n  \"context\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"cf5514c9-da00-7f72-a547-28992c3fd3ff\",\n  \"groupId\": \"3ce8b962-8db2-a090-5765-ee28dfed70e1\",\n  \"groupInternalName\": \"string\",\n  \"companyId\": \"363a3755-55ff-915b-332f-81f42831f0ed\",\n  \"internalName\": \"string\",\n  \"label\": \"string\",\n  \"context\": \"string\",\n  \"createdAt\": \"2015-08-10T02:14:23.814Z\",\n  \"updatedAt\": \"1959-11-01T04:18:28.474Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72b3760d-4815-462c-8877-d5477c191959",
+          "name": "Get custom property value",
+          "request": {
+            "name": "Get custom property value",
+            "description": {
+              "content": "Returns a custom property value by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-properties",
+                "groups",
+                ":groupId",
+                "values",
+                ":valueId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "valueId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "050424d8-cbb0-4ad6-9448-7ec6f4572cc1",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-properties",
+                    "groups",
+                    ":groupId",
+                    "values",
+                    ":valueId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "valueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"cf5514c9-da00-7f72-a547-28992c3fd3ff\",\n  \"groupId\": \"3ce8b962-8db2-a090-5765-ee28dfed70e1\",\n  \"groupInternalName\": \"string\",\n  \"companyId\": \"363a3755-55ff-915b-332f-81f42831f0ed\",\n  \"internalName\": \"string\",\n  \"label\": \"string\",\n  \"context\": \"string\",\n  \"createdAt\": \"2015-08-10T02:14:23.814Z\",\n  \"updatedAt\": \"1959-11-01T04:18:28.474Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b7192e2-fa59-4a44-8fe1-cf8e2f0a45d5",
+          "name": "Delete custom property value",
+          "request": {
+            "name": "Delete custom property value",
+            "description": {
+              "content": "Deletes a custom property value by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-properties",
+                "groups",
+                ":groupId",
+                "values",
+                ":valueId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "valueId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2e52549-939e-4e7b-81e4-92edf0ab9251",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-properties",
+                    "groups",
+                    ":groupId",
+                    "values",
+                    ":valueId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "valueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c193cb7-d462-4819-bc6e-627c935de95c",
+          "name": "Update custom property value",
+          "request": {
+            "name": "Update custom property value",
+            "description": {
+              "content": "Updates an existing custom property value",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-properties",
+                "groups",
+                ":groupId",
+                "values",
+                ":valueId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "valueId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"label\": \"<string>\",\n  \"context\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d35ce942-562f-485d-8c23-e5c4fff04920",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-properties",
+                    "groups",
+                    ":groupId",
+                    "values",
+                    ":valueId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "valueId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"label\": \"<string>\",\n  \"context\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"cf5514c9-da00-7f72-a547-28992c3fd3ff\",\n  \"groupId\": \"3ce8b962-8db2-a090-5765-ee28dfed70e1\",\n  \"groupInternalName\": \"string\",\n  \"companyId\": \"363a3755-55ff-915b-332f-81f42831f0ed\",\n  \"internalName\": \"string\",\n  \"label\": \"string\",\n  \"context\": \"string\",\n  \"createdAt\": \"2015-08-10T02:14:23.814Z\",\n  \"updatedAt\": \"1959-11-01T04:18:28.474Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7fa84e8f-f19e-424f-a75e-a46cff34038b",
+          "name": "Get custom property group",
+          "request": {
+            "name": "Get custom property group",
+            "description": {
+              "content": "Returns a custom property group by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-properties",
+                "groups",
+                ":groupId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "groupId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "435efec9-ed82-4f25-b1d8-ee13bb7d20ba",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-properties",
+                    "groups",
+                    ":groupId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "groupId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"75537719-d468-eeb3-0234-549e808aa700\",\n  \"companyId\": \"c71a1504-3978-f4cf-192b-1834e336fab7\",\n  \"label\": \"string\",\n  \"internalName\": \"string\",\n  \"inputType\": \"NUMERIC\",\n  \"objectLevel\": \"HEADER\",\n  \"objectTypes\": [\n    \"PRODUCT\",\n    \"CONTRACT\"\n  ],\n  \"objectTypeStatuses\": {\n    \"key_0\": \"ACTIVE\",\n    \"key_1\": \"DELETED\",\n    \"key_2\": \"DELETED\"\n  },\n  \"context\": \"string\",\n  \"values\": [\n    {\n      \"id\": \"9ba97756-1bd8-af04-479d-e73e62b38d1b\",\n      \"groupId\": \"ac11cf9c-c0ad-8a9c-f834-1026a9ea4030\",\n      \"groupInternalName\": \"string\",\n      \"companyId\": \"0c9bee8e-4e6e-d741-5242-c6b46ca17361\",\n      \"internalName\": \"string\",\n      \"label\": \"string\",\n      \"context\": \"string\",\n      \"createdAt\": \"1989-10-09T00:57:23.954Z\",\n      \"updatedAt\": \"1961-12-29T06:19:40.180Z\"\n    },\n    {\n      \"id\": \"80e9f040-b991-84b7-d67d-3d59697f6e32\",\n      \"groupId\": \"42b1f1f4-7b37-d862-3f77-141eaf658863\",\n      \"groupInternalName\": \"string\",\n      \"companyId\": \"5acbef7e-c3ad-2ee1-8263-b00d968cfcaf\",\n      \"internalName\": \"string\",\n      \"label\": \"string\",\n      \"context\": \"string\",\n      \"createdAt\": \"1964-01-30T00:41:04.231Z\",\n      \"updatedAt\": \"1970-09-14T00:12:12.259Z\"\n    }\n  ],\n  \"createdAt\": \"2018-05-19T10:50:28.434Z\",\n  \"updatedAt\": \"1982-08-14T21:13:53.313Z\",\n  \"required\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4233efbf-f8db-4bee-a83b-c808a2ede64c",
+          "name": "List custom property groups",
+          "request": {
+            "name": "List custom property groups",
+            "description": {
+              "content": "Returns a paginated list of custom property groups",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "custom-properties",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeValues",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "62dd8d2a-9bd1-4c56-bd85-b1e74b681a2b",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "custom-properties",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeValues",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"a71d21cf-eeb9-f454-0ada-b5ab3e0b1e48\",\n      \"companyId\": \"664f9173-f715-8d66-61a1-25a51a0a25ab\",\n      \"label\": \"string\",\n      \"internalName\": \"string\",\n      \"inputType\": \"NUMERIC\",\n      \"objectLevel\": \"LINE\",\n      \"objectTypes\": [\n        \"JOURNAL_ENTRY\",\n        \"VENDOR\"\n      ],\n      \"objectTypeStatuses\": {\n        \"key_0\": \"DELETED\",\n        \"key_1\": \"ACTIVE\",\n        \"key_2\": \"ACTIVE\",\n        \"key_3\": \"DELETED\"\n      },\n      \"context\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"8c4f2eac-303d-5fcd-0bdb-6faf67191bc7\",\n          \"groupId\": \"15c81854-1e9d-4567-96a8-0ed7eb71e322\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"cf8412d8-7078-2731-615d-782d23913e16\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2013-11-06T06:09:56.412Z\",\n          \"updatedAt\": \"1960-03-15T00:06:33.454Z\"\n        },\n        {\n          \"id\": \"35a0a0a6-5edb-6a1e-25b9-c598283d9081\",\n          \"groupId\": \"3a17f86d-0616-352f-41ab-039c265d1b37\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"62cb1aee-da46-c855-f211-d96ee918d834\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2005-09-01T11:29:04.934Z\",\n          \"updatedAt\": \"1981-03-06T12:27:39.810Z\"\n        }\n      ],\n      \"createdAt\": \"2004-07-09T06:54:13.923Z\",\n      \"updatedAt\": \"2010-08-24T12:30:23.975Z\",\n      \"required\": false\n    },\n    {\n      \"id\": \"bb241b25-7363-dfe3-c464-63e11dca2a85\",\n      \"companyId\": \"34cb31b9-cda7-c0d8-d1f2-f6a938e3cf9f\",\n      \"label\": \"string\",\n      \"internalName\": \"string\",\n      \"inputType\": \"SINGLE_SELECT\",\n      \"objectLevel\": \"LINE\",\n      \"objectTypes\": [\n        \"CUSTOMER_CREDIT\",\n        \"JOURNAL_ENTRY\"\n      ],\n      \"objectTypeStatuses\": {\n        \"key_0\": \"DELETED\",\n        \"key_1\": \"DELETED\"\n      },\n      \"context\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"c2a5c42c-60f2-0dde-5ed6-b764780a51b6\",\n          \"groupId\": \"e323cf4b-7dbd-a56b-a4f1-df4d135b1ac8\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"9087de13-5594-383d-39a7-e1e920940124\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2001-10-24T15:20:12.603Z\",\n          \"updatedAt\": \"1968-10-16T20:36:22.688Z\"\n        },\n        {\n          \"id\": \"f140aa20-a8a6-591a-6e52-14f1bd5c4bd6\",\n          \"groupId\": \"db88eb05-aec2-02b8-afd7-ff6bc5a1395c\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"2bae49ed-2d29-aa14-4014-55b8d7e383f1\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1983-08-08T16:36:23.282Z\",\n          \"updatedAt\": \"1956-01-21T00:43:09.091Z\"\n        }\n      ],\n      \"createdAt\": \"2009-12-06T17:09:00.946Z\",\n      \"updatedAt\": \"1975-03-08T07:14:21.476Z\",\n      \"required\": false\n    }\n  ],\n  \"hasMore\": true,\n  \"total\": 3347,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc5ad6b5-03a7-431f-8e58-e90da0951ac4",
+    "name": "Light Authorization v1 - Custom Properties API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

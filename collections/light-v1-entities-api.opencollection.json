@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Entities API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List company entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/entities",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              },
+              {
+                "name": "includeCardCustomer",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of company entities"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

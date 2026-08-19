@@ -1,0 +1,241 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Expenses API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Expenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cancel expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/expenses/:expenseId/cancel",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels an existing expense"
+        },
+        {
+          "info": {
+            "name": "Create line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/expenses/:expenseId/line-items",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new line item"
+        },
+        {
+          "info": {
+            "name": "Update line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/expenses/:expenseId/line-items/:lineItemId",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing expense line item"
+        },
+        {
+          "info": {
+            "name": "Delete line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/expenses/:expenseId/line-items/:lineItemId",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an existing line item"
+        },
+        {
+          "info": {
+            "name": "Create upload URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/expenses/upload-url",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a pre-signed URL for uploading an expense receipt document"
+        },
+        {
+          "info": {
+            "name": "Get expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/expenses/:expenseId",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an expense by ID including all line items"
+        },
+        {
+          "info": {
+            "name": "Update expense",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/expenses/:expenseId",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing expense"
+        },
+        {
+          "info": {
+            "name": "Get expense document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/expenses/:expenseId/document",
+            "params": [
+              {
+                "name": "expenseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the attached receipt document as a PDF download"
+        },
+        {
+          "info": {
+            "name": "List expenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/expenses",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of expenses"
+        },
+        {
+          "info": {
+            "name": "Submit reimbursement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/expenses/submit"
+          },
+          "docs": "Submits all pending expenses from the current user for administrator review and approval"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

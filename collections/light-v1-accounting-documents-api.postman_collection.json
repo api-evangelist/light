@@ -1,0 +1,181 @@
+{
+  "item": [
+    {
+      "id": "0c578c65-2d9a-4efb-bf53-58cde0b231a6",
+      "name": "v1 - Accounting Documents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d75c7ef7-6d9e-472b-b8db-a648059cd692",
+          "name": "List accounting documents",
+          "request": {
+            "name": "List accounting documents",
+            "description": {
+              "content": "Returns a paginated list of accounting documents",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "accounting-documents",
+                "accounting-documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a1f5aa5-d80f-4b5c-a9d4-1a08d975e1cc",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "accounting-documents",
+                    "accounting-documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"5f2e1e7d-4695-2a0b-5f04-0bd8289e3ce2\",\n      \"companyId\": \"06cb6fba-4324-223e-0b7a-8107b3eab76e\",\n      \"companyEntityId\": \"08539d0b-a623-4fed-f8cd-c28c6ad3cee0\",\n      \"documentSequenceId\": \"string\",\n      \"documentNumber\": \"string\",\n      \"documentType\": \"DE\",\n      \"status\": \"APPROVAL_PENDING\",\n      \"description\": \"string\",\n      \"documentDate\": \"1995-12-13\",\n      \"areLinesWithTax\": false,\n      \"businessPartnerName\": \"string\",\n      \"businessPartnerId\": \"d338542d-a11e-794b-c45b-14d6b7fe8c04\",\n      \"createdAt\": \"1952-02-05T15:39:46.115Z\",\n      \"updatedAt\": \"1962-01-24T19:23:02.061Z\",\n      \"totalTransactionAmount\": {\n        \"amount\": 361,\n        \"dcSign\": \"C\"\n      },\n      \"totalTransactionAmountInMajors\": 5233.918870642285,\n      \"currency\": \"USD\"\n    },\n    {\n      \"id\": \"6a047bf1-bfc6-a293-dad5-6f855b9754fb\",\n      \"companyId\": \"239f30c9-1802-8de8-2dac-f22936df476d\",\n      \"companyEntityId\": \"2713847e-4bb2-cdab-6a60-fa0eb2c746df\",\n      \"documentSequenceId\": \"string\",\n      \"documentNumber\": \"string\",\n      \"documentType\": \"YC\",\n      \"status\": \"APPROVAL_PENDING\",\n      \"description\": \"string\",\n      \"documentDate\": \"2021-01-18\",\n      \"areLinesWithTax\": false,\n      \"businessPartnerName\": \"string\",\n      \"businessPartnerId\": \"bee8fc57-76ef-3563-e2f5-4fb4b0bc7842\",\n      \"createdAt\": \"1982-07-24T16:50:11.244Z\",\n      \"updatedAt\": \"1947-03-16T21:25:00.114Z\",\n      \"totalTransactionAmount\": {\n        \"amount\": 1295,\n        \"dcSign\": \"C\"\n      },\n      \"totalTransactionAmountInMajors\": 5824.952860459318,\n      \"currency\": \"USD\"\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 1002,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "23c79157-8483-400b-bfeb-eb9e477fb7e2",
+    "name": "Light Authorization v1 - Accounting Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

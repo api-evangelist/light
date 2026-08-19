@@ -1,0 +1,521 @@
+{
+  "item": [
+    {
+      "id": "3f4bf275-0add-430b-8ee6-e387db319a04",
+      "name": "v1 - Card Balance Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2af36281-1ade-466d-b988-49b7671db811",
+          "name": "Generate a card balance account statement",
+          "request": {
+            "name": "Generate a card balance account statement",
+            "description": {
+              "content": "Generates a statement for a card balance account over a period. Dates are interpreted as UTC day boundaries and all timestamps in the response are in UTC. Runs a fresh provider sync inline so the statement reflects the latest activity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-balance-accounts",
+                ":accountId",
+                "statement"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Start of the statement period, inclusive. A UTC calendar date in `YYYY-MM-DD` format."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "End of the statement period. A UTC calendar date in `YYYY-MM-DD` format; must be after `from`."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a0aecee5-78c9-4c7b-a466-9d8be51d08cf",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-balance-accounts",
+                    ":accountId",
+                    "statement"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"balanceAccountId\": \"0e7e3ddd-da45-59ec-23bc-944d0bbbbf28\",\n  \"currency\": \"USD\",\n  \"periodStart\": \"2020-06-24T06:42:21.182Z\",\n  \"periodEnd\": \"2001-05-06T22:24:48.142Z\",\n  \"openingBalance\": 7717,\n  \"closingBalance\": 646,\n  \"transactions\": [\n    {\n      \"providerId\": \"string\",\n      \"direction\": \"DEBIT\",\n      \"amount\": 1859,\n      \"runningBalance\": 1345,\n      \"bookedAt\": \"1967-01-28T03:41:03.803Z\",\n      \"valuedAt\": \"2012-12-21T22:43:36.366Z\",\n      \"description\": \"string\",\n      \"reference\": \"string\"\n    },\n    {\n      \"providerId\": \"string\",\n      \"direction\": \"DEBIT\",\n      \"amount\": 7680,\n      \"runningBalance\": 9579,\n      \"bookedAt\": \"1963-09-15T15:51:43.619Z\",\n      \"valuedAt\": \"1970-11-26T17:40:16.603Z\",\n      \"description\": \"string\",\n      \"reference\": \"string\"\n    }\n  ],\n  \"generatedAt\": \"2019-08-02T10:08:41.663Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f9b604f-0c0c-4b86-8a90-bb9f7e011b1d",
+          "name": "Get card balance account",
+          "request": {
+            "name": "Get card balance account",
+            "description": {
+              "content": "Returns a card balance account by ID, including balance details",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-balance-accounts",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a02c4531-1a9d-418f-9cf4-308f71e50ac8",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-balance-accounts",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"069cedee-2770-197c-d803-927fd225e205\",\n  \"companyEntityId\": \"357f6c44-f9b9-6b7f-d4ed-6f02ff95f1d4\",\n  \"companyId\": \"12087c4f-e047-88a3-1a6b-aeda1d47d6c8\",\n  \"currency\": \"USD\",\n  \"label\": \"string\",\n  \"status\": \"ACTIVE\",\n  \"balance\": {\n    \"available\": 8165,\n    \"settled\": 2979,\n    \"reserved\": 6387,\n    \"currency\": \"USD\"\n  },\n  \"createdAt\": \"1952-06-06T04:17:58.245Z\",\n  \"updatedAt\": \"2018-09-19T11:47:20.593Z\",\n  \"primary\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d3ebd132-a06f-491c-a35a-30c33e5915c9",
+          "name": "List card balance accounts",
+          "request": {
+            "name": "List card balance accounts",
+            "description": {
+              "content": "Returns a list of card balance accounts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-balance-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "462e72a5-5c8c-4395-884f-c59291ecd096",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-balance-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"e4fbc81f-4496-3d27-b876-07df7c7950d1\",\n      \"companyEntityId\": \"4851bf5c-40c0-7e64-99bd-8ec377cb5659\",\n      \"companyId\": \"ca95df53-8afa-1cda-907c-bee598aea96b\",\n      \"currency\": \"USD\",\n      \"label\": \"string\",\n      \"status\": \"CLOSED\",\n      \"balance\": {\n        \"available\": 6969,\n        \"settled\": 4207,\n        \"reserved\": 4524,\n        \"currency\": \"USD\"\n      },\n      \"createdAt\": \"2018-03-24T15:40:03.026Z\",\n      \"updatedAt\": \"2025-04-08T23:11:18.526Z\",\n      \"primary\": false\n    },\n    {\n      \"id\": \"5df79939-4619-ab99-c87e-974b5b430aa5\",\n      \"companyEntityId\": \"8a875481-d356-a48b-ec8f-82a22e490bcd\",\n      \"companyId\": \"ff35f853-eee3-565f-dee0-cbdf329b0b5e\",\n      \"currency\": \"USD\",\n      \"label\": \"string\",\n      \"status\": \"ACTIVE\",\n      \"balance\": {\n        \"available\": 5580,\n        \"settled\": 2278,\n        \"reserved\": 4071,\n        \"currency\": \"USD\"\n      },\n      \"createdAt\": \"1952-06-10T04:34:43.849Z\",\n      \"updatedAt\": \"1954-02-23T20:15:31.456Z\",\n      \"primary\": true\n    }\n  ],\n  \"hasMore\": true,\n  \"total\": 9299,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5703fdda-5e2c-4309-8c70-86b6894bce79",
+          "name": "Get total spend for a card balance account",
+          "request": {
+            "name": "Get total spend for a card balance account",
+            "description": {
+              "content": "Returns the total spend for a card balance account within a date range",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-balance-accounts",
+                ":accountId",
+                "total-spend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<date>",
+                  "description": "Start of the spend window, inclusive. A UTC calendar date in `YYYY-MM-DD` format."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<date>",
+                  "description": "End of the spend window, inclusive. A UTC calendar date in `YYYY-MM-DD` format. Defaults to now if omitted."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc668a81-7b24-414b-b360-cf4912655cef",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-balance-accounts",
+                    ":accountId",
+                    "total-spend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "to",
+                      "value": "2026-01-31"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"currency\": \"USD\",\n  \"total\": 3525,\n  \"from\": \"1947-10-09T09:50:38.146Z\",\n  \"to\": \"2020-08-05T13:56:31.636Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1d38fe10-1e83-4f86-8b12-050e1ac44862",
+    "name": "Light Authorization v1 - Card Balance Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

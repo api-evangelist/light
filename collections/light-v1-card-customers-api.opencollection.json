@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Card Customers API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Card Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get card integration public key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/card-customers/public-key",
+            "params": [
+              {
+                "name": "companyEntityId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the public key for the cards integration service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

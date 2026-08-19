@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Exchange API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Exchange",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get exchange rate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/exchange/rates/:base/:target",
+            "params": [
+              {
+                "name": "base",
+                "value": "",
+                "type": "path",
+                "description": "Base currency of the exchange rate"
+              },
+              {
+                "name": "target",
+                "value": "",
+                "type": "path",
+                "description": "Target currency of the exchange rate"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date the exchange rate is requested for. If omitted, defaults to today"
+              }
+            ]
+          },
+          "docs": "Returns an exchange rate between base and target currencies for a given date"
+        },
+        {
+          "info": {
+            "name": "Get currency exchange rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/exchange/rates/:currency",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "path",
+                "description": "Currency for which available exchange rates are requested for"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date the exchange rate is requested for. If omitted, defaults to today"
+              }
+            ]
+          },
+          "docs": "Returns exchange rates for the given currency against all available currencies"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

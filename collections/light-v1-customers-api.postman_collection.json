@@ -1,0 +1,731 @@
+{
+  "item": [
+    {
+      "id": "dec8c205-80b8-4d12-9d09-163a8d48533f",
+      "name": "v1 - Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b644a73-48fc-430b-bb06-1c60f787723e",
+          "name": "Activate customer",
+          "request": {
+            "name": "Activate customer",
+            "description": {
+              "content": "Activate the given customer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customers",
+                ":customerId",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5192a0c5-b71f-430e-ba9e-1781b8fb52be",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"a75796fa-f274-21b6-8fa0-591d76e26572\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"address\": {\n    \"country\": \"KP\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\",\n    \"street\": \"string\",\n    \"street2\": \"string\"\n  },\n  \"billingAddress\": {\n    \"country\": \"BI\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\",\n    \"street\": \"string\",\n    \"street2\": \"string\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"TN\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\",\n    \"street\": \"string\",\n    \"street2\": \"string\"\n  },\n  \"status\": \"ARCHIVED\",\n  \"description\": \"string\",\n  \"vatNumber\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"easCode\": \"string\",\n  \"einvoiceAddress\": \"string\",\n  \"einvoiceNetwork\": \"VERIFACTU\",\n  \"type\": \"BUSINESS\",\n  \"logoUrl\": \"string\",\n  \"domain\": \"string\",\n  \"externalSource\": {\n    \"name\": \"HUBSPOT\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"1949-10-07T00:28:01.949Z\",\n  \"updatedAt\": \"1973-09-13T05:23:08.998Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"e3e7ad94-5b0d-21a0-3e7e-1f92cd809274\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"be3e9eb4-dc7b-25d1-cfff-974064efb38c\",\n          \"groupId\": \"3bcd9f9c-3e5b-4b82-7869-217e678e61e5\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"fd7e3150-7549-d0d7-e0ce-32a547f90b8c\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1989-11-05T02:55:40.046Z\",\n          \"updatedAt\": \"1991-10-30T23:48:00.178Z\"\n        },\n        {\n          \"id\": \"96749b93-683a-27d8-308f-44c8eeebbef2\",\n          \"groupId\": \"49a8323e-e418-7651-dd4e-9716352dd129\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"0cf24b84-82c7-2586-eaa7-74d2e1d55382\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2007-05-24T01:44:34.847Z\",\n          \"updatedAt\": \"1951-07-15T23:01:21.857Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"b95e9fd4-12a5-d786-4bf3-1027e207e8e3\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"c11aef75-e142-215f-3a50-3a704e0a9312\",\n          \"groupId\": \"757af7e3-c990-dd2a-5bb7-69106a90567f\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"d2d5b284-903a-001a-8ad1-8a44930688d4\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1958-07-22T22:11:21.554Z\",\n          \"updatedAt\": \"1953-07-28T21:03:58.899Z\"\n        },\n        {\n          \"id\": \"9d3d09e7-97c5-987a-5637-a40796904fce\",\n          \"groupId\": \"4141188e-25da-91c3-c408-c3d51865aba7\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"e67624c4-3c0e-5350-6412-eae4fb03d27b\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1987-02-20T18:21:16.159Z\",\n          \"updatedAt\": \"1990-07-29T12:31:18.485Z\"\n        }\n      ]\n    }\n  ],\n  \"recipientEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ccEmails\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7982418-6c5f-4715-9f65-feaa5e59ef3a",
+          "name": "Archive customer",
+          "request": {
+            "name": "Archive customer",
+            "description": {
+              "content": "Archive the given customer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customers",
+                ":customerId",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc28aa63-cd2b-4ac2-abcd-178be21db1f7",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customers",
+                    ":customerId",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"babcaed2-6d76-e201-9c77-4d6b31b7944b\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"address\": {\n    \"country\": \"AD\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\",\n    \"street\": \"string\",\n    \"street2\": \"string\"\n  },\n  \"billingAddress\": {\n    \"country\": \"MA\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\",\n    \"street\": \"string\",\n    \"street2\": \"string\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"SK\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"zipcode\": \"string\",\n    \"street\": \"string\",\n    \"street2\": \"string\"\n  },\n  \"status\": \"ARCHIVED\",\n  \"description\": \"string\",\n  \"vatNumber\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"easCode\": \"string\",\n  \"einvoiceAddress\": \"string\",\n  \"einvoiceNetwork\": \"SDI\",\n  \"type\": \"BUSINESS\",\n  \"logoUrl\": \"string\",\n  \"domain\": \"string\",\n  \"externalSource\": {\n    \"name\": \"SALESFORCE\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"1986-07-17T23:02:42.156Z\",\n  \"updatedAt\": \"1969-07-11T08:20:06.135Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"3485f4f1-543a-c628-0e16-b75bda1b70b4\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"42dad945-7518-8f65-34bc-9d6721d438ff\",\n          \"groupId\": \"0da675fa-1db0-96a8-f4a8-127b584eecb8\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"ffb531b3-754c-7178-65ab-2840b6af9463\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1993-07-12T02:14:51.976Z\",\n          \"updatedAt\": \"1985-02-09T09:12:10.013Z\"\n        },\n        {\n          \"id\": \"26d15d24-b278-3bd5-7e71-f75f8e7668c3\",\n          \"groupId\": \"36b1607d-b7e0-7f42-d2fd-c2940a99f32a\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"9234fac3-abc6-4fc4-1b16-319f0e683dbb\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1970-08-05T05:20:04.337Z\",\n          \"updatedAt\": \"1994-12-05T03:18:21.973Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"0e74c85d-468a-d982-91c0-142f8054035b\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"e59620bb-3552-4197-9d79-a1d622b3e124\",\n          \"groupId\": \"05b65506-782d-b315-1694-656e3f180dc7\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"a066aa90-a798-aed9-5e0f-9638ebb4deb5\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2025-04-29T02:22:50.261Z\",\n          \"updatedAt\": \"2015-06-24T15:55:05.265Z\"\n        },\n        {\n          \"id\": \"1533d64a-a19d-6763-634b-7dcc96071dd6\",\n          \"groupId\": \"b9bc4846-c827-098c-14a8-d5a58b4b9a46\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"b747e011-1624-5400-0b60-f701070c9f7b\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1968-02-18T14:25:00.246Z\",\n          \"updatedAt\": \"1969-03-13T01:14:32.095Z\"\n        }\n      ]\n    }\n  ],\n  \"recipientEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ccEmails\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9cfe5ed-f50d-402f-9168-5d38fa1ae010",
+          "name": "List customers",
+          "request": {
+            "name": "List customers",
+            "description": {
+              "content": "Returns a paginated list of customers",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTerm",
+                  "value": "<string>",
+                  "description": "Search term to filter results by. Performs a case-insensitive partial match across searchable fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "54b2dace-4b78-4e26-abff-8d8f6aefe3a4",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "searchTerm",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"28ad91ed-9f07-8923-ee92-322c08fb9c0b\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"country\": \"UZ\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"billingAddress\": {\n        \"country\": \"GL\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"shippingAddress\": {\n        \"country\": \"GB\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"status\": \"ACTIVE\",\n      \"description\": \"string\",\n      \"vatNumber\": \"string\",\n      \"businessRegistrationNumber\": \"string\",\n      \"easCode\": \"string\",\n      \"einvoiceAddress\": \"string\",\n      \"einvoiceNetwork\": \"NEMHANDEL\",\n      \"type\": \"GOVERNMENT\",\n      \"logoUrl\": \"string\",\n      \"domain\": \"string\",\n      \"externalSource\": {\n        \"name\": \"STRIPE\",\n        \"externalId\": \"string\"\n      },\n      \"createdAt\": \"1987-12-06T09:36:51.243Z\",\n      \"updatedAt\": \"1961-01-14T18:10:19.204Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"463ac11e-513d-c74b-5752-200b5a4ba411\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"a2d08651-eca5-09ab-088d-92124c4775fc\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"recipientEmails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ccEmails\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"2983b374-0fdf-d604-8cde-e113f20d3de2\",\n      \"name\": \"string\",\n      \"email\": \"string\",\n      \"address\": {\n        \"country\": \"SD\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"billingAddress\": {\n        \"country\": \"BS\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"shippingAddress\": {\n        \"country\": \"KY\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"status\": \"ACTIVE\",\n      \"description\": \"string\",\n      \"vatNumber\": \"string\",\n      \"businessRegistrationNumber\": \"string\",\n      \"easCode\": \"string\",\n      \"einvoiceAddress\": \"string\",\n      \"einvoiceNetwork\": \"MYDATA\",\n      \"type\": \"BUSINESS\",\n      \"logoUrl\": \"string\",\n      \"domain\": \"string\",\n      \"externalSource\": {\n        \"name\": \"SALESFORCE\",\n        \"externalId\": \"string\"\n      },\n      \"createdAt\": \"1961-03-30T17:33:40.383Z\",\n      \"updatedAt\": \"2008-11-09T13:16:38.397Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"6b8cd6ea-ac22-f075-01d0-73146843bb40\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"5cbd2ad4-1bf1-e87f-c88a-8f70ad59d0d7\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"recipientEmails\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ccEmails\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 8477,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d58eb7a9-a4ce-48e6-b09b-a391dcc69123",
+          "name": "Create customer",
+          "request": {
+            "name": "Create customer",
+            "description": {
+              "content": "Creates a new customer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"domain\": \"<string>\",\n  \"description\": \"<string>\",\n  \"vatNumber\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"easCode\": \"<string>\",\n  \"einvoiceAddress\": \"<string>\",\n  \"einvoiceNetwork\": \"<string>\",\n  \"type\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"recipientEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ccEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28a4b28f-df67-4c49-a8cd-dac294cc0f90",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"domain\": \"<string>\",\n  \"description\": \"<string>\",\n  \"vatNumber\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"easCode\": \"<string>\",\n  \"einvoiceAddress\": \"<string>\",\n  \"einvoiceNetwork\": \"<string>\",\n  \"type\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"recipientEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ccEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"efc35ed0-8085-7ec2-8bca-1a2666668897\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"status\": \"ACTIVE\",\n  \"description\": \"string\",\n  \"vatNumber\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"easCode\": \"string\",\n  \"einvoiceAddress\": \"string\",\n  \"einvoiceNetwork\": \"NEMHANDEL\",\n  \"type\": \"GOVERNMENT\",\n  \"logoUrl\": \"string\",\n  \"domain\": \"string\",\n  \"externalSource\": {\n    \"name\": \"HUBSPOT\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"1990-03-12T11:36:22.276Z\",\n  \"updatedAt\": \"1959-07-20T03:11:15.842Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"0666e716-9df7-5124-0ea9-e01c0b142764\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"8496e89d-dd25-5ad2-d100-e1fa0b5e74e8\",\n          \"groupId\": \"b39bcfd8-98b1-c1cb-8723-24689b9cde66\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"10d28e8f-3237-3ff4-6924-72963e145e08\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2020-01-30T19:08:45.481Z\",\n          \"updatedAt\": \"2015-10-02T09:19:29.943Z\"\n        },\n        {\n          \"id\": \"81c60b58-d6a9-5d9c-046d-a03ea1ea6c9c\",\n          \"groupId\": \"dcaebd7a-4965-94e9-bf29-7d70392ed50d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"10cc58b6-8f8f-f9e6-21ff-018300930129\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1979-05-23T01:41:46.830Z\",\n          \"updatedAt\": \"1962-03-21T05:42:07.583Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"ac23e506-eb0f-1b73-8ba0-cff8c1be0e5d\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"c56d04c4-1ec3-0f37-f83a-581661c542a9\",\n          \"groupId\": \"cd4b4341-3ad3-f81c-884a-4e1ceb9859a7\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"4e0283de-351c-306f-596c-7e7c74004ad3\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2002-02-24T19:41:21.933Z\",\n          \"updatedAt\": \"1966-05-25T05:49:00.244Z\"\n        },\n        {\n          \"id\": \"d7ca8fa4-c926-3cee-701c-4df204169696\",\n          \"groupId\": \"af40e639-50af-b0a6-6948-a367054f9229\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"baf00dd3-b5dc-f465-cfc1-dbd71485349f\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2000-08-28T08:14:58.591Z\",\n          \"updatedAt\": \"1982-06-30T12:26:11.622Z\"\n        }\n      ]\n    }\n  ],\n  \"recipientEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ccEmails\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d899f97a-cfb0-41aa-bd0a-2bc4316ba0fe",
+          "name": "Get customer",
+          "request": {
+            "name": "Get customer",
+            "description": {
+              "content": "Returns a customer by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b14531b-af6a-4179-8b2a-88cf5e825f72",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"efc35ed0-8085-7ec2-8bca-1a2666668897\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"status\": \"ACTIVE\",\n  \"description\": \"string\",\n  \"vatNumber\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"easCode\": \"string\",\n  \"einvoiceAddress\": \"string\",\n  \"einvoiceNetwork\": \"NEMHANDEL\",\n  \"type\": \"GOVERNMENT\",\n  \"logoUrl\": \"string\",\n  \"domain\": \"string\",\n  \"externalSource\": {\n    \"name\": \"HUBSPOT\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"1990-03-12T11:36:22.276Z\",\n  \"updatedAt\": \"1959-07-20T03:11:15.842Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"0666e716-9df7-5124-0ea9-e01c0b142764\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"8496e89d-dd25-5ad2-d100-e1fa0b5e74e8\",\n          \"groupId\": \"b39bcfd8-98b1-c1cb-8723-24689b9cde66\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"10d28e8f-3237-3ff4-6924-72963e145e08\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2020-01-30T19:08:45.481Z\",\n          \"updatedAt\": \"2015-10-02T09:19:29.943Z\"\n        },\n        {\n          \"id\": \"81c60b58-d6a9-5d9c-046d-a03ea1ea6c9c\",\n          \"groupId\": \"dcaebd7a-4965-94e9-bf29-7d70392ed50d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"10cc58b6-8f8f-f9e6-21ff-018300930129\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1979-05-23T01:41:46.830Z\",\n          \"updatedAt\": \"1962-03-21T05:42:07.583Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"ac23e506-eb0f-1b73-8ba0-cff8c1be0e5d\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"c56d04c4-1ec3-0f37-f83a-581661c542a9\",\n          \"groupId\": \"cd4b4341-3ad3-f81c-884a-4e1ceb9859a7\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"4e0283de-351c-306f-596c-7e7c74004ad3\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2002-02-24T19:41:21.933Z\",\n          \"updatedAt\": \"1966-05-25T05:49:00.244Z\"\n        },\n        {\n          \"id\": \"d7ca8fa4-c926-3cee-701c-4df204169696\",\n          \"groupId\": \"af40e639-50af-b0a6-6948-a367054f9229\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"baf00dd3-b5dc-f465-cfc1-dbd71485349f\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2000-08-28T08:14:58.591Z\",\n          \"updatedAt\": \"1982-06-30T12:26:11.622Z\"\n        }\n      ]\n    }\n  ],\n  \"recipientEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ccEmails\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "961d67e1-5f70-4a85-b0f7-a4da2ca4734c",
+          "name": "Update customer",
+          "request": {
+            "name": "Update customer",
+            "description": {
+              "content": "Updates an existing customer",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customers",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"shippingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"domain\": \"<string>\",\n  \"description\": \"<string>\",\n  \"vatNumber\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"easCode\": \"<string>\",\n  \"einvoiceAddress\": \"<string>\",\n  \"einvoiceNetwork\": \"<string>\",\n  \"type\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"recipientEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ccEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c65d91f2-2775-40c9-94ba-881cc19081c4",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customers",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"email\": \"<string>\",\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"shippingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"domain\": \"<string>\",\n  \"description\": \"<string>\",\n  \"vatNumber\": \"<string>\",\n  \"businessRegistrationNumber\": \"<string>\",\n  \"easCode\": \"<string>\",\n  \"einvoiceAddress\": \"<string>\",\n  \"einvoiceNetwork\": \"<string>\",\n  \"type\": \"<string>\",\n  \"logoUrl\": \"<string>\",\n  \"recipientEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"ccEmails\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"efc35ed0-8085-7ec2-8bca-1a2666668897\",\n  \"name\": \"string\",\n  \"email\": \"string\",\n  \"address\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"billingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"shippingAddress\": {\n    \"country\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"zipcode\": \"<string>\",\n    \"street\": \"<string>\",\n    \"street2\": \"<string>\"\n  },\n  \"status\": \"ACTIVE\",\n  \"description\": \"string\",\n  \"vatNumber\": \"string\",\n  \"businessRegistrationNumber\": \"string\",\n  \"easCode\": \"string\",\n  \"einvoiceAddress\": \"string\",\n  \"einvoiceNetwork\": \"NEMHANDEL\",\n  \"type\": \"GOVERNMENT\",\n  \"logoUrl\": \"string\",\n  \"domain\": \"string\",\n  \"externalSource\": {\n    \"name\": \"HUBSPOT\",\n    \"externalId\": \"string\"\n  },\n  \"createdAt\": \"1990-03-12T11:36:22.276Z\",\n  \"updatedAt\": \"1959-07-20T03:11:15.842Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"0666e716-9df7-5124-0ea9-e01c0b142764\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"8496e89d-dd25-5ad2-d100-e1fa0b5e74e8\",\n          \"groupId\": \"b39bcfd8-98b1-c1cb-8723-24689b9cde66\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"10d28e8f-3237-3ff4-6924-72963e145e08\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2020-01-30T19:08:45.481Z\",\n          \"updatedAt\": \"2015-10-02T09:19:29.943Z\"\n        },\n        {\n          \"id\": \"81c60b58-d6a9-5d9c-046d-a03ea1ea6c9c\",\n          \"groupId\": \"dcaebd7a-4965-94e9-bf29-7d70392ed50d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"10cc58b6-8f8f-f9e6-21ff-018300930129\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1979-05-23T01:41:46.830Z\",\n          \"updatedAt\": \"1962-03-21T05:42:07.583Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"ac23e506-eb0f-1b73-8ba0-cff8c1be0e5d\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"c56d04c4-1ec3-0f37-f83a-581661c542a9\",\n          \"groupId\": \"cd4b4341-3ad3-f81c-884a-4e1ceb9859a7\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"4e0283de-351c-306f-596c-7e7c74004ad3\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2002-02-24T19:41:21.933Z\",\n          \"updatedAt\": \"1966-05-25T05:49:00.244Z\"\n        },\n        {\n          \"id\": \"d7ca8fa4-c926-3cee-701c-4df204169696\",\n          \"groupId\": \"af40e639-50af-b0a6-6948-a367054f9229\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"baf00dd3-b5dc-f465-cfc1-dbd71485349f\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2000-08-28T08:14:58.591Z\",\n          \"updatedAt\": \"1982-06-30T12:26:11.622Z\"\n        }\n      ]\n    }\n  ],\n  \"recipientEmails\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ccEmails\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0ec5a9bf-08e2-43ab-b6ff-3a3a654718a4",
+    "name": "Light Authorization v1 - Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

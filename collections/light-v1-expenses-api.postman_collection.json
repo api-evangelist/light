@@ -1,0 +1,1155 @@
+{
+  "item": [
+    {
+      "id": "3812297e-1086-4826-9760-d25e29db24b3",
+      "name": "v1 - Expenses",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "584296ce-77bf-4147-813f-2b3f8a8fe82b",
+          "name": "Cancel expense",
+          "request": {
+            "name": "Cancel expense",
+            "description": {
+              "content": "Cancels an existing expense",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                ":expenseId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "expenseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1a6a182-8a41-489e-983e-9c889d7e4bfc",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    ":expenseId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "expenseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"4122afd4-4a7a-e677-cda2-200b105f45c6\",\n  \"receiptDocumentKey\": \"string\",\n  \"originalCurrency\": \"USD\",\n  \"billingCurrency\": \"USD\",\n  \"status\": \"CREATED\",\n  \"userId\": \"324b9788-7a3d-b7e5-28a8-ddd02aeefbc6\",\n  \"companyId\": \"e2f30dd7-b4a4-c099-7133-806782888098\",\n  \"performedDate\": \"1984-09-04\",\n  \"lineItems\": [\n    {\n      \"id\": \"5840f741-f729-2e25-3c32-d9ea1f94e6c3\",\n      \"expenseId\": \"b7ae59d5-5d86-2dcd-d07d-f301195a6fd0\",\n      \"originalAmount\": 7952,\n      \"billingAmount\": 7197,\n      \"accountId\": \"6963af5e-f3a6-48bd-4615-dbf01ed37d00\",\n      \"costCenterId\": \"fc18be57-a7b0-a355-9a0e-c8c4f88c7430\",\n      \"description\": \"string\",\n      \"reimbursementCategoryId\": \"f97fc189-6bf4-743f-e02c-279579eec1c1\",\n      \"createdAt\": \"2007-04-22T13:37:56.134Z\",\n      \"updatedAt\": \"1983-10-23T11:03:07.829Z\"\n    },\n    {\n      \"id\": \"5ccdfd05-c431-560c-9209-f86af3aa7acf\",\n      \"expenseId\": \"f20f151a-d662-731e-c8a3-8b5cede38b7f\",\n      \"originalAmount\": 5816,\n      \"billingAmount\": 4614,\n      \"accountId\": \"5124c356-bf1e-0536-364f-dedd3fee9a28\",\n      \"costCenterId\": \"08c37edf-3282-e246-11cb-63e427f98079\",\n      \"description\": \"string\",\n      \"reimbursementCategoryId\": \"4863d48f-3f9d-7665-9c83-255ea6089f06\",\n      \"createdAt\": \"1972-08-26T23:40:57.709Z\",\n      \"updatedAt\": \"1962-09-13T15:54:23.279Z\"\n    }\n  ],\n  \"createdAt\": \"1948-05-11T03:25:10.947Z\",\n  \"updatedAt\": \"1979-05-30T03:56:20.008Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2eed7a9d-de8e-40b0-8cf2-f9b40a194798",
+          "name": "Create line item",
+          "request": {
+            "name": "Create line item",
+            "description": {
+              "content": "Creates a new line item",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                ":expenseId",
+                "line-items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "expenseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originalAmount\": \"<long>\",\n  \"billingAmount\": \"<long>\",\n  \"accountId\": \"<uuid>\",\n  \"costCenterId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"reimbursementCategoryId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a13c7896-a5c3-44ca-8e34-998d0a6f657a",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    ":expenseId",
+                    "line-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "expenseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originalAmount\": \"<long>\",\n  \"billingAmount\": \"<long>\",\n  \"accountId\": \"<uuid>\",\n  \"costCenterId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"reimbursementCategoryId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"5b6c35e8-1961-7e16-0ecd-a7ffa4e7bd3b\",\n  \"expenseId\": \"384be2c4-6c30-6950-6d28-18862cb25aa4\",\n  \"originalAmount\": 8109,\n  \"billingAmount\": 3735,\n  \"accountId\": \"105ae66d-7845-3239-8c1e-3f864a1f3499\",\n  \"costCenterId\": \"48c2cab6-0270-ee7d-e62f-5965b3fb1f12\",\n  \"description\": \"string\",\n  \"reimbursementCategoryId\": \"0e6aee71-1b31-36ab-9851-693912f127be\",\n  \"createdAt\": \"1985-11-29T08:44:21.749Z\",\n  \"updatedAt\": \"2024-09-16T11:24:15.730Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d227844-06f0-4a71-a1e3-4ee9d4e0c54c",
+          "name": "Delete line item",
+          "request": {
+            "name": "Delete line item",
+            "description": {
+              "content": "Deletes an existing line item",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                ":expenseId",
+                "line-items",
+                ":lineItemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "expenseId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "lineItemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13c52829-3527-49eb-9c57-2af7da58fba3",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    ":expenseId",
+                    "line-items",
+                    ":lineItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "expenseId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "lineItemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6ba7ab9-62e2-44b3-aa8e-47a2b68a9eef",
+          "name": "Update line item",
+          "request": {
+            "name": "Update line item",
+            "description": {
+              "content": "Updates an existing expense line item",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                ":expenseId",
+                "line-items",
+                ":lineItemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "expenseId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "lineItemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originalAmount\": \"<long>\",\n  \"billingAmount\": \"<long>\",\n  \"accountId\": \"<uuid>\",\n  \"costCenterId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"reimbursementCategoryId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc4250e9-c8e9-4c14-9662-cbb5a690c2ae",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    ":expenseId",
+                    "line-items",
+                    ":lineItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "expenseId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "lineItemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originalAmount\": \"<long>\",\n  \"billingAmount\": \"<long>\",\n  \"accountId\": \"<uuid>\",\n  \"costCenterId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"reimbursementCategoryId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"5b6c35e8-1961-7e16-0ecd-a7ffa4e7bd3b\",\n  \"expenseId\": \"384be2c4-6c30-6950-6d28-18862cb25aa4\",\n  \"originalAmount\": 8109,\n  \"billingAmount\": 3735,\n  \"accountId\": \"105ae66d-7845-3239-8c1e-3f864a1f3499\",\n  \"costCenterId\": \"48c2cab6-0270-ee7d-e62f-5965b3fb1f12\",\n  \"description\": \"string\",\n  \"reimbursementCategoryId\": \"0e6aee71-1b31-36ab-9851-693912f127be\",\n  \"createdAt\": \"1985-11-29T08:44:21.749Z\",\n  \"updatedAt\": \"2024-09-16T11:24:15.730Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c443f24-19d7-48a2-9f90-9f40197aaad3",
+          "name": "Create upload URL",
+          "request": {
+            "name": "Create upload URL",
+            "description": {
+              "content": "Creates a pre-signed URL for uploading an expense receipt document",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                "upload-url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\",\n  \"contentType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4bdca3e0-e0e2-460c-8ae5-2a2eccc70c0a",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    "upload-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"<string>\",\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"uploadUrl\": \"string\",\n  \"key\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\",\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c8728337-e8e0-46df-abc8-2f9a871770d6",
+          "name": "Get expense",
+          "request": {
+            "name": "Get expense",
+            "description": {
+              "content": "Returns an expense by ID including all line items",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                ":expenseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "expenseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e9d191c6-e392-41a8-b588-0dcd464d963f",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    ":expenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "expenseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"abb48348-dce6-1b97-b9c0-1a7dabb254bc\",\n  \"receiptDocumentKey\": \"string\",\n  \"originalCurrency\": \"USD\",\n  \"billingCurrency\": \"USD\",\n  \"status\": \"CREATED\",\n  \"userId\": \"fdb479bf-74ad-31ea-a8d9-db9d50088e54\",\n  \"companyId\": \"cd6980aa-eed7-d7c3-9904-74af6b98d348\",\n  \"performedDate\": \"2022-03-07\",\n  \"lineItems\": [\n    {\n      \"id\": \"397b2855-09e9-54ee-67dd-5969c9140cfa\",\n      \"expenseId\": \"bda46c23-ea3b-de4d-6ae7-397325c14d0d\",\n      \"originalAmount\": 6050,\n      \"billingAmount\": 4603,\n      \"accountId\": \"14c8df5a-625b-71bf-8463-b90c419f7336\",\n      \"costCenterId\": \"d142dbb7-8a95-4023-cd8b-8d49fc630e9a\",\n      \"description\": \"string\",\n      \"reimbursementCategoryId\": \"fd3628de-ad66-e13d-a2d2-b8a2eb5145af\",\n      \"createdAt\": \"1972-01-14T13:37:31.975Z\",\n      \"updatedAt\": \"2015-04-29T10:37:52.939Z\"\n    },\n    {\n      \"id\": \"51dea145-75b2-35b5-8a70-5a826c35cd42\",\n      \"expenseId\": \"a4f37f4a-cdce-92a2-4fe1-99e6730bf3ad\",\n      \"originalAmount\": 5531,\n      \"billingAmount\": 9917,\n      \"accountId\": \"d0e5c0e6-a334-5126-18f5-9aea9544abde\",\n      \"costCenterId\": \"40de602d-c481-9ce7-756c-30172dd4ba25\",\n      \"description\": \"string\",\n      \"reimbursementCategoryId\": \"ab17684d-a13b-0345-c7aa-83b148fc12af\",\n      \"createdAt\": \"2013-07-10T05:12:46.235Z\",\n      \"updatedAt\": \"1971-10-22T23:58:35.700Z\"\n    }\n  ],\n  \"createdAt\": \"1955-08-27T12:45:06.523Z\",\n  \"updatedAt\": \"1987-03-12T23:24:06.075Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "263d85e6-3798-4ebf-94cc-db39fe1dcd71",
+          "name": "Update expense",
+          "request": {
+            "name": "Update expense",
+            "description": {
+              "content": "Updates an existing expense",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                ":expenseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "expenseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originalCurrency\": \"<string>\",\n  \"performedDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21542036-693f-4c8d-9867-7a9bf5e504a5",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    ":expenseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "expenseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originalCurrency\": \"USD\",\n  \"performedDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"abb48348-dce6-1b97-b9c0-1a7dabb254bc\",\n  \"receiptDocumentKey\": \"string\",\n  \"originalCurrency\": \"USD\",\n  \"billingCurrency\": \"USD\",\n  \"status\": \"CREATED\",\n  \"userId\": \"fdb479bf-74ad-31ea-a8d9-db9d50088e54\",\n  \"companyId\": \"cd6980aa-eed7-d7c3-9904-74af6b98d348\",\n  \"performedDate\": \"2022-03-07\",\n  \"lineItems\": [\n    {\n      \"id\": \"397b2855-09e9-54ee-67dd-5969c9140cfa\",\n      \"expenseId\": \"bda46c23-ea3b-de4d-6ae7-397325c14d0d\",\n      \"originalAmount\": 6050,\n      \"billingAmount\": 4603,\n      \"accountId\": \"14c8df5a-625b-71bf-8463-b90c419f7336\",\n      \"costCenterId\": \"d142dbb7-8a95-4023-cd8b-8d49fc630e9a\",\n      \"description\": \"string\",\n      \"reimbursementCategoryId\": \"fd3628de-ad66-e13d-a2d2-b8a2eb5145af\",\n      \"createdAt\": \"1972-01-14T13:37:31.975Z\",\n      \"updatedAt\": \"2015-04-29T10:37:52.939Z\"\n    },\n    {\n      \"id\": \"51dea145-75b2-35b5-8a70-5a826c35cd42\",\n      \"expenseId\": \"a4f37f4a-cdce-92a2-4fe1-99e6730bf3ad\",\n      \"originalAmount\": 5531,\n      \"billingAmount\": 9917,\n      \"accountId\": \"d0e5c0e6-a334-5126-18f5-9aea9544abde\",\n      \"costCenterId\": \"40de602d-c481-9ce7-756c-30172dd4ba25\",\n      \"description\": \"string\",\n      \"reimbursementCategoryId\": \"ab17684d-a13b-0345-c7aa-83b148fc12af\",\n      \"createdAt\": \"2013-07-10T05:12:46.235Z\",\n      \"updatedAt\": \"1971-10-22T23:58:35.700Z\"\n    }\n  ],\n  \"createdAt\": \"1955-08-27T12:45:06.523Z\",\n  \"updatedAt\": \"1987-03-12T23:24:06.075Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51aee86f-4fef-41d4-9994-5226b9871a57",
+          "name": "Get expense document",
+          "request": {
+            "name": "Get expense document",
+            "description": {
+              "content": "Returns the attached receipt document as a PDF download",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                ":expenseId",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "expenseId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d197a889-f7f2-4aea-98e4-54e23870b91a",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    ":expenseId",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "expenseId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e4e66a8-3677-4415-a305-fe8043c4524c",
+          "name": "List expenses",
+          "request": {
+            "name": "List expenses",
+            "description": {
+              "content": "Returns a paginated list of expenses",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fce98b6d-9600-492b-9d2f-8affb09282bb",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"billingAmountTotal\": 3274,\n  \"records\": [\n    {\n      \"id\": \"2d2da2aa-39ea-a715-a49f-7cf65db352b0\",\n      \"receiptDocumentKey\": \"string\",\n      \"originalCurrency\": \"USD\",\n      \"billingCurrency\": \"USD\",\n      \"status\": \"IN_DRAFT\",\n      \"userId\": \"6899ef07-de95-8fbd-b9f2-ca9c6de4c3f9\",\n      \"companyId\": \"17643002-3663-fa7b-4e84-ea0f2e069882\",\n      \"performedDate\": \"1984-06-30\",\n      \"lineItems\": [\n        {\n          \"id\": \"ebc60616-de60-cffa-916f-5da38580f360\",\n          \"expenseId\": \"a2bfcb03-e7e6-b581-34e5-bd6c4ac8ba26\",\n          \"originalAmount\": 6882,\n          \"billingAmount\": 378,\n          \"accountId\": \"18bc2d9a-b5b1-7222-f573-c0a66ecd6654\",\n          \"costCenterId\": \"8a9073df-32c3-ff88-310c-7c1917309200\",\n          \"description\": \"string\",\n          \"reimbursementCategoryId\": \"387608d7-a2d8-4c71-3c46-34d834bd3bbb\",\n          \"createdAt\": \"1958-07-21T04:50:20.640Z\",\n          \"updatedAt\": \"2000-06-24T18:38:32.085Z\"\n        },\n        {\n          \"id\": \"015d6064-1d32-f76a-9fae-6ce317e88585\",\n          \"expenseId\": \"f36fd782-54d5-4a94-6474-a38c8f46a3c8\",\n          \"originalAmount\": 7850,\n          \"billingAmount\": 4799,\n          \"accountId\": \"968b4928-108d-07a5-eaec-ee04f0645759\",\n          \"costCenterId\": \"7166d9cb-b881-7f5b-4e7a-c2dcabdcd3bf\",\n          \"description\": \"string\",\n          \"reimbursementCategoryId\": \"94d68933-2ab8-252c-a05a-0ff9a0d2368d\",\n          \"createdAt\": \"2012-10-28T09:07:03.380Z\",\n          \"updatedAt\": \"1947-01-11T11:49:12.762Z\"\n        }\n      ],\n      \"createdAt\": \"1953-06-16T14:15:24.594Z\",\n      \"updatedAt\": \"1955-06-09T15:54:36.294Z\"\n    },\n    {\n      \"id\": \"287a4ccd-87dd-0808-f7c7-596efbd9c989\",\n      \"receiptDocumentKey\": \"string\",\n      \"originalCurrency\": \"USD\",\n      \"billingCurrency\": \"USD\",\n      \"status\": \"IN_DRAFT\",\n      \"userId\": \"0d10cc1f-5297-73d3-3ce6-127c207e507b\",\n      \"companyId\": \"5fff6d3b-cd84-a0a7-4074-064e69dce449\",\n      \"performedDate\": \"1968-07-09\",\n      \"lineItems\": [\n        {\n          \"id\": \"370609f9-6b23-0b1a-94e1-a6e8f376e1cb\",\n          \"expenseId\": \"dbfb6c35-9b73-80f8-cf9c-525386cab337\",\n          \"originalAmount\": 3586,\n          \"billingAmount\": 8724,\n          \"accountId\": \"4fb1ec51-a5ec-17bb-3010-d522bedf8448\",\n          \"costCenterId\": \"b29d38f9-5db7-ee88-726a-27b7ba5e26ae\",\n          \"description\": \"string\",\n          \"reimbursementCategoryId\": \"4f529aa1-7375-0fda-c8d6-e853d9c8d5ff\",\n          \"createdAt\": \"2021-09-14T08:11:21.729Z\",\n          \"updatedAt\": \"1968-07-18T10:17:28.818Z\"\n        },\n        {\n          \"id\": \"944d1b5e-3802-8782-200f-13a0813047c7\",\n          \"expenseId\": \"4738e485-db8c-04f5-4002-7150f9f69551\",\n          \"originalAmount\": 3328,\n          \"billingAmount\": 6801,\n          \"accountId\": \"965f7044-3877-4850-ff85-0c75c1045cbf\",\n          \"costCenterId\": \"2c8e9c47-f13f-e513-0da3-bdcf8b216a5d\",\n          \"description\": \"string\",\n          \"reimbursementCategoryId\": \"55cd7923-30d9-b369-a96f-dd3aaebcf248\",\n          \"createdAt\": \"1986-12-11T12:31:05.364Z\",\n          \"updatedAt\": \"1952-03-29T16:56:22.876Z\"\n        }\n      ],\n      \"createdAt\": \"2010-01-12T09:58:43.055Z\",\n      \"updatedAt\": \"1972-08-21T21:49:27.876Z\"\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 8555,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b2cd19a-2a00-4664-88a8-d0b06f13f5e0",
+          "name": "Submit reimbursement",
+          "request": {
+            "name": "Submit reimbursement",
+            "description": {
+              "content": "Submits all pending expenses from the current user for administrator review and approval",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "expenses",
+                "submit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "934fcfc6-61ef-4fb0-80c9-33303b1398ad",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "expenses",
+                    "submit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b9b4d63-bff7-4f48-9c75-a5346e3ff4e5",
+    "name": "Light Authorization v1 - Expenses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

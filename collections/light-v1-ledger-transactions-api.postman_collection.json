@@ -1,0 +1,198 @@
+{
+  "item": [
+    {
+      "id": "0c554323-10f2-4821-be34-f647b3f706f5",
+      "name": "v1 - Ledger Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "597759b3-5e08-40d2-96c7-03df5f3ab329",
+          "name": "List ledger transaction lines",
+          "request": {
+            "name": "List ledger transaction lines",
+            "description": {
+              "content": "Returns a paginated list of ledger transaction lines",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ledger-transaction-lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCustomProperties",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeMaxLineAmount",
+                  "value": "<boolean>",
+                  "description": "If true, includes the maximum line amount in the response. This field is deprecated and will be removed, please fetch all lines and compute this locally if needed"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e331015-0561-42e2-ada8-aa3f58021c57",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ledger-transaction-lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCustomProperties",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeMaxLineAmount",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"maxTransactionAmount\": 8999,\n  \"records\": [\n    {\n      \"id\": \"d7bc90de-ddcf-8e52-b955-0547c28512d2\",\n      \"ledgerTransactionId\": \"13d6835e-95a6-e1e1-4e46-e511eb8edb09\",\n      \"transactionSequenceId\": \"string\",\n      \"companyId\": \"2a9cfe7b-cc4e-4d8b-9492-c673383409a7\",\n      \"companyEntityId\": \"d150d640-8ac7-716e-9e4d-a6eac5eeeace\",\n      \"companyEntityCode\": \"string\",\n      \"companyEntityName\": \"string\",\n      \"ledgerName\": \"PRIMARY\",\n      \"accountId\": \"1552bbd0-589a-b2f6-9fd7-7c9d25dfce68\",\n      \"accountCode\": 2315,\n      \"accountLabel\": \"string\",\n      \"accountType\": \"INVENTORY\",\n      \"accountingDocumentLineId\": \"32e8a618-7b29-43ad-cbfd-aa2ff69b0a2e\",\n      \"documentSequenceId\": \"string\",\n      \"accountingDocumentId\": \"e0ba1fa5-180f-5d33-b84f-14f006566a7d\",\n      \"accountingDocumentNumber\": \"string\",\n      \"documentType\": \"CT\",\n      \"postingDate\": \"1988-05-04\",\n      \"valuationDate\": \"1946-11-02\",\n      \"description\": \"string\",\n      \"documentDescription\": \"string\",\n      \"amounts\": {\n        \"dcSign\": \"C\",\n        \"transactionAmount\": 9299,\n        \"transactionAmountInMajors\": 4025.2680413520147,\n        \"signedTransactionAmount\": 473,\n        \"transactionCurrency\": \"USD\",\n        \"localAmount\": 5785,\n        \"localAmountInMajors\": 6630.389226506112,\n        \"signedLocalAmount\": 8254,\n        \"localCurrency\": \"USD\",\n        \"groupAmount\": 962,\n        \"groupAmountInMajors\": 1146.6094374906477,\n        \"signedGroupAmount\": 3787,\n        \"groupCurrency\": \"USD\",\n        \"debit\": false,\n        \"credit\": true\n      },\n      \"taxId\": \"1259ce78-474d-b345-5bd9-add857dec885\",\n      \"taxTagLabel\": \"string\",\n      \"taxCode\": \"string\",\n      \"businessPartnerName\": \"string\",\n      \"businessPartnerId\": \"827e89c2-31e0-46e5-c2a5-3675dabf7a42\",\n      \"costCenterId\": \"e5e95edd-7ae6-43a8-c606-170c74b86fb4\",\n      \"accruedLedgerTransactionLineId\": \"b05fcd50-3b66-11d0-b42f-44e7f1a0edf4\",\n      \"ledgerTransactionType\": \"AMORTIZATION\",\n      \"accountingReleaseStartDate\": \"2004-09-15\",\n      \"accountingReleaseEndDate\": \"1979-11-12\",\n      \"createdAt\": \"2012-04-10T04:04:24.366Z\",\n      \"createdBy\": \"cac8520d-4e97-5ea6-2afe-2f41e1805430\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"6211f083-08d4-a17e-8902-2ab9ae726ea8\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"bbad7e26-dd67-e0ed-3d5a-74e352d845ee\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortized\": true\n    },\n    {\n      \"id\": \"4371965a-c15b-47cc-9a82-972ebaea1360\",\n      \"ledgerTransactionId\": \"a7842718-daf7-2eab-98ea-9a4d88a5e568\",\n      \"transactionSequenceId\": \"string\",\n      \"companyId\": \"a18dd83f-5fc2-c33e-474b-ed4b1e92f434\",\n      \"companyEntityId\": \"b2cca8fa-90e2-c68d-a0d1-673ccae702ea\",\n      \"companyEntityCode\": \"string\",\n      \"companyEntityName\": \"string\",\n      \"ledgerName\": \"PRIMARY\",\n      \"accountId\": \"4a0b8e21-378b-fc8b-485e-17c090c57fee\",\n      \"accountCode\": 8947,\n      \"accountLabel\": \"string\",\n      \"accountType\": \"EXCHANGE_RATE_LOSS_REALIZED\",\n      \"accountingDocumentLineId\": \"604bb449-d1b6-9e97-523a-244efee8d3b5\",\n      \"documentSequenceId\": \"string\",\n      \"accountingDocumentId\": \"a49b8f6f-fb67-948c-62ed-76b474eb0dca\",\n      \"accountingDocumentNumber\": \"string\",\n      \"documentType\": \"AR\",\n      \"postingDate\": \"1978-08-04\",\n      \"valuationDate\": \"1974-04-08\",\n      \"description\": \"string\",\n      \"documentDescription\": \"string\",\n      \"amounts\": {\n        \"dcSign\": \"D\",\n        \"transactionAmount\": 5952,\n        \"transactionAmountInMajors\": 7192.483769144503,\n        \"signedTransactionAmount\": 2273,\n        \"transactionCurrency\": \"USD\",\n        \"localAmount\": 9379,\n        \"localAmountInMajors\": 901.1568754544542,\n        \"signedLocalAmount\": 3218,\n        \"localCurrency\": \"USD\",\n        \"groupAmount\": 5252,\n        \"groupAmountInMajors\": 6974.769918200506,\n        \"signedGroupAmount\": 6219,\n        \"groupCurrency\": \"USD\",\n        \"debit\": true,\n        \"credit\": true\n      },\n      \"taxId\": \"1ded56ad-a208-ca47-de9d-1f506967f26b\",\n      \"taxTagLabel\": \"string\",\n      \"taxCode\": \"string\",\n      \"businessPartnerName\": \"string\",\n      \"businessPartnerId\": \"0c3aba49-71bf-dbbd-ef41-b6e416a603ac\",\n      \"costCenterId\": \"debc06e8-d995-362e-9321-b255a167992a\",\n      \"accruedLedgerTransactionLineId\": \"c2e3c0a1-cc47-394c-79dc-67299fb6a5e7\",\n      \"ledgerTransactionType\": \"CTA\",\n      \"accountingReleaseStartDate\": \"1979-06-04\",\n      \"accountingReleaseEndDate\": \"2012-08-04\",\n      \"createdAt\": \"1999-10-30T05:11:47.916Z\",\n      \"createdBy\": \"8bda6546-f203-aaa1-01e3-6f9b4bcce021\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"ebdee8d2-aedd-dfdc-67e9-5b490e19d034\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"a7fe53b8-8869-fb6d-c903-13482bbea8ee\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortized\": false\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 6976,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bc68296d-f210-4f90-b0ca-94c905da3535",
+    "name": "Light Authorization v1 - Ledger Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

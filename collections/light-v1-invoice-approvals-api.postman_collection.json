@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "7131cbde-b3f5-4ebd-8457-db1e7f5bed8d",
+      "name": "v1 - Invoice Approvals",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e86cbf9-9349-4931-93c5-3a6f36d39b9c",
+          "name": "Get invoice approvals",
+          "request": {
+            "name": "Get invoice approvals",
+            "description": {
+              "content": "Returns approval records for specified invoice payables",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "invoice-approval"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "invoicePayableId",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "invoicePayableId",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2ea25c17-0d8b-494b-b30a-fde86a502ebb",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "invoice-approval"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "invoicePayableId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "invoicePayableId",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"86f1a3ea-0db0-36f4-3cac-cb745839ea5d\",\n    \"companyId\": \"23880a28-42bc-6655-7f3e-7ba645fa314f\",\n    \"invoicePayableId\": \"ff296789-d176-fc86-e9b0-e458af8d8656\",\n    \"invoiceDocumentKey\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"invoiceAmount\": 7631,\n    \"invoiceCurrency\": \"USD\",\n    \"invoiceIssuedAt\": \"1967-04-27T00:10:49.454Z\",\n    \"invoiceIssuedDate\": \"1954-03-06\",\n    \"invoiceDueAt\": \"1981-06-04T14:50:50.671Z\",\n    \"invoiceDueDate\": \"1953-01-31\",\n    \"userApprovals\": [\n      {\n        \"id\": \"dafe30bc-baf5-f781-470c-b6b010b546d8\",\n        \"approvalId\": \"8b84a315-2fae-4faa-c1fd-40ac9e016f2c\",\n        \"userId\": \"d0225b06-8ccb-f3e1-20e9-fb4626b8f493\",\n        \"userGroupId\": \"30d288bc-44e0-3724-2d42-92c46bf97972\",\n        \"priority\": 8056,\n        \"status\": \"FAILED\",\n        \"note\": \"string\",\n        \"completedAt\": \"1984-02-14T05:26:20.001Z\",\n        \"updatedAt\": \"2009-11-17T05:38:33.323Z\",\n        \"createdAt\": \"1957-09-07T15:32:32.139Z\",\n        \"notifiedAt\": \"1947-01-26T08:07:33.692Z\"\n      },\n      {\n        \"id\": \"16c53ba1-7cd3-daf7-c649-d3bfa8e34d09\",\n        \"approvalId\": \"2241e76e-b723-bc10-6147-50780e4c8828\",\n        \"userId\": \"c04c96f3-8fb5-a339-acb6-6e1eae65937a\",\n        \"userGroupId\": \"77e159d8-78e1-b499-a5c0-1e7e988be7aa\",\n        \"priority\": 6156,\n        \"status\": \"APPROVED\",\n        \"note\": \"string\",\n        \"completedAt\": \"2024-04-10T15:47:00.766Z\",\n        \"updatedAt\": \"2016-12-15T05:14:40.427Z\",\n        \"createdAt\": \"1952-12-25T03:37:24.681Z\",\n        \"notifiedAt\": \"2020-07-10T23:29:23.430Z\"\n      }\n    ],\n    \"note\": \"string\",\n    \"status\": \"CANCELLED\",\n    \"completedAt\": \"1983-01-14T11:43:37.058Z\",\n    \"updatedAt\": \"2021-04-14T00:09:44.381Z\",\n    \"createdAt\": \"1981-08-05T21:59:25.058Z\"\n  },\n  {\n    \"id\": \"32547a8f-c3b4-8b3c-be78-e08c3ecfe191\",\n    \"companyId\": \"b2ad0add-85cc-8136-984a-3bfb0e2a9264\",\n    \"invoicePayableId\": \"faa481c4-d9ca-8b00-df3b-33f48bfaa311\",\n    \"invoiceDocumentKey\": \"string\",\n    \"invoiceNumber\": \"string\",\n    \"invoiceAmount\": 8695,\n    \"invoiceCurrency\": \"USD\",\n    \"invoiceIssuedAt\": \"1957-11-14T14:02:52.967Z\",\n    \"invoiceIssuedDate\": \"1968-02-02\",\n    \"invoiceDueAt\": \"1987-10-31T13:18:14.401Z\",\n    \"invoiceDueDate\": \"1956-02-20\",\n    \"userApprovals\": [\n      {\n        \"id\": \"aa49a439-6e4f-34de-89e3-64f5e8ab57ff\",\n        \"approvalId\": \"3f8439cd-fad8-1227-9804-d4e62943a002\",\n        \"userId\": \"f2481baf-c911-5a65-593a-df915092c565\",\n        \"userGroupId\": \"5e7f061e-7f7d-45e0-e805-5257deb10bc2\",\n        \"priority\": 8338,\n        \"status\": \"FAILED\",\n        \"note\": \"string\",\n        \"completedAt\": \"2022-02-27T15:01:37.658Z\",\n        \"updatedAt\": \"1964-08-11T10:05:48.643Z\",\n        \"createdAt\": \"1949-06-27T03:30:12.866Z\",\n        \"notifiedAt\": \"1985-02-23T22:16:28.156Z\"\n      },\n      {\n        \"id\": \"e2878f65-4157-a69b-094c-767e79bdbb86\",\n        \"approvalId\": \"e8ed356d-f675-8d29-4107-918b17e96aba\",\n        \"userId\": \"971a80e8-2d96-3a42-f00b-3ebd776efeb4\",\n        \"userGroupId\": \"198f6250-9778-ca5f-2722-050ea5bef3d0\",\n        \"priority\": 670,\n        \"status\": \"FAILED\",\n        \"note\": \"string\",\n        \"completedAt\": \"1966-04-19T15:50:07.990Z\",\n        \"updatedAt\": \"1994-04-11T22:39:16.180Z\",\n        \"createdAt\": \"1987-01-31T17:18:05.395Z\",\n        \"notifiedAt\": \"1946-12-10T18:49:33.360Z\"\n      }\n    ],\n    \"note\": \"string\",\n    \"status\": \"DECLINED\",\n    \"completedAt\": \"2023-02-14T23:02:18.375Z\",\n    \"updatedAt\": \"2005-03-04T04:15:32.845Z\",\n    \"createdAt\": \"1955-11-08T00:37:35.306Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cc1fb0d2-2dd2-47e6-8ac8-7df66ae9e815",
+    "name": "Light Authorization v1 - Invoice Approvals API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,356 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Invoice Receivables API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Invoice Receivables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Archive invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/archive",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archives an invoice receivable"
+        },
+        {
+          "info": {
+            "name": "List invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-receivables",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of invoice receivables"
+        },
+        {
+          "info": {
+            "name": "Create invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables",
+            "headers": [
+              {
+                "name": "X-Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new sales invoice"
+        },
+        {
+          "info": {
+            "name": "Create line",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/lines",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new invoice line item"
+        },
+        {
+          "info": {
+            "name": "Update invoice line",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/lines/:lineId",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an invoice line item"
+        },
+        {
+          "info": {
+            "name": "Delete invoice line",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/lines/:lineId",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an invoice line item"
+        },
+        {
+          "info": {
+            "name": "Generate invoice PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/document",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Generates the PDF document for an invoice receivable. Poll this endpoint until status is `READY`, then use the `url` field to download the PDF. The signed URL is temporary and should not be stored and reused. To download again, call this endpoint to get a fresh URL."
+        },
+        {
+          "info": {
+            "name": "Get invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a specific invoice receivable by ID"
+        },
+        {
+          "info": {
+            "name": "Update invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an invoice receivable"
+        },
+        {
+          "info": {
+            "name": "List invoice payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/payments",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of payments for an invoice receivable"
+        },
+        {
+          "info": {
+            "name": "Enter invoice payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/payments",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enters a payment for an invoice receivable. If the total amount paid equals the invoice total, the invoice status will be changed to PAID, otherwise it will be PARTIALLY_PAID."
+        },
+        {
+          "info": {
+            "name": "Open invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/open",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates the process of opening an invoice receivable. This assigns an invoice number, locks the invoice for editing, and optionally sends it via email or submits it to e-invoicing systems. The request body is optional - if not provided, the invoice will be opened with default settings (no email sent, no e-invoice submission)."
+        },
+        {
+          "info": {
+            "name": "Reset invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/reset",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resets an invoice receivable to draft"
+        },
+        {
+          "info": {
+            "name": "Send invoice email",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/send-email",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends an invoice receivable email with the given email information"
+        },
+        {
+          "info": {
+            "name": "Unarchive invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-receivables/:invoiceReceivableId/unarchive",
+            "params": [
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unarchives an invoice receivable and reverts it to draft"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

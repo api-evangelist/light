@@ -1,0 +1,2007 @@
+{
+  "item": [
+    {
+      "id": "3c4a9557-973f-4413-96f9-db0ce96ed35b",
+      "name": "v1 - Customer Credits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e629675-0184-4b36-b09e-d315ae964bcd",
+          "name": "Archive customer credit",
+          "request": {
+            "name": "Archive customer credit",
+            "description": {
+              "content": "Archives the given customer credit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "33e2e596-4889-4196-ac8e-138eb8954021",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"469ea550-3871-c036-fd77-974b4e8cde2a\",\n  \"companyId\": \"886ee05d-8fbd-e61a-5025-9ccdf99275d8\",\n  \"companyEntityId\": \"9ac26f8c-91c6-e1e4-315a-8e3d3f1248f1\",\n  \"amount\": 835,\n  \"customerName\": \"string\",\n  \"customerId\": \"b7bfddc9-f597-0f77-0ba7-7ffb995de147\",\n  \"status\": \"POSTED\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"1981-08-17\",\n  \"valuationDate\": \"2011-03-05\",\n  \"areLinesWithTax\": true,\n  \"lines\": [\n    {\n      \"id\": \"015cb00a-c475-956a-d60b-d4212cbf16e6\",\n      \"companyId\": \"39039c14-f393-6d4a-c5ab-22824e0ab76f\",\n      \"customerCreditId\": \"4ed2e9f6-4d62-a8bc-9113-6e2d86c16f49\",\n      \"grossTransactionAmount\": {\n        \"amount\": 6260,\n        \"dcSign\": \"C\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": 2190,\n        \"dcSign\": \"C\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"b250eea5-f875-37d9-3cd5-b9effd8fbfbd\",\n      \"taxTransactionAmount\": {\n        \"amount\": 3873,\n        \"dcSign\": \"D\"\n      },\n      \"ledgerAccountId\": \"92049657-314d-71fd-6345-57fe343d6020\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"c984ff0e-9626-8d76-94f8-d6c26dee087f\",\n      \"quantity\": 1392.2452173824618,\n      \"createdAt\": \"1981-08-03T21:32:46.036Z\",\n      \"updatedAt\": \"1952-06-05T05:16:14.829Z\",\n      \"accrualTemplateId\": \"9b7a33d0-e2af-e79e-f6cd-88daa500a0dd\",\n      \"accrualStartDate\": \"2000-11-26\",\n      \"accrualEndDate\": \"1990-11-24\",\n      \"accrualDefaultDuration\": 9655\n    },\n    {\n      \"id\": \"ac0d81e1-0018-9753-5aff-80c7d9a69cc3\",\n      \"companyId\": \"5255d285-e3ff-cf59-4684-988d7be5c0fa\",\n      \"customerCreditId\": \"55b3fa40-c968-4e4a-f2a9-1a42eb97529c\",\n      \"grossTransactionAmount\": {\n        \"amount\": 7691,\n        \"dcSign\": \"D\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": 9064,\n        \"dcSign\": \"C\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"58804ebc-8be7-bda1-e7ab-8ff8d6d9737d\",\n      \"taxTransactionAmount\": {\n        \"amount\": 1419,\n        \"dcSign\": \"D\"\n      },\n      \"ledgerAccountId\": \"2ec10c79-cf66-3c78-e409-2bc3497f39d7\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"343a676f-9d59-0a5f-483e-319e9bef3b3c\",\n      \"quantity\": 8132.3716750210115,\n      \"createdAt\": \"2020-01-31T23:32:35.047Z\",\n      \"updatedAt\": \"1996-03-14T00:23:40.959Z\",\n      \"accrualTemplateId\": \"1231c0c7-4164-35ed-fc29-f03a43d94949\",\n      \"accrualStartDate\": \"1991-09-13\",\n      \"accrualEndDate\": \"2019-07-30\",\n      \"accrualDefaultDuration\": 963\n    }\n  ],\n  \"createdAt\": \"2021-07-15T10:01:10.385Z\",\n  \"updatedAt\": \"2010-02-07T16:07:06.298Z\",\n  \"updatedBy\": \"5a7cf016-eff6-7297-eb2a-3a659e1e29d0\",\n  \"linkedInvoiceReceivable\": {\n    \"id\": \"00649ee8-417e-cdb8-c5eb-dc0af89e0ba5\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"1999-08-14\",\n    \"status\": \"ARCHIVED\",\n    \"amount\": 6935,\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb648358-6e17-49ec-af8b-96b43a00acac",
+          "name": "List customer credits",
+          "request": {
+            "name": "List customer credits",
+            "description": {
+              "content": "Returns a paginated list of customer credits",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Related objects to include on every customer credit. Supported value can be `INVOICE_RECEIVABLE`"
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<string>",
+                  "description": "Related objects to include on every customer credit. Supported value can be `INVOICE_RECEIVABLE`"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ab8201e-cee1-4965-9b79-f12e802e266f",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"e8d02873-796d-916a-0307-c4e14fb9c1f1\",\n      \"companyId\": \"9c5ff299-12b1-492f-d7d0-63433b0b3d4c\",\n      \"companyEntityId\": \"374b8abb-cac3-0b4c-40e9-66ee33f2cb58\",\n      \"amount\": 9523,\n      \"customerName\": \"string\",\n      \"customerId\": \"b8379510-36da-8d6e-0d30-97cfb334ca09\",\n      \"status\": \"APPROVAL_PENDING\",\n      \"description\": \"string\",\n      \"currency\": \"USD\",\n      \"documentDate\": \"1988-08-20\",\n      \"valuationDate\": \"2021-11-02\",\n      \"areLinesWithTax\": false,\n      \"lines\": [\n        {\n          \"id\": \"55fb0ea9-dd1e-15e0-50a9-c11bb45a2994\",\n          \"companyId\": \"de9299e1-92c4-5573-39d3-3be57f996909\",\n          \"customerCreditId\": \"b16390d6-9d42-9b2e-629f-0384d88fcb54\",\n          \"grossTransactionAmount\": {\n            \"amount\": 4722,\n            \"dcSign\": \"D\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 5282,\n            \"dcSign\": \"D\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"7eb4bda0-fc36-52c0-3a3b-94c0241666cc\",\n          \"taxTransactionAmount\": {\n            \"amount\": 128,\n            \"dcSign\": \"D\"\n          },\n          \"ledgerAccountId\": \"8b04d2c3-a8df-842e-9484-45428e77d29e\",\n          \"avataxCode\": \"string\",\n          \"productId\": \"924f3a47-1753-282a-4b3f-2cf9e0022434\",\n          \"quantity\": 6118.6839097947695,\n          \"createdAt\": \"1996-11-21T13:40:27.982Z\",\n          \"updatedAt\": \"2004-04-22T04:31:39.706Z\",\n          \"accrualTemplateId\": \"b81fcc52-7a81-271b-fd66-bb5f8c026d63\",\n          \"accrualStartDate\": \"1960-01-26\",\n          \"accrualEndDate\": \"1972-09-25\",\n          \"accrualDefaultDuration\": 7679\n        },\n        {\n          \"id\": \"1a06d047-fcc3-591f-9d3a-bc6db981b9b2\",\n          \"companyId\": \"7b8d42a6-11f9-f8cd-58c3-795aa8312785\",\n          \"customerCreditId\": \"817065d5-ffb6-bcaf-47ec-d8315a853952\",\n          \"grossTransactionAmount\": {\n            \"amount\": 6626,\n            \"dcSign\": \"D\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 5875,\n            \"dcSign\": \"C\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"11b6f4d8-9f42-cf6e-fb62-9bc12099c78f\",\n          \"taxTransactionAmount\": {\n            \"amount\": 2437,\n            \"dcSign\": \"C\"\n          },\n          \"ledgerAccountId\": \"7ebc430f-1cdb-b905-39fa-4a2923f1fbac\",\n          \"avataxCode\": \"string\",\n          \"productId\": \"202e6dde-e490-1163-4a6a-5ddfc4d1bda8\",\n          \"quantity\": 8378.035076312663,\n          \"createdAt\": \"1972-11-18T19:54:28.614Z\",\n          \"updatedAt\": \"1993-08-05T11:44:42.936Z\",\n          \"accrualTemplateId\": \"502eda6a-4108-354f-a7dd-4861c6e03bbe\",\n          \"accrualStartDate\": \"1954-04-10\",\n          \"accrualEndDate\": \"1996-09-16\",\n          \"accrualDefaultDuration\": 547\n        }\n      ],\n      \"createdAt\": \"2005-06-18T23:10:53.912Z\",\n      \"updatedAt\": \"2019-09-15T17:49:02.808Z\",\n      \"updatedBy\": \"6c110828-29ef-ef75-1215-ce81c313e685\",\n      \"linkedInvoiceReceivable\": {\n        \"id\": \"a3a6d624-d8f6-88d0-1872-af57595c53ec\",\n        \"documentNumber\": \"string\",\n        \"documentDate\": \"1985-06-03\",\n        \"status\": \"PARTIALLY_CLEARED\",\n        \"amount\": 1753,\n        \"currency\": \"USD\"\n      }\n    },\n    {\n      \"id\": \"0ddbd470-f9c7-0e80-0d47-733da9eb928c\",\n      \"companyId\": \"44933604-b425-9cab-e978-6bbc909297bf\",\n      \"companyEntityId\": \"c5428701-c181-a2bc-ea58-99abe4e2a111\",\n      \"amount\": 2920,\n      \"customerName\": \"string\",\n      \"customerId\": \"b317de62-7f07-3814-c241-a28d10050bf4\",\n      \"status\": \"APPROVAL_PENDING\",\n      \"description\": \"string\",\n      \"currency\": \"USD\",\n      \"documentDate\": \"1982-03-25\",\n      \"valuationDate\": \"1962-04-28\",\n      \"areLinesWithTax\": false,\n      \"lines\": [\n        {\n          \"id\": \"2b92dff5-f225-e716-455d-9eff8f4d61f4\",\n          \"companyId\": \"e95a4dfa-bdf6-7c16-4ffa-65d4d5990ddf\",\n          \"customerCreditId\": \"29989b47-2c6a-8a71-41a3-0de6d9e00f1d\",\n          \"grossTransactionAmount\": {\n            \"amount\": 1895,\n            \"dcSign\": \"D\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 5873,\n            \"dcSign\": \"D\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"825eb7ee-c1e4-2369-51c6-d9c5666802f2\",\n          \"taxTransactionAmount\": {\n            \"amount\": 2362,\n            \"dcSign\": \"C\"\n          },\n          \"ledgerAccountId\": \"0ff36102-e8d7-a00e-5363-cddb3ae49eb2\",\n          \"avataxCode\": \"string\",\n          \"productId\": \"fb3cb6a9-9a44-47fb-fccf-eb2d25d1aa8e\",\n          \"quantity\": 6733.18283964404,\n          \"createdAt\": \"1959-12-04T02:43:43.551Z\",\n          \"updatedAt\": \"1967-04-10T08:22:03.944Z\",\n          \"accrualTemplateId\": \"e0c62906-b614-a1ed-de3e-dcd94277e83d\",\n          \"accrualStartDate\": \"1964-12-04\",\n          \"accrualEndDate\": \"1982-04-13\",\n          \"accrualDefaultDuration\": 7705\n        },\n        {\n          \"id\": \"473d9159-1a22-ead3-32a3-ff715d546652\",\n          \"companyId\": \"756891e4-e082-8037-46f0-27b7baf16460\",\n          \"customerCreditId\": \"ec9c2272-6d5c-15ed-b249-65aee6fac622\",\n          \"grossTransactionAmount\": {\n            \"amount\": 418,\n            \"dcSign\": \"D\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 8718,\n            \"dcSign\": \"D\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"653174fe-7301-0149-dcbe-c7f6a4f7ee16\",\n          \"taxTransactionAmount\": {\n            \"amount\": 4745,\n            \"dcSign\": \"C\"\n          },\n          \"ledgerAccountId\": \"a448a54c-22d6-4f6c-52e1-8b48d5f3648b\",\n          \"avataxCode\": \"string\",\n          \"productId\": \"d1228d6b-c723-a9c3-fe21-5fa190169711\",\n          \"quantity\": 849.370344226259,\n          \"createdAt\": \"1961-03-29T16:46:08.415Z\",\n          \"updatedAt\": \"1986-06-26T12:51:57.102Z\",\n          \"accrualTemplateId\": \"6f2b379b-82b8-0420-8614-e21ec668a665\",\n          \"accrualStartDate\": \"1987-08-08\",\n          \"accrualEndDate\": \"1967-01-19\",\n          \"accrualDefaultDuration\": 5472\n        }\n      ],\n      \"createdAt\": \"1995-01-15T10:30:08.695Z\",\n      \"updatedAt\": \"1985-03-13T14:25:25.475Z\",\n      \"updatedBy\": \"9040ab81-0ba8-b181-4daa-fd4bc0426ab7\",\n      \"linkedInvoiceReceivable\": {\n        \"id\": \"d0f9ce75-3678-b911-2d5b-a5d4a7229d75\",\n        \"documentNumber\": \"string\",\n        \"documentDate\": \"1956-02-11\",\n        \"status\": \"APPROVAL_PENDING\",\n        \"amount\": 7760,\n        \"currency\": \"USD\"\n      }\n    }\n  ],\n  \"hasMore\": true,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5227f9bc-0e71-4219-8f45-a5c6eba4f263",
+          "name": "Create customer credit",
+          "request": {
+            "name": "Create customer credit",
+            "description": {
+              "content": "Creates a new customer credit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"documentNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"localCurrencyFxRate\": \"<number>\",\n  \"groupCurrencyFxRate\": \"<number>\",\n  \"documentDate\": \"<date>\",\n  \"documentTemplateId\": \"<uuid>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"customerId\": \"<uuid>\",\n  \"amount\": \"<long>\",\n  \"lines\": [\n    {\n      \"productId\": \"<uuid>\",\n      \"quantity\": \"<number>\",\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"avataxCode\": \"<string>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    },\n    {\n      \"productId\": \"<uuid>\",\n      \"quantity\": \"<number>\",\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"avataxCode\": \"<string>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    }\n  ],\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35f7ce87-28ea-44ca-ad75-2d6288ca39ac",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"documentNumber\": \"<string>\",\n  \"description\": \"<string>\",\n  \"currency\": \"USD\",\n  \"localCurrencyFxRate\": \"<number>\",\n  \"groupCurrencyFxRate\": \"<number>\",\n  \"documentDate\": \"<date>\",\n  \"documentTemplateId\": \"<uuid>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"customerId\": \"<uuid>\",\n  \"amount\": \"<long>\",\n  \"lines\": [\n    {\n      \"productId\": \"<uuid>\",\n      \"quantity\": \"<number>\",\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"avataxCode\": \"<string>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    },\n    {\n      \"productId\": \"<uuid>\",\n      \"quantity\": \"<number>\",\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"avataxCode\": \"<string>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    }\n  ],\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"6cb1ad5d-87f6-f3ee-1227-ce49dce6229a\",\n  \"companyId\": \"4054fb37-ab9a-deee-86f0-ea75ba50901c\",\n  \"companyEntityId\": \"9b045d98-5600-8abd-7b4d-5ee04928b6cd\",\n  \"amount\": 2401,\n  \"customerName\": \"string\",\n  \"customerId\": \"36cc83c5-6793-912b-1cf0-d3dbc51f79be\",\n  \"status\": \"POSTED\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"2006-07-28\",\n  \"valuationDate\": \"2023-08-31\",\n  \"areLinesWithTax\": false,\n  \"lines\": [\n    {\n      \"id\": \"4e35722e-6406-7199-3f5d-d9b9c9c66fe4\",\n      \"companyId\": \"e0070836-8091-662d-9734-b99685716170\",\n      \"customerCreditId\": \"982df7b1-1d3c-19d0-a2ae-a5f7adfd0bdc\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"4362b6f9-a000-e2b2-6ad9-f2d343717ca9\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"d245e340-28b3-6ffb-09e8-81c048cec342\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"492da45a-5e79-2c7d-0d76-d27224c1660e\",\n      \"quantity\": 4005.300178472686,\n      \"createdAt\": \"1988-07-30T13:48:21.308Z\",\n      \"updatedAt\": \"1980-03-13T09:31:38.185Z\",\n      \"accrualTemplateId\": \"7cbe77a0-50ad-c9d0-479e-3bbabffe3e32\",\n      \"accrualStartDate\": \"1948-05-27\",\n      \"accrualEndDate\": \"2000-11-01\",\n      \"accrualDefaultDuration\": 7951\n    },\n    {\n      \"id\": \"8dba49be-e781-32d7-e344-d952cc8e1915\",\n      \"companyId\": \"6d99d06a-de83-b9f9-d5e4-7939cfc5a1e5\",\n      \"customerCreditId\": \"e66a041f-d1de-248f-17f1-852135f8c229\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"19cb72b7-8c17-021c-01cf-cb3be6298093\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"f3da224f-2202-fd65-22af-cd43652facce\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"46bf21a8-144f-8f28-d58d-e5c297316254\",\n      \"quantity\": 1995.2164331556455,\n      \"createdAt\": \"2014-08-01T09:21:45.680Z\",\n      \"updatedAt\": \"1993-11-13T03:08:31.975Z\",\n      \"accrualTemplateId\": \"5f27d883-067f-0e82-f6d5-2d59537797e9\",\n      \"accrualStartDate\": \"2023-04-22\",\n      \"accrualEndDate\": \"1985-04-05\",\n      \"accrualDefaultDuration\": 5216\n    }\n  ],\n  \"createdAt\": \"1953-07-10T11:06:16.052Z\",\n  \"updatedAt\": \"2022-08-19T19:06:48.562Z\",\n  \"updatedBy\": \"ce80edd8-779c-aa74-d0b4-55d8e5212b1e\",\n  \"linkedInvoiceReceivable\": {\n    \"id\": \"9f960d4d-5cc1-2f11-d7bb-a8c9f8d0d373\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2022-05-26\",\n    \"status\": \"APPROVED\",\n    \"amount\": 326,\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdc40619-17ad-4745-b952-c5cd88131e6a",
+          "name": "Create customer credit line",
+          "request": {
+            "name": "Create customer credit line",
+            "description": {
+              "content": "Creates a new line for the given customer credit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"<uuid>\",\n  \"quantity\": \"<number>\",\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"avataxCode\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5af11db8-b4cd-4f16-b4ae-9e175e50eeb3",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"<uuid>\",\n  \"quantity\": \"<number>\",\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"avataxCode\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"98b675e2-3002-fe8f-69ee-1993aeade337\",\n  \"companyId\": \"554ad7b6-1f6c-d76e-f13e-d3f893685dbc\",\n  \"customerCreditId\": \"70c34eb0-651e-f9a0-64eb-22a9c21cc5f6\",\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"string\",\n  \"ledgerTaxId\": \"d5a08b91-8fc8-30cf-b7c1-0116854634da\",\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"ledgerAccountId\": \"798054e5-3adb-3203-e442-66fad67241f6\",\n  \"avataxCode\": \"string\",\n  \"productId\": \"aa2438c2-d1f3-caaf-9427-5ff96f95b61c\",\n  \"quantity\": 8292.907075728672,\n  \"createdAt\": \"2022-10-10T14:29:51.035Z\",\n  \"updatedAt\": \"2003-09-21T22:22:22.452Z\",\n  \"accrualTemplateId\": \"c9e68aad-1e29-eb3c-b9ec-6a1f8beaa9bc\",\n  \"accrualStartDate\": \"1996-11-25\",\n  \"accrualEndDate\": \"1976-08-08\",\n  \"accrualDefaultDuration\": 7269\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e4ebeb1-44d2-457e-a4c2-cbd75dc50412",
+          "name": "Delete customer credit line",
+          "request": {
+            "name": "Delete customer credit line",
+            "description": {
+              "content": "Deletes the given customer credit line",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "lines",
+                ":lineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "lineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51254278-443a-4e95-8ce9-276677750ab9",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "lines",
+                    ":lineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "lineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e018ec74-bd56-4f6a-9241-a852fbd75791",
+          "name": "Update customer credit line",
+          "request": {
+            "name": "Update customer credit line",
+            "description": {
+              "content": "Updates the given customer credit line",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "lines",
+                ":lineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "lineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productId\": \"<uuid>\",\n  \"quantity\": \"<number>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"avataxCode\": \"<string>\",\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b4ba4de8-df54-4a47-a1b4-aa773d1a695b",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "lines",
+                    ":lineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "lineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productId\": \"<uuid>\",\n  \"quantity\": \"<number>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"avataxCode\": \"<string>\",\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"98b675e2-3002-fe8f-69ee-1993aeade337\",\n  \"companyId\": \"554ad7b6-1f6c-d76e-f13e-d3f893685dbc\",\n  \"customerCreditId\": \"70c34eb0-651e-f9a0-64eb-22a9c21cc5f6\",\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"string\",\n  \"ledgerTaxId\": \"d5a08b91-8fc8-30cf-b7c1-0116854634da\",\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"ledgerAccountId\": \"798054e5-3adb-3203-e442-66fad67241f6\",\n  \"avataxCode\": \"string\",\n  \"productId\": \"aa2438c2-d1f3-caaf-9427-5ff96f95b61c\",\n  \"quantity\": 8292.907075728672,\n  \"createdAt\": \"2022-10-10T14:29:51.035Z\",\n  \"updatedAt\": \"2003-09-21T22:22:22.452Z\",\n  \"accrualTemplateId\": \"c9e68aad-1e29-eb3c-b9ec-6a1f8beaa9bc\",\n  \"accrualStartDate\": \"1996-11-25\",\n  \"accrualEndDate\": \"1976-08-08\",\n  \"accrualDefaultDuration\": 7269\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "13bdb929-e5af-4346-a8a5-a26c58d994cc",
+          "name": "Get customer credit",
+          "request": {
+            "name": "Get customer credit",
+            "description": {
+              "content": "Returns a customer credit by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cca4bbe3-1f21-4ee7-9e6a-c6c8f666f6f0",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"6cb1ad5d-87f6-f3ee-1227-ce49dce6229a\",\n  \"companyId\": \"4054fb37-ab9a-deee-86f0-ea75ba50901c\",\n  \"companyEntityId\": \"9b045d98-5600-8abd-7b4d-5ee04928b6cd\",\n  \"amount\": 2401,\n  \"customerName\": \"string\",\n  \"customerId\": \"36cc83c5-6793-912b-1cf0-d3dbc51f79be\",\n  \"status\": \"POSTED\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"2006-07-28\",\n  \"valuationDate\": \"2023-08-31\",\n  \"areLinesWithTax\": false,\n  \"lines\": [\n    {\n      \"id\": \"4e35722e-6406-7199-3f5d-d9b9c9c66fe4\",\n      \"companyId\": \"e0070836-8091-662d-9734-b99685716170\",\n      \"customerCreditId\": \"982df7b1-1d3c-19d0-a2ae-a5f7adfd0bdc\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"4362b6f9-a000-e2b2-6ad9-f2d343717ca9\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"d245e340-28b3-6ffb-09e8-81c048cec342\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"492da45a-5e79-2c7d-0d76-d27224c1660e\",\n      \"quantity\": 4005.300178472686,\n      \"createdAt\": \"1988-07-30T13:48:21.308Z\",\n      \"updatedAt\": \"1980-03-13T09:31:38.185Z\",\n      \"accrualTemplateId\": \"7cbe77a0-50ad-c9d0-479e-3bbabffe3e32\",\n      \"accrualStartDate\": \"1948-05-27\",\n      \"accrualEndDate\": \"2000-11-01\",\n      \"accrualDefaultDuration\": 7951\n    },\n    {\n      \"id\": \"8dba49be-e781-32d7-e344-d952cc8e1915\",\n      \"companyId\": \"6d99d06a-de83-b9f9-d5e4-7939cfc5a1e5\",\n      \"customerCreditId\": \"e66a041f-d1de-248f-17f1-852135f8c229\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"19cb72b7-8c17-021c-01cf-cb3be6298093\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"f3da224f-2202-fd65-22af-cd43652facce\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"46bf21a8-144f-8f28-d58d-e5c297316254\",\n      \"quantity\": 1995.2164331556455,\n      \"createdAt\": \"2014-08-01T09:21:45.680Z\",\n      \"updatedAt\": \"1993-11-13T03:08:31.975Z\",\n      \"accrualTemplateId\": \"5f27d883-067f-0e82-f6d5-2d59537797e9\",\n      \"accrualStartDate\": \"2023-04-22\",\n      \"accrualEndDate\": \"1985-04-05\",\n      \"accrualDefaultDuration\": 5216\n    }\n  ],\n  \"createdAt\": \"1953-07-10T11:06:16.052Z\",\n  \"updatedAt\": \"2022-08-19T19:06:48.562Z\",\n  \"updatedBy\": \"ce80edd8-779c-aa74-d0b4-55d8e5212b1e\",\n  \"linkedInvoiceReceivable\": {\n    \"id\": \"9f960d4d-5cc1-2f11-d7bb-a8c9f8d0d373\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2022-05-26\",\n    \"status\": \"APPROVED\",\n    \"amount\": 326,\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e607942-efb1-4f97-bb35-d47610eb9206",
+          "name": "Update customer credit",
+          "request": {
+            "name": "Update customer credit",
+            "description": {
+              "content": "Updates the given customer credit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"documentDate\": \"<date>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"documentNumber\": \"<string>\",\n  \"documentTemplateId\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f97c5cc7-6ac2-4e3d-94e8-a3de8b023849",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"customerId\": \"<uuid>\",\n  \"documentDate\": \"<date>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"currency\": \"USD\",\n  \"amount\": \"<long>\",\n  \"documentNumber\": \"<string>\",\n  \"documentTemplateId\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"6cb1ad5d-87f6-f3ee-1227-ce49dce6229a\",\n  \"companyId\": \"4054fb37-ab9a-deee-86f0-ea75ba50901c\",\n  \"companyEntityId\": \"9b045d98-5600-8abd-7b4d-5ee04928b6cd\",\n  \"amount\": 2401,\n  \"customerName\": \"string\",\n  \"customerId\": \"36cc83c5-6793-912b-1cf0-d3dbc51f79be\",\n  \"status\": \"POSTED\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"2006-07-28\",\n  \"valuationDate\": \"2023-08-31\",\n  \"areLinesWithTax\": false,\n  \"lines\": [\n    {\n      \"id\": \"4e35722e-6406-7199-3f5d-d9b9c9c66fe4\",\n      \"companyId\": \"e0070836-8091-662d-9734-b99685716170\",\n      \"customerCreditId\": \"982df7b1-1d3c-19d0-a2ae-a5f7adfd0bdc\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"4362b6f9-a000-e2b2-6ad9-f2d343717ca9\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"d245e340-28b3-6ffb-09e8-81c048cec342\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"492da45a-5e79-2c7d-0d76-d27224c1660e\",\n      \"quantity\": 4005.300178472686,\n      \"createdAt\": \"1988-07-30T13:48:21.308Z\",\n      \"updatedAt\": \"1980-03-13T09:31:38.185Z\",\n      \"accrualTemplateId\": \"7cbe77a0-50ad-c9d0-479e-3bbabffe3e32\",\n      \"accrualStartDate\": \"1948-05-27\",\n      \"accrualEndDate\": \"2000-11-01\",\n      \"accrualDefaultDuration\": 7951\n    },\n    {\n      \"id\": \"8dba49be-e781-32d7-e344-d952cc8e1915\",\n      \"companyId\": \"6d99d06a-de83-b9f9-d5e4-7939cfc5a1e5\",\n      \"customerCreditId\": \"e66a041f-d1de-248f-17f1-852135f8c229\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"19cb72b7-8c17-021c-01cf-cb3be6298093\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"f3da224f-2202-fd65-22af-cd43652facce\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"46bf21a8-144f-8f28-d58d-e5c297316254\",\n      \"quantity\": 1995.2164331556455,\n      \"createdAt\": \"2014-08-01T09:21:45.680Z\",\n      \"updatedAt\": \"1993-11-13T03:08:31.975Z\",\n      \"accrualTemplateId\": \"5f27d883-067f-0e82-f6d5-2d59537797e9\",\n      \"accrualStartDate\": \"2023-04-22\",\n      \"accrualEndDate\": \"1985-04-05\",\n      \"accrualDefaultDuration\": 5216\n    }\n  ],\n  \"createdAt\": \"1953-07-10T11:06:16.052Z\",\n  \"updatedAt\": \"2022-08-19T19:06:48.562Z\",\n  \"updatedBy\": \"ce80edd8-779c-aa74-d0b4-55d8e5212b1e\",\n  \"linkedInvoiceReceivable\": {\n    \"id\": \"9f960d4d-5cc1-2f11-d7bb-a8c9f8d0d373\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2022-05-26\",\n    \"status\": \"APPROVED\",\n    \"amount\": 326,\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "60ede03f-b7e3-4748-8aa4-85e67719844e",
+          "name": "Link customer credit to invoice",
+          "request": {
+            "name": "Link customer credit to invoice",
+            "description": {
+              "content": "Links a customer credit to a sales invoice",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "invoice-receivables",
+                ":invoiceReceivableId",
+                "link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoiceReceivableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "893e6722-7171-4f72-801a-a59ff2f242b6",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "invoice-receivables",
+                    ":invoiceReceivableId",
+                    "link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoiceReceivableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": \"85c00ec7-e02f-e39c-4968-7c1277b6000f\",\n  \"customerCredit\": {\n    \"id\": \"363543cc-d2c8-01e6-5aab-57fb80dc05e0\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"1991-04-07\",\n    \"status\": \"CLEARED\",\n    \"amount\": 2358,\n    \"currency\": \"USD\"\n  },\n  \"invoiceReceivable\": {\n    \"id\": \"adddc3b1-9217-a38e-841d-ec7b9b6f4d08\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"1995-04-06\",\n    \"status\": \"DRAFT\",\n    \"amount\": 5558,\n    \"currency\": \"USD\"\n  },\n  \"amount\": 5087,\n  \"linkedAt\": \"1972-03-28T10:28:45.288Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16938d08-e9d7-442f-91c5-7382fd8765bf",
+          "name": "Link customer credit",
+          "request": {
+            "name": "Link customer credit",
+            "description": {
+              "content": "Links a customer credit to a sales invoice",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "invoice-receivables",
+                ":invoiceReceivableId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoiceReceivableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6ed67c3-fb98-4824-80fe-19ea29514228",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "invoice-receivables",
+                    ":invoiceReceivableId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoiceReceivableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": \"85c00ec7-e02f-e39c-4968-7c1277b6000f\",\n  \"customerCredit\": {\n    \"id\": \"363543cc-d2c8-01e6-5aab-57fb80dc05e0\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"1991-04-07\",\n    \"status\": \"CLEARED\",\n    \"amount\": 2358,\n    \"currency\": \"USD\"\n  },\n  \"invoiceReceivable\": {\n    \"id\": \"adddc3b1-9217-a38e-841d-ec7b9b6f4d08\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"1995-04-06\",\n    \"status\": \"DRAFT\",\n    \"amount\": 5558,\n    \"currency\": \"USD\"\n  },\n  \"amount\": 5087,\n  \"linkedAt\": \"1972-03-28T10:28:45.288Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3017204c-a360-41cd-8e1b-9acf9c6a02dd",
+          "name": "Unlink customer credit",
+          "request": {
+            "name": "Unlink customer credit",
+            "description": {
+              "content": "Deprecated: Use POST /{customerCreditId}/invoice-receivables/{invoiceReceivableId}/unlink instead. Unlinks a customer credit from a sales invoice. If the customer credit has already been applied (CLEARED or PARTIALLY_CLEARED status), this will reverse the clearing entries in the ledger.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "invoice-receivables",
+                ":invoiceReceivableId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoiceReceivableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec49818e-0705-44b7-9752-9263e00b096f",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "invoice-receivables",
+                    ":invoiceReceivableId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoiceReceivableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81c68102-13b2-4d18-883a-ce9a70fea8d2",
+          "name": "Post and send customer credit",
+          "request": {
+            "name": "Post and send customer credit",
+            "description": {
+              "content": "Posts the customer credit and sends it via email. Optionally submits to e-invoicing if shouldSubmitEInvoice is set.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "post-and-send-email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"emailInfo\": {\n    \"subject\": \"<string>\",\n    \"replyTo\": \"<string>\",\n    \"recipients\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cc\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customMessage\": \"<string>\"\n  },\n  \"shouldSubmitEInvoice\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7565cab-2d72-43aa-af93-293ce87f962b",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "post-and-send-email"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"emailInfo\": {\n    \"subject\": \"<string>\",\n    \"replyTo\": \"<string>\",\n    \"recipients\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cc\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"customMessage\": \"<string>\"\n  },\n  \"shouldSubmitEInvoice\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"6cb1ad5d-87f6-f3ee-1227-ce49dce6229a\",\n  \"companyId\": \"4054fb37-ab9a-deee-86f0-ea75ba50901c\",\n  \"companyEntityId\": \"9b045d98-5600-8abd-7b4d-5ee04928b6cd\",\n  \"amount\": 2401,\n  \"customerName\": \"string\",\n  \"customerId\": \"36cc83c5-6793-912b-1cf0-d3dbc51f79be\",\n  \"status\": \"POSTED\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"2006-07-28\",\n  \"valuationDate\": \"2023-08-31\",\n  \"areLinesWithTax\": false,\n  \"lines\": [\n    {\n      \"id\": \"4e35722e-6406-7199-3f5d-d9b9c9c66fe4\",\n      \"companyId\": \"e0070836-8091-662d-9734-b99685716170\",\n      \"customerCreditId\": \"982df7b1-1d3c-19d0-a2ae-a5f7adfd0bdc\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"4362b6f9-a000-e2b2-6ad9-f2d343717ca9\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"d245e340-28b3-6ffb-09e8-81c048cec342\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"492da45a-5e79-2c7d-0d76-d27224c1660e\",\n      \"quantity\": 4005.300178472686,\n      \"createdAt\": \"1988-07-30T13:48:21.308Z\",\n      \"updatedAt\": \"1980-03-13T09:31:38.185Z\",\n      \"accrualTemplateId\": \"7cbe77a0-50ad-c9d0-479e-3bbabffe3e32\",\n      \"accrualStartDate\": \"1948-05-27\",\n      \"accrualEndDate\": \"2000-11-01\",\n      \"accrualDefaultDuration\": 7951\n    },\n    {\n      \"id\": \"8dba49be-e781-32d7-e344-d952cc8e1915\",\n      \"companyId\": \"6d99d06a-de83-b9f9-d5e4-7939cfc5a1e5\",\n      \"customerCreditId\": \"e66a041f-d1de-248f-17f1-852135f8c229\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"19cb72b7-8c17-021c-01cf-cb3be6298093\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"f3da224f-2202-fd65-22af-cd43652facce\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"46bf21a8-144f-8f28-d58d-e5c297316254\",\n      \"quantity\": 1995.2164331556455,\n      \"createdAt\": \"2014-08-01T09:21:45.680Z\",\n      \"updatedAt\": \"1993-11-13T03:08:31.975Z\",\n      \"accrualTemplateId\": \"5f27d883-067f-0e82-f6d5-2d59537797e9\",\n      \"accrualStartDate\": \"2023-04-22\",\n      \"accrualEndDate\": \"1985-04-05\",\n      \"accrualDefaultDuration\": 5216\n    }\n  ],\n  \"createdAt\": \"1953-07-10T11:06:16.052Z\",\n  \"updatedAt\": \"2022-08-19T19:06:48.562Z\",\n  \"updatedBy\": \"ce80edd8-779c-aa74-d0b4-55d8e5212b1e\",\n  \"linkedInvoiceReceivable\": {\n    \"id\": \"9f960d4d-5cc1-2f11-d7bb-a8c9f8d0d373\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2022-05-26\",\n    \"status\": \"APPROVED\",\n    \"amount\": 326,\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fb13048-8f24-4b99-bcfb-f924d49fe7ba",
+          "name": "Post customer credit",
+          "request": {
+            "name": "Post customer credit",
+            "description": {
+              "content": "Posts the given customer credit and applies to invoice if linked",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "post"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shouldSubmitEInvoice\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f15164dc-1735-4d0f-bac6-33d3a8e6a498",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "post"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shouldSubmitEInvoice\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"6cb1ad5d-87f6-f3ee-1227-ce49dce6229a\",\n  \"companyId\": \"4054fb37-ab9a-deee-86f0-ea75ba50901c\",\n  \"companyEntityId\": \"9b045d98-5600-8abd-7b4d-5ee04928b6cd\",\n  \"amount\": 2401,\n  \"customerName\": \"string\",\n  \"customerId\": \"36cc83c5-6793-912b-1cf0-d3dbc51f79be\",\n  \"status\": \"POSTED\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"2006-07-28\",\n  \"valuationDate\": \"2023-08-31\",\n  \"areLinesWithTax\": false,\n  \"lines\": [\n    {\n      \"id\": \"4e35722e-6406-7199-3f5d-d9b9c9c66fe4\",\n      \"companyId\": \"e0070836-8091-662d-9734-b99685716170\",\n      \"customerCreditId\": \"982df7b1-1d3c-19d0-a2ae-a5f7adfd0bdc\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"4362b6f9-a000-e2b2-6ad9-f2d343717ca9\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"d245e340-28b3-6ffb-09e8-81c048cec342\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"492da45a-5e79-2c7d-0d76-d27224c1660e\",\n      \"quantity\": 4005.300178472686,\n      \"createdAt\": \"1988-07-30T13:48:21.308Z\",\n      \"updatedAt\": \"1980-03-13T09:31:38.185Z\",\n      \"accrualTemplateId\": \"7cbe77a0-50ad-c9d0-479e-3bbabffe3e32\",\n      \"accrualStartDate\": \"1948-05-27\",\n      \"accrualEndDate\": \"2000-11-01\",\n      \"accrualDefaultDuration\": 7951\n    },\n    {\n      \"id\": \"8dba49be-e781-32d7-e344-d952cc8e1915\",\n      \"companyId\": \"6d99d06a-de83-b9f9-d5e4-7939cfc5a1e5\",\n      \"customerCreditId\": \"e66a041f-d1de-248f-17f1-852135f8c229\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"19cb72b7-8c17-021c-01cf-cb3be6298093\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"f3da224f-2202-fd65-22af-cd43652facce\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"46bf21a8-144f-8f28-d58d-e5c297316254\",\n      \"quantity\": 1995.2164331556455,\n      \"createdAt\": \"2014-08-01T09:21:45.680Z\",\n      \"updatedAt\": \"1993-11-13T03:08:31.975Z\",\n      \"accrualTemplateId\": \"5f27d883-067f-0e82-f6d5-2d59537797e9\",\n      \"accrualStartDate\": \"2023-04-22\",\n      \"accrualEndDate\": \"1985-04-05\",\n      \"accrualDefaultDuration\": 5216\n    }\n  ],\n  \"createdAt\": \"1953-07-10T11:06:16.052Z\",\n  \"updatedAt\": \"2022-08-19T19:06:48.562Z\",\n  \"updatedBy\": \"ce80edd8-779c-aa74-d0b4-55d8e5212b1e\",\n  \"linkedInvoiceReceivable\": {\n    \"id\": \"9f960d4d-5cc1-2f11-d7bb-a8c9f8d0d373\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2022-05-26\",\n    \"status\": \"APPROVED\",\n    \"amount\": 326,\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d706ef1-911c-4180-85d1-b3b07b70f1f7",
+          "name": "Submit e-invoice for customer credit",
+          "request": {
+            "name": "Submit e-invoice for customer credit",
+            "description": {
+              "content": "Submits an e-invoice for the given customer credit. The customer credit must be posted.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "submit-einvoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d4b0b92-1539-4dd4-b213-3f6d39a5c676",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "submit-einvoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7df5073e-bda2-41a9-82cb-551dd26fb2b2",
+          "name": "Unarchive customer credit",
+          "request": {
+            "name": "Unarchive customer credit",
+            "description": {
+              "content": "Unarchives the given customer credit and reverts it to draft",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "unarchive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "acd01d99-ae56-4f44-83a4-41c54274d58b",
+              "name": "Customer credit unarchived successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"6cb1ad5d-87f6-f3ee-1227-ce49dce6229a\",\n  \"companyId\": \"4054fb37-ab9a-deee-86f0-ea75ba50901c\",\n  \"companyEntityId\": \"9b045d98-5600-8abd-7b4d-5ee04928b6cd\",\n  \"amount\": 2401,\n  \"customerName\": \"string\",\n  \"customerId\": \"36cc83c5-6793-912b-1cf0-d3dbc51f79be\",\n  \"status\": \"POSTED\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"2006-07-28\",\n  \"valuationDate\": \"2023-08-31\",\n  \"areLinesWithTax\": false,\n  \"lines\": [\n    {\n      \"id\": \"4e35722e-6406-7199-3f5d-d9b9c9c66fe4\",\n      \"companyId\": \"e0070836-8091-662d-9734-b99685716170\",\n      \"customerCreditId\": \"982df7b1-1d3c-19d0-a2ae-a5f7adfd0bdc\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"4362b6f9-a000-e2b2-6ad9-f2d343717ca9\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"d245e340-28b3-6ffb-09e8-81c048cec342\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"492da45a-5e79-2c7d-0d76-d27224c1660e\",\n      \"quantity\": 4005.300178472686,\n      \"createdAt\": \"1988-07-30T13:48:21.308Z\",\n      \"updatedAt\": \"1980-03-13T09:31:38.185Z\",\n      \"accrualTemplateId\": \"7cbe77a0-50ad-c9d0-479e-3bbabffe3e32\",\n      \"accrualStartDate\": \"1948-05-27\",\n      \"accrualEndDate\": \"2000-11-01\",\n      \"accrualDefaultDuration\": 7951\n    },\n    {\n      \"id\": \"8dba49be-e781-32d7-e344-d952cc8e1915\",\n      \"companyId\": \"6d99d06a-de83-b9f9-d5e4-7939cfc5a1e5\",\n      \"customerCreditId\": \"e66a041f-d1de-248f-17f1-852135f8c229\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"19cb72b7-8c17-021c-01cf-cb3be6298093\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"f3da224f-2202-fd65-22af-cd43652facce\",\n      \"avataxCode\": \"string\",\n      \"productId\": \"46bf21a8-144f-8f28-d58d-e5c297316254\",\n      \"quantity\": 1995.2164331556455,\n      \"createdAt\": \"2014-08-01T09:21:45.680Z\",\n      \"updatedAt\": \"1993-11-13T03:08:31.975Z\",\n      \"accrualTemplateId\": \"5f27d883-067f-0e82-f6d5-2d59537797e9\",\n      \"accrualStartDate\": \"2023-04-22\",\n      \"accrualEndDate\": \"1985-04-05\",\n      \"accrualDefaultDuration\": 5216\n    }\n  ],\n  \"createdAt\": \"1953-07-10T11:06:16.052Z\",\n  \"updatedAt\": \"2022-08-19T19:06:48.562Z\",\n  \"updatedBy\": \"ce80edd8-779c-aa74-d0b4-55d8e5212b1e\",\n  \"linkedInvoiceReceivable\": {\n    \"id\": \"9f960d4d-5cc1-2f11-d7bb-a8c9f8d0d373\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2022-05-26\",\n    \"status\": \"APPROVED\",\n    \"amount\": 326,\n    \"currency\": \"USD\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbfbe97f-f9a7-491c-b35d-58bcacb17ed4",
+              "name": "Bad request. Customer credit is not archived.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "unarchive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"type\": \"NOT_FOUND\",\n  \"errors\": [\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"context\": {\n        \"key_0\": {}\n      }\n    },\n    {\n      \"type\": \"string\",\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"context\": {\n        \"key_0\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b64fec50-aaa7-4681-8eb9-78ee9eecd0c6",
+          "name": "Unlink customer credit from invoice",
+          "request": {
+            "name": "Unlink customer credit from invoice",
+            "description": {
+              "content": "Unlinks a customer credit from a sales invoice. If the customer credit has already been applied (CLEARED or PARTIALLY_CLEARED status), this will reverse the clearing entries in the ledger.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer-credits",
+                ":customerCreditId",
+                "invoice-receivables",
+                ":invoiceReceivableId",
+                "unlink"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerCreditId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoiceReceivableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cba65564-10c9-435b-8411-12549279251f",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer-credits",
+                    ":customerCreditId",
+                    "invoice-receivables",
+                    ":invoiceReceivableId",
+                    "unlink"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerCreditId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoiceReceivableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d665520b-4cd6-4317-8471-9331e4017dd1",
+    "name": "Light Authorization v1 - Customer Credits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

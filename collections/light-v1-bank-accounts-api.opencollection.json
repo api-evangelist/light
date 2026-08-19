@@ -1,0 +1,189 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Bank Accounts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Bank Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get bank accounts of the company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/bank-accounts"
+          },
+          "docs": "Returns all bank accounts of the company"
+        },
+        {
+          "info": {
+            "name": "Create bank account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/bank-accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a bank account along with its linked ledger (chart-of-accounts) entry in a single transaction. The ledger account code must be a unique 6-digit integer within the company's chart of accounts."
+        },
+        {
+          "info": {
+            "name": "List bank transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/bank-accounts/:bankAccountId/bank-transactions",
+            "params": [
+              {
+                "name": "bankAccountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of bank transactions for the specified bank account, including the balance"
+        },
+        {
+          "info": {
+            "name": "Create bank transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/bank-accounts/:bankAccountId/bank-transactions",
+            "params": [
+              {
+                "name": "bankAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates bank transactions in batch. Maximum 500 transactions per request. Duplicate transactions (same transactionId for the same bank account) are silently skipped."
+        },
+        {
+          "info": {
+            "name": "Get bank account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/bank-accounts/:bankAccountId/balance",
+            "params": [
+              {
+                "name": "bankAccountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "asOf",
+                "value": "",
+                "type": "query",
+                "description": "Date the balance is computed for (ISO-8601, e.g. `2026-05-07`). Defaults to today."
+              }
+            ]
+          },
+          "docs": "Returns the bank statement balance and ledger balance for a bank account as of the given date. If `asOf` is omitted, today's balance is returned. The bank balance is derived from the opening balance plus all bank transactions on or before `asOf`; the ledger balance is the sum of ledger transaction lines posted on or before `asOf` for the linked ledger account."
+        },
+        {
+          "info": {
+            "name": "Upsert bank account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/bank-accounts/:bankAccountId/balance",
+            "params": [
+              {
+                "name": "bankAccountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates the opening balance for a bank account. Only one balance per bank account is allowed — subsequent calls update the existing balance."
+        },
+        {
+          "info": {
+            "name": "Get bank transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/bank-accounts/:bankAccountId/bank-transactions/:bankTransactionId",
+            "params": [
+              {
+                "name": "bankAccountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "bankTransactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a specific bank transaction by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

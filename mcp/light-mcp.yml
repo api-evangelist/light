@@ -3,11 +3,9 @@ method: searched
 status: published
 source: https://docs.light.inc/mcp
 verified: '2026-07-19'
-verification: >-
-  Live MCP initialize handshake against https://docs.light.inc/mcp returned
-  protocolVersion 2024-11-05 and serverInfo.name "Light API documentation";
-  tools/list enumerated the tools below. GET returns 405 (POST-only endpoint).
-
+verification: Live MCP initialize handshake against https://docs.light.inc/mcp returned protocolVersion
+  2024-11-05 and serverInfo.name "Light API documentation"; tools/list enumerated the tools below. GET
+  returns 405 (POST-only endpoint).
 server:
   name: Light API documentation
   version: 1.0.0
@@ -19,43 +17,40 @@ server:
     tools: true
     resources: true
   scope: read-only documentation search and retrieval
-  instructions: >-
-    This Model Context Protocol server provides search and retrieval tools for the Light API
-    documentation site. Apart from the submit_feedback tool, the server is read-only and
-    scoped to Light API documentation; it does not otherwise perform actions, mutate state,
-    or access anything beyond the published site content and these resources.
-
+  instructions: This Model Context Protocol server provides search and retrieval tools for the Light API
+    documentation site. Apart from the submit_feedback tool, the server is read-only and scoped to Light
+    API documentation; it does not otherwise perform actions, mutate state, or access anything beyond
+    the published site content and these resources.
 tools:
 - name: search_light_api_documentation
   title: Search documentation
-  description: >-
-    Search across the Light API documentation knowledge base to find relevant information,
+  description: Search across the Light API documentation knowledge base to find relevant information,
     code examples, API references and guides.
   read_only: true
 - name: query_docs_filesystem_light_api_documentation
   title: Query docs filesystem
-  description: >-
-    Run a read-only shell-like query (rg, grep, find, tree, ls, cat, head, tail, jq, ...)
-    against a virtualized in-memory filesystem containing only the Light API documentation
-    pages and OpenAPI specs. Stateless per call.
+  description: Run a read-only shell-like query (rg, grep, find, tree, ls, cat, head, tail, jq, ...) against
+    a virtualized in-memory filesystem containing only the Light API documentation pages and OpenAPI specs.
+    Stateless per call.
   read_only: true
 - name: submit_feedback
   description: Report a documentation page that is incorrect, outdated, confusing or incomplete.
   read_only: false
-
 related_product:
   name: Claude MCP for Light
   url: https://light.inc/products/claude-mcp
   status: marketed
   endpoint_published: false
-  description: >-
-    Light separately markets a "Claude MCP" product that connects Claude to the live Light
-    ledger — querying accounts, journal entries, invoices, vendors and card transactions, and
-    creating journal entries, approving tasks, updating bills and triggering workflows, all
-    governed by the same roles, approval workflows and audit trail as the app. Light does not
-    publish a connection URL or setup instructions for this server on the public site, so no
-    endpoint is recorded here.
-
-notes: >-
-  The verified, publicly reachable MCP server is the documentation server. The ledger-facing
-  Claude MCP product is real and advertised but its endpoint is not publicly documented.
+  description: Light separately markets a "Claude MCP" product that connects Claude to the live Light
+    ledger — querying accounts, journal entries, invoices, vendors and card transactions, and creating
+    journal entries, approving tasks, updating bills and triggering workflows, all governed by the same
+    roles, approval workflows and audit trail as the app. Light does not publish a connection URL or setup
+    instructions for this server on the public site, so no endpoint is recorded here.
+notes: The verified, publicly reachable MCP server is the documentation server. The ledger-facing Claude
+  MCP product is real and advertised but its endpoint is not publicly documented.
+deployment:
+  mode: remote
+  verified: searched
+  tools: 3
+  checked: '2026-08-12'
+  source: catalog MCP census

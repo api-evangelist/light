@@ -1,0 +1,367 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Credit Notes API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Credit Notes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Archive credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/archive",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archives the credit note. If the credit note has been posted, it will be reversed in the ledger. A credit note with active links to invoice payables cannot be archived — unlink first."
+        },
+        {
+          "info": {
+            "name": "List credit notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/credit-notes",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of credit notes"
+        },
+        {
+          "info": {
+            "name": "Create credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/credit-notes",
+            "headers": [
+              {
+                "name": "X-Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new credit note in draft status. The credit note can be created with or without line items. When `documentNumber` is provided, it is used for idempotency — retrying a create with the same `documentNumber` returns the existing credit note instead of creating a duplicate. The `areLinesWithTax` field controls whether line amounts include tax (true = gross, tax included) or exclude tax (false = net, tax added on top). A `businessPartnerId` (vendor) is required if the credit note will be li"
+        },
+        {
+          "info": {
+            "name": "Create credit note line",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/lines",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new line item on a credit note in draft status."
+        },
+        {
+          "info": {
+            "name": "Create credit note from invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/credit-notes/create-from-invoice-payable/:invoicePayableId",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a credit note from an existing invoice payable"
+        },
+        {
+          "info": {
+            "name": "Update credit note line",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/lines/:lineId",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a line item on a credit note in draft status. Fields sent as `null` clear the value; omitted fields remain unchanged."
+        },
+        {
+          "info": {
+            "name": "Delete credit note line",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/lines/:lineId",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a line item from a credit note in draft status."
+        },
+        {
+          "info": {
+            "name": "Get credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a credit note by ID"
+        },
+        {
+          "info": {
+            "name": "Update credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a credit note in draft status. Fields sent as `null` clear the value; omitted fields remain unchanged."
+        },
+        {
+          "info": {
+            "name": "Get credit note document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/document",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the attached PDF document for a credit note"
+        },
+        {
+          "info": {
+            "name": "Get linked invoice payables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/invoice-payables",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns all invoice payables linked to the credit note"
+        },
+        {
+          "info": {
+            "name": "Link credit note to invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/invoice-payables/:invoicePayableId",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Links a credit note to an invoice payable for clearing (offsetting balances). Because credit notes cannot be applied in the ledger until the invoice payable is posted, this creates a 'link' record that will be used during posting to automatically clear the credit note balance against the invoice payable balance. Requirements: credit note must be in POSTED status, both documents must belong to the same company entity, same vendor (businessPartnerId), same currency, and clearing amount cannot exce"
+        },
+        {
+          "info": {
+            "name": "Update clearing amount",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/invoice-payables/:invoicePayableId",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the clearing amount of a linked invoice payable"
+        },
+        {
+          "info": {
+            "name": "Unlink credit note from invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/invoice-payables/:invoicePayableId",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes the link between a credit note and an invoice payable"
+        },
+        {
+          "info": {
+            "name": "Post credit note",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/credit-notes/:creditNoteId/post",
+            "params": [
+              {
+                "name": "creditNoteId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Posts the credit note to the ledger. The credit note must be in draft status with at least one line item. A valid `companyEntityId`, `businessPartnerId`, and `currency` are required. After posting, the credit note can be linked to invoice payables for balance clearing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

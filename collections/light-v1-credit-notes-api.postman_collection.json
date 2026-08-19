@@ -1,0 +1,1773 @@
+{
+  "item": [
+    {
+      "id": "771530c4-c57d-47b0-ae51-60c17fe18232",
+      "name": "v1 - Credit Notes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec0ad8a4-0b27-4f59-8fa4-56beda0a3392",
+          "name": "Archive credit note",
+          "request": {
+            "name": "Archive credit note",
+            "description": {
+              "content": "Archives the credit note. If the credit note has been posted, it will be reversed in the ledger. A credit note with active links to invoice payables cannot be archived — unlink first.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8d92df1-9a75-4bda-86c5-9176f049a82e",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"008c9b09-1c65-e394-0496-ecd2df6ea5d9\",\n  \"companyId\": \"e31e9261-19ca-f862-e23b-a1c27d722228\",\n  \"companyEntityId\": \"c34fc6b5-a0e5-b28d-b4d2-ac8534ba1fc4\",\n  \"amount\": 1532,\n  \"businessPartnerName\": \"string\",\n  \"businessPartnerId\": \"12488eb2-ef46-8115-7dc6-fcbf378c6964\",\n  \"status\": \"DRAFT\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"postingDate\": \"1985-11-24\",\n  \"documentDate\": \"1999-08-25\",\n  \"valuationDate\": \"2013-01-15\",\n  \"areLinesWithTax\": false,\n  \"lines\": [\n    {\n      \"id\": \"bcd60c52-44da-71cc-65ad-4abbb21b42e5\",\n      \"companyId\": \"0d0d6d2c-2bfd-efa0-91ba-83219fe92db7\",\n      \"creditNoteId\": \"3ff630bc-742a-0cac-21d0-4d921d5b519d\",\n      \"grossTransactionAmount\": {\n        \"amount\": 3021,\n        \"dcSign\": \"D\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": 7923,\n        \"dcSign\": \"D\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"dc340967-210f-781d-358c-4e2693fd70a0\",\n      \"taxTransactionAmount\": {\n        \"amount\": 3477,\n        \"dcSign\": \"D\"\n      },\n      \"ledgerAccountId\": \"eec02d27-faa5-7319-d916-4749cbd54100\",\n      \"costCenterId\": \"27cc2467-13e5-8af6-5f6b-104cf29c5db7\",\n      \"createdAt\": \"1957-05-08T06:42:57.376Z\",\n      \"updatedAt\": \"1988-05-13T12:32:02.854Z\",\n      \"accrualTemplateId\": \"68e109e5-0706-be70-b8be-cd33549f30e9\",\n      \"accrualStartDate\": \"1964-11-29\",\n      \"accrualEndDate\": \"1990-08-07\",\n      \"accrualDefaultDuration\": 4808\n    },\n    {\n      \"id\": \"e51b1ef8-ddaf-58b7-13dd-e8993ac5e931\",\n      \"companyId\": \"85c6f070-5622-b9df-cdb5-0db3d289b7e5\",\n      \"creditNoteId\": \"a2bd926f-842d-9d1d-af83-c32c08dea0e8\",\n      \"grossTransactionAmount\": {\n        \"amount\": 2887,\n        \"dcSign\": \"C\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": 6577,\n        \"dcSign\": \"C\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"0d6592d4-113f-6519-64ea-4601bd15dd27\",\n      \"taxTransactionAmount\": {\n        \"amount\": 3687,\n        \"dcSign\": \"C\"\n      },\n      \"ledgerAccountId\": \"400d69fa-573b-1181-cabe-465d74840257\",\n      \"costCenterId\": \"5a787297-4372-8dae-51b6-eedff16dcc5d\",\n      \"createdAt\": \"2022-02-18T07:15:50.425Z\",\n      \"updatedAt\": \"2018-03-02T18:13:51.150Z\",\n      \"accrualTemplateId\": \"18e25c27-551d-aaec-6192-200a8fafb048\",\n      \"accrualStartDate\": \"2013-08-14\",\n      \"accrualEndDate\": \"1960-12-16\",\n      \"accrualDefaultDuration\": 6594\n    }\n  ],\n  \"createdAt\": \"1990-01-19T00:24:43.093Z\",\n  \"updatedAt\": \"1982-12-28T20:01:23.132Z\",\n  \"updatedBy\": \"c0ac461e-1ae0-b471-94ed-8ccc6da29656\",\n  \"localCurrencyFxRate\": 1090.6828373357903,\n  \"groupCurrencyFxRate\": 4210.399458392595,\n  \"senderEmail\": \"string\",\n  \"documentName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bd149fa-22ed-4743-a775-af71369a3c64",
+          "name": "List credit notes",
+          "request": {
+            "name": "List credit notes",
+            "description": {
+              "content": "Returns a paginated list of credit notes",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae27779f-556d-42e4-916d-1225db2d603e",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"54df7718-a5e3-9878-5850-0f7dae5b06f9\",\n      \"companyId\": \"911397ab-8140-2cba-40d9-78f4ca69d9fc\",\n      \"companyEntityId\": \"5327150d-cfdc-ba9e-6f03-b233a29b5307\",\n      \"amount\": 8412,\n      \"businessPartnerName\": \"string\",\n      \"businessPartnerId\": \"4a28988c-1101-7f41-4ca7-169221dff7b4\",\n      \"status\": \"PARTIALLY_CLEARED\",\n      \"description\": \"string\",\n      \"currency\": \"USD\",\n      \"postingDate\": \"2021-02-26\",\n      \"documentDate\": \"1990-02-09\",\n      \"valuationDate\": \"1952-01-11\",\n      \"areLinesWithTax\": true,\n      \"lines\": [\n        {\n          \"id\": \"053ca090-d3ff-0fb4-2ba1-2306ef85082a\",\n          \"companyId\": \"273be005-8fad-1425-8b21-3c256c7db337\",\n          \"creditNoteId\": \"bb150b64-7fb0-62db-7ce1-f8d72594d7cd\",\n          \"grossTransactionAmount\": {\n            \"amount\": 2573,\n            \"dcSign\": \"C\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 8298,\n            \"dcSign\": \"C\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"a7cd225d-20cc-b8de-9685-3a394a84cf64\",\n          \"taxTransactionAmount\": {\n            \"amount\": 4073,\n            \"dcSign\": \"C\"\n          },\n          \"ledgerAccountId\": \"03ab7b9f-d9b9-4fcb-3cbb-95b8918eee50\",\n          \"costCenterId\": \"03ba2cfe-4bf2-ff39-57c5-6a38b7845295\",\n          \"createdAt\": \"2024-12-04T18:31:35.481Z\",\n          \"updatedAt\": \"2012-05-12T20:57:43.285Z\",\n          \"accrualTemplateId\": \"a71432e9-e913-1748-8d81-096e08e6ddc7\",\n          \"accrualStartDate\": \"1947-05-16\",\n          \"accrualEndDate\": \"1990-07-18\",\n          \"accrualDefaultDuration\": 8364\n        },\n        {\n          \"id\": \"cf8454ce-29ae-1c1d-60b4-c3fc80762e2d\",\n          \"companyId\": \"53b857ed-93b4-aa48-d514-fd059643d72f\",\n          \"creditNoteId\": \"a7c6b4f2-9362-6523-0972-1e980217ae78\",\n          \"grossTransactionAmount\": {\n            \"amount\": 8963,\n            \"dcSign\": \"D\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 6789,\n            \"dcSign\": \"C\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"3967d511-a0a3-8702-50ae-b35fe1b325d5\",\n          \"taxTransactionAmount\": {\n            \"amount\": 6237,\n            \"dcSign\": \"C\"\n          },\n          \"ledgerAccountId\": \"80ed7655-13dc-fb49-9364-28a2a6e31a3d\",\n          \"costCenterId\": \"0944f7d5-67ff-3e9f-1b16-66b824bad349\",\n          \"createdAt\": \"2020-12-28T18:34:55.082Z\",\n          \"updatedAt\": \"1996-08-30T17:19:39.206Z\",\n          \"accrualTemplateId\": \"e052a908-8805-1a68-7b0a-9535d1b1b8cf\",\n          \"accrualStartDate\": \"2015-11-24\",\n          \"accrualEndDate\": \"2016-04-30\",\n          \"accrualDefaultDuration\": 920\n        }\n      ],\n      \"createdAt\": \"2007-09-20T17:28:24.270Z\",\n      \"updatedAt\": \"1946-09-04T07:27:11.958Z\",\n      \"updatedBy\": \"1fcca58b-f84b-9c1b-8ee3-93373494816a\",\n      \"localCurrencyFxRate\": 1165.2180587360251,\n      \"groupCurrencyFxRate\": 3364.5817706299586,\n      \"senderEmail\": \"string\",\n      \"documentName\": \"string\"\n    },\n    {\n      \"id\": \"a7427627-0544-8c16-3f85-39c167683d7b\",\n      \"companyId\": \"5c0d2f2f-51b3-c7d1-0f14-cc61ca19d070\",\n      \"companyEntityId\": \"392d2b83-e7f0-38fe-ff75-7c23d2a5e182\",\n      \"amount\": 9397,\n      \"businessPartnerName\": \"string\",\n      \"businessPartnerId\": \"66461ec5-f795-ff4a-9a1e-f80b80dda591\",\n      \"status\": \"POSTED\",\n      \"description\": \"string\",\n      \"currency\": \"USD\",\n      \"postingDate\": \"2021-09-11\",\n      \"documentDate\": \"1991-09-18\",\n      \"valuationDate\": \"2026-07-30\",\n      \"areLinesWithTax\": true,\n      \"lines\": [\n        {\n          \"id\": \"4cd051ff-754d-5234-1035-dad0e43742e5\",\n          \"companyId\": \"d6a3471a-76b4-f719-fcf3-da46243d7d27\",\n          \"creditNoteId\": \"337ad01d-f39b-60b2-fd4e-dc2495067d1c\",\n          \"grossTransactionAmount\": {\n            \"amount\": 1575,\n            \"dcSign\": \"C\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 7261,\n            \"dcSign\": \"D\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"b1f37211-523d-bb66-eaf1-29be4f8e172e\",\n          \"taxTransactionAmount\": {\n            \"amount\": 6415,\n            \"dcSign\": \"C\"\n          },\n          \"ledgerAccountId\": \"1be86978-1049-d900-a5c2-597b1cadd3cd\",\n          \"costCenterId\": \"c1144900-0b13-19a9-0298-d8eca2034981\",\n          \"createdAt\": \"1961-01-24T18:34:40.360Z\",\n          \"updatedAt\": \"1989-05-11T09:28:36.146Z\",\n          \"accrualTemplateId\": \"60f76f76-6832-3191-f0af-e52e64d4ee10\",\n          \"accrualStartDate\": \"1962-06-12\",\n          \"accrualEndDate\": \"1999-09-23\",\n          \"accrualDefaultDuration\": 9343\n        },\n        {\n          \"id\": \"5aeb0480-97cf-857a-e8fb-d25627c16a2c\",\n          \"companyId\": \"96e6e670-194b-b180-e6b7-688904ffd562\",\n          \"creditNoteId\": \"93bf7e99-44af-76c1-0405-1ee248eae2eb\",\n          \"grossTransactionAmount\": {\n            \"amount\": 6400,\n            \"dcSign\": \"C\"\n          },\n          \"netTransactionAmount\": {\n            \"amount\": 9446,\n            \"dcSign\": \"D\"\n          },\n          \"description\": \"string\",\n          \"ledgerTaxId\": \"62885c4d-07ef-4f45-cd87-8d51ebb8b2c7\",\n          \"taxTransactionAmount\": {\n            \"amount\": 8719,\n            \"dcSign\": \"D\"\n          },\n          \"ledgerAccountId\": \"2bd74931-69dc-b913-cc3d-c72857475a95\",\n          \"costCenterId\": \"994cd74d-5665-fa4e-1253-244212033b9e\",\n          \"createdAt\": \"2020-03-01T07:48:28.432Z\",\n          \"updatedAt\": \"1997-05-02T04:45:47.458Z\",\n          \"accrualTemplateId\": \"7a80f294-2288-d144-5aff-f5bb4c90c493\",\n          \"accrualStartDate\": \"2007-09-28\",\n          \"accrualEndDate\": \"1961-09-05\",\n          \"accrualDefaultDuration\": 4050\n        }\n      ],\n      \"createdAt\": \"1955-11-11T17:19:34.582Z\",\n      \"updatedAt\": \"1994-04-24T11:54:32.241Z\",\n      \"updatedBy\": \"98b31866-047c-07a0-2605-5a32a81b7be1\",\n      \"localCurrencyFxRate\": 2192.1042224326216,\n      \"groupCurrencyFxRate\": 2480.7371198934957,\n      \"senderEmail\": \"string\",\n      \"documentName\": \"string\"\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 6137,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3a103fd-6aa3-444c-84c7-400321da468e",
+          "name": "Create credit note",
+          "request": {
+            "name": "Create credit note",
+            "description": {
+              "content": "Creates a new credit note in draft status. The credit note can be created with or without line items. When `documentNumber` is provided, it is used for idempotency — retrying a create with the same `documentNumber` returns the existing credit note instead of creating a duplicate. The `areLinesWithTax` field controls whether line amounts include tax (true = gross, tax included) or exclude tax (false = net, tax added on top). A `businessPartnerId` (vendor) is required if the credit note will be linked to an invoice payable later. The posting date is automatically set to the `documentDate`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "key": "X-Idempotency-Key",
+                "value": "<string>",
+                "description": ""
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"currency\": \"<string>\",\n  \"documentDate\": \"<date>\",\n  \"businessPartnerId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"documentNumber\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"lines\": [\n    {\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    },\n    {\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    }\n  ],\n  \"localCurrencyFxRateOverride\": \"<number>\",\n  \"groupCurrencyFxRateOverride\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a3083b0-8b01-469a-b831-dd004ec38022",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "X-Idempotency-Key",
+                    "value": "<string>",
+                    "description": ""
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"currency\": \"USD\",\n  \"documentDate\": \"<date>\",\n  \"businessPartnerId\": \"<uuid>\",\n  \"description\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"documentNumber\": \"<string>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"lines\": [\n    {\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    },\n    {\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"<string>\",\n      \"ledgerTaxId\": \"<uuid>\",\n      \"ledgerAccountId\": \"<uuid>\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"groupId\": \"<uuid>\",\n          \"valueIds\": [\n            \"<uuid>\",\n            \"<uuid>\"\n          ],\n          \"inlineValues\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"accrualTemplateId\": \"<uuid>\",\n      \"accrualStartDate\": \"<date>\",\n      \"accrualEndDate\": \"<date>\"\n    }\n  ],\n  \"localCurrencyFxRateOverride\": \"<number>\",\n  \"groupCurrencyFxRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"4fef8ebc-18b5-a5ac-c40e-6a5ef01550ae\",\n  \"companyId\": \"440217bc-9c57-b9cf-aef2-30160eddd793\",\n  \"companyEntityId\": \"4d1e8823-0feb-7000-e324-64c54a8af52f\",\n  \"amount\": 8911,\n  \"businessPartnerName\": \"string\",\n  \"businessPartnerId\": \"42b70b75-80ab-3bc3-4dfa-6338c813424a\",\n  \"status\": \"APPROVAL_PENDING\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"postingDate\": \"1973-05-26\",\n  \"documentDate\": \"2013-06-03\",\n  \"valuationDate\": \"1981-08-02\",\n  \"areLinesWithTax\": true,\n  \"lines\": [\n    {\n      \"id\": \"b44829b3-f679-5d54-8eb5-98dd723f6b6d\",\n      \"companyId\": \"2af24cd3-3698-f8d8-3bee-d81029c5a1df\",\n      \"creditNoteId\": \"8168b61e-bf4d-c596-b1af-91289411d3f3\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"99222c07-9c07-7e88-793a-370442a87dd0\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"baabb6fb-8c53-1861-ff62-377a9fff6f33\",\n      \"costCenterId\": \"78f0683d-1d09-d2c6-bd59-1a748f224cb1\",\n      \"createdAt\": \"2013-03-25T23:30:29.054Z\",\n      \"updatedAt\": \"1965-10-08T11:38:50.485Z\",\n      \"accrualTemplateId\": \"5f7331c7-ab00-3ce8-b50f-96a91160e6f1\",\n      \"accrualStartDate\": \"1965-07-05\",\n      \"accrualEndDate\": \"2017-11-02\",\n      \"accrualDefaultDuration\": 8685\n    },\n    {\n      \"id\": \"c600adbf-f029-4560-9764-5e6dfba2ae8e\",\n      \"companyId\": \"e51ff581-9b8a-2c93-a676-ccdcf5f3c58e\",\n      \"creditNoteId\": \"9c6c2152-6d92-89c6-e938-3c848a64f389\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"1010b001-9249-cf8d-889e-420834aa1412\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"7211d359-d4ce-3af1-1e5c-29507a6a5f78\",\n      \"costCenterId\": \"8d2832db-57e2-42b6-b97e-01e79b5a139a\",\n      \"createdAt\": \"2004-09-20T17:55:29.771Z\",\n      \"updatedAt\": \"1990-05-26T18:47:58.398Z\",\n      \"accrualTemplateId\": \"76a13a8b-09db-4fe2-3d58-e95f08ceb0b2\",\n      \"accrualStartDate\": \"2014-08-28\",\n      \"accrualEndDate\": \"2011-04-22\",\n      \"accrualDefaultDuration\": 7015\n    }\n  ],\n  \"createdAt\": \"2016-04-07T01:53:34.864Z\",\n  \"updatedAt\": \"1998-05-18T21:10:28.939Z\",\n  \"updatedBy\": \"f8f6b329-a71d-c0e3-c3e4-8a09f4999398\",\n  \"localCurrencyFxRate\": 1924.9867148678145,\n  \"groupCurrencyFxRate\": 2502.634907780318,\n  \"senderEmail\": \"string\",\n  \"documentName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b65fa6b5-ec17-4757-b8d3-7eb613e0d749",
+          "name": "Create credit note line",
+          "request": {
+            "name": "Create credit note line",
+            "description": {
+              "content": "Creates a new line item on a credit note in draft status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "lines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7ab55963-96ea-46f8-b85d-f9629d5db941",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "lines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"17b9fcab-cc20-2e69-46ad-a37dd7287a96\",\n  \"companyId\": \"79cf4fcd-0030-569e-ef5d-77529ffedce7\",\n  \"creditNoteId\": \"18f606c0-a7f9-e04d-29c3-1b34a17aec32\",\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"string\",\n  \"ledgerTaxId\": \"bc889faf-1f97-fda5-f6cc-0c91f23c33c9\",\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"ledgerAccountId\": \"f9d83424-c9e8-6b5c-6332-62347995af55\",\n  \"costCenterId\": \"7a6c64d6-519c-78e0-e99a-6a1a5177a0a3\",\n  \"createdAt\": \"1964-09-24T11:43:16.790Z\",\n  \"updatedAt\": \"2012-07-02T07:35:11.041Z\",\n  \"accrualTemplateId\": \"e5acc023-8cd7-86a0-4c88-ba2674c89901\",\n  \"accrualStartDate\": \"1994-12-29\",\n  \"accrualEndDate\": \"1949-08-30\",\n  \"accrualDefaultDuration\": 8537\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcd64958-6fcf-4042-81c1-1a9ca4093906",
+          "name": "Create credit note from invoice payable",
+          "request": {
+            "name": "Create credit note from invoice payable",
+            "description": {
+              "content": "Creates a credit note from an existing invoice payable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                "create-from-invoice-payable",
+                ":invoicePayableId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoicePayableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8438801-3c34-4fcd-8246-54737a478d13",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    "create-from-invoice-payable",
+                    ":invoicePayableId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoicePayableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"4fef8ebc-18b5-a5ac-c40e-6a5ef01550ae\",\n  \"companyId\": \"440217bc-9c57-b9cf-aef2-30160eddd793\",\n  \"companyEntityId\": \"4d1e8823-0feb-7000-e324-64c54a8af52f\",\n  \"amount\": 8911,\n  \"businessPartnerName\": \"string\",\n  \"businessPartnerId\": \"42b70b75-80ab-3bc3-4dfa-6338c813424a\",\n  \"status\": \"APPROVAL_PENDING\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"postingDate\": \"1973-05-26\",\n  \"documentDate\": \"2013-06-03\",\n  \"valuationDate\": \"1981-08-02\",\n  \"areLinesWithTax\": true,\n  \"lines\": [\n    {\n      \"id\": \"b44829b3-f679-5d54-8eb5-98dd723f6b6d\",\n      \"companyId\": \"2af24cd3-3698-f8d8-3bee-d81029c5a1df\",\n      \"creditNoteId\": \"8168b61e-bf4d-c596-b1af-91289411d3f3\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"99222c07-9c07-7e88-793a-370442a87dd0\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"baabb6fb-8c53-1861-ff62-377a9fff6f33\",\n      \"costCenterId\": \"78f0683d-1d09-d2c6-bd59-1a748f224cb1\",\n      \"createdAt\": \"2013-03-25T23:30:29.054Z\",\n      \"updatedAt\": \"1965-10-08T11:38:50.485Z\",\n      \"accrualTemplateId\": \"5f7331c7-ab00-3ce8-b50f-96a91160e6f1\",\n      \"accrualStartDate\": \"1965-07-05\",\n      \"accrualEndDate\": \"2017-11-02\",\n      \"accrualDefaultDuration\": 8685\n    },\n    {\n      \"id\": \"c600adbf-f029-4560-9764-5e6dfba2ae8e\",\n      \"companyId\": \"e51ff581-9b8a-2c93-a676-ccdcf5f3c58e\",\n      \"creditNoteId\": \"9c6c2152-6d92-89c6-e938-3c848a64f389\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"1010b001-9249-cf8d-889e-420834aa1412\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"7211d359-d4ce-3af1-1e5c-29507a6a5f78\",\n      \"costCenterId\": \"8d2832db-57e2-42b6-b97e-01e79b5a139a\",\n      \"createdAt\": \"2004-09-20T17:55:29.771Z\",\n      \"updatedAt\": \"1990-05-26T18:47:58.398Z\",\n      \"accrualTemplateId\": \"76a13a8b-09db-4fe2-3d58-e95f08ceb0b2\",\n      \"accrualStartDate\": \"2014-08-28\",\n      \"accrualEndDate\": \"2011-04-22\",\n      \"accrualDefaultDuration\": 7015\n    }\n  ],\n  \"createdAt\": \"2016-04-07T01:53:34.864Z\",\n  \"updatedAt\": \"1998-05-18T21:10:28.939Z\",\n  \"updatedBy\": \"f8f6b329-a71d-c0e3-c3e4-8a09f4999398\",\n  \"localCurrencyFxRate\": 1924.9867148678145,\n  \"groupCurrencyFxRate\": 2502.634907780318,\n  \"senderEmail\": \"string\",\n  \"documentName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f71945f-34c8-4849-b50c-dd9a17653737",
+          "name": "Delete credit note line",
+          "request": {
+            "name": "Delete credit note line",
+            "description": {
+              "content": "Deletes a line item from a credit note in draft status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "lines",
+                ":lineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "lineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7798cdab-d6d1-4cd4-b22c-ea07a5f5823e",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "lines",
+                    ":lineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "lineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8ae53b8-bacb-4d0b-81f6-61a203afd737",
+          "name": "Update credit note line",
+          "request": {
+            "name": "Update credit note line",
+            "description": {
+              "content": "Updates a line item on a credit note in draft status. Fields sent as `null` clear the value; omitted fields remain unchanged.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "lines",
+                ":lineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "lineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef940ab2-9e92-48d6-82a2-e0f68b08ee7e",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "lines",
+                    ":lineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "lineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"<string>\",\n  \"ledgerTaxId\": \"<uuid>\",\n  \"ledgerAccountId\": \"<uuid>\",\n  \"accrualTemplateId\": \"<uuid>\",\n  \"accrualStartDate\": \"<date>\",\n  \"accrualEndDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"17b9fcab-cc20-2e69-46ad-a37dd7287a96\",\n  \"companyId\": \"79cf4fcd-0030-569e-ef5d-77529ffedce7\",\n  \"creditNoteId\": \"18f606c0-a7f9-e04d-29c3-1b34a17aec32\",\n  \"grossTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"netTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"description\": \"string\",\n  \"ledgerTaxId\": \"bc889faf-1f97-fda5-f6cc-0c91f23c33c9\",\n  \"taxTransactionAmount\": {\n    \"amount\": \"<long>\",\n    \"dcSign\": \"<string>\"\n  },\n  \"ledgerAccountId\": \"f9d83424-c9e8-6b5c-6332-62347995af55\",\n  \"costCenterId\": \"7a6c64d6-519c-78e0-e99a-6a1a5177a0a3\",\n  \"createdAt\": \"1964-09-24T11:43:16.790Z\",\n  \"updatedAt\": \"2012-07-02T07:35:11.041Z\",\n  \"accrualTemplateId\": \"e5acc023-8cd7-86a0-4c88-ba2674c89901\",\n  \"accrualStartDate\": \"1994-12-29\",\n  \"accrualEndDate\": \"1949-08-30\",\n  \"accrualDefaultDuration\": 8537\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0e4be4cc-8fbc-4be7-b554-dadcc4691c37",
+          "name": "Get credit note",
+          "request": {
+            "name": "Get credit note",
+            "description": {
+              "content": "Returns a credit note by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7f8ea5fb-5301-467d-88a5-706ddfd44873",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"4fef8ebc-18b5-a5ac-c40e-6a5ef01550ae\",\n  \"companyId\": \"440217bc-9c57-b9cf-aef2-30160eddd793\",\n  \"companyEntityId\": \"4d1e8823-0feb-7000-e324-64c54a8af52f\",\n  \"amount\": 8911,\n  \"businessPartnerName\": \"string\",\n  \"businessPartnerId\": \"42b70b75-80ab-3bc3-4dfa-6338c813424a\",\n  \"status\": \"APPROVAL_PENDING\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"postingDate\": \"1973-05-26\",\n  \"documentDate\": \"2013-06-03\",\n  \"valuationDate\": \"1981-08-02\",\n  \"areLinesWithTax\": true,\n  \"lines\": [\n    {\n      \"id\": \"b44829b3-f679-5d54-8eb5-98dd723f6b6d\",\n      \"companyId\": \"2af24cd3-3698-f8d8-3bee-d81029c5a1df\",\n      \"creditNoteId\": \"8168b61e-bf4d-c596-b1af-91289411d3f3\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"99222c07-9c07-7e88-793a-370442a87dd0\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"baabb6fb-8c53-1861-ff62-377a9fff6f33\",\n      \"costCenterId\": \"78f0683d-1d09-d2c6-bd59-1a748f224cb1\",\n      \"createdAt\": \"2013-03-25T23:30:29.054Z\",\n      \"updatedAt\": \"1965-10-08T11:38:50.485Z\",\n      \"accrualTemplateId\": \"5f7331c7-ab00-3ce8-b50f-96a91160e6f1\",\n      \"accrualStartDate\": \"1965-07-05\",\n      \"accrualEndDate\": \"2017-11-02\",\n      \"accrualDefaultDuration\": 8685\n    },\n    {\n      \"id\": \"c600adbf-f029-4560-9764-5e6dfba2ae8e\",\n      \"companyId\": \"e51ff581-9b8a-2c93-a676-ccdcf5f3c58e\",\n      \"creditNoteId\": \"9c6c2152-6d92-89c6-e938-3c848a64f389\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"1010b001-9249-cf8d-889e-420834aa1412\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"7211d359-d4ce-3af1-1e5c-29507a6a5f78\",\n      \"costCenterId\": \"8d2832db-57e2-42b6-b97e-01e79b5a139a\",\n      \"createdAt\": \"2004-09-20T17:55:29.771Z\",\n      \"updatedAt\": \"1990-05-26T18:47:58.398Z\",\n      \"accrualTemplateId\": \"76a13a8b-09db-4fe2-3d58-e95f08ceb0b2\",\n      \"accrualStartDate\": \"2014-08-28\",\n      \"accrualEndDate\": \"2011-04-22\",\n      \"accrualDefaultDuration\": 7015\n    }\n  ],\n  \"createdAt\": \"2016-04-07T01:53:34.864Z\",\n  \"updatedAt\": \"1998-05-18T21:10:28.939Z\",\n  \"updatedBy\": \"f8f6b329-a71d-c0e3-c3e4-8a09f4999398\",\n  \"localCurrencyFxRate\": 1924.9867148678145,\n  \"groupCurrencyFxRate\": 2502.634907780318,\n  \"senderEmail\": \"string\",\n  \"documentName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "541452f3-2650-4fcc-84e6-9535bb0a1307",
+          "name": "Update credit note",
+          "request": {
+            "name": "Update credit note",
+            "description": {
+              "content": "Updates a credit note in draft status. Fields sent as `null` clear the value; omitted fields remain unchanged.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"businessPartnerId\": \"<uuid>\",\n  \"documentDate\": \"<date>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"amount\": \"<long>\",\n  \"documentNumber\": \"<string>\",\n  \"localCurrencyFxRateOverride\": \"<number>\",\n  \"groupCurrencyFxRateOverride\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d21b875-5632-483b-9e6d-68286e54a201",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyEntityId\": \"<uuid>\",\n  \"businessPartnerId\": \"<uuid>\",\n  \"documentDate\": \"<date>\",\n  \"areLinesWithTax\": \"<boolean>\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\",\n  \"currency\": \"USD\",\n  \"amount\": \"<long>\",\n  \"documentNumber\": \"<string>\",\n  \"localCurrencyFxRateOverride\": \"<number>\",\n  \"groupCurrencyFxRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"4fef8ebc-18b5-a5ac-c40e-6a5ef01550ae\",\n  \"companyId\": \"440217bc-9c57-b9cf-aef2-30160eddd793\",\n  \"companyEntityId\": \"4d1e8823-0feb-7000-e324-64c54a8af52f\",\n  \"amount\": 8911,\n  \"businessPartnerName\": \"string\",\n  \"businessPartnerId\": \"42b70b75-80ab-3bc3-4dfa-6338c813424a\",\n  \"status\": \"APPROVAL_PENDING\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"postingDate\": \"1973-05-26\",\n  \"documentDate\": \"2013-06-03\",\n  \"valuationDate\": \"1981-08-02\",\n  \"areLinesWithTax\": true,\n  \"lines\": [\n    {\n      \"id\": \"b44829b3-f679-5d54-8eb5-98dd723f6b6d\",\n      \"companyId\": \"2af24cd3-3698-f8d8-3bee-d81029c5a1df\",\n      \"creditNoteId\": \"8168b61e-bf4d-c596-b1af-91289411d3f3\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"99222c07-9c07-7e88-793a-370442a87dd0\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"baabb6fb-8c53-1861-ff62-377a9fff6f33\",\n      \"costCenterId\": \"78f0683d-1d09-d2c6-bd59-1a748f224cb1\",\n      \"createdAt\": \"2013-03-25T23:30:29.054Z\",\n      \"updatedAt\": \"1965-10-08T11:38:50.485Z\",\n      \"accrualTemplateId\": \"5f7331c7-ab00-3ce8-b50f-96a91160e6f1\",\n      \"accrualStartDate\": \"1965-07-05\",\n      \"accrualEndDate\": \"2017-11-02\",\n      \"accrualDefaultDuration\": 8685\n    },\n    {\n      \"id\": \"c600adbf-f029-4560-9764-5e6dfba2ae8e\",\n      \"companyId\": \"e51ff581-9b8a-2c93-a676-ccdcf5f3c58e\",\n      \"creditNoteId\": \"9c6c2152-6d92-89c6-e938-3c848a64f389\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"1010b001-9249-cf8d-889e-420834aa1412\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"7211d359-d4ce-3af1-1e5c-29507a6a5f78\",\n      \"costCenterId\": \"8d2832db-57e2-42b6-b97e-01e79b5a139a\",\n      \"createdAt\": \"2004-09-20T17:55:29.771Z\",\n      \"updatedAt\": \"1990-05-26T18:47:58.398Z\",\n      \"accrualTemplateId\": \"76a13a8b-09db-4fe2-3d58-e95f08ceb0b2\",\n      \"accrualStartDate\": \"2014-08-28\",\n      \"accrualEndDate\": \"2011-04-22\",\n      \"accrualDefaultDuration\": 7015\n    }\n  ],\n  \"createdAt\": \"2016-04-07T01:53:34.864Z\",\n  \"updatedAt\": \"1998-05-18T21:10:28.939Z\",\n  \"updatedBy\": \"f8f6b329-a71d-c0e3-c3e4-8a09f4999398\",\n  \"localCurrencyFxRate\": 1924.9867148678145,\n  \"groupCurrencyFxRate\": 2502.634907780318,\n  \"senderEmail\": \"string\",\n  \"documentName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afbad7e0-73a0-4cbc-bd88-f7f42f72ea05",
+          "name": "Get credit note document",
+          "request": {
+            "name": "Get credit note document",
+            "description": {
+              "content": "Returns the attached PDF document for a credit note",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "document"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c785c46-3d48-4a59-943f-cc0ef11ff966",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "document"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ab209cc-8229-4dbf-9e0e-5040e4921fa4",
+          "name": "Get linked invoice payables",
+          "request": {
+            "name": "Get linked invoice payables",
+            "description": {
+              "content": "Returns all invoice payables linked to the credit note",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "invoice-payables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93463ac0-e6e2-46fd-85a0-53dad6d82dae",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "invoice-payables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "[\n  {\n    \"companyId\": \"fb1f1d07-3e3c-4f4b-1b02-ce0fbc76c0c7\",\n    \"creditNote\": {\n      \"id\": \"375f532a-0baa-82c5-ec7e-1fc338740eb0\",\n      \"documentNumber\": \"string\",\n      \"documentDate\": \"1998-12-27\",\n      \"status\": \"PARTIALLY_CLEARED\",\n      \"amount\": 1187,\n      \"currency\": \"USD\"\n    },\n    \"invoicePayable\": {\n      \"id\": \"614a2baf-9bf9-c961-3719-a009de71d425\",\n      \"documentNumber\": \"string\",\n      \"documentDate\": \"2024-01-01\",\n      \"status\": \"APPROVED\",\n      \"amount\": 8872,\n      \"currency\": \"USD\"\n    },\n    \"amount\": 6792,\n    \"currency\": \"USD\",\n    \"createdAt\": \"2003-02-20T07:12:31.296Z\",\n    \"updatedAt\": \"1958-11-08T22:57:08.324Z\"\n  },\n  {\n    \"companyId\": \"28e36f1a-4236-793a-fab2-65c1bac52b2f\",\n    \"creditNote\": {\n      \"id\": \"ee57d70b-8204-257f-80ef-fb1691d484b5\",\n      \"documentNumber\": \"string\",\n      \"documentDate\": \"1974-02-24\",\n      \"status\": \"APPROVAL_PENDING\",\n      \"amount\": 7978,\n      \"currency\": \"USD\"\n    },\n    \"invoicePayable\": {\n      \"id\": \"7386dff0-9760-4d82-edde-2ef4355b025c\",\n      \"documentNumber\": \"string\",\n      \"documentDate\": \"1951-04-30\",\n      \"status\": \"APPROVED\",\n      \"amount\": 5088,\n      \"currency\": \"USD\"\n    },\n    \"amount\": 2476,\n    \"currency\": \"USD\",\n    \"createdAt\": \"1976-01-09T08:14:24.478Z\",\n    \"updatedAt\": \"2005-11-27T05:55:23.488Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5fae0c0-26dd-4558-a619-33293626aa69",
+          "name": "Link credit note to invoice payable",
+          "request": {
+            "name": "Link credit note to invoice payable",
+            "description": {
+              "content": "Links a credit note to an invoice payable for clearing (offsetting balances). Because credit notes cannot be applied in the ledger until the invoice payable is posted, this creates a 'link' record that will be used during posting to automatically clear the credit note balance against the invoice payable balance. Requirements: credit note must be in POSTED status, both documents must belong to the same company entity, same vendor (businessPartnerId), same currency, and clearing amount cannot exceed available balance on either document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "invoice-payables",
+                ":invoicePayableId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoicePayableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8cbe037-b8ee-4423-916b-9304078021e5",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "invoice-payables",
+                    ":invoicePayableId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoicePayableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": \"a55ab168-4feb-bb63-8ca9-a70d2b899b0f\",\n  \"creditNote\": {\n    \"id\": \"a6ac319e-9d37-c2cd-d493-a969aa8f8659\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2018-04-19\",\n    \"status\": \"PARTIALLY_CLEARED\",\n    \"amount\": 235,\n    \"currency\": \"USD\"\n  },\n  \"invoicePayable\": {\n    \"id\": \"8973a221-6888-b596-fd7f-7c061d789ac0\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"1964-12-15\",\n    \"status\": \"APPROVAL_PENDING\",\n    \"amount\": 8306,\n    \"currency\": \"USD\"\n  },\n  \"amount\": 7849,\n  \"currency\": \"USD\",\n  \"createdAt\": \"2013-10-19T09:59:13.597Z\",\n  \"updatedAt\": \"2016-01-10T10:05:48.236Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc63c80c-af9b-4f15-85e4-92d67f859434",
+          "name": "Unlink credit note from invoice payable",
+          "request": {
+            "name": "Unlink credit note from invoice payable",
+            "description": {
+              "content": "Removes the link between a credit note and an invoice payable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "invoice-payables",
+                ":invoicePayableId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoicePayableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d217c01-797e-4094-a4b2-6c722a58bf67",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "invoice-payables",
+                    ":invoicePayableId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoicePayableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86f45405-066f-4445-9fa9-e229a24c5495",
+          "name": "Update clearing amount",
+          "request": {
+            "name": "Update clearing amount",
+            "description": {
+              "content": "Updates the clearing amount of a linked invoice payable",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "invoice-payables",
+                ":invoicePayableId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "invoicePayableId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7932c886-862b-4eb4-99e1-c693a417e0ac",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "invoice-payables",
+                    ":invoicePayableId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "invoicePayableId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"companyId\": \"a55ab168-4feb-bb63-8ca9-a70d2b899b0f\",\n  \"creditNote\": {\n    \"id\": \"a6ac319e-9d37-c2cd-d493-a969aa8f8659\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"2018-04-19\",\n    \"status\": \"PARTIALLY_CLEARED\",\n    \"amount\": 235,\n    \"currency\": \"USD\"\n  },\n  \"invoicePayable\": {\n    \"id\": \"8973a221-6888-b596-fd7f-7c061d789ac0\",\n    \"documentNumber\": \"string\",\n    \"documentDate\": \"1964-12-15\",\n    \"status\": \"APPROVAL_PENDING\",\n    \"amount\": 8306,\n    \"currency\": \"USD\"\n  },\n  \"amount\": 7849,\n  \"currency\": \"USD\",\n  \"createdAt\": \"2013-10-19T09:59:13.597Z\",\n  \"updatedAt\": \"2016-01-10T10:05:48.236Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4608671-cb65-4dfa-bc7b-f4fabd0f1deb",
+          "name": "Post credit note",
+          "request": {
+            "name": "Post credit note",
+            "description": {
+              "content": "Posts the credit note to the ledger. The credit note must be in draft status with at least one line item. A valid `companyEntityId`, `businessPartnerId`, and `currency` are required. After posting, the credit note can be linked to invoice payables for balance clearing.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "credit-notes",
+                ":creditNoteId",
+                "post"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "creditNoteId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e181b2e3-2aad-41d3-9ede-0f5c2594f8c5",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "credit-notes",
+                    ":creditNoteId",
+                    "post"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "creditNoteId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"4fef8ebc-18b5-a5ac-c40e-6a5ef01550ae\",\n  \"companyId\": \"440217bc-9c57-b9cf-aef2-30160eddd793\",\n  \"companyEntityId\": \"4d1e8823-0feb-7000-e324-64c54a8af52f\",\n  \"amount\": 8911,\n  \"businessPartnerName\": \"string\",\n  \"businessPartnerId\": \"42b70b75-80ab-3bc3-4dfa-6338c813424a\",\n  \"status\": \"APPROVAL_PENDING\",\n  \"description\": \"string\",\n  \"currency\": \"USD\",\n  \"postingDate\": \"1973-05-26\",\n  \"documentDate\": \"2013-06-03\",\n  \"valuationDate\": \"1981-08-02\",\n  \"areLinesWithTax\": true,\n  \"lines\": [\n    {\n      \"id\": \"b44829b3-f679-5d54-8eb5-98dd723f6b6d\",\n      \"companyId\": \"2af24cd3-3698-f8d8-3bee-d81029c5a1df\",\n      \"creditNoteId\": \"8168b61e-bf4d-c596-b1af-91289411d3f3\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"99222c07-9c07-7e88-793a-370442a87dd0\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"baabb6fb-8c53-1861-ff62-377a9fff6f33\",\n      \"costCenterId\": \"78f0683d-1d09-d2c6-bd59-1a748f224cb1\",\n      \"createdAt\": \"2013-03-25T23:30:29.054Z\",\n      \"updatedAt\": \"1965-10-08T11:38:50.485Z\",\n      \"accrualTemplateId\": \"5f7331c7-ab00-3ce8-b50f-96a91160e6f1\",\n      \"accrualStartDate\": \"1965-07-05\",\n      \"accrualEndDate\": \"2017-11-02\",\n      \"accrualDefaultDuration\": 8685\n    },\n    {\n      \"id\": \"c600adbf-f029-4560-9764-5e6dfba2ae8e\",\n      \"companyId\": \"e51ff581-9b8a-2c93-a676-ccdcf5f3c58e\",\n      \"creditNoteId\": \"9c6c2152-6d92-89c6-e938-3c848a64f389\",\n      \"grossTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"netTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"description\": \"string\",\n      \"ledgerTaxId\": \"1010b001-9249-cf8d-889e-420834aa1412\",\n      \"taxTransactionAmount\": {\n        \"amount\": \"<long>\",\n        \"dcSign\": \"<string>\"\n      },\n      \"ledgerAccountId\": \"7211d359-d4ce-3af1-1e5c-29507a6a5f78\",\n      \"costCenterId\": \"8d2832db-57e2-42b6-b97e-01e79b5a139a\",\n      \"createdAt\": \"2004-09-20T17:55:29.771Z\",\n      \"updatedAt\": \"1990-05-26T18:47:58.398Z\",\n      \"accrualTemplateId\": \"76a13a8b-09db-4fe2-3d58-e95f08ceb0b2\",\n      \"accrualStartDate\": \"2014-08-28\",\n      \"accrualEndDate\": \"2011-04-22\",\n      \"accrualDefaultDuration\": 7015\n    }\n  ],\n  \"createdAt\": \"2016-04-07T01:53:34.864Z\",\n  \"updatedAt\": \"1998-05-18T21:10:28.939Z\",\n  \"updatedBy\": \"f8f6b329-a71d-c0e3-c3e4-8a09f4999398\",\n  \"localCurrencyFxRate\": 1924.9867148678145,\n  \"groupCurrencyFxRate\": 2502.634907780318,\n  \"senderEmail\": \"string\",\n  \"documentName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f49120f8-9ed4-4317-81ac-f73c3b310d89",
+    "name": "Light Authorization v1 - Credit Notes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

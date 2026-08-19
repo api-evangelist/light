@@ -1,0 +1,188 @@
+{
+  "item": [
+    {
+      "id": "5f05c35c-1a96-4980-be70-f626e9c9f015",
+      "name": "v1 - Entities",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bff23799-aac9-4bb6-a4ca-9181d78fe3b9",
+          "name": "List company entities",
+          "request": {
+            "name": "List company entities",
+            "description": {
+              "content": "Returns a paginated list of company entities",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "entities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeCardCustomer",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c77db76e-fad4-4a0f-a40a-3d685134bd82",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "entities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeCardCustomer",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"bb381a19-c245-d13b-d244-b7708898e699\",\n      \"companyId\": \"7c11c59b-9c33-b5b4-8460-cd1a14e399cd\",\n      \"code\": \"string\",\n      \"parentCompanyEntityId\": \"8531b7e1-5b39-ec2b-cbfe-88e3799a7fa2\",\n      \"localCurrency\": \"USD\",\n      \"displayName\": \"string\",\n      \"vatNumber\": \"string\",\n      \"name\": \"string\",\n      \"address\": {\n        \"country\": \"SN\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"status\": \"INACTIVE\",\n      \"seedInvoiceNumber\": 2276,\n      \"createdAt\": \"2020-09-02T02:10:53.430Z\",\n      \"updatedAt\": \"1955-02-18T16:15:42.011Z\"\n    },\n    {\n      \"id\": \"ddde2e19-cddf-31cf-407f-74b3777e71c4\",\n      \"companyId\": \"746d303b-d3b5-00e2-d756-20cc0222ff7b\",\n      \"code\": \"string\",\n      \"parentCompanyEntityId\": \"1fae56ae-dff0-3535-6345-98cf8ddc28f0\",\n      \"localCurrency\": \"USD\",\n      \"displayName\": \"string\",\n      \"vatNumber\": \"string\",\n      \"name\": \"string\",\n      \"address\": {\n        \"country\": \"FJ\",\n        \"city\": \"string\",\n        \"state\": \"string\",\n        \"zipcode\": \"string\",\n        \"street\": \"string\",\n        \"street2\": \"string\"\n      },\n      \"status\": \"HIDDEN\",\n      \"seedInvoiceNumber\": 6533,\n      \"createdAt\": \"2019-11-19T12:43:51.464Z\",\n      \"updatedAt\": \"1992-12-27T14:54:21.926Z\"\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 1263,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7b3ef66b-ab58-4e96-bf7a-15d17f397202",
+    "name": "Light Authorization v1 - Entities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

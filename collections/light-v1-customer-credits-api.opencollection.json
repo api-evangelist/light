@@ -1,0 +1,404 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Customer Credits API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Customer Credits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Archive customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/archive",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Archives the given customer credit"
+        },
+        {
+          "info": {
+            "name": "List customer credits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/customer-credits",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Related objects to include on every customer credit. Supported value can be `INVOICE_RECEIVABLE`"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of customer credits"
+        },
+        {
+          "info": {
+            "name": "Create customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits",
+            "headers": [
+              {
+                "name": "X-Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new customer credit"
+        },
+        {
+          "info": {
+            "name": "Create customer credit line",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/lines",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new line for the given customer credit"
+        },
+        {
+          "info": {
+            "name": "Update customer credit line",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/lines/:lineId",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the given customer credit line"
+        },
+        {
+          "info": {
+            "name": "Delete customer credit line",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/lines/:lineId",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the given customer credit line"
+        },
+        {
+          "info": {
+            "name": "Get customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a customer credit by ID"
+        },
+        {
+          "info": {
+            "name": "Update customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId",
+            "headers": [
+              {
+                "name": "X-Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the given customer credit"
+        },
+        {
+          "info": {
+            "name": "Link customer credit to invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/invoice-receivables/:invoiceReceivableId/link",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Links a customer credit to a sales invoice"
+        },
+        {
+          "info": {
+            "name": "Link customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/invoice-receivables/:invoiceReceivableId",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Links a customer credit to a sales invoice"
+        },
+        {
+          "info": {
+            "name": "Unlink customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/invoice-receivables/:invoiceReceivableId",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deprecated: Use POST /{customerCreditId}/invoice-receivables/{invoiceReceivableId}/unlink instead. Unlinks a customer credit from a sales invoice. If the customer credit has already been applied (CLEARED or PARTIALLY_CLEARED status), this will reverse the clearing entries in the ledger."
+        },
+        {
+          "info": {
+            "name": "Post and send customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/post-and-send-email",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts the customer credit and sends it via email. Optionally submits to e-invoicing if shouldSubmitEInvoice is set."
+        },
+        {
+          "info": {
+            "name": "Post customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/post",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Posts the given customer credit and applies to invoice if linked"
+        },
+        {
+          "info": {
+            "name": "Submit e-invoice for customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/submit-einvoice",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Submits an e-invoice for the given customer credit. The customer credit must be posted."
+        },
+        {
+          "info": {
+            "name": "Unarchive customer credit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/unarchive",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unarchives the given customer credit and reverts it to draft"
+        },
+        {
+          "info": {
+            "name": "Unlink customer credit from invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/customer-credits/:customerCreditId/invoice-receivables/:invoiceReceivableId/unlink",
+            "params": [
+              {
+                "name": "customerCreditId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "invoiceReceivableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Unlinks a customer credit from a sales invoice. If the customer credit has already been applied (CLEARED or PARTIALLY_CLEARED status), this will reverse the clearing entries in the ledger."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

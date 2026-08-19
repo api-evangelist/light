@@ -1,0 +1,869 @@
+{
+  "item": [
+    {
+      "id": "eb5dd660-f7c1-4272-a539-2c1ba75f6f6a",
+      "name": "v1 - Users",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f8bff037-f871-4334-919c-a25b06525e36",
+          "name": "List users",
+          "request": {
+            "name": "List users",
+            "description": {
+              "content": "Returns a paginated list of users",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeRoles",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeGroups",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeManagers",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68c11b68-67fa-4fea-8af9-b61cd165cc08",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "includeRoles",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeGroups",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "includeManagers",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"ef1f7e66-c548-458b-1458-9b14ce9432cd\",\n      \"companyId\": \"18e43c55-60a2-2668-7345-28ca1dc98f89\",\n      \"companyEntityId\": \"d8fdce39-20b0-e0d6-0d4c-8db46521d529\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"phoneNumber\": {\n        \"countryCode\": \"PG\",\n        \"localNumber\": \"string\"\n      },\n      \"avatarUrl\": \"string\",\n      \"country\": \"DO\",\n      \"city\": \"string\",\n      \"zipcode\": \"string\",\n      \"address\": \"string\",\n      \"status\": \"DEACTIVATED\",\n      \"createdAt\": \"1964-08-18T08:58:54.731Z\",\n      \"updatedAt\": \"1959-02-03T16:41:04.897Z\",\n      \"roles\": [\n        \"PURCHASE_REQUESTER\",\n        \"REPORT_VIEWER\"\n      ],\n      \"groups\": [\n        {\n          \"id\": \"5241bc31-f4c9-115f-8e9d-8bff8fd4a290\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"companyId\": \"7fcf806e-c9ec-2a56-46c9-bfe6bc4124a4\",\n          \"memberCount\": 3106,\n          \"createdAt\": \"1994-01-14T11:01:11.148Z\",\n          \"updatedAt\": \"1966-07-24T13:31:40.756Z\"\n        },\n        {\n          \"id\": \"7d50e83f-1af9-19f9-6b2a-52410c964585\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"companyId\": \"54627239-fa8b-b30f-3d01-3b6cb11a2d0e\",\n          \"memberCount\": 6848,\n          \"createdAt\": \"1986-06-29T14:41:56.025Z\",\n          \"updatedAt\": \"2009-08-24T06:02:14.179Z\"\n        }\n      ],\n      \"managerIds\": [\n        \"5344c401-68af-ba60-debf-750ec644cbb5\",\n        \"4d157cea-8b8f-cd55-d9d9-287da43aec2a\"\n      ]\n    },\n    {\n      \"id\": \"1b6ebfe8-2a69-f27a-720b-f3eb0f920a86\",\n      \"companyId\": \"91e1184c-f21d-9553-f83b-be38b145a5b1\",\n      \"companyEntityId\": \"af3149b4-68ed-e036-5ca2-eb81d7eb7d7f\",\n      \"email\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"phoneNumber\": {\n        \"countryCode\": \"PE\",\n        \"localNumber\": \"string\"\n      },\n      \"avatarUrl\": \"string\",\n      \"country\": \"MQ\",\n      \"city\": \"string\",\n      \"zipcode\": \"string\",\n      \"address\": \"string\",\n      \"status\": \"DEACTIVATED\",\n      \"createdAt\": \"2005-04-23T06:05:46.375Z\",\n      \"updatedAt\": \"1978-09-13T18:03:33.352Z\",\n      \"roles\": [\n        \"CONTROLLER\",\n        \"AP_PREPARATION\"\n      ],\n      \"groups\": [\n        {\n          \"id\": \"dc445856-19f2-331d-e624-54769f65ea09\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"companyId\": \"d8d759ab-1c4f-9316-d046-50ab40566c8a\",\n          \"memberCount\": 3343,\n          \"createdAt\": \"2025-09-26T18:15:43.618Z\",\n          \"updatedAt\": \"2010-03-13T02:34:07.174Z\"\n        },\n        {\n          \"id\": \"ad62900c-3aa8-9df8-35e5-c54f0d0788fa\",\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"companyId\": \"2de62256-9a7d-1daa-02ad-7ef624400f9c\",\n          \"memberCount\": 577,\n          \"createdAt\": \"2015-08-16T16:13:08.434Z\",\n          \"updatedAt\": \"2015-11-30T16:03:49.953Z\"\n        }\n      ],\n      \"managerIds\": [\n        \"464362d8-71f9-6a88-04bb-63775f5c7f86\",\n        \"85615bcd-0455-1a0c-bf1b-8ccbdaf4135f\"\n      ]\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 7032,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f24d9f3-0ca2-4a18-a117-aff187d7833d",
+          "name": "Create user",
+          "request": {
+            "name": "Create user",
+            "description": {
+              "content": "Creates a new user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyEntityId\": \"<uuid>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"avatarUrl\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"sendWelcomeEmail\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "76506258-53e1-477a-b41d-db41aab78143",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyEntityId\": \"<uuid>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"avatarUrl\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\",\n  \"roles\": [\n    \"<string>\"\n  ],\n  \"sendWelcomeEmail\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"58daada3-b798-1524-25b8-9e0d9a311ef9\",\n  \"companyId\": \"c535759b-b21b-bd4b-4c9c-6a969deef1af\",\n  \"companyEntityId\": \"aef4c8a4-ee05-9cb5-7453-fb86c4e171d5\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"avatarUrl\": \"string\",\n  \"country\": \"NF\",\n  \"city\": \"string\",\n  \"zipcode\": \"string\",\n  \"address\": \"string\",\n  \"status\": \"DEACTIVATED\",\n  \"createdAt\": \"2020-09-14T18:32:43.983Z\",\n  \"updatedAt\": \"2005-07-20T19:18:17.176Z\",\n  \"roles\": [\n    \"REPORT_VIEWER\",\n    \"PURCHASE_REQUESTER\"\n  ],\n  \"groups\": [\n    {\n      \"id\": \"37cbf15b-c31a-6604-2ba2-9c0b9179fae3\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"companyId\": \"3e2954d5-0e30-8f6e-68ac-62be81555746\",\n      \"memberCount\": 7933,\n      \"createdAt\": \"1977-02-22T01:44:59.379Z\",\n      \"updatedAt\": \"2015-08-03T08:41:11.595Z\"\n    },\n    {\n      \"id\": \"62fae444-b62f-457c-840b-7aacad8afcc5\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"companyId\": \"e331ca2f-1556-d24a-5b68-cdef098fac8d\",\n      \"memberCount\": 4677,\n      \"createdAt\": \"1972-01-13T14:16:05.497Z\",\n      \"updatedAt\": \"1969-04-29T06:03:51.691Z\"\n    }\n  ],\n  \"managerIds\": [\n    \"732de9b6-b539-78fe-ca2a-630d50a3e32d\",\n    \"3aa55448-cf7f-456b-9322-5496f84b2704\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b5a84aed-bda0-447e-af56-f0a534fd90dd",
+          "name": "Get latest reimbursement",
+          "request": {
+            "name": "Get latest reimbursement",
+            "description": {
+              "content": "Returns the most recent reimbursement for a user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":userId",
+                "reimbursements",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4a6cfb8-46d5-4b57-b7ce-c2dc80ee2734",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":userId",
+                    "reimbursements",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"e96ffe5a-9688-b20f-4b0a-58fc067d3b92\",\n  \"companyId\": \"83964b56-80a2-9062-2088-d6b0465d9631\",\n  \"userId\": \"476f592a-435e-d7e4-3bbe-076066f4e98b\",\n  \"expenseIds\": [\n    \"839debac-a34d-2b03-5bf7-ef4e3354291c\",\n    \"ce468f42-343b-5dbb-1c95-2fa812084136\"\n  ],\n  \"status\": \"FAILED\",\n  \"createdAt\": \"1967-09-06T15:56:38.025Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0629e622-34ab-4edd-b747-9c4e1c8bd4dd",
+          "name": "Get reimbursement config",
+          "request": {
+            "name": "Get reimbursement config",
+            "description": {
+              "content": "Returns the reimbursement configuration for a user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":userId",
+                "reimbursement-config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0d946923-9bba-4064-ad24-974835c35d1c",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":userId",
+                    "reimbursement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"d7fa1366-ee77-808e-b5b2-101bc89b2e10\",\n  \"userId\": \"fa967192-951e-ce07-5fb7-a2de45673dbe\",\n  \"companyId\": \"58c30fcf-4b28-dd1c-0ca7-6ad3e8f9a801\",\n  \"currency\": \"USD\",\n  \"defaultCostCenterId\": \"bf809474-7860-02ca-8e4e-2b7919d99c17\",\n  \"bankCountry\": \"PR\",\n  \"bankName\": \"string\",\n  \"bankCity\": \"string\",\n  \"bankAddress\": \"string\",\n  \"bankZipcode\": \"string\",\n  \"bankAccountNumber\": \"string\",\n  \"bankAccountBic\": \"string\",\n  \"domesticBankAccountNumber\": \"string\",\n  \"domesticBankAccountCode\": \"string\",\n  \"status\": \"ACTIVE\",\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"CONFLICT\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  },\n  \"createdAt\": \"2023-12-28T12:26:09.143Z\",\n  \"updatedAt\": \"2004-01-15T02:34:14.272Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80183da9-d45d-4504-9402-981fec77a59f",
+          "name": "Update reimbursement config",
+          "request": {
+            "name": "Update reimbursement config",
+            "description": {
+              "content": "Creates or updates the reimbursement configuration for a user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":userId",
+                "reimbursement-config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currency\": \"<string>\",\n  \"bankCountry\": \"<string>\",\n  \"defaultCostCenterId\": \"<uuid>\",\n  \"bankName\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankAccountNumber\": \"<string>\",\n  \"bankAccountBic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankAccountCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bfa85ebc-7240-4ce0-9942-f385ba71a960",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":userId",
+                    "reimbursement-config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"currency\": \"USD\",\n  \"bankCountry\": \"<string>\",\n  \"defaultCostCenterId\": \"<uuid>\",\n  \"bankName\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankAccountNumber\": \"<string>\",\n  \"bankAccountBic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankAccountCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"aefdd1a9-6b6a-5945-eac9-db437bfa5b3c\",\n  \"userId\": \"286883da-c562-a773-28ec-a8e21f8b6016\",\n  \"companyId\": \"6c32118e-e61a-283f-e14f-2624f460c2ee\",\n  \"currency\": \"USD\",\n  \"defaultCostCenterId\": \"9b21efdd-e682-ffa1-c59b-e7e9321d6daf\",\n  \"bankCountry\": \"GP\",\n  \"bankName\": \"string\",\n  \"bankCity\": \"string\",\n  \"bankAddress\": \"string\",\n  \"bankZipcode\": \"string\",\n  \"bankAccountNumber\": \"string\",\n  \"bankAccountBic\": \"string\",\n  \"domesticBankAccountNumber\": \"string\",\n  \"domesticBankAccountCode\": \"string\",\n  \"status\": \"ACTIVE\",\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"UNAUTHORIZED\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      }\n    ]\n  },\n  \"createdAt\": \"2021-03-05T12:08:26.836Z\",\n  \"updatedAt\": \"2020-08-22T07:15:27.671Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a4fe6d4-03b4-47fc-afb7-2cd2c6462175",
+          "name": "Update user",
+          "request": {
+            "name": "Update user",
+            "description": {
+              "content": "Updates the given user",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyEntityId\": \"<uuid>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"avatarUrl\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d0a408bc-b609-43a2-b6c1-24c73158e8a2",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"companyEntityId\": \"<uuid>\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"avatarUrl\": \"<string>\",\n  \"country\": \"<string>\",\n  \"city\": \"<string>\",\n  \"address\": \"<string>\",\n  \"zipcode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"58daada3-b798-1524-25b8-9e0d9a311ef9\",\n  \"companyId\": \"c535759b-b21b-bd4b-4c9c-6a969deef1af\",\n  \"companyEntityId\": \"aef4c8a4-ee05-9cb5-7453-fb86c4e171d5\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"avatarUrl\": \"string\",\n  \"country\": \"NF\",\n  \"city\": \"string\",\n  \"zipcode\": \"string\",\n  \"address\": \"string\",\n  \"status\": \"DEACTIVATED\",\n  \"createdAt\": \"2020-09-14T18:32:43.983Z\",\n  \"updatedAt\": \"2005-07-20T19:18:17.176Z\",\n  \"roles\": [\n    \"REPORT_VIEWER\",\n    \"PURCHASE_REQUESTER\"\n  ],\n  \"groups\": [\n    {\n      \"id\": \"37cbf15b-c31a-6604-2ba2-9c0b9179fae3\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"companyId\": \"3e2954d5-0e30-8f6e-68ac-62be81555746\",\n      \"memberCount\": 7933,\n      \"createdAt\": \"1977-02-22T01:44:59.379Z\",\n      \"updatedAt\": \"2015-08-03T08:41:11.595Z\"\n    },\n    {\n      \"id\": \"62fae444-b62f-457c-840b-7aacad8afcc5\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"companyId\": \"e331ca2f-1556-d24a-5b68-cdef098fac8d\",\n      \"memberCount\": 4677,\n      \"createdAt\": \"1972-01-13T14:16:05.497Z\",\n      \"updatedAt\": \"1969-04-29T06:03:51.691Z\"\n    }\n  ],\n  \"managerIds\": [\n    \"732de9b6-b539-78fe-ca2a-630d50a3e32d\",\n    \"3aa55448-cf7f-456b-9322-5496f84b2704\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "10e059b0-e4db-4d7d-b2cb-5fee864da258",
+          "name": "Update user status",
+          "request": {
+            "name": "Update user status",
+            "description": {
+              "content": "Updates the given user's status",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "users",
+                ":userId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "userId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17cf6b0b-3b36-463a-8ef4-adb884d07e5f",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "users",
+                    ":userId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "userId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"58daada3-b798-1524-25b8-9e0d9a311ef9\",\n  \"companyId\": \"c535759b-b21b-bd4b-4c9c-6a969deef1af\",\n  \"companyEntityId\": \"aef4c8a4-ee05-9cb5-7453-fb86c4e171d5\",\n  \"email\": \"string\",\n  \"firstName\": \"string\",\n  \"lastName\": \"string\",\n  \"phoneNumber\": {\n    \"countryCode\": \"<string>\",\n    \"localNumber\": \"<string>\"\n  },\n  \"avatarUrl\": \"string\",\n  \"country\": \"NF\",\n  \"city\": \"string\",\n  \"zipcode\": \"string\",\n  \"address\": \"string\",\n  \"status\": \"DEACTIVATED\",\n  \"createdAt\": \"2020-09-14T18:32:43.983Z\",\n  \"updatedAt\": \"2005-07-20T19:18:17.176Z\",\n  \"roles\": [\n    \"REPORT_VIEWER\",\n    \"PURCHASE_REQUESTER\"\n  ],\n  \"groups\": [\n    {\n      \"id\": \"37cbf15b-c31a-6604-2ba2-9c0b9179fae3\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"companyId\": \"3e2954d5-0e30-8f6e-68ac-62be81555746\",\n      \"memberCount\": 7933,\n      \"createdAt\": \"1977-02-22T01:44:59.379Z\",\n      \"updatedAt\": \"2015-08-03T08:41:11.595Z\"\n    },\n    {\n      \"id\": \"62fae444-b62f-457c-840b-7aacad8afcc5\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"companyId\": \"e331ca2f-1556-d24a-5b68-cdef098fac8d\",\n      \"memberCount\": 4677,\n      \"createdAt\": \"1972-01-13T14:16:05.497Z\",\n      \"updatedAt\": \"1969-04-29T06:03:51.691Z\"\n    }\n  ],\n  \"managerIds\": [\n    \"732de9b6-b539-78fe-ca2a-630d50a3e32d\",\n    \"3aa55448-cf7f-456b-9322-5496f84b2704\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1dca70ac-97e1-46ff-9ba9-f772256823da",
+    "name": "Light Authorization v1 - Users API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

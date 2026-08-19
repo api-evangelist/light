@@ -1,0 +1,850 @@
+{
+  "item": [
+    {
+      "id": "ac728eee-1f08-4ed7-82b7-61b43b4ee7ec",
+      "name": "v1 - Bank Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd8132c7-048a-47d3-a37d-5801fb62bbd2",
+          "name": "Get bank accounts of the company",
+          "request": {
+            "name": "Get bank accounts of the company",
+            "description": {
+              "content": "Returns all bank accounts of the company",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bank-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3232bf55-0502-475a-9bb2-4bc67dbf6f6c",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bank-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"7f71ca3d-a2ad-4f79-1db0-7c25caf728e4\",\n    \"companyId\": \"954f80e7-f7b5-3042-1047-a7fc62e20f29\",\n    \"companyEntityId\": \"e2afdfae-5496-127f-3cca-8b6aaec093c9\",\n    \"name\": \"string\",\n    \"type\": \"PHYSICAL\",\n    \"bankProvider\": \"BANK_NORWEGIAN\",\n    \"paymentSchedulingEligibility\": \"INTERNAL\",\n    \"iban\": \"string\",\n    \"bic\": \"string\",\n    \"domesticBankAccountNumber\": \"string\",\n    \"domesticBankCode\": \"string\",\n    \"currency\": \"USD\",\n    \"bankCountry\": \"VG\",\n    \"bankCity\": \"string\",\n    \"bankAddress\": \"string\",\n    \"bankZipcode\": \"string\",\n    \"bankName\": \"string\",\n    \"bankState\": \"string\",\n    \"ledgerAccountCode\": 3462,\n    \"createdAt\": \"1983-10-21T16:00:17.693Z\"\n  },\n  {\n    \"id\": \"eeeb1a83-ee8a-b504-ceb8-c3e54dc69281\",\n    \"companyId\": \"36a02867-162a-291e-c966-6a9e9cfdf69e\",\n    \"companyEntityId\": \"497f45f1-f58d-f7be-83bd-bdd2cc920e53\",\n    \"name\": \"string\",\n    \"type\": \"PHYSICAL\",\n    \"bankProvider\": \"CHINA_CONSTRUCTION_BANK\",\n    \"paymentSchedulingEligibility\": \"INELIGIBLE\",\n    \"iban\": \"string\",\n    \"bic\": \"string\",\n    \"domesticBankAccountNumber\": \"string\",\n    \"domesticBankCode\": \"string\",\n    \"currency\": \"USD\",\n    \"bankCountry\": \"VE\",\n    \"bankCity\": \"string\",\n    \"bankAddress\": \"string\",\n    \"bankZipcode\": \"string\",\n    \"bankName\": \"string\",\n    \"bankState\": \"string\",\n    \"ledgerAccountCode\": 5736,\n    \"createdAt\": \"1967-12-09T05:45:40.563Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "97084fa1-5f54-4800-a0a3-38c7ab19df96",
+          "name": "Create bank account",
+          "request": {
+            "name": "Create bank account",
+            "description": {
+              "content": "Creates a bank account along with its linked ledger (chart-of-accounts) entry in a single transaction. The ledger account code must be a unique 6-digit integer within the company's chart of accounts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bank-accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bankCountry\": \"<string>\",\n  \"bankProvider\": \"<string>\",\n  \"companyEntityId\": \"<uuid>\",\n  \"currency\": \"<string>\",\n  \"ledgerAccount\": {\n    \"code\": \"<integer>\",\n    \"label\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankCode\": \"<string>\",\n  \"bankName\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankState\": \"<string>\",\n  \"defaultChargeBearerCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5654295c-34b1-41e3-af0d-ebf85f045edd",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bank-accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bankCountry\": \"<string>\",\n  \"bankProvider\": \"<string>\",\n  \"companyEntityId\": \"<uuid>\",\n  \"currency\": \"USD\",\n  \"ledgerAccount\": {\n    \"code\": \"<integer>\",\n    \"label\": \"<string>\"\n  },\n  \"name\": \"<string>\",\n  \"iban\": \"<string>\",\n  \"bic\": \"<string>\",\n  \"domesticBankAccountNumber\": \"<string>\",\n  \"domesticBankCode\": \"<string>\",\n  \"bankName\": \"<string>\",\n  \"bankCity\": \"<string>\",\n  \"bankAddress\": \"<string>\",\n  \"bankZipcode\": \"<string>\",\n  \"bankState\": \"<string>\",\n  \"defaultChargeBearerCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"2c5161bf-dfcb-4f3a-ecc5-c84b0d3e678e\",\n  \"companyId\": \"fe381508-c30e-e55e-5dc9-74e3055f0bf6\",\n  \"companyEntityId\": \"9a518fa7-f5d7-3130-763f-3af619d97239\",\n  \"name\": \"string\",\n  \"type\": \"PHYSICAL\",\n  \"bankProvider\": \"UNICREDIT_BANK_HYPOVEREINSBANK\",\n  \"paymentSchedulingEligibility\": \"INTERNAL\",\n  \"iban\": \"string\",\n  \"bic\": \"string\",\n  \"domesticBankAccountNumber\": \"string\",\n  \"domesticBankCode\": \"string\",\n  \"currency\": \"USD\",\n  \"bankCountry\": \"NF\",\n  \"bankCity\": \"string\",\n  \"bankAddress\": \"string\",\n  \"bankZipcode\": \"string\",\n  \"bankName\": \"string\",\n  \"bankState\": \"string\",\n  \"ledgerAccountCode\": 7527,\n  \"createdAt\": \"2026-04-06T13:24:22.734Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04adbc77-8d6a-4ad8-9a75-1df403a1f22d",
+          "name": "List bank transactions",
+          "request": {
+            "name": "List bank transactions",
+            "description": {
+              "content": "Returns a paginated list of bank transactions for the specified bank account, including the balance",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bank-accounts",
+                ":bankAccountId",
+                "bank-transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "bankAccountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a911574b-c8c3-4fe3-a0e1-527960fb510b",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bank-accounts",
+                    ":bankAccountId",
+                    "bank-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "bankAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"total\": 1264,\n  \"records\": [\n    {\n      \"id\": \"ce2b244d-e8bb-3573-d8bc-1b1116cce539\",\n      \"bankAccountId\": \"bacab834-627a-7d9c-9d1a-3ad4e705d565\",\n      \"date\": \"1955-04-06\",\n      \"amount\": 2629,\n      \"dcSign\": \"C\",\n      \"reconciliationStatus\": \"MATCHED\",\n      \"name\": \"string\",\n      \"memo\": \"string\",\n      \"reference\": \"string\",\n      \"transactionId\": \"string\",\n      \"createdAt\": \"1977-01-21T02:34:22.966Z\"\n    },\n    {\n      \"id\": \"ba0dbfb3-a35a-f33c-e012-3ed8268f7a0d\",\n      \"bankAccountId\": \"09142ae7-8aef-c649-0844-038501e09245\",\n      \"date\": \"2017-12-26\",\n      \"amount\": 2105,\n      \"dcSign\": \"D\",\n      \"reconciliationStatus\": \"UNMATCHED\",\n      \"name\": \"string\",\n      \"memo\": \"string\",\n      \"reference\": \"string\",\n      \"transactionId\": \"string\",\n      \"createdAt\": \"1957-04-27T12:52:11.569Z\"\n    }\n  ],\n  \"balance\": 9801\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d3939e2-5d76-439d-b9c0-fdd3323ed07c",
+          "name": "Create bank transactions",
+          "request": {
+            "name": "Create bank transactions",
+            "description": {
+              "content": "Creates bank transactions in batch. Maximum 500 transactions per request. Duplicate transactions (same transactionId for the same bank account) are silently skipped.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bank-accounts",
+                ":bankAccountId",
+                "bank-transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "bankAccountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactions\": [\n    {\n      \"amount\": \"<long>\",\n      \"date\": \"<date>\",\n      \"dcSign\": \"<string>\",\n      \"name\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"transactionId\": \"<string>\"\n    },\n    {\n      \"amount\": \"<long>\",\n      \"date\": \"<date>\",\n      \"dcSign\": \"<string>\",\n      \"name\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"transactionId\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d4b4969-4894-4a93-b3cd-6c90dfc169dc",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bank-accounts",
+                    ":bankAccountId",
+                    "bank-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "bankAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactions\": [\n    {\n      \"amount\": \"<long>\",\n      \"date\": \"<date>\",\n      \"dcSign\": \"<string>\",\n      \"name\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"transactionId\": \"<string>\"\n    },\n    {\n      \"amount\": \"<long>\",\n      \"date\": \"<date>\",\n      \"dcSign\": \"<string>\",\n      \"name\": \"<string>\",\n      \"memo\": \"<string>\",\n      \"reference\": \"<string>\",\n      \"transactionId\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"0e8c973a-38c2-1ee8-9de8-d79ed4eca2c2\",\n    \"bankAccountId\": \"edbd4262-97fa-dbcd-5925-0fefeaf6837e\",\n    \"date\": \"1988-10-14\",\n    \"amount\": 7046,\n    \"dcSign\": \"D\",\n    \"reconciliationStatus\": \"EXCLUDED\",\n    \"name\": \"string\",\n    \"memo\": \"string\",\n    \"reference\": \"string\",\n    \"transactionId\": \"string\",\n    \"createdAt\": \"1974-06-17T18:17:46.695Z\"\n  },\n  {\n    \"id\": \"3e08bf68-ecff-250b-f80e-37f9aeda1f91\",\n    \"bankAccountId\": \"92e6b6c6-ac80-45fe-e7bb-0bef686af770\",\n    \"date\": \"1988-01-03\",\n    \"amount\": 9360,\n    \"dcSign\": \"C\",\n    \"reconciliationStatus\": \"MATCHED\",\n    \"name\": \"string\",\n    \"memo\": \"string\",\n    \"reference\": \"string\",\n    \"transactionId\": \"string\",\n    \"createdAt\": \"1971-07-10T09:22:10.983Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6eb6fca9-86e9-4937-bd92-7b9852c072b6",
+          "name": "Get bank account balance",
+          "request": {
+            "name": "Get bank account balance",
+            "description": {
+              "content": "Returns the bank statement balance and ledger balance for a bank account as of the given date. If `asOf` is omitted, today's balance is returned. The bank balance is derived from the opening balance plus all bank transactions on or before `asOf`; the ledger balance is the sum of ledger transaction lines posted on or before `asOf` for the linked ledger account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bank-accounts",
+                ":bankAccountId",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asOf",
+                  "value": "<object>",
+                  "description": "Date the balance is computed for (ISO-8601, e.g. `2026-05-07`). Defaults to today."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "bankAccountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f3a18ba-da2f-4f20-a839-c08de2ae4562",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bank-accounts",
+                    ":bankAccountId",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOf",
+                      "value": "<object>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "bankAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"bankAccountId\": \"de8b7b62-858a-f7b5-f9de-cc5468ae8660\",\n  \"currency\": \"string\",\n  \"bankBalance\": 8128,\n  \"ledgerBalance\": 2468,\n  \"asOf\": \"1974-10-25\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce2a6fba-9fc9-4e31-ac2a-d372c06d9096",
+          "name": "Upsert bank account balance",
+          "request": {
+            "name": "Upsert bank account balance",
+            "description": {
+              "content": "Creates or updates the opening balance for a bank account. Only one balance per bank account is allowed — subsequent calls update the existing balance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bank-accounts",
+                ":bankAccountId",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "bankAccountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"balance\": \"<long>\",\n  \"balanceAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f58c951c-d887-409b-800d-e1b400649adc",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bank-accounts",
+                    ":bankAccountId",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "bankAccountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"balance\": \"<long>\",\n  \"balanceAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"d9cee8d2-4f2c-e0f5-6b42-f06ea019dcc0\",\n  \"bankAccountId\": \"fcdfcd35-43b0-a3e5-5721-00a3c3936de1\",\n  \"balanceAt\": \"2020-06-11T05:09:45.002Z\",\n  \"balance\": 5970\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0170052a-2a63-4d2d-9490-d862867c0e32",
+          "name": "Get bank transaction",
+          "request": {
+            "name": "Get bank transaction",
+            "description": {
+              "content": "Returns a specific bank transaction by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bank-accounts",
+                ":bankAccountId",
+                "bank-transactions",
+                ":bankTransactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "bankAccountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "bankTransactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3306192-f204-4d83-8038-846713a826dc",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bank-accounts",
+                    ":bankAccountId",
+                    "bank-transactions",
+                    ":bankTransactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "bankAccountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "bankTransactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"a4a91992-bf66-d2b5-59ac-d27f821ad326\",\n  \"bankAccountId\": \"647bbe94-0563-506f-4956-b130aabe600d\",\n  \"date\": \"1978-09-14\",\n  \"amount\": 1943,\n  \"dcSign\": \"D\",\n  \"reconciliationStatus\": \"UNMATCHED\",\n  \"name\": \"string\",\n  \"memo\": \"string\",\n  \"reference\": \"string\",\n  \"transactionId\": \"string\",\n  \"createdAt\": \"1999-11-28T20:49:08.059Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "27c5312c-c515-4eff-b563-5a3a42975a63",
+    "name": "Light Authorization v1 - Bank Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

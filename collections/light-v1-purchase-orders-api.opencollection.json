@@ -1,0 +1,310 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Purchase Orders API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Purchase Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bulk create purchase order lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/lines/bulk",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates multiple purchase order line items"
+        },
+        {
+          "info": {
+            "name": "Batch update purchase order lines",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/lines/bulk",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates multiple purchase order line items"
+        },
+        {
+          "info": {
+            "name": "Cancel purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/cancel",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancels a purchase order"
+        },
+        {
+          "info": {
+            "name": "Close purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/close",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Closes a purchase order"
+        },
+        {
+          "info": {
+            "name": "List purchase orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/purchase-orders",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of purchase orders"
+        },
+        {
+          "info": {
+            "name": "Create purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/purchase-orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new purchase order"
+        },
+        {
+          "info": {
+            "name": "Create purchase order line",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/lines",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new purchase order line item"
+        },
+        {
+          "info": {
+            "name": "Get purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a purchase order by ID"
+        },
+        {
+          "info": {
+            "name": "Update purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing purchase order"
+        },
+        {
+          "info": {
+            "name": "Lock purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/lock",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Locks a purchase order to prevent modifications"
+        },
+        {
+          "info": {
+            "name": "Update purchase order line",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/lines/:lineId",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a purchase order line item"
+        },
+        {
+          "info": {
+            "name": "Delete purchase order line",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/lines/:lineId",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a purchase order line item"
+        },
+        {
+          "info": {
+            "name": "Reset purchase order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/purchase-orders/:purchaseOrderId/reset",
+            "params": [
+              {
+                "name": "purchaseOrderId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Resets a purchase order to its initial state"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

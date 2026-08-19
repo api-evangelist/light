@@ -1,0 +1,1293 @@
+{
+  "item": [
+    {
+      "id": "7cc7b581-8232-4ade-85d0-5a1f3fa3c574",
+      "name": "v1 - Card Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c4c62049-ab7b-468d-ba4c-9bdc7fda7273",
+          "name": "Batch update card transactions",
+          "request": {
+            "name": "Batch update card transactions",
+            "description": {
+              "content": "Updates multiple card transactions in a single operation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                "batch-update"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"cardTransactionId\": \"<uuid>\",\n    \"customProperties\": [\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"lines\": [\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      },\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      }\n    ],\n    \"postingDate\": \"<date>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"cardTransactionId\": \"<uuid>\",\n    \"customProperties\": [\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"lines\": [\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      },\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      }\n    ],\n    \"postingDate\": \"<date>\",\n    \"description\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "22910972-f024-4f96-a6d4-0ea24f1cccb3",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    "batch-update"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"cardTransactionId\": \"<uuid>\",\n    \"customProperties\": [\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"lines\": [\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      },\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      }\n    ],\n    \"postingDate\": \"<date>\",\n    \"description\": \"<string>\"\n  },\n  {\n    \"cardTransactionId\": \"<uuid>\",\n    \"customProperties\": [\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"groupId\": \"<uuid>\",\n        \"valueIds\": [\n          \"<uuid>\",\n          \"<uuid>\"\n        ],\n        \"inlineValues\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ],\n    \"lines\": [\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      },\n      {\n        \"lineId\": \"<uuid>\",\n        \"customProperties\": [\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          {\n            \"groupId\": \"<uuid>\",\n            \"valueIds\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"inlineValues\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        ],\n        \"description\": \"<string>\",\n        \"accountId\": \"<uuid>\",\n        \"taxCodeId\": \"<uuid>\"\n      }\n    ],\n    \"postingDate\": \"<date>\",\n    \"description\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a839ed5b-caa5-43cb-b9a1-78204c03b42f",
+          "name": "Generate receipt upload URL",
+          "request": {
+            "name": "Generate receipt upload URL",
+            "description": {
+              "content": "Generates a secure upload URL for receipt documents",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":cardTransactionId",
+                "receipt-upload-url"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cardTransactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"<string>\",\n  \"contentType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6f93bd79-c610-43b4-9b66-aa59d5375d28",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":cardTransactionId",
+                    "receipt-upload-url"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cardTransactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filename\": \"<string>\",\n  \"contentType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"uploadUrl\": \"string\",\n  \"key\": \"string\",\n  \"metadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d39f9ed3-100d-460f-ac51-bc9739610d7f",
+          "name": "Get card transaction",
+          "request": {
+            "name": "Get card transaction",
+            "description": {
+              "content": "Returns a card transaction by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":cardTransactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "cardTransactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d95d113a-d17e-4986-8c80-1ae421b01544",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":cardTransactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "cardTransactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"5d3221b5-1f02-b535-8ac9-9b72bde1a80c\",\n  \"companyId\": \"4ad6f22e-84a7-7d44-2e4f-137f788e40e7\",\n  \"companyEntityId\": \"e50c3590-9a81-5588-f362-80da156b04df\",\n  \"companyEntityName\": \"string\",\n  \"cardBalanceAccountId\": \"efe09882-2a38-eb18-4f74-ec2dfa380b68\",\n  \"cardBalanceAccountLabel\": \"string\",\n  \"cardId\": \"681f3843-2f14-f7e6-bccb-349edd614833\",\n  \"cardVendorId\": \"107d795f-bfda-4820-3676-f5d1292f8e06\",\n  \"cardVendorAvatarUrl\": \"string\",\n  \"cardVendorName\": \"string\",\n  \"cardOwnerName\": \"string\",\n  \"cardOwnerId\": \"7a95550a-6517-adb9-c0fe-e6147ab116da\",\n  \"cardLastFour\": \"string\",\n  \"originalAmount\": 4180,\n  \"originalCurrency\": \"USD\",\n  \"amount\": 8044,\n  \"currency\": \"USD\",\n  \"direction\": \"DEBIT\",\n  \"transactionReason\": \"PIN_NOT_CHANGED\",\n  \"purchaseType\": \"UNKNOWN\",\n  \"status\": \"VOIDED\",\n  \"type\": \"REFUND\",\n  \"merchant\": {\n    \"name\": \"string\",\n    \"cleanName\": \"string\",\n    \"country\": \"LY\",\n    \"zipcode\": \"string\",\n    \"id\": \"string\",\n    \"mcc\": \"string\",\n    \"acquirerId\": \"string\",\n    \"logoUrl\": \"string\"\n  },\n  \"receiptDocumentKey\": \"string\",\n  \"lines\": [\n    {\n      \"id\": \"99bb3567-7d33-b7af-4514-e045780cd291\",\n      \"transactionId\": \"3d6bc19c-6e17-e9b4-6f92-0825272a28fa\",\n      \"companyId\": \"d4bddd3a-d149-bd30-6f88-1d2e95ead93f\",\n      \"accountId\": \"4e9265a2-95cd-2255-c057-09be2c4acef3\",\n      \"accountLabel\": \"string\",\n      \"taxCodeId\": \"63147539-fb5f-5c1c-dedf-c99defa3c974\",\n      \"taxCodeLabel\": \"string\",\n      \"costCenterId\": \"b504aecf-6417-9dbb-011d-fb5f3ec183b1\",\n      \"costCenterName\": \"string\",\n      \"amount\": 169,\n      \"netAmount\": 7498,\n      \"description\": \"string\",\n      \"createdAt\": \"2008-12-06T11:53:13.846Z\",\n      \"updatedAt\": \"2005-05-19T16:55:11.288Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"5ad978be-6e5d-e76e-da49-f3361313545b\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"cbc43042-ecae-0910-1c12-fa3545e0f7fa\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"163ad81e-994e-d2ee-23ad-f8b08d375ee0\",\n      \"amortizationStartDate\": \"2003-04-30\",\n      \"amortizationEndDate\": \"1967-03-28\"\n    },\n    {\n      \"id\": \"e6f4c5a1-cb75-d5e8-d518-177cf4b674b7\",\n      \"transactionId\": \"8ac55178-f22d-75be-ee09-7e33bc3a376d\",\n      \"companyId\": \"103650ce-89ee-42d5-08d8-4cab69d82d17\",\n      \"accountId\": \"772a1c49-cc35-32d6-0803-8416647e7e40\",\n      \"accountLabel\": \"string\",\n      \"taxCodeId\": \"1caf85c2-3ff7-27cc-6313-ced569d51701\",\n      \"taxCodeLabel\": \"string\",\n      \"costCenterId\": \"357f2aa1-5cec-6c5a-2462-f166fbb578ad\",\n      \"costCenterName\": \"string\",\n      \"amount\": 7303,\n      \"netAmount\": 5126,\n      \"description\": \"string\",\n      \"createdAt\": \"1976-12-19T04:31:58.990Z\",\n      \"updatedAt\": \"1962-12-14T02:21:45.902Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"ebec1331-47d2-0e2a-9351-52d7ed53d9c1\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"06bbf9fc-371b-ff27-d8dd-8f4291838baa\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"a1acca7d-1375-bb28-63f0-d82ef46f4afa\",\n      \"amortizationStartDate\": \"1947-02-24\",\n      \"amortizationEndDate\": \"1986-03-17\"\n    }\n  ],\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"CONFLICT\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ]\n  },\n  \"description\": \"string\",\n  \"performedAt\": \"1992-06-17T13:47:40.499Z\",\n  \"exportedAt\": \"1971-09-21T02:01:14.706Z\",\n  \"createdAt\": \"1965-11-28T18:37:40.962Z\",\n  \"updatedAt\": \"1985-06-15T21:19:24.314Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"f0f195e8-a8f5-d03e-f21c-c458484c886a\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"d77993f6-7e34-a10b-1c92-c0f68aa05bba\",\n          \"groupId\": \"4f803142-a8b0-13a6-0da2-12ab8a01c57d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"9bfaad74-d4d2-bfc3-f0ab-7667540dc231\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1960-03-29T20:32:34.605Z\",\n          \"updatedAt\": \"1962-12-31T02:03:30.843Z\"\n        },\n        {\n          \"id\": \"1d39417b-961d-c072-6a91-0eec9317e290\",\n          \"groupId\": \"738493ed-8830-7fd5-b32b-dddcdbaab1c4\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"874229a2-fc7d-0e5c-5fde-db26efc9d926\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1997-05-09T16:07:19.188Z\",\n          \"updatedAt\": \"2017-07-20T00:15:36.502Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"ee410e9c-d3d1-dee2-3859-64429c979172\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"661312f2-e0dd-13dc-68d2-034b36f44f0f\",\n          \"groupId\": \"1cad0846-7731-46d6-88a5-7a59cc40b02f\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"6064e22d-3676-cc11-3f57-eafafe093546\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1993-08-14T08:58:03.425Z\",\n          \"updatedAt\": \"2015-05-28T13:13:15.713Z\"\n        },\n        {\n          \"id\": \"48ce09e1-ae1a-23ee-b54f-2f335044c2d9\",\n          \"groupId\": \"f2344038-aecc-aa8a-8f85-9a9e2a3cff2d\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"af5fe2bd-71f3-5159-d144-fd9a567fcc94\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1978-04-17T18:42:40.479Z\",\n          \"updatedAt\": \"1952-07-06T21:47:46.796Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa5924f4-c9bf-49f7-a955-27b0e6623b22",
+          "name": "Get transaction receipt",
+          "request": {
+            "name": "Get transaction receipt",
+            "description": {
+              "content": "Returns the attached receipt document for a card transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":transactionId",
+                "receipt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4e761df-0844-4f91-aef8-50e09ad4cb90",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":transactionId",
+                    "receipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6cb19b95-4879-4173-9cfe-bf79f7a978ce",
+          "name": "Remove transaction receipt",
+          "request": {
+            "name": "Remove transaction receipt",
+            "description": {
+              "content": "Removes the attached receipt document from a card transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":transactionId",
+                "receipt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65a846d8-acbc-401f-923f-42c233c2ea72",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":transactionId",
+                    "receipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80be9529-b664-441f-a7f6-bc5d1cf2936d",
+          "name": "get Card Transaction Receipt Options",
+          "request": {
+            "name": "get Card Transaction Receipt Options",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":transactionId",
+                "receipt"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "OPTIONS",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "10fe5f1a-e617-42ff-952a-2dc120b3fcec",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":transactionId",
+                    "receipt"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "OPTIONS",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb60db03-207b-47a3-a579-4cf00388a3ff",
+          "name": "List card transactions",
+          "request": {
+            "name": "List card transactions",
+            "description": {
+              "content": "Returns a paginated list of card transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return. Default is 50, maximum is 200."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<long>",
+                  "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+                },
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+                },
+                {
+                  "disabled": false,
+                  "key": "onlyPostable",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "missingData",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16b0b2c2-0ac5-4e34-84e8-2d8df4150aa9",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sort",
+                      "value": "amount:desc,createdAt:asc"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "state:in:IN_DRAFT|SCHEDULED|PAID,amount:gte:500,vendorId:ne:null"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "onlyPostable",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "missingData",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"id\": \"81e7b5a2-c801-bbcc-0d95-ad879f65c9ee\",\n      \"companyId\": \"852a72d0-161f-fc1c-27dd-df8ba8ebd2b4\",\n      \"companyEntityId\": \"e9232ed7-3306-3ae5-a663-36c3cd3ff9e5\",\n      \"companyEntityName\": \"string\",\n      \"cardBalanceAccountId\": \"28900ee1-1de9-41ff-8e5d-f1dd49fdbfdc\",\n      \"cardBalanceAccountLabel\": \"string\",\n      \"cardId\": \"f9e92ef7-1fff-4c0a-224b-88f33c9984b8\",\n      \"cardVendorId\": \"61c63dc1-ac97-b415-f64e-1f9c63980218\",\n      \"cardVendorAvatarUrl\": \"string\",\n      \"cardVendorName\": \"string\",\n      \"cardOwnerName\": \"string\",\n      \"cardOwnerId\": \"c19d8f94-e02c-da6e-8415-044140d7c9bc\",\n      \"cardLastFour\": \"string\",\n      \"originalAmount\": 4829,\n      \"originalCurrency\": \"USD\",\n      \"amount\": 3987,\n      \"currency\": \"USD\",\n      \"direction\": \"CREDIT\",\n      \"transactionReason\": \"APPROVAL_EXPIRED\",\n      \"purchaseType\": \"OTHER\",\n      \"status\": \"DECLINED\",\n      \"type\": \"OTHER\",\n      \"merchant\": {\n        \"name\": \"string\",\n        \"cleanName\": \"string\",\n        \"country\": \"CO\",\n        \"zipcode\": \"string\",\n        \"id\": \"string\",\n        \"mcc\": \"string\",\n        \"acquirerId\": \"string\",\n        \"logoUrl\": \"string\"\n      },\n      \"receiptDocumentKey\": \"string\",\n      \"lines\": [\n        {\n          \"id\": \"ff264079-c93b-8497-6770-45123488dea7\",\n          \"transactionId\": \"db83d6f4-e553-c0a5-44ca-0e47a61bfd96\",\n          \"companyId\": \"e87a298a-cf3c-1e36-3deb-8e6ed53823fc\",\n          \"accountId\": \"9677eeb2-b127-4c87-e912-6438ab4c5eff\",\n          \"accountLabel\": \"string\",\n          \"taxCodeId\": \"538dde09-28b0-07ad-36a2-2467c4944f4c\",\n          \"taxCodeLabel\": \"string\",\n          \"costCenterId\": \"f16a7b1d-2c8c-20dc-e69a-e355808720da\",\n          \"costCenterName\": \"string\",\n          \"amount\": 4281,\n          \"netAmount\": 2460,\n          \"description\": \"string\",\n          \"createdAt\": \"1994-06-26T18:23:59.380Z\",\n          \"updatedAt\": \"1964-07-07T17:43:40.403Z\",\n          \"customProperties\": [\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"amortizationTemplateId\": \"7630cac6-e756-b069-5744-cc906a76eb0d\",\n          \"amortizationStartDate\": \"1984-08-30\",\n          \"amortizationEndDate\": \"2004-01-20\"\n        },\n        {\n          \"id\": \"60b0278a-d3c5-08ba-2062-4b492b8dc181\",\n          \"transactionId\": \"12339632-e023-e0fa-b306-4e1cd71e2444\",\n          \"companyId\": \"9d407d20-39c6-1765-4735-2cb4d5432ba2\",\n          \"accountId\": \"cd541d6b-c9a4-52c3-d4f6-0fbca15db92e\",\n          \"accountLabel\": \"string\",\n          \"taxCodeId\": \"f1af93d9-ebf2-7bae-2623-38fc7db76cb1\",\n          \"taxCodeLabel\": \"string\",\n          \"costCenterId\": \"66c00c89-1cf5-ea99-3b0b-206b544a5c5a\",\n          \"costCenterName\": \"string\",\n          \"amount\": 5939,\n          \"netAmount\": 8594,\n          \"description\": \"string\",\n          \"createdAt\": \"1966-06-09T03:34:03.890Z\",\n          \"updatedAt\": \"1969-03-28T14:58:53.909Z\",\n          \"customProperties\": [\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"amortizationTemplateId\": \"e9f35bf7-fbc6-105e-be10-453512a3bdd5\",\n          \"amortizationStartDate\": \"1984-09-09\",\n          \"amortizationEndDate\": \"1962-01-15\"\n        }\n      ],\n      \"failureContext\": {\n        \"name\": \"string\",\n        \"type\": \"NOT_FOUND\",\n        \"errors\": [\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_3\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      },\n      \"description\": \"string\",\n      \"performedAt\": \"1982-05-04T12:42:19.353Z\",\n      \"exportedAt\": \"2009-05-26T07:10:27.801Z\",\n      \"createdAt\": \"2014-08-05T02:12:36.345Z\",\n      \"updatedAt\": \"1981-03-19T08:13:01.696Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"9e6fc6f5-3654-47de-cd4f-641f157afcef\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"9e70cbe5-a629-e32a-ec9a-f21e26cec3cb\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"62906ac2-f4c3-4762-f0a0-2f0a805a9d39\",\n      \"companyId\": \"9b30f6b1-a966-432c-4231-88b7f82795c1\",\n      \"companyEntityId\": \"d9bcb6f6-381c-8425-7572-ad6fae994bcb\",\n      \"companyEntityName\": \"string\",\n      \"cardBalanceAccountId\": \"f021aa21-8c7f-6379-e9b5-8830066e0ec3\",\n      \"cardBalanceAccountLabel\": \"string\",\n      \"cardId\": \"6f809404-6c5a-e58d-6eb8-5ce3a2c6ece2\",\n      \"cardVendorId\": \"8d0adef7-bd2a-45d5-b540-f8c4b087c36c\",\n      \"cardVendorAvatarUrl\": \"string\",\n      \"cardVendorName\": \"string\",\n      \"cardOwnerName\": \"string\",\n      \"cardOwnerId\": \"03b5395d-baa7-d6f3-907d-a629c7710659\",\n      \"cardLastFour\": \"string\",\n      \"originalAmount\": 4261,\n      \"originalCurrency\": \"USD\",\n      \"amount\": 6135,\n      \"currency\": \"USD\",\n      \"direction\": \"DEBIT\",\n      \"transactionReason\": \"CANCELLED\",\n      \"purchaseType\": \"BALANCE_INQUIRY\",\n      \"status\": \"POSTED\",\n      \"type\": \"PAYMENT\",\n      \"merchant\": {\n        \"name\": \"string\",\n        \"cleanName\": \"string\",\n        \"country\": \"KN\",\n        \"zipcode\": \"string\",\n        \"id\": \"string\",\n        \"mcc\": \"string\",\n        \"acquirerId\": \"string\",\n        \"logoUrl\": \"string\"\n      },\n      \"receiptDocumentKey\": \"string\",\n      \"lines\": [\n        {\n          \"id\": \"e70b952a-f906-ddf1-368c-a62336bcf268\",\n          \"transactionId\": \"992d46d6-3b65-0279-3ec3-e29eb3d984e4\",\n          \"companyId\": \"991cb736-2bc3-0d97-2c44-6a8d7c1bb5ec\",\n          \"accountId\": \"f45a596a-492e-7805-1bf0-1945c2c5f490\",\n          \"accountLabel\": \"string\",\n          \"taxCodeId\": \"bc2c8eb4-cfac-a7fc-8264-e8c36c8214f0\",\n          \"taxCodeLabel\": \"string\",\n          \"costCenterId\": \"db0b6978-9b11-a708-f89e-a672d01cd1ac\",\n          \"costCenterName\": \"string\",\n          \"amount\": 1258,\n          \"netAmount\": 8118,\n          \"description\": \"string\",\n          \"createdAt\": \"1972-05-11T13:59:27.124Z\",\n          \"updatedAt\": \"1951-12-03T22:14:11.627Z\",\n          \"customProperties\": [\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"amortizationTemplateId\": \"0e102775-7e18-f7a7-7674-999ee439260c\",\n          \"amortizationStartDate\": \"2009-09-11\",\n          \"amortizationEndDate\": \"2000-11-08\"\n        },\n        {\n          \"id\": \"f69a605f-ad89-737a-9b73-445a86d82a11\",\n          \"transactionId\": \"b02b39a3-66ec-946c-f974-e9242a4330dc\",\n          \"companyId\": \"3eeed09d-bda7-a280-6bc9-82dbe94f61f9\",\n          \"accountId\": \"0e7a334e-1a7a-379c-fa37-dff0eb9aa0a7\",\n          \"accountLabel\": \"string\",\n          \"taxCodeId\": \"af44e71c-e902-b893-d097-bd68ef7e1266\",\n          \"taxCodeLabel\": \"string\",\n          \"costCenterId\": \"99365767-0c50-e321-e84f-aabafd6c7f5a\",\n          \"costCenterName\": \"string\",\n          \"amount\": 6361,\n          \"netAmount\": 8791,\n          \"description\": \"string\",\n          \"createdAt\": \"1995-10-26T17:25:11.387Z\",\n          \"updatedAt\": \"1986-11-08T03:01:22.901Z\",\n          \"customProperties\": [\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"values\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"amortizationTemplateId\": \"0d486bf9-1369-df4c-d79e-75ddcc4ad2cd\",\n          \"amortizationStartDate\": \"1999-04-23\",\n          \"amortizationEndDate\": \"2018-07-17\"\n        }\n      ],\n      \"failureContext\": {\n        \"name\": \"string\",\n        \"type\": \"FORBIDDEN\",\n        \"errors\": [\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          {\n            \"type\": \"string\",\n            \"message\": \"string\",\n            \"path\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"context\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          }\n        ]\n      },\n      \"description\": \"string\",\n      \"performedAt\": \"1950-05-15T09:51:29.224Z\",\n      \"exportedAt\": \"1956-04-24T12:01:01.716Z\",\n      \"createdAt\": \"1989-06-08T03:48:03.243Z\",\n      \"updatedAt\": \"1952-07-25T01:15:59.324Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"bcff2058-8afa-58c8-5cb3-20f0b75caa1c\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"127d8996-20d5-31a3-fdfe-828daf7f06e7\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ],\n  \"hasMore\": false,\n  \"total\": 3141,\n  \"nextCursor\": \"string\",\n  \"prevCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9f3a6f4-bd26-4f8c-902a-f62cfb039332",
+          "name": "Post card transaction",
+          "request": {
+            "name": "Post card transaction",
+            "description": {
+              "content": "Posts a card transaction to the ledger",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":transactionId",
+                "post"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32c0235d-8317-46dc-a3f1-bccd33089f61",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":transactionId",
+                    "post"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"cfc4864b-e6e8-5002-8170-2637932146b2\",\n  \"companyId\": \"120c743e-8c8a-32fb-d286-a24d9f5752cf\",\n  \"companyEntityId\": \"131da372-be98-3b0e-692b-806499f16354\",\n  \"cardBalanceAccountId\": \"ceb540f0-ecbc-83c5-18a1-d36ed01b9557\",\n  \"cardId\": \"36fd1dbc-a15e-ae25-2efe-d7ab0a7f3950\",\n  \"originalAmount\": 3998,\n  \"originalCurrency\": \"USD\",\n  \"amount\": 1055,\n  \"currency\": \"USD\",\n  \"direction\": \"CREDIT\",\n  \"transactionReason\": \"MOBILE_PIN_REQUIRED\",\n  \"purchaseType\": \"ATM\",\n  \"status\": \"AUTHORIZED\",\n  \"type\": \"PAYMENT\",\n  \"merchant\": {\n    \"name\": \"string\",\n    \"cleanName\": \"string\",\n    \"country\": \"AW\",\n    \"zipcode\": \"string\",\n    \"id\": \"string\",\n    \"mcc\": \"string\",\n    \"acquirerId\": \"string\",\n    \"logoUrl\": \"string\"\n  },\n  \"receiptDocumentKey\": \"string\",\n  \"lines\": [\n    {\n      \"id\": \"69f0f189-67f5-1859-b366-32c0fcb61aed\",\n      \"transactionId\": \"dd2a8ccd-9505-40ed-c483-5960a5f73ee8\",\n      \"companyId\": \"2300f872-dd1c-1c77-b002-aa71b59bc4a3\",\n      \"accountId\": \"a93ba15d-0015-883a-a41f-35b663188aa1\",\n      \"taxCodeId\": \"f21852a3-d36d-d6f1-b11e-bbf5d7112593\",\n      \"costCenterId\": \"3e25aad4-e66f-10d9-b3ac-384f7c5884e2\",\n      \"amount\": 7928,\n      \"netAmount\": 8378,\n      \"taxAmount\": 1100,\n      \"description\": \"string\",\n      \"createdAt\": \"2004-01-22T04:31:19.891Z\",\n      \"updatedAt\": \"1983-12-28T22:03:51.082Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"8a5db9aa-d878-d35b-dada-9e56bdbb1c35\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"1a09553b-af99-4838-89b3-589706e5762a\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"6cee2e4a-5f73-e0db-a349-4f3deec21039\",\n      \"amortizationStartDate\": \"1966-11-14\",\n      \"amortizationEndDate\": \"1971-10-17\"\n    },\n    {\n      \"id\": \"79655e55-444e-50ad-4e03-6f7fe1b45d4c\",\n      \"transactionId\": \"280f8aa4-0196-0122-5489-eb6513020be6\",\n      \"companyId\": \"7830daa3-fd8d-42be-567e-8a57238a7a36\",\n      \"accountId\": \"5d6bc9b0-ff6f-c457-14f7-575c2ed529ea\",\n      \"taxCodeId\": \"26b3651c-f9c5-3d61-10f5-378ce24ef253\",\n      \"costCenterId\": \"49fefad1-f240-0363-d2cd-e016c110c1ab\",\n      \"amount\": 1017,\n      \"netAmount\": 4204,\n      \"taxAmount\": 9542,\n      \"description\": \"string\",\n      \"createdAt\": \"1965-02-04T02:29:14.303Z\",\n      \"updatedAt\": \"1964-03-20T17:14:26.990Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"9a785d26-6ea2-604f-1743-8593db6e69d4\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"0a19f604-e1d1-6242-c518-73f31e1e9668\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"2dd0bac1-b971-4b8d-1b91-4a1fe562a70c\",\n      \"amortizationStartDate\": \"1949-01-07\",\n      \"amortizationEndDate\": \"1987-08-12\"\n    }\n  ],\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"CONFLICT\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {}\n        }\n      }\n    ]\n  },\n  \"editStatus\": \"ALL_EDITS_LOCKED\",\n  \"description\": \"string\",\n  \"performedAt\": \"2009-03-29T18:12:33.806Z\",\n  \"createdAt\": \"2021-10-08T19:11:02.836Z\",\n  \"updatedAt\": \"1972-06-23T09:57:56.308Z\",\n  \"updatedBy\": \"b9734e44-8bda-e303-504e-7b7ed38c2796\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"9dadae22-0dcb-cc1c-b172-5c3a425f4985\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"4e27359a-9041-2bae-f652-59450ec43848\",\n          \"groupId\": \"12105b46-bfd8-d522-37b1-2994373e1eb1\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"992abdb9-4ef5-be19-5c8f-6ca3dcb2729d\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2017-07-06T06:26:52.710Z\",\n          \"updatedAt\": \"1949-06-23T11:40:54.772Z\"\n        },\n        {\n          \"id\": \"5720814a-dc4e-4d7e-31b8-3323844f53a9\",\n          \"groupId\": \"e9909bd7-398c-cf6b-5b7c-c1e9dc11c9a9\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"781a9fdc-4607-302e-ece4-27e0da228a88\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1973-03-22T02:52:17.998Z\",\n          \"updatedAt\": \"2025-09-15T13:25:46.747Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"14bed041-94ca-a1e8-c046-2406f11d2141\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"fd8bfc03-5780-739c-4077-25c89ed6bcec\",\n          \"groupId\": \"ae713c20-9a5b-f86e-994a-7eb8d8bbd183\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"fa94f5ee-debd-dbd8-7758-c687915c71ef\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2017-12-04T01:31:43.216Z\",\n          \"updatedAt\": \"2000-05-19T07:43:45.390Z\"\n        },\n        {\n          \"id\": \"3855a688-07e3-39bb-d507-0a738a195906\",\n          \"groupId\": \"2d14d626-5f93-3047-8188-388052fdff7b\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"a1fd6da1-5bd8-af24-81f7-9d43110193f7\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1955-04-06T00:48:38.833Z\",\n          \"updatedAt\": \"2015-01-25T07:51:39.298Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d25b8361-03c8-45ce-8542-454cb2b76b65",
+          "name": "Reset card transaction",
+          "request": {
+            "name": "Reset card transaction",
+            "description": {
+              "content": "Reverses a posted card transaction's ledger entries and returns it to an editable state",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":transactionId",
+                "reset"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0cbf2f68-3082-4d0c-b1d6-42f75e907de8",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":transactionId",
+                    "reset"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"74e47e12-cc2f-d54c-f85b-28aafaec37c6\",\n  \"companyId\": \"b0a345c7-3781-bb5f-23f3-ea8bc2dc97e4\",\n  \"companyEntityId\": \"e76b4b6b-d9e4-6a0d-0a86-ebfda468eaea\",\n  \"cardBalanceAccountId\": \"8ea4c420-2cc5-d8f6-62e0-f27baf77638e\",\n  \"cardId\": \"c3b42996-7d19-fdc2-5c39-36cbefb5bd36\",\n  \"originalAmount\": 3046,\n  \"originalCurrency\": \"USD\",\n  \"amount\": 6654,\n  \"currency\": \"USD\",\n  \"direction\": \"DEBIT\",\n  \"transactionReason\": \"CARD_LOST_OR_STOLEN\",\n  \"purchaseType\": \"OTHER\",\n  \"status\": \"VOIDED\",\n  \"type\": \"OTHER\",\n  \"merchant\": {\n    \"name\": \"string\",\n    \"cleanName\": \"string\",\n    \"country\": \"MR\",\n    \"zipcode\": \"string\",\n    \"id\": \"string\",\n    \"mcc\": \"string\",\n    \"acquirerId\": \"string\",\n    \"logoUrl\": \"string\"\n  },\n  \"receiptDocumentKey\": \"string\",\n  \"lines\": [\n    {\n      \"id\": \"b6d4bad4-ab79-10ad-ec4e-a712a7088d71\",\n      \"transactionId\": \"18802b44-d573-adb4-2f6e-4bad2dfcb2b5\",\n      \"companyId\": \"451b033f-1399-cbe8-49dc-b49a4a59bdac\",\n      \"accountId\": \"8edd776a-7d40-8793-9d8b-e572dfcfc29d\",\n      \"taxCodeId\": \"cceedbb5-2d7d-b661-ed54-0b77173c75d4\",\n      \"costCenterId\": \"8727a246-980f-7fd1-0af0-93e49bfb7f7b\",\n      \"amount\": 980,\n      \"netAmount\": 1524,\n      \"taxAmount\": 8299,\n      \"description\": \"string\",\n      \"createdAt\": \"1977-06-04T21:06:24.620Z\",\n      \"updatedAt\": \"1964-04-20T11:48:59.795Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"c50cbb9e-c254-61b7-9a97-e0a047c59282\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"3e7a63e9-909e-f194-0cf1-740e88f74b7f\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"1a14a9a2-8221-6b08-32c1-50bea7c13eb3\",\n      \"amortizationStartDate\": \"1983-09-01\",\n      \"amortizationEndDate\": \"1954-11-08\"\n    },\n    {\n      \"id\": \"172b2872-fd20-77d8-08b1-65e1f90e4a89\",\n      \"transactionId\": \"87d19ab0-5bfd-4d83-22ff-c953f25b9f29\",\n      \"companyId\": \"bfd46318-48e8-91be-5e75-9ce4d86bee37\",\n      \"accountId\": \"977752aa-808a-ca8c-ad73-28fb7f4bb9ac\",\n      \"taxCodeId\": \"d57e9627-b2ac-a052-e71d-301a16fba9fd\",\n      \"costCenterId\": \"957110d1-c0fd-9743-91d9-bc948273e165\",\n      \"amount\": 8370,\n      \"netAmount\": 8320,\n      \"taxAmount\": 8833,\n      \"description\": \"string\",\n      \"createdAt\": \"1966-10-30T08:48:10.980Z\",\n      \"updatedAt\": \"1962-06-17T02:14:41.883Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"4e4f6afc-7e00-8a45-4ed2-0c86316c482f\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"7f796eee-bd80-e2e9-6d52-fff91a7b7432\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"dc49533f-03e6-2ba4-d8f5-09b9da8c5c85\",\n      \"amortizationStartDate\": \"1960-06-08\",\n      \"amortizationEndDate\": \"1973-05-01\"\n    }\n  ],\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"UNPROCESSABLE_CONTENT\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {}\n        }\n      }\n    ]\n  },\n  \"editStatus\": \"ALL_EDITS_ALLOWED\",\n  \"description\": \"string\",\n  \"performedAt\": \"1983-09-23T01:35:52.908Z\",\n  \"createdAt\": \"1991-06-14T09:41:22.437Z\",\n  \"updatedAt\": \"2024-03-14T21:24:37.946Z\",\n  \"updatedBy\": \"951bf5c7-db27-fc7f-8b3f-892fc9088959\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"272dea73-5f44-d3d4-eba1-db83ba9709f1\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"955f9a00-45c0-3b3a-ae24-260625a27edf\",\n          \"groupId\": \"306bb192-f81e-7fa5-0e93-a39464ffdd96\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"4e86c526-cb7d-7b3c-4b3f-5bc3b1266e6d\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1968-09-05T06:12:33.458Z\",\n          \"updatedAt\": \"2013-11-11T04:46:17.692Z\"\n        },\n        {\n          \"id\": \"22098f01-4f44-1e90-bb81-767de5e5fc11\",\n          \"groupId\": \"88a3885a-fd57-ea34-e0af-0cd180912157\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"02efb990-e092-1de0-943d-355305918627\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2002-06-30T12:46:41.958Z\",\n          \"updatedAt\": \"1999-06-16T21:17:55.633Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"4993e873-e5a5-0caf-4f5f-297b9661caf5\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"c438ba77-8907-0117-badc-7819af0e1a6e\",\n          \"groupId\": \"58fa1cff-1bb7-51b3-05f5-e6d4d43d8fe3\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"d3924c13-25c6-14e6-c441-ad96ccf654f5\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1996-03-14T11:19:03.624Z\",\n          \"updatedAt\": \"1959-04-05T07:33:07.129Z\"\n        },\n        {\n          \"id\": \"5c9ec331-b98b-ef16-0b8c-e4127d00061e\",\n          \"groupId\": \"9adbcb62-d34c-e1ad-47ff-e7abeb2e282c\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"2b34f89b-5f0c-b310-4c23-6bcc11166a99\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1997-03-17T17:51:43.674Z\",\n          \"updatedAt\": \"2008-04-26T09:20:42.827Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9f9e95c-4257-4fbc-bfc1-c43b8ac0a2aa",
+          "name": "Update card transaction",
+          "request": {
+            "name": "Update card transaction",
+            "description": {
+              "content": "Updates an existing card transaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f012de5d-b501-49c4-bf28-05dc1964b788",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"74e47e12-cc2f-d54c-f85b-28aafaec37c6\",\n  \"companyId\": \"b0a345c7-3781-bb5f-23f3-ea8bc2dc97e4\",\n  \"companyEntityId\": \"e76b4b6b-d9e4-6a0d-0a86-ebfda468eaea\",\n  \"cardBalanceAccountId\": \"8ea4c420-2cc5-d8f6-62e0-f27baf77638e\",\n  \"cardId\": \"c3b42996-7d19-fdc2-5c39-36cbefb5bd36\",\n  \"originalAmount\": 3046,\n  \"originalCurrency\": \"USD\",\n  \"amount\": 6654,\n  \"currency\": \"USD\",\n  \"direction\": \"DEBIT\",\n  \"transactionReason\": \"CARD_LOST_OR_STOLEN\",\n  \"purchaseType\": \"OTHER\",\n  \"status\": \"VOIDED\",\n  \"type\": \"OTHER\",\n  \"merchant\": {\n    \"name\": \"string\",\n    \"cleanName\": \"string\",\n    \"country\": \"MR\",\n    \"zipcode\": \"string\",\n    \"id\": \"string\",\n    \"mcc\": \"string\",\n    \"acquirerId\": \"string\",\n    \"logoUrl\": \"string\"\n  },\n  \"receiptDocumentKey\": \"string\",\n  \"lines\": [\n    {\n      \"id\": \"b6d4bad4-ab79-10ad-ec4e-a712a7088d71\",\n      \"transactionId\": \"18802b44-d573-adb4-2f6e-4bad2dfcb2b5\",\n      \"companyId\": \"451b033f-1399-cbe8-49dc-b49a4a59bdac\",\n      \"accountId\": \"8edd776a-7d40-8793-9d8b-e572dfcfc29d\",\n      \"taxCodeId\": \"cceedbb5-2d7d-b661-ed54-0b77173c75d4\",\n      \"costCenterId\": \"8727a246-980f-7fd1-0af0-93e49bfb7f7b\",\n      \"amount\": 980,\n      \"netAmount\": 1524,\n      \"taxAmount\": 8299,\n      \"description\": \"string\",\n      \"createdAt\": \"1977-06-04T21:06:24.620Z\",\n      \"updatedAt\": \"1964-04-20T11:48:59.795Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"c50cbb9e-c254-61b7-9a97-e0a047c59282\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"3e7a63e9-909e-f194-0cf1-740e88f74b7f\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"1a14a9a2-8221-6b08-32c1-50bea7c13eb3\",\n      \"amortizationStartDate\": \"1983-09-01\",\n      \"amortizationEndDate\": \"1954-11-08\"\n    },\n    {\n      \"id\": \"172b2872-fd20-77d8-08b1-65e1f90e4a89\",\n      \"transactionId\": \"87d19ab0-5bfd-4d83-22ff-c953f25b9f29\",\n      \"companyId\": \"bfd46318-48e8-91be-5e75-9ce4d86bee37\",\n      \"accountId\": \"977752aa-808a-ca8c-ad73-28fb7f4bb9ac\",\n      \"taxCodeId\": \"d57e9627-b2ac-a052-e71d-301a16fba9fd\",\n      \"costCenterId\": \"957110d1-c0fd-9743-91d9-bc948273e165\",\n      \"amount\": 8370,\n      \"netAmount\": 8320,\n      \"taxAmount\": 8833,\n      \"description\": \"string\",\n      \"createdAt\": \"1966-10-30T08:48:10.980Z\",\n      \"updatedAt\": \"1962-06-17T02:14:41.883Z\",\n      \"customProperties\": [\n        {\n          \"groupId\": \"4e4f6afc-7e00-8a45-4ed2-0c86316c482f\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"groupId\": \"7f796eee-bd80-e2e9-6d52-fff91a7b7432\",\n          \"groupInternalName\": \"string\",\n          \"values\": [\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"groupInternalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"companyId\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internalName\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"label\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"context\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"createdAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"updatedAt\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"amortizationTemplateId\": \"dc49533f-03e6-2ba4-d8f5-09b9da8c5c85\",\n      \"amortizationStartDate\": \"1960-06-08\",\n      \"amortizationEndDate\": \"1973-05-01\"\n    }\n  ],\n  \"failureContext\": {\n    \"name\": \"string\",\n    \"type\": \"UNPROCESSABLE_CONTENT\",\n    \"errors\": [\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"type\": \"string\",\n        \"message\": \"string\",\n        \"path\": [\n          \"string\",\n          \"string\"\n        ],\n        \"context\": {\n          \"key_0\": {}\n        }\n      }\n    ]\n  },\n  \"editStatus\": \"ALL_EDITS_ALLOWED\",\n  \"description\": \"string\",\n  \"performedAt\": \"1983-09-23T01:35:52.908Z\",\n  \"createdAt\": \"1991-06-14T09:41:22.437Z\",\n  \"updatedAt\": \"2024-03-14T21:24:37.946Z\",\n  \"updatedBy\": \"951bf5c7-db27-fc7f-8b3f-892fc9088959\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"272dea73-5f44-d3d4-eba1-db83ba9709f1\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"955f9a00-45c0-3b3a-ae24-260625a27edf\",\n          \"groupId\": \"306bb192-f81e-7fa5-0e93-a39464ffdd96\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"4e86c526-cb7d-7b3c-4b3f-5bc3b1266e6d\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1968-09-05T06:12:33.458Z\",\n          \"updatedAt\": \"2013-11-11T04:46:17.692Z\"\n        },\n        {\n          \"id\": \"22098f01-4f44-1e90-bb81-767de5e5fc11\",\n          \"groupId\": \"88a3885a-fd57-ea34-e0af-0cd180912157\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"02efb990-e092-1de0-943d-355305918627\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"2002-06-30T12:46:41.958Z\",\n          \"updatedAt\": \"1999-06-16T21:17:55.633Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"4993e873-e5a5-0caf-4f5f-297b9661caf5\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"c438ba77-8907-0117-badc-7819af0e1a6e\",\n          \"groupId\": \"58fa1cff-1bb7-51b3-05f5-e6d4d43d8fe3\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"d3924c13-25c6-14e6-c441-ad96ccf654f5\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1996-03-14T11:19:03.624Z\",\n          \"updatedAt\": \"1959-04-05T07:33:07.129Z\"\n        },\n        {\n          \"id\": \"5c9ec331-b98b-ef16-0b8c-e4127d00061e\",\n          \"groupId\": \"9adbcb62-d34c-e1ad-47ff-e7abeb2e282c\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"2b34f89b-5f0c-b310-4c23-6bcc11166a99\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1997-03-17T17:51:43.674Z\",\n          \"updatedAt\": \"2008-04-26T09:20:42.827Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9229f828-1c85-422e-8d30-f67e3061c8a7",
+          "name": "Update card transaction line",
+          "request": {
+            "name": "Update card transaction line",
+            "description": {
+              "content": "Updates a specific card transaction line item",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "card-transactions",
+                ":transactionId",
+                "lines",
+                ":transactionLineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transactionLineId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json;charset=UTF-8"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json;charset=UTF-8"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"accountId\": \"<uuid>\",\n  \"taxCodeId\": \"<uuid>\",\n  \"costCenterId\": \"<uuid>\",\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"amortizationTemplateId\": \"<uuid>\",\n  \"amortizationStartDate\": \"<date>\",\n  \"amortizationEndDate\": \"<date>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a587e851-33ae-41c1-bf96-e9d19f11f264",
+              "name": "default response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "card-transactions",
+                    ":transactionId",
+                    "lines",
+                    ":transactionLineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transactionLineId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json;charset=UTF-8"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customProperties\": [\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"groupId\": \"<uuid>\",\n      \"valueIds\": [\n        \"<uuid>\",\n        \"<uuid>\"\n      ],\n      \"inlineValues\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"accountId\": \"<uuid>\",\n  \"taxCodeId\": \"<uuid>\",\n  \"costCenterId\": \"<uuid>\",\n  \"amount\": \"<long>\",\n  \"description\": \"<string>\",\n  \"amortizationTemplateId\": \"<uuid>\",\n  \"amortizationStartDate\": \"<date>\",\n  \"amortizationEndDate\": \"<date>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json;charset=UTF-8"
+                }
+              ],
+              "body": "{\n  \"id\": \"382f046d-506a-62b9-5722-012a5db21a07\",\n  \"transactionId\": \"bcd87a38-d724-b3d9-2b01-c6acb1a69482\",\n  \"companyId\": \"7c723707-d1b4-356a-7c79-d3110707a3e1\",\n  \"accountId\": \"f3a76a67-36db-6bae-c56b-88360e5a7f5c\",\n  \"taxCodeId\": \"e347359a-316b-e816-1df5-7f853c33a14b\",\n  \"costCenterId\": \"2120b494-c7ab-3680-5717-472248a281de\",\n  \"amount\": 3787,\n  \"netAmount\": 2,\n  \"taxAmount\": 8546,\n  \"description\": \"string\",\n  \"createdAt\": \"1953-03-03T02:45:31.814Z\",\n  \"updatedAt\": \"2007-01-30T19:54:18.814Z\",\n  \"customProperties\": [\n    {\n      \"groupId\": \"22eeb8b9-df6a-8cc3-7ba4-4f4298205e94\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"266a648d-cb79-ff49-7ef0-be3632eecb98\",\n          \"groupId\": \"70edaef7-41dd-3548-8968-bb154ca4e525\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"a74a7d19-b4b5-ba63-8833-0865fbd7390e\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1972-10-02T19:19:21.959Z\",\n          \"updatedAt\": \"1983-01-01T16:00:56.829Z\"\n        },\n        {\n          \"id\": \"d6be8087-9346-4689-fcad-5858c0cc9aae\",\n          \"groupId\": \"1263d8ec-92b3-3277-f75b-22e3ac3d203e\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"b4c56a88-a38f-e443-8800-07ee0bf59170\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1960-09-13T08:15:39.203Z\",\n          \"updatedAt\": \"1967-12-10T17:56:07.379Z\"\n        }\n      ]\n    },\n    {\n      \"groupId\": \"bc34f849-c476-200a-ceb9-75c266e63b50\",\n      \"groupInternalName\": \"string\",\n      \"values\": [\n        {\n          \"id\": \"6c415a0a-dc07-6c32-b179-02595d60c6ac\",\n          \"groupId\": \"7d496433-3e6a-513d-3835-1e32c3e0f5db\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"8549579a-bd78-32d6-40a9-1bf2efd7c4ce\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1990-01-06T00:59:43.875Z\",\n          \"updatedAt\": \"1952-07-04T13:43:16.653Z\"\n        },\n        {\n          \"id\": \"4cc25126-0f8f-af93-4e41-f99bdd7e0089\",\n          \"groupId\": \"46793564-006d-48c0-08a2-cc5bda995e3e\",\n          \"groupInternalName\": \"string\",\n          \"companyId\": \"41aca159-4074-0719-ea5a-ba952f9038dc\",\n          \"internalName\": \"string\",\n          \"label\": \"string\",\n          \"context\": \"string\",\n          \"createdAt\": \"1989-04-27T04:56:48.688Z\",\n          \"updatedAt\": \"2015-01-19T08:54:15.608Z\"\n        }\n      ]\n    }\n  ],\n  \"amortizationTemplateId\": \"9ba6a0fd-cb5b-4edf-3871-ee82abe5907d\",\n  \"amortizationStartDate\": \"1963-10-25\",\n  \"amortizationEndDate\": \"2021-11-21\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "63d02d40-cfb6-4885-a21d-9fcb8df90021",
+    "name": "Light Authorization v1 - Card Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

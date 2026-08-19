@@ -1,0 +1,480 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Light Authorization v1 - Invoice Payables API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "v1 - Invoice Payables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List invoice payables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/bff/invoice-payables",
+            "params": [
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return. Default is 50, maximum is 200."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before starting to collect the result set. Deprecated, use 'cursor' instead."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "The cursor position to start returning results from.\nTo opt-in into cursor-based pagination, provide `0` for the initial request.\nFor subsequent requests, use `nextCursor` and `prevCursor` from the previous response to navigate.\nCursor values are opaque and should not be constructed manually."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of invoice payables"
+        },
+        {
+          "info": {
+            "name": "Approve invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/approve",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Approves an invoice payable for payment processing"
+        },
+        {
+          "info": {
+            "name": "Cancel invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/cancel",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels an invoice payable"
+        },
+        {
+          "info": {
+            "name": "Create invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new invoice payable document. Supports inline line items via the `lineItems` field for single-request creation."
+        },
+        {
+          "info": {
+            "name": "Generate document upload URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/document/upload-url",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a secure upload URL for invoice payable documents"
+        },
+        {
+          "info": {
+            "name": "Create invoice payable line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/line-items",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an invoice payable line item"
+        },
+        {
+          "info": {
+            "name": "Decline invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/decline",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Declines an invoice payable"
+        },
+        {
+          "info": {
+            "name": "Get invoice payable line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/line-items/:lineItemId",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Gets an invoice payable line item"
+        },
+        {
+          "info": {
+            "name": "Update invoice payable line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/line-items/:lineItemId",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an invoice payable line item"
+        },
+        {
+          "info": {
+            "name": "Delete invoice payable line item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/line-items/:lineItemId",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "lineItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an invoice payable line item"
+        },
+        {
+          "info": {
+            "name": "Get invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeOutstandingBalance",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a specific invoice payable by ID"
+        },
+        {
+          "info": {
+            "name": "Update invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing invoice payable document header"
+        },
+        {
+          "info": {
+            "name": "Get invoice document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/document",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the attached document for an invoice payable"
+        },
+        {
+          "info": {
+            "name": "Get linked credit notes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/credit-notes",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns all credit notes linked to the invoice payable"
+        },
+        {
+          "info": {
+            "name": "List invoice payable payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/payments",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns all clearings (bank payments and credit notes) linked to the invoice payable. Each entry carries a `type` discriminator (`BP` for bank payments, `CN` for credit notes) so consumers can filter client-side if only one kind is needed. Reversed clearings are excluded."
+        },
+        {
+          "info": {
+            "name": "Mark invoice payable as paid",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/mark-as-paid",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Marks an invoice payable as paid by recording a bank payment that clears it. Use `paymentOption=FULL` to clear the remaining outstanding balance, or `paymentOption=PARTIAL` to record an installment. The invoice transitions to `PAID` (full) or `PARTIALLY_PAID` (partial)."
+        },
+        {
+          "info": {
+            "name": "Post invoice payable without approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/post",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Posts an invoice payable directly to the ledger without going through the approval workflow. The invoice must be in `IN_DRAFT` state. After posting, linked credit notes are applied and unlinked credit notes may be auto-allocated. If the invoice is fully cleared by credit notes, it transitions to `COMPLETED`; otherwise it transitions to `UNPAID`."
+        },
+        {
+          "info": {
+            "name": "Reverse invoice payable payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/reverse-clearing",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reverses a clearing applied to an invoice payable — either a bank payment (`BP`) or a credit note (`CN`) — identified by its accounting document ID. Use the `List invoice payable payments` endpoint to obtain the `accountingDocumentId` and `type` of the clearing to reverse. Reversing removes the clearing's effect from the ledger and transitions the invoice back to `UNPAID` or `PARTIALLY_PAID` depending on the remaining outstanding balance. Optionally set `shouldArchiveClearingDocument` to also ar"
+        },
+        {
+          "info": {
+            "name": "Submit for approval",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/submit-for-approval",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits an invoice for approval"
+        },
+        {
+          "info": {
+            "name": "Update the custom properties of a posted invoice payable",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/v1/invoice-payables/:invoicePayableId/custom-properties",
+            "params": [
+              {
+                "name": "invoicePayableId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces all custom fields on an invoice payable after it has been posted/approved (e.g. ready for payment release, scheduled, unpaid, partially paid, completed). Any custom property group not included in the request is removed. Use this to set fields such as a reconciliation link once the invoice has left the inbox. Editing is locked while approval is actively pending."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
