@@ -13,6 +13,18 @@ description: >-
   governed by the same roles as user accounts, and writes on 14 operations accept an
   X-Idempotency-Key header. Light also publishes a live Model Context Protocol server over its
   documentation and markets a Claude MCP integration against the live ledger.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
