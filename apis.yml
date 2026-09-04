@@ -522,6 +522,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/light-capability-edges.yml
+  name: Light Business Capability Map
 - type: Overlay
   url: overlays/light-openapi-overlay.yaml
 - type: AgenticAccess
