@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Exchange API
+  title: Light v1 - Exchange API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -72,8 +72,6 @@ paths:
                   $ref: '#/components/schemas/ExternalExchangeRateV1Model'
 components:
   schemas:
-    LocalDateParam:
-      type: object
     ExternalExchangeRateV1Model:
       type: object
       properties:
@@ -94,6 +92,8 @@ components:
           type: string
           description: Date the exchange rate is requested for
           format: date
+    LocalDateParam:
+      type: object
   securitySchemes:
     apiKeyAuth:
       type: apiKey

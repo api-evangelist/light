@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Credit Notes API
+  title: Light v1 - Credit Notes API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -405,13 +405,6 @@ paths:
                 $ref: '#/components/schemas/ExternalCreditNoteV1Model'
 components:
   schemas:
-    ExternalUpdateCreditNoteInvoicePayableAmountRequestV1Model:
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Updated amount to clear in cents
-          format: int64
     ExternalRelatedAccDocV1Model:
       type: object
       properties:
@@ -420,21 +413,22 @@ components:
           description: Unique identifier for the object
           format: uuid
         documentNumber:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Document number
-          nullable: true
         documentDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Date the accounting document was issued
           format: date
-          nullable: true
         status:
           type: string
           description: 'Status of the accounting document
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
           deprecated: false
           enum:
           - DRAFT
@@ -445,14 +439,253 @@ components:
           - CLEARED
           - ARCHIVED
         amount:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: The amount of the accounting document in cents
           format: int64
-          nullable: true
         currency:
           type: string
           example: USD
       description: Invoice payable details
+    ExternalCreateCreditNoteRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type:
+          - string
+          - 'null'
+          description: ID of the entity
+          format: uuid
+        currency:
+          type: string
+          example: USD
+        documentDate:
+          type: string
+          description: Date when the credit note was issued
+          format: date
+        businessPartnerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the vendor (required if the credit note will be linked to an invoice payable)
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the credit note
+        amount:
+          type:
+          - integer
+          - 'null'
+          description: Total credit note amount in cents
+          format: int64
+        areLinesWithTax:
+          type: boolean
+          description: Whether line amounts include tax. true = tax included (gross), false = tax added on top (net)
+        documentNumber:
+          type:
+          - string
+          - 'null'
+          description: Unique credit note number. When provided, it is also used for idempotency — retrying a create with the same documentNumber returns the existing credit note. If omitted, a number is generated automatically.
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        lines:
+          type: array
+          description: List of credit note line items
+          items:
+            $ref: '#/components/schemas/ExternalCreateCreditNoteLineRequestV1Model'
+        localCurrencyFxRateOverride:
+          type:
+          - number
+          - 'null'
+          description: Custom FX rate for the ledger's local currency. If not provided, Light uses official ECB rates.
+        groupCurrencyFxRateOverride:
+          type:
+          - number
+          - 'null'
+          description: Custom FX rate for the ledger's group currency. If not provided, Light uses official ECB rates.
+    ExternalCreditNoteV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        companyEntityId:
+          type:
+          - string
+          - 'null'
+          description: ID of the entity
+          format: uuid
+        amount:
+          type:
+          - integer
+          - 'null'
+          description: Total credit note amount in cents
+          format: int64
+        businessPartnerName:
+          type:
+          - string
+          - 'null'
+          description: Name of the vendor
+        businessPartnerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the vendor
+          format: uuid
+        status:
+          type: string
+          description: 'Status of the credit note
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - DRAFT
+          - APPROVAL_PENDING
+          - APPROVED
+          - POSTED
+          - PARTIALLY_CLEARED
+          - CLEARED
+          - ARCHIVED
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the credit note
+        currency:
+          type: string
+          example: USD
+        postingDate:
+          type:
+          - string
+          - 'null'
+          description: Date when the credit note should be posted to the ledger
+          format: date
+        documentDate:
+          type:
+          - string
+          - 'null'
+          description: Date when the credit note was issued
+          format: date
+        valuationDate:
+          type:
+          - string
+          - 'null'
+          description: Date used when applying foreign exchange rate
+          format: date
+        areLinesWithTax:
+          type: boolean
+          description: Whether the credit note line amount is inclusive of tax or not. True means tax is already included in the line amount and will not be added on top, false means tax will be added on top of the line amount
+        lines:
+          type: array
+          description: List of credit note line items
+          items:
+            $ref: '#/components/schemas/ExternalCreditNoteLineV1Model'
+        createdAt:
+          type: string
+          description: Timestamp when the credit note was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the credit note was last updated
+          format: date-time
+        updatedBy:
+          type:
+          - string
+          - 'null'
+          description: ID of the user who last updated the credit note
+          format: uuid
+        localCurrencyFxRate:
+          type:
+          - number
+          - 'null'
+          description: FX rate applied for the ledger's local currency
+        groupCurrencyFxRate:
+          type:
+          - number
+          - 'null'
+          description: FX rate applied for the ledger's group currency
+        senderEmail:
+          type:
+          - string
+          - 'null'
+          description: The email of the user who sent the document that this credit note was created from
+        documentName:
+          type:
+          - string
+          - 'null'
+          description: The name of the document that this credit note was created from
+    ExternalUpdateCreditNoteLineRequestV1Model:
+      type: object
+      properties:
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties for this line
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        netTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        grossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        taxTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        description:
+          type:
+          - string
+          - 'null'
+          description: Line description
+        ledgerTaxId:
+          type:
+          - string
+          - 'null'
+          description: ID of the tax code
+          format: uuid
+        ledgerAccountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the ledger account
+          format: uuid
+        accrualTemplateId:
+          type:
+          - string
+          - 'null'
+          description: ID of the accrual template
+          format: uuid
+        accrualStartDate:
+          type:
+          - string
+          - 'null'
+          description: Start date for accrual
+          format: date
+        accrualEndDate:
+          type:
+          - string
+          - 'null'
+          description: End date for accrual
+          format: date
+    ExternalCreateCreditNoteInvoicePayableRequestV1Model:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Amount to clear in cents
+          format: int64
     DirectedAmount:
       type: object
       properties:
@@ -465,6 +698,153 @@ components:
           enum:
           - D
           - C
+    ExternalCreditNoteLineV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        creditNoteId:
+          type: string
+          description: ID of the credit note this line belongs to
+          format: uuid
+        grossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        netTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the credit note line item
+        ledgerTaxId:
+          type:
+          - string
+          - 'null'
+          description: ID of the tax code
+          format: uuid
+        taxTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        ledgerAccountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the ledger account
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          description: ID of the cost center
+          format: uuid
+        createdAt:
+          type: string
+          description: Timestamp when the credit note line item was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the credit note line item was last updated
+          format: date-time
+        accrualTemplateId:
+          type:
+          - string
+          - 'null'
+          description: ID of the accrual template
+          format: uuid
+        accrualStartDate:
+          type:
+          - string
+          - 'null'
+          description: Start date for accrual
+          format: date
+        accrualEndDate:
+          type:
+          - string
+          - 'null'
+          description: End date for accrual
+          format: date
+        accrualDefaultDuration:
+          type:
+          - integer
+          - 'null'
+          description: Default duration for accrual in months
+          format: int32
+    ExternalUpdateCreditNoteInvoicePayableAmountRequestV1Model:
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: Updated amount to clear in cents
+          format: int64
+    ExternalUpdateCreditNoteRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type:
+          - string
+          - 'null'
+          description: ID of the entity
+          format: uuid
+        businessPartnerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the vendor
+          format: uuid
+        documentDate:
+          type:
+          - string
+          - 'null'
+          description: Date when the credit note was issued
+          format: date
+        areLinesWithTax:
+          type:
+          - boolean
+          - 'null'
+          description: Whether line amounts include tax. true = tax included (gross), false = tax added on top (net)
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the credit note
+        currency:
+          type:
+          - string
+          - 'null'
+          example: USD
+        amount:
+          type:
+          - integer
+          - 'null'
+          description: Total credit note amount in cents
+          format: int64
+        documentNumber:
+          type:
+          - string
+          - 'null'
+          description: Unique credit note number
+        localCurrencyFxRateOverride:
+          type:
+          - number
+          - 'null'
+          description: Custom FX rate for the ledger's local currency. If not provided, Light uses official ECB rates.
+        groupCurrencyFxRateOverride:
+          type:
+          - number
+          - 'null'
+          description: Custom FX rate for the ledger's group currency. If not provided, Light uses official ECB rates.
     ExternalCreditNoteInvoicePayableV1Model:
       type: object
       properties:
@@ -491,338 +871,34 @@ components:
           type: string
           description: Timestamp when the link was last updated
           format: date-time
-    ExternalUpdateCreditNoteRequestV1Model:
+    ExternalPaginatedResponseV1ModelExternalCreditNoteV1Model:
       type: object
       properties:
-        companyEntityId:
-          type: string
-          description: ID of the entity
-          format: uuid
-          nullable: true
-        businessPartnerId:
-          type: string
-          description: ID of the vendor
-          format: uuid
-          nullable: true
-        documentDate:
-          type: string
-          description: Date when the credit note was issued
-          format: date
-          nullable: true
-        areLinesWithTax:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCreditNoteV1Model'
+        hasMore:
           type: boolean
-          description: Whether line amounts include tax. true = tax included (gross), false = tax added on top (net)
-          nullable: true
-        customProperties:
-          type: array
-          description: List of custom properties
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        description:
-          type: string
-          description: Description of the credit note
-          nullable: true
-        currency:
-          type: string
-          nullable: true
-          example: USD
-        amount:
-          type: integer
-          description: Total credit note amount in cents
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
           format: int64
-          nullable: true
-        documentNumber:
-          type: string
-          description: Unique credit note number
-          nullable: true
-        localCurrencyFxRateOverride:
-          type: number
-          description: Custom FX rate for the ledger's local currency. If not provided, Light uses official ECB rates.
-          nullable: true
-        groupCurrencyFxRateOverride:
-          type: number
-          description: Custom FX rate for the ledger's group currency. If not provided, Light uses official ECB rates.
-          nullable: true
-    ExternalCreateCreditNoteRequestV1Model:
-      type: object
-      properties:
-        companyEntityId:
-          type: string
-          description: ID of the entity
-          format: uuid
-          nullable: true
-        currency:
-          type: string
-          example: USD
-        documentDate:
-          type: string
-          description: Date when the credit note was issued
-          format: date
-        businessPartnerId:
-          type: string
-          description: ID of the vendor (required if the credit note will be linked to an invoice payable)
-          format: uuid
-          nullable: true
-        description:
-          type: string
-          description: Description of the credit note
-          nullable: true
-        amount:
-          type: integer
-          description: Total credit note amount in cents
-          format: int64
-          nullable: true
-        areLinesWithTax:
-          type: boolean
-          description: Whether line amounts include tax. true = tax included (gross), false = tax added on top (net)
-        documentNumber:
-          type: string
-          description: Unique credit note number. When provided, it is also used for idempotency — retrying a create with the same documentNumber returns the existing credit note. If omitted, a number is generated automatically.
-          nullable: true
-        customProperties:
-          type: array
-          description: List of custom properties
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        lines:
-          type: array
-          description: List of credit note line items
-          items:
-            $ref: '#/components/schemas/ExternalCreateCreditNoteLineRequestV1Model'
-        localCurrencyFxRateOverride:
-          type: number
-          description: Custom FX rate for the ledger's local currency. If not provided, Light uses official ECB rates.
-          nullable: true
-        groupCurrencyFxRateOverride:
-          type: number
-          description: Custom FX rate for the ledger's group currency. If not provided, Light uses official ECB rates.
-          nullable: true
-    ExternalCreditNoteV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        companyEntityId:
-          type: string
-          description: ID of the entity
-          format: uuid
-          nullable: true
-        amount:
-          type: integer
-          description: Total credit note amount in cents
-          format: int64
-          nullable: true
-        businessPartnerName:
-          type: string
-          description: Name of the vendor
-          nullable: true
-        businessPartnerId:
-          type: string
-          description: ID of the vendor
-          format: uuid
-          nullable: true
-        status:
-          type: string
-          description: 'Status of the credit note
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
-          deprecated: false
-          enum:
-          - DRAFT
-          - APPROVAL_PENDING
-          - APPROVED
-          - POSTED
-          - PARTIALLY_CLEARED
-          - CLEARED
-          - ARCHIVED
-        description:
-          type: string
-          description: Description of the credit note
-          nullable: true
-        currency:
-          type: string
-          example: USD
-        postingDate:
-          type: string
-          description: Date when the credit note should be posted to the ledger
-          format: date
-          nullable: true
-        documentDate:
-          type: string
-          description: Date when the credit note was issued
-          format: date
-          nullable: true
-        valuationDate:
-          type: string
-          description: Date used when applying foreign exchange rate
-          format: date
-          nullable: true
-        areLinesWithTax:
-          type: boolean
-          description: Whether the credit note line amount is inclusive of tax or not. True means tax is already included in the line amount and will not be added on top, false means tax will be added on top of the line amount
-        lines:
-          type: array
-          description: List of credit note line items
-          items:
-            $ref: '#/components/schemas/ExternalCreditNoteLineV1Model'
-        createdAt:
-          type: string
-          description: Timestamp when the credit note was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the credit note was last updated
-          format: date-time
-        updatedBy:
-          type: string
-          description: ID of the user who last updated the credit note
-          format: uuid
-          nullable: true
-        localCurrencyFxRate:
-          type: number
-          description: FX rate applied for the ledger's local currency
-          nullable: true
-        groupCurrencyFxRate:
-          type: number
-          description: FX rate applied for the ledger's group currency
-          nullable: true
-        senderEmail:
-          type: string
-          description: The email of the user who sent the document that this credit note was created from
-          nullable: true
-        documentName:
-          type: string
-          description: The name of the document that this credit note was created from
-          nullable: true
-    ExternalCreateCreditNoteInvoicePayableRequestV1Model:
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: Amount to clear in cents
-          format: int64
-    ExternalUpdateCreditNoteLineRequestV1Model:
-      type: object
-      properties:
-        customProperties:
-          type: array
-          description: List of custom properties for this line
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        netTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        grossTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        taxTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        description:
-          type: string
-          description: Line description
-          nullable: true
-        ledgerTaxId:
-          type: string
-          description: ID of the tax code
-          format: uuid
-          nullable: true
-        ledgerAccountId:
-          type: string
-          description: ID of the ledger account
-          format: uuid
-          nullable: true
-        accrualTemplateId:
-          type: string
-          description: ID of the accrual template
-          format: uuid
-          nullable: true
-        accrualStartDate:
-          type: string
-          description: Start date for accrual
-          format: date
-          nullable: true
-        accrualEndDate:
-          type: string
-          description: End date for accrual
-          format: date
-          nullable: true
-    ExternalCreditNoteLineV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        creditNoteId:
-          type: string
-          description: ID of the credit note this line belongs to
-          format: uuid
-        grossTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        netTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        description:
-          type: string
-          description: Description of the credit note line item
-          nullable: true
-        ledgerTaxId:
-          type: string
-          description: ID of the tax code
-          format: uuid
-          nullable: true
-        taxTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        ledgerAccountId:
-          type: string
-          description: ID of the ledger account
-          format: uuid
-          nullable: true
-        costCenterId:
-          type: string
-          description: ID of the cost center
-          format: uuid
-          nullable: true
-        createdAt:
-          type: string
-          description: Timestamp when the credit note line item was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the credit note line item was last updated
-          format: date-time
-        accrualTemplateId:
-          type: string
-          description: ID of the accrual template
-          format: uuid
-          nullable: true
-        accrualStartDate:
-          type: string
-          description: Start date for accrual
-          format: date
-          nullable: true
-        accrualEndDate:
-          type: string
-          description: End date for accrual
-          format: date
-          nullable: true
-        accrualDefaultDuration:
-          type: integer
-          description: Default duration for accrual in months
-          format: int32
-          nullable: true
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalCreateCreditNoteLineRequestV1Model:
       type: object
       properties:
@@ -833,42 +909,51 @@ components:
         taxTransactionAmount:
           $ref: '#/components/schemas/DirectedAmount'
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Line description
-          nullable: true
         ledgerTaxId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of the tax code
           format: uuid
-          nullable: true
         ledgerAccountId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of the ledger account
           format: uuid
-          nullable: true
         customProperties:
-          type: array
+          type:
+          - array
+          - 'null'
           description: List of custom properties for this line
-          nullable: true
           items:
             $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
         accrualTemplateId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of the accrual template
           format: uuid
-          nullable: true
         accrualStartDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Start date for accrual
           format: date
-          nullable: true
         accrualEndDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: End date for accrual
           format: date
-          nullable: true
     ExternalSetCustomPropertyRequestV1Model:
-      type: object
+      type:
+      - object
+      - 'null'
       properties:
         groupId:
           type: string
@@ -882,40 +967,16 @@ components:
             description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
             format: uuid
         inlineValues:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-          nullable: true
           items:
-            type: string
+            type:
+            - string
+            - 'null'
             description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-            nullable: true
       description: List of custom properties to set on the vendor. Replaces the existing set.
-      nullable: true
-    ExternalPaginatedResponseV1ModelExternalCreditNoteV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalCreditNoteV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
-          type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
-          type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey

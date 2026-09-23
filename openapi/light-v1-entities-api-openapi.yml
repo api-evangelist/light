@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Entities API
+  title: Light v1 - Entities API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -108,6 +108,34 @@ components:
         updatedAt:
           type: string
           format: date-time
+    ExternalPaginatedResponseV1ModelExternalCompanyEntityV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCompanyEntityV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     Address:
       type: object
       properties:
@@ -397,31 +425,6 @@ components:
           type: string
         street2:
           type: string
-    ExternalPaginatedResponseV1ModelExternalCompanyEntityV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalCompanyEntityV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
-          type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
-          type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey

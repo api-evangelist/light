@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Card Customers API
+  title: Light v1 - Card Customers API
   version: 1.0.0
 security:
 - apiKeyAuth: []

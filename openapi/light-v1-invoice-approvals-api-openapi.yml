@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Invoice Approvals API
+  title: Light v1 - Invoice Approvals API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -39,61 +39,6 @@ paths:
                   $ref: '#/components/schemas/ExternalInvoiceApprovalV1Model'
 components:
   schemas:
-    LightPrincipal:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-    ExternalInvoiceUserApprovalV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        approvalId:
-          type: string
-          format: uuid
-        userId:
-          type: string
-          format: uuid
-          nullable: true
-        userGroupId:
-          type: string
-          format: uuid
-          nullable: true
-        priority:
-          type: integer
-          format: int32
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - APPROVED
-          - DECLINED
-          - FAILED
-          - IN_REVIEW
-          - PENDING
-        note:
-          type: string
-          nullable: true
-        completedAt:
-          type: string
-          format: date-time
-          nullable: true
-        updatedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        notifiedAt:
-          type: string
-          format: date-time
-          nullable: true
     ExternalInvoiceApprovalV1Model:
       type: object
       properties:
@@ -109,8 +54,9 @@ components:
         invoiceDocumentKey:
           type: string
         invoiceNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         invoiceAmount:
           type: integer
           format: int64
@@ -134,8 +80,9 @@ components:
           items:
             $ref: '#/components/schemas/ExternalInvoiceUserApprovalV1Model'
         note:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
           type: string
           description: ⚠️ This enum is not exhaustive; new values may be added in the future.
@@ -146,14 +93,75 @@ components:
           - FAILED
           - IN_PROGRESS
         completedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         updatedAt:
           type: string
           format: date-time
         createdAt:
           type: string
+          format: date-time
+    LightPrincipal:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+    ExternalInvoiceUserApprovalV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        approvalId:
+          type: string
+          format: uuid
+        userId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        userGroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        priority:
+          type: integer
+          format: int32
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - APPROVED
+          - DECLINED
+          - FAILED
+          - IN_REVIEW
+          - PENDING
+        note:
+          type:
+          - string
+          - 'null'
+        completedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        notifiedAt:
+          type:
+          - string
+          - 'null'
           format: date-time
   securitySchemes:
     apiKeyAuth:

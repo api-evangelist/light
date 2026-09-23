@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Purchase Orders API
+  title: Light v1 - Purchase Orders API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -351,74 +351,54 @@ paths:
                 $ref: '#/components/schemas/ExternalPurchaseOrderV1Model'
 components:
   schemas:
-    ExternalCreatePurchaseOrderRequestV1Model:
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+    ExternalUiClientExceptionErrorV1Model:
       type: object
       properties:
-        vendorId:
+        type:
           type: string
-          format: uuid
-          nullable: true
-        companyEntityId:
+          description: A string code identifying the error type
+        message:
           type: string
-          format: uuid
-          nullable: true
-        ownerId:
-          type: string
-          format: uuid
-          nullable: true
-        currency:
-          type: string
-          nullable: true
-          example: USD
-        vendorEmail:
-          type: string
-          nullable: true
-        purchaseOrderDate:
-          type: string
-          format: date
-          nullable: true
-        deliveryAddress:
-          type: string
-          nullable: true
-        deliveryDate:
-          type: string
-          format: date
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        lines:
-          type: array
+          description: A human-readable message providing more details about the error
+        path:
+          type:
+          - array
+          - 'null'
+          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
           items:
-            $ref: '#/components/schemas/ExternalCreatePurchaseOrderLineRequestV1Model'
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-    ExternalCreatePurchaseOrderLineRequestV1Model:
-      type: object
-      properties:
-        description:
-          type: string
-        costCenterId:
-          type: string
-          format: uuid
-        accountId:
-          type: string
-          format: uuid
-        taxCodeId:
-          type: string
-          format: uuid
-        quantity:
-          type: number
-        unitPrice:
-          type: integer
-          format: int64
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+            type:
+            - string
+            - 'null'
+            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+        context:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - object
+            - 'null'
+            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+      description: List of errors providing details about what went wrong
     ExternalBffPurchaseOrderV1Model:
       type: object
       properties:
@@ -429,17 +409,20 @@ components:
           type: string
           format: uuid
         createdBy:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         companyEntityId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         purchaseRequestId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         state:
           type: string
           description: ⚠️ This enum is not exhaustive; new values may be added in the future.
@@ -453,14 +436,17 @@ components:
           - CANCEL_PENDING
           - CANCELLED
         erpNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         currency:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: USD
         totalAmount:
           type: integer
@@ -475,57 +461,71 @@ components:
           type: integer
           format: int64
         ownerId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         ownerName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         vendorId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         vendorEmail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         vendorName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         vendorAvatarUrl:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         documentKey:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         failureContext:
           $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
         purchaseOrderDate:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         deliveryAddress:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         deliveryDate:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         erpSyncedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         lockedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         closedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         cancelledAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         createdAt:
           type: string
           format: date-time
@@ -537,7 +537,75 @@ components:
           items:
             $ref: '#/components/schemas/ExternalBffPurchaseOrderLineV1Model'
       description: List of records for the current page
-    ExternalPurchaseOrderLineV1Model:
+    ExternalBatchUpdatePurchaseOrderLineRequestV1Model:
+      type: object
+      properties:
+        lineId:
+          type: string
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        quantity:
+          type:
+          - number
+          - 'null'
+        unitPrice:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalUiClientExceptionV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
+    ExternalBffPurchaseOrderLineV1Model:
       type: object
       properties:
         id:
@@ -550,67 +618,95 @@ components:
           type: string
           format: uuid
         description:
-          type: string
-        costCenterId:
-          type: string
-          format: uuid
-        accountId:
-          type: string
-          format: uuid
-        taxCodeId:
-          type: string
-          format: uuid
+          type:
+          - string
+          - 'null'
         quantity:
-          type: number
-        unitPrice:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
+        unitPrice:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        accountLabel:
+          type:
+          - string
+          - 'null'
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
         amount:
-          type: integer
+          type:
+          - integer
+          - 'null'
+          format: int64
+        taxAmount:
+          type:
+          - integer
+          - 'null'
           format: int64
         netAmount:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
+        taxCodeLabel:
+          type:
+          - string
+          - 'null'
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        costCenterName:
+          type:
+          - string
+          - 'null'
         createdAt:
           type: string
           format: date-time
         updatedAt:
           type: string
           format: date-time
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-    ExternalUpdatePurchaseOrderLineRequestV1Model:
+    ExternalPaginatedResponseV1ModelExternalBffPurchaseOrderV1Model:
       type: object
       properties:
-        customProperties:
+        records:
           type: array
-          nullable: true
+          description: List of records for the current page
           items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        description:
-          type: string
-          nullable: true
-        costCenterId:
-          type: string
-          format: uuid
-          nullable: true
-        accountId:
-          type: string
-          format: uuid
-          nullable: true
-        taxCodeId:
-          type: string
-          format: uuid
-          nullable: true
-        quantity:
-          type: number
-          nullable: true
-        unitPrice:
-          type: integer
+            $ref: '#/components/schemas/ExternalBffPurchaseOrderV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
           format: int64
-          nullable: true
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalCustomPropertyValueV1Model:
       type: object
       properties:
@@ -636,9 +732,10 @@ components:
           type: string
           description: Label of the custom property value
         context:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Context/description of the custom property value
-          nullable: true
         createdAt:
           type: string
           description: Timestamp when the custom property value was created
@@ -648,168 +745,84 @@ components:
           description: Timestamp when the custom property value was last updated
           format: date-time
       description: List of values. Note that this will be a single value unless the group input type supports multiple values
-    ExternalBatchUpdatePurchaseOrderLineRequestV1Model:
+    ExternalCreatePurchaseOrderLineRequestV1Model:
       type: object
       properties:
-        lineId:
-          type: string
-          format: uuid
         description:
           type: string
-          nullable: true
         costCenterId:
           type: string
           format: uuid
-          nullable: true
         accountId:
           type: string
           format: uuid
-          nullable: true
         taxCodeId:
           type: string
           format: uuid
-          nullable: true
         quantity:
           type: number
-          nullable: true
         unitPrice:
           type: integer
           format: int64
-          nullable: true
         customProperties:
           type: array
-          nullable: true
           items:
             $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-    ExternalBffPurchaseOrderLineV1Model:
+    ExternalCreatePurchaseOrderRequestV1Model:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        purchaseOrderId:
-          type: string
-          format: uuid
-        description:
-          type: string
-          nullable: true
-        quantity:
-          type: integer
-          format: int64
-          nullable: true
-        unitPrice:
-          type: integer
-          format: int64
-          nullable: true
-        accountId:
-          type: string
-          format: uuid
-          nullable: true
-        accountLabel:
-          type: string
-          nullable: true
-        taxCodeId:
-          type: string
-          format: uuid
-          nullable: true
-        amount:
-          type: integer
-          format: int64
-          nullable: true
-        taxAmount:
-          type: integer
-          format: int64
-          nullable: true
-        netAmount:
-          type: integer
-          format: int64
-          nullable: true
-        taxCodeLabel:
-          type: string
-          nullable: true
-        costCenterId:
-          type: string
-          format: uuid
-          nullable: true
-        costCenterName:
-          type: string
-          nullable: true
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-    ExternalUiClientExceptionErrorV1Model:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A string code identifying the error type
-        message:
-          type: string
-          description: A human-readable message providing more details about the error
-        path:
-          type: array
-          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
-          nullable: true
-          items:
-            type: string
-            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
-            nullable: true
-        context:
-          type: object
-          additionalProperties:
-            type: object
-            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
-            nullable: true
-          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
-          nullable: true
-      description: List of errors providing details about what went wrong
-    ExternalUpdatePurchaseOrderRequestV1Model:
-      type: object
-      properties:
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
         vendorId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         companyEntityId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         ownerId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         currency:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: USD
-        purchaseOrderDate:
-          type: string
-          format: date
-          nullable: true
         vendorEmail:
-          type: string
-          nullable: true
-        deliveryAddress:
-          type: string
-          nullable: true
-        deliveryDate:
-          type: string
+          type:
+          - string
+          - 'null'
+        purchaseOrderDate:
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
+        deliveryAddress:
+          type:
+          - string
+          - 'null'
+        deliveryDate:
+          type:
+          - string
+          - 'null'
+          format: date
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCreatePurchaseOrderLineRequestV1Model'
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
     ExternalPurchaseOrderV1Model:
       type: object
       properties:
@@ -908,61 +921,91 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-    ExternalPaginatedResponseV1ModelExternalBffPurchaseOrderV1Model:
+    ExternalPurchaseOrderLineV1Model:
       type: object
       properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalBffPurchaseOrderV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        purchaseOrderId:
+          type: string
+          format: uuid
+        description:
+          type: string
+        costCenterId:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        taxCodeId:
+          type: string
+          format: uuid
+        quantity:
+          type: number
+        unitPrice:
           type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
           format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
+        amount:
+          type: integer
+          format: int64
+        netAmount:
+          type: integer
+          format: int64
+        createdAt:
           type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
+          format: date-time
+        updatedAt:
           type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
-    ExternalUiClientExceptionV1Model:
+          format: date-time
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+    ExternalUpdatePurchaseOrderLineRequestV1Model:
       type: object
       properties:
-        name:
-          type: string
-          description: The error name
-        type:
-          type: string
-          description: 'The error type
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
-          deprecated: false
-          enum:
-          - BAD_REQUEST
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - NOT_FOUND
-          - CONFLICT
-          - UNPROCESSABLE_CONTENT
-        errors:
-          type: array
-          description: List of errors providing details about what went wrong
+        customProperties:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
-      description: Failure context when vendor onboarding fails.
-      nullable: true
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        description:
+          type:
+          - string
+          - 'null'
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        quantity:
+          type:
+          - number
+          - 'null'
+        unitPrice:
+          type:
+          - integer
+          - 'null'
+          format: int64
     ExternalSetCustomPropertyRequestV1Model:
-      type: object
+      type:
+      - object
+      - 'null'
       properties:
         groupId:
           type: string
@@ -976,32 +1019,67 @@ components:
             description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
             format: uuid
         inlineValues:
-          type: array
+          type:
+          - array
+          - 'null'
           description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-          nullable: true
           items:
-            type: string
+            type:
+            - string
+            - 'null'
             description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-            nullable: true
       description: List of custom properties to set on the vendor. Replaces the existing set.
-      nullable: true
-    ExternalCustomPropertyV1Model:
+    ExternalUpdatePurchaseOrderRequestV1Model:
       type: object
       properties:
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
-          type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+        customProperties:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
-      nullable: true
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        vendorId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        companyEntityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        ownerId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        currency:
+          type:
+          - string
+          - 'null'
+          example: USD
+        purchaseOrderDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        vendorEmail:
+          type:
+          - string
+          - 'null'
+        deliveryAddress:
+          type:
+          - string
+          - 'null'
+        deliveryDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        description:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

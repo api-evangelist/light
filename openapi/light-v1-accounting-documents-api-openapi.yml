@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Accounting Documents API
+  title: Light v1 - Accounting Documents API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -74,19 +74,22 @@ components:
           type: boolean
           description: Boolean flag indicating if there are more records available
         total:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
           format: int64
-          nullable: true
           deprecated: true
         nextCursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
         prevCursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
     ExternalAccountingDocumentWithAmountV1Model:
       type: object
       properties:
@@ -97,15 +100,18 @@ components:
           type: string
           format: uuid
         companyEntityId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         documentSequenceId:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         documentNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         documentType:
           type: string
           description: ⚠️ This enum is not exhaustive; new values may be added in the future.
@@ -132,21 +138,25 @@ components:
           - CLEARED
           - ARCHIVED
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         documentDate:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
         areLinesWithTax:
           type: boolean
         businessPartnerName:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         businessPartnerId:
-          type: string
+          type:
+          - string
+          - 'null'
           format: uuid
-          nullable: true
         createdAt:
           type: string
           format: date-time
@@ -156,11 +166,13 @@ components:
         totalTransactionAmount:
           $ref: '#/components/schemas/DirectedAmount'
         totalTransactionAmountInMajors:
-          type: number
-          nullable: true
+          type:
+          - number
+          - 'null'
         currency:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: USD
       description: List of records for the current page
     DirectedAmount:

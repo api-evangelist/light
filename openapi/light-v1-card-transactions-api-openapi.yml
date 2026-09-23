@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Card Transactions API
+  title: Light v1 - Card Transactions API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -132,6 +132,8 @@ paths:
           description: default response
           content:
             application/json;charset=UTF-8: {}
+      summary: Get card transaction receipt options
+      x-summary-source: derived
   /v1/card-transactions:
     get:
       tags:
@@ -294,30 +296,307 @@ paths:
                 $ref: '#/components/schemas/ExternalCardTransactionLineV1Model'
 components:
   schemas:
-    ExternalBatchUpdateCardTransactionLineRequestV1Model:
+    ExternalUiClientExceptionErrorV1Model:
       type: object
       properties:
-        lineId:
+        type:
+          type: string
+          description: A string code identifying the error type
+        message:
+          type: string
+          description: A human-readable message providing more details about the error
+        path:
+          type:
+          - array
+          - 'null'
+          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+          items:
+            type:
+            - string
+            - 'null'
+            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+        context:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - object
+            - 'null'
+            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+      description: List of errors providing details about what went wrong
+    ExternalUpdateCardTransactionLineRequestV1Model:
+      type: object
+      properties:
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        description:
+          type:
+          - string
+          - 'null'
+        amortizationTemplateId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        amortizationStartDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        amortizationEndDate:
+          type:
+          - string
+          - 'null'
+          format: date
+    ExternalBffCardTransactionLineV1Model:
+      type: object
+      properties:
+        id:
           type: string
           format: uuid
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
-        description:
+        transactionId:
           type: string
-          nullable: true
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
         accountId:
           type: string
           format: uuid
-          nullable: true
+        accountLabel:
+          type: string
         taxCodeId:
           type: string
           format: uuid
-          nullable: true
-    SetCustomPropertyRequestV1Model:
+        taxCodeLabel:
+          type: string
+        costCenterId:
+          type: string
+          format: uuid
+        costCenterName:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        netAmount:
+          type: integer
+          format: int64
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        amortizationTemplateId:
+          type: string
+          format: uuid
+        amortizationStartDate:
+          type: string
+          format: date
+        amortizationEndDate:
+          type: string
+          format: date
+    ExternalCardTransactionReceiptUploadUrlResponseV1Model:
       type: object
+      properties:
+        uploadUrl:
+          type: string
+          format: url
+        key:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+    ExternalSetCustomPropertyRequestV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type:
+          - array
+          - 'null'
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          items:
+            type:
+            - string
+            - 'null'
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+    ExternalPaginatedResponseV1ModelExternalBffCardTransactionV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalBffCardTransactionV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
+    ExternalCardTransactionLineV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        transactionId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        taxCodeId:
+          type: string
+          format: uuid
+        costCenterId:
+          type: string
+          format: uuid
+        amount:
+          type: integer
+          format: int64
+        netAmount:
+          type: integer
+          format: int64
+        taxAmount:
+          type: integer
+          format: int64
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        amortizationTemplateId:
+          type: string
+          format: uuid
+        amortizationStartDate:
+          type: string
+          format: date
+        amortizationEndDate:
+          type: string
+          format: date
+    ExternalBatchUpdateCardTransactionRequestV1Model:
+      type: object
+      properties:
+        cardTransactionId:
+          type: string
+          format: uuid
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
+        lines:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalBatchUpdateCardTransactionLineRequestV1Model'
+        postingDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        description:
+          type:
+          - string
+          - 'null'
+    SetCustomPropertyRequestV1Model:
+      type:
+      - object
+      - 'null'
       properties:
         groupId:
           type: string
@@ -332,7 +611,60 @@ components:
           items:
             type: string
       description: List of custom properties to set on the vendor.
-      nullable: true
+    ExternalBatchUpdateCardTransactionLineRequestV1Model:
+      type: object
+      properties:
+        lineId:
+          type: string
+          format: uuid
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
+        description:
+          type:
+          - string
+          - 'null'
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+    ExternalUiClientExceptionV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
     ExternalBffCardTransactionV1Model:
       type: object
       properties:
@@ -515,60 +847,57 @@ components:
           items:
             $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
       description: List of records for the current page
-    ExternalBffCardTransactionLineV1Model:
+    ExternalCustomPropertyValueV1Model:
       type: object
       properties:
         id:
           type: string
+          description: Unique identifier for the object
           format: uuid
-        transactionId:
+        groupId:
           type: string
+          description: ID of the custom property group
           format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
         companyId:
           type: string
+          description: ID of the company
           format: uuid
-        accountId:
+        internalName:
           type: string
-          format: uuid
-        accountLabel:
+          description: Internal name of the custom property value
+        label:
           type: string
-        taxCodeId:
-          type: string
-          format: uuid
-        taxCodeLabel:
-          type: string
-        costCenterId:
-          type: string
-          format: uuid
-        costCenterName:
-          type: string
-        amount:
-          type: integer
-          format: int64
-        netAmount:
-          type: integer
-          format: int64
-        description:
-          type: string
+          description: Label of the custom property value
+        context:
+          type:
+          - string
+          - 'null'
+          description: Context/description of the custom property value
         createdAt:
           type: string
+          description: Timestamp when the custom property value was created
           format: date-time
         updatedAt:
           type: string
+          description: Timestamp when the custom property value was last updated
           format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalUpdateCardTransactionRequestV1Model:
+      type: object
+      properties:
         customProperties:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        amortizationTemplateId:
-          type: string
-          format: uuid
-        amortizationStartDate:
-          type: string
-          format: date
-        amortizationEndDate:
-          type: string
-          format: date
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        description:
+          type:
+          - string
+          - 'null'
     ExternalCardTransactionMerchantV1Model:
       type: object
       properties:
@@ -862,220 +1191,6 @@ components:
           type: string
         logoUrl:
           type: string
-    ExternalTransactionReceiptUploadUrlRequestV1Model:
-      type: object
-      properties:
-        filename:
-          type: string
-        contentType:
-          type: string
-    ExternalSetCustomPropertyRequestV1Model:
-      type: object
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group.
-          format: uuid
-        valueIds:
-          type: array
-          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
-          items:
-            type: string
-            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
-            format: uuid
-        inlineValues:
-          type: array
-          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-          nullable: true
-          items:
-            type: string
-            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-            nullable: true
-      description: List of custom properties to set on the vendor. Replaces the existing set.
-      nullable: true
-    LightPrincipal:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-    ExternalCardTransactionReceiptUploadUrlResponseV1Model:
-      type: object
-      properties:
-        uploadUrl:
-          type: string
-          format: url
-        key:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            type: string
-          nullable: true
-    ExternalCustomPropertyValueV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        internalName:
-          type: string
-          description: Internal name of the custom property value
-        label:
-          type: string
-          description: Label of the custom property value
-        context:
-          type: string
-          description: Context/description of the custom property value
-          nullable: true
-        createdAt:
-          type: string
-          description: Timestamp when the custom property value was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the custom property value was last updated
-          format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
-    ExternalCardTransactionLineV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        transactionId:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        accountId:
-          type: string
-          format: uuid
-        taxCodeId:
-          type: string
-          format: uuid
-        costCenterId:
-          type: string
-          format: uuid
-        amount:
-          type: integer
-          format: int64
-        netAmount:
-          type: integer
-          format: int64
-        taxAmount:
-          type: integer
-          format: int64
-        description:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        amortizationTemplateId:
-          type: string
-          format: uuid
-        amortizationStartDate:
-          type: string
-          format: date
-        amortizationEndDate:
-          type: string
-          format: date
-    ExternalBatchUpdateCardTransactionRequestV1Model:
-      type: object
-      properties:
-        cardTransactionId:
-          type: string
-          format: uuid
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
-        lines:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalBatchUpdateCardTransactionLineRequestV1Model'
-        postingDate:
-          type: string
-          format: date
-          nullable: true
-        description:
-          type: string
-          nullable: true
-    ExternalUpdateCardTransactionRequestV1Model:
-      type: object
-      properties:
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        description:
-          type: string
-          nullable: true
-    ExternalUpdateCardTransactionLineRequestV1Model:
-      type: object
-      properties:
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        accountId:
-          type: string
-          format: uuid
-          nullable: true
-        taxCodeId:
-          type: string
-          format: uuid
-          nullable: true
-        costCenterId:
-          type: string
-          format: uuid
-          nullable: true
-        amount:
-          type: integer
-          format: int64
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        amortizationTemplateId:
-          type: string
-          format: uuid
-          nullable: true
-        amortizationStartDate:
-          type: string
-          format: date
-          nullable: true
-        amortizationEndDate:
-          type: string
-          format: date
-          nullable: true
     ExternalCardTransactionV1Model:
       type: object
       properties:
@@ -1246,102 +1361,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-    ExternalPaginatedResponseV1ModelExternalBffCardTransactionV1Model:
+    ExternalTransactionReceiptUploadUrlRequestV1Model:
       type: object
       properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalBffCardTransactionV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
+        filename:
           type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
+        contentType:
           type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
-    ExternalUiClientExceptionErrorV1Model:
+    LightPrincipal:
       type: object
       properties:
-        type:
-          type: string
-          description: A string code identifying the error type
-        message:
-          type: string
-          description: A human-readable message providing more details about the error
-        path:
+        roles:
           type: array
-          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
-          nullable: true
           items:
             type: string
-            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
-            nullable: true
-        context:
-          type: object
-          additionalProperties:
-            type: object
-            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
-            nullable: true
-          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
-          nullable: true
-      description: List of errors providing details about what went wrong
-    ExternalUiClientExceptionV1Model:
-      type: object
-      properties:
         name:
           type: string
-          description: The error name
-        type:
-          type: string
-          description: 'The error type
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
-          deprecated: false
-          enum:
-          - BAD_REQUEST
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - NOT_FOUND
-          - CONFLICT
-          - UNPROCESSABLE_CONTENT
-        errors:
-          type: array
-          description: List of errors providing details about what went wrong
-          items:
-            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
-      description: Failure context when vendor onboarding fails.
-      nullable: true
-    ExternalCustomPropertyV1Model:
-      type: object
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
-          type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
-      nullable: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey

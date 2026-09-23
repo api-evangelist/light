@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Custom Properties API
+  title: Light v1 - Custom Properties API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -252,104 +252,6 @@ paths:
                 $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalCustomPropertyGroupV1Model'
 components:
   schemas:
-    ExternalCustomPropertyValueV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        internalName:
-          type: string
-          description: Internal name of the custom property value
-        label:
-          type: string
-          description: Label of the custom property value
-        context:
-          type: string
-          description: Context/description of the custom property value
-          nullable: true
-        createdAt:
-          type: string
-          description: Timestamp when the custom property value was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the custom property value was last updated
-          format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
-    ExternalPaginatedResponseV1ModelExternalCustomPropertyGroupV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyGroupV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
-          type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
-          type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
-    ExternalUpdateCustomPropertyValueRequestV1Model:
-      type: object
-      properties:
-        label:
-          type: string
-          description: Display label for the custom property value.
-          nullable: true
-        context:
-          type: string
-          description: Optional context or description for the custom property value.
-          nullable: true
-    ExternalPaginatedResponseV1ModelExternalCustomPropertyValueV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
-          type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
-          type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
     ExternalCustomPropertyGroupV1Model:
       type: object
       properties:
@@ -433,9 +335,117 @@ components:
           type: string
           description: Display label for the custom property value.
         context:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Optional context or description for the custom property value.
-          nullable: true
+    ExternalPaginatedResponseV1ModelExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type:
+          - string
+          - 'null'
+          description: Context/description of the custom property value
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalUpdateCustomPropertyValueRequestV1Model:
+      type: object
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+          description: Display label for the custom property value.
+        context:
+          type:
+          - string
+          - 'null'
+          description: Optional context or description for the custom property value.
+    ExternalPaginatedResponseV1ModelExternalCustomPropertyGroupV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyGroupV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
   securitySchemes:
     apiKeyAuth:
       type: apiKey

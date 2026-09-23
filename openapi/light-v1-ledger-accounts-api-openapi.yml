@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Ledger accounts API
+  title: Light v1 - Ledger accounts API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -92,156 +92,22 @@ components:
           type: boolean
           description: Boolean flag indicating if there are more records available
         total:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
           format: int64
-          nullable: true
           deprecated: true
         nextCursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
         prevCursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
-    ExternalCustomPropertyValueV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        internalName:
-          type: string
-          description: Internal name of the custom property value
-        label:
-          type: string
-          description: Label of the custom property value
-        context:
-          type: string
-          description: Context/description of the custom property value
-          nullable: true
-        createdAt:
-          type: string
-          description: Timestamp when the custom property value was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the custom property value was last updated
-          format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
-    ExternalLedgerAccountV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        bankAccountId:
-          type: string
-          format: uuid
-          nullable: true
-        cardAccountId:
-          type: string
-          format: uuid
-          nullable: true
-        cashAndEquivalentsAccountId:
-          type: string
-          format: uuid
-          nullable: true
-        code:
-          type: integer
-          format: int32
-        label:
-          type: string
-        type:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - BANK
-          - CARD
-          - CASH_AND_EQUIVALENTS
-          - ACCOUNTS_RECEIVABLE
-          - INVENTORY
-          - CORPORATE_TAX_RECEIVABLE
-          - OTHER_CURRENT_ASSET
-          - INTANGIBLE_NON_CURRENT_ASSET
-          - TANGIBLE_NON_CURRENT_ASSET
-          - FINANCIAL_NON_CURRENT_ASSET
-          - CORPORATE_TAX_DEFERRED_ASSET
-          - OTHER_NON_CURRENT_ASSET
-          - ACCOUNTS_PAYABLE
-          - OVERDRAFT_FACILITY
-          - CORPORATE_TAX_PAYABLE
-          - OTHER_CURRENT_LIABILITY
-          - LONG_TERM_LOAN
-          - CORPORATE_TAX_DEFERRED_LIABILITY
-          - OTHER_LONG_TERM_LIABILITY
-          - CONTRIBUTED_CAPITAL
-          - RETAINED_EARNINGS
-          - ACCUMULATED_OTHER_COMPREHENSIVE_INCOME
-          - OTHER_EQUITY
-          - COST_OF_SALES
-          - DISTRIBUTION_COST
-          - GENERAL_AND_ADMINISTRATIVE_EXPENSE
-          - PERSONNEL_COST
-          - OTHER_OPERATING_EXPENSE
-          - INCOME_TAX
-          - DEPRECIATION_AND_AMORTIZATION
-          - NON_OPERATING_EXPENSE
-          - INTEREST_EXPENSE
-          - EXCHANGE_RATE_LOSS_REALIZED
-          - EXCHANGE_RATE_LOSS_UNREALIZED
-          - OTHER_FINANCIAL_EXPENSE
-          - REVENUE
-          - DISCOUNT
-          - NON_OPERATING_INCOME
-          - INTEREST_INCOME
-          - EXCHANGE_RATE_GAIN_REALIZED
-          - EXCHANGE_RATE_GAIN_UNREALIZED
-          - OTHER_FINANCIAL_INCOME
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACTIVE
-          - DISABLED_EXTERNALLY
-          - DISABLED
-        context:
-          type: string
-          nullable: true
-        revaluateFxBalance:
-          type: boolean
-        companyEntities:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCompanyEntityV1Model'
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-      description: List of records for the current page
     Address:
       type: object
       properties:
@@ -573,8 +439,153 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ExternalCustomPropertyV1Model:
+    ExternalCustomPropertyValueV1Model:
       type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type:
+          - string
+          - 'null'
+          description: Context/description of the custom property value
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalLedgerAccountV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        bankAccountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        cardAccountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        cashAndEquivalentsAccountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        code:
+          type: integer
+          format: int32
+        label:
+          type: string
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - BANK
+          - CARD
+          - CASH_AND_EQUIVALENTS
+          - ACCOUNTS_RECEIVABLE
+          - INVENTORY
+          - CORPORATE_TAX_RECEIVABLE
+          - OTHER_CURRENT_ASSET
+          - INTANGIBLE_NON_CURRENT_ASSET
+          - TANGIBLE_NON_CURRENT_ASSET
+          - FINANCIAL_NON_CURRENT_ASSET
+          - CORPORATE_TAX_DEFERRED_ASSET
+          - OTHER_NON_CURRENT_ASSET
+          - ACCOUNTS_PAYABLE
+          - OVERDRAFT_FACILITY
+          - CORPORATE_TAX_PAYABLE
+          - OTHER_CURRENT_LIABILITY
+          - LONG_TERM_LOAN
+          - CORPORATE_TAX_DEFERRED_LIABILITY
+          - OTHER_LONG_TERM_LIABILITY
+          - CONTRIBUTED_CAPITAL
+          - RETAINED_EARNINGS
+          - ACCUMULATED_OTHER_COMPREHENSIVE_INCOME
+          - OTHER_EQUITY
+          - COST_OF_SALES
+          - DISTRIBUTION_COST
+          - GENERAL_AND_ADMINISTRATIVE_EXPENSE
+          - PERSONNEL_COST
+          - OTHER_OPERATING_EXPENSE
+          - INCOME_TAX
+          - DEPRECIATION_AND_AMORTIZATION
+          - NON_OPERATING_EXPENSE
+          - INTEREST_EXPENSE
+          - EXCHANGE_RATE_LOSS_REALIZED
+          - EXCHANGE_RATE_LOSS_UNREALIZED
+          - OTHER_FINANCIAL_EXPENSE
+          - REVENUE
+          - DISCOUNT
+          - NON_OPERATING_INCOME
+          - INTEREST_INCOME
+          - EXCHANGE_RATE_GAIN_REALIZED
+          - EXCHANGE_RATE_GAIN_UNREALIZED
+          - OTHER_FINANCIAL_INCOME
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - DISABLED_EXTERNALLY
+          - DISABLED
+        context:
+          type:
+          - string
+          - 'null'
+        revaluateFxBalance:
+          type: boolean
+        companyEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCompanyEntityV1Model'
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      description: List of records for the current page
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
       properties:
         groupId:
           type: string
@@ -589,7 +600,6 @@ components:
           items:
             $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
       description: Custom properties set on the vendor.
-      nullable: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey

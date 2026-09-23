@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Cards API
+  title: Light v1 - Cards API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -156,344 +156,19 @@ paths:
                 $ref: '#/components/schemas/ExternalCardV1Model'
 components:
   schemas:
-    ExternalPaginatedResponseV1ModelExternalBffCardV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalBffCardV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
-          type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
-          type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
-    ExternalCardDeliveryAddressV1Model:
-      type: object
-      properties:
-        street:
-          type: string
-          description: Street name (maps to Adyen `address.line1`).
-        houseNumberOrName:
-          type: string
-          description: House number, building, apartment, or suite (maps to Adyen `address.line2`).
-        city:
-          type: string
-          description: City.
-        postalCode:
-          type: string
-          description: Postal or ZIP code.
-        country:
-          type: string
-          description: 'ISO 3166-1 alpha-2 country code (e.g. `DK`, `US`, `GB`).
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
-          deprecated: false
-          enum:
-          - UNDEFINED
-          - AC
-          - AD
-          - AE
-          - AF
-          - AG
-          - AI
-          - AL
-          - AM
-          - AN
-          - AO
-          - AQ
-          - AR
-          - AS
-          - AT
-          - AU
-          - AW
-          - AX
-          - AZ
-          - BA
-          - BB
-          - BD
-          - BE
-          - BF
-          - BG
-          - BH
-          - BI
-          - BJ
-          - BL
-          - BM
-          - BN
-          - BO
-          - BQ
-          - BR
-          - BS
-          - BT
-          - BU
-          - BV
-          - BW
-          - BY
-          - BZ
-          - CA
-          - CC
-          - CD
-          - CF
-          - CG
-          - CH
-          - CI
-          - CK
-          - CL
-          - CM
-          - CN
-          - CO
-          - CP
-          - CR
-          - CS
-          - CU
-          - CV
-          - CW
-          - CX
-          - CY
-          - CZ
-          - DE
-          - DG
-          - DJ
-          - DK
-          - DM
-          - DO
-          - DZ
-          - EA
-          - EC
-          - EE
-          - EG
-          - EH
-          - ER
-          - ES
-          - ET
-          - EU
-          - EZ
-          - FI
-          - FJ
-          - FK
-          - FM
-          - FO
-          - FR
-          - FX
-          - GA
-          - GB
-          - GD
-          - GE
-          - GF
-          - GG
-          - GH
-          - GI
-          - GL
-          - GM
-          - GN
-          - GP
-          - GQ
-          - GR
-          - GS
-          - GT
-          - GU
-          - GW
-          - GY
-          - HK
-          - HM
-          - HN
-          - HR
-          - HT
-          - HU
-          - IC
-          - ID
-          - IE
-          - IL
-          - IM
-          - IN
-          - IO
-          - IQ
-          - IR
-          - IS
-          - IT
-          - JE
-          - JM
-          - JO
-          - JP
-          - KE
-          - KG
-          - KH
-          - KI
-          - KM
-          - KN
-          - KP
-          - KR
-          - KW
-          - KY
-          - KZ
-          - LA
-          - LB
-          - LC
-          - LI
-          - LK
-          - LR
-          - LS
-          - LT
-          - LU
-          - LV
-          - LY
-          - MA
-          - MC
-          - MD
-          - ME
-          - MF
-          - MG
-          - MH
-          - MK
-          - ML
-          - MM
-          - MN
-          - MO
-          - MP
-          - MQ
-          - MR
-          - MS
-          - MT
-          - MU
-          - MV
-          - MW
-          - MX
-          - MY
-          - MZ
-          - NA
-          - NC
-          - NE
-          - NF
-          - NG
-          - NI
-          - NL
-          - 'NO'
-          - NP
-          - NR
-          - NT
-          - NU
-          - NZ
-          - OM
-          - PA
-          - PE
-          - PF
-          - PG
-          - PH
-          - PK
-          - PL
-          - PM
-          - PN
-          - PR
-          - PS
-          - PT
-          - PW
-          - PY
-          - QA
-          - RE
-          - RO
-          - RS
-          - RU
-          - RW
-          - SA
-          - SB
-          - SC
-          - SD
-          - SE
-          - SF
-          - SG
-          - SH
-          - SI
-          - SJ
-          - SK
-          - SL
-          - SM
-          - SN
-          - SO
-          - SR
-          - SS
-          - ST
-          - SU
-          - SV
-          - SX
-          - SY
-          - SZ
-          - TA
-          - TC
-          - TD
-          - TF
-          - TG
-          - TH
-          - TJ
-          - TK
-          - TL
-          - TM
-          - TN
-          - TO
-          - TP
-          - TR
-          - TT
-          - TV
-          - TW
-          - TZ
-          - UA
-          - UG
-          - UK
-          - UM
-          - US
-          - UY
-          - UZ
-          - VA
-          - VC
-          - VE
-          - VG
-          - VI
-          - VN
-          - VU
-          - WF
-          - WS
-          - XI
-          - XU
-          - XK
-          - YE
-          - YT
-          - YU
-          - ZA
-          - ZM
-          - ZR
-          - ZW
-        stateOrProvince:
-          type: string
-          description: State, province, or region. **Required** when `country` is `US` or `CA`; requests without it are rejected with `PHYSICAL_CARD_STATE_OR_PROVINCE_REQUIRED`. Optional for other countries.
-          nullable: true
-      description: Postal address the card is shipped to. Country must be an ISO 3166-1 alpha-2 code; `stateOrProvince` is required for US and CA destinations.
-    ExternalCardAuthenticationV1Model:
+    ExternalCard3DsMetadataV1Model:
       type: object
       properties:
         phoneNumber:
           $ref: '#/components/schemas/PhoneNumber'
+        password:
+          type: string
         email:
           type: string
-          description: Email address for 3D Secure authentication.
-          nullable: true
-      description: 3D Secure authentication details for the card.
     ExternalCreateCardLimitRequestV1Model:
-      type: object
+      type:
+      - object
+      - 'null'
       properties:
         amount:
           type: integer
@@ -508,26 +183,64 @@ components:
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
           deprecated: false
           enum:
           - PER_TRANSACTION
           - WEEKLY
           - MONTHLY
       description: Optional spending limits for this card.
-      nullable: true
-    ExternalCreateCardMetadataV1Model:
+    ExternalCardAuthenticationV1Model:
       type: object
       properties:
-        type:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        email:
+          type:
+          - string
+          - 'null'
+          description: Email address for 3D Secure authentication.
+      description: 3D Secure authentication details for the card.
+    ExternalCreateCardRequestV1Model:
+      type: object
+      properties:
+        balanceAccountId:
           type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          description: ID of the card balance account to associate with this card.
+          format: uuid
+        ownerId:
+          type: string
+          description: ID of the user who will own/manage this card.
+          format: uuid
+        metadata:
+          $ref: '#/components/schemas/ExternalCreateCardMetadataV1Model'
+        description:
+          type:
+          - string
+          - 'null'
+          description: Optional description or memo for this card.
+        authentication:
+          $ref: '#/components/schemas/ExternalCardAuthenticationV1Model'
+        limits:
+          type:
+          - array
+          - 'null'
+          description: Optional spending limits for this card.
+          items:
+            $ref: '#/components/schemas/ExternalCreateCardLimitRequestV1Model'
+        formFactor:
+          type:
+          - string
+          - 'null'
+          description: 'Card form factor. Defaults to `VIRTUAL` when omitted. `PHYSICAL` ships a plastic card and requires `deliveryContact` to be set. `VIRTUAL` must be sent with `deliveryContact` left null. Mismatches are rejected with `PHYSICAL_CARD_DELIVERY_CONTACT_REQUIRED` or `VIRTUAL_CARD_DELIVERY_CONTACT_NOT_ALLOWED`.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
           enum:
-          - VENDOR
-          - EMPLOYEE
-      description: Card type metadata. Use type 'VENDOR' with vendorId for vendor cards, or type 'EMPLOYEE' with employeeId for employee cards.
-      discriminator:
-        propertyName: type
+          - PHYSICAL
+          - VIRTUAL
+        deliveryContact:
+          $ref: '#/components/schemas/ExternalCardDeliveryContactV1Model'
     ExternalCardLimitV1Model:
       type: object
       properties:
@@ -559,8 +272,140 @@ components:
         updatedAt:
           type: string
           format: date-time
-    PhoneNumber:
+    ExternalCardDeliveryContactNameV1Model:
       type: object
+      properties:
+        firstName:
+          type: string
+          description: Recipient first name.
+        lastName:
+          type: string
+          description: Recipient last name.
+      description: Name printed on the shipping label.
+    ExternalBffCardV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyEntityName:
+          type: string
+        companyId:
+          type: string
+          format: uuid
+        ownerId:
+          type: string
+          format: uuid
+        ownerName:
+          type: string
+        cardBalanceAccountId:
+          type: string
+          format: uuid
+        cardBalanceAccountLabel:
+          type: string
+        currency:
+          type: string
+          example: USD
+        form:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PHYSICAL
+          - VIRTUAL
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - FROZEN
+          - CLOSED
+          - UPDATE_IN_PROGRESS
+        metadata:
+          $ref: '#/components/schemas/ExternalCardMetadataV1Model'
+        threeDs:
+          $ref: '#/components/schemas/ExternalCard3DsMetadataV1Model'
+        vendorId:
+          type: string
+          format: uuid
+        vendorName:
+          type: string
+        vendorAvatarUrl:
+          type: string
+        description:
+          type: string
+        bin:
+          type: string
+        lastFour:
+          type: string
+        cardholderName:
+          type: string
+        limitIntervalSpend:
+          type: integer
+          format: int64
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCardLimitV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
+      description: List of records for the current page
+    ExternalPaginatedResponseV1ModelExternalBffCardV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalBffCardV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
+    ExternalCreateCardMetadataV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
+      description: Card type metadata. Use type 'VENDOR' with vendorId for vendor cards, or type 'EMPLOYEE' with employeeId for employee cards.
+      discriminator:
+        propertyName: type
+    PhoneNumber:
+      type:
+      - object
+      - 'null'
       properties:
         countryCode:
           type: string
@@ -841,16 +686,329 @@ components:
         localNumber:
           type: string
       description: Vendor phone number.
-      nullable: true
-    ExternalCard3DsMetadataV1Model:
+    ExternalCardDeliveryAddressV1Model:
       type: object
       properties:
+        street:
+          type: string
+          description: Street name (maps to Adyen `address.line1`).
+        houseNumberOrName:
+          type: string
+          description: House number, building, apartment, or suite (maps to Adyen `address.line2`).
+        city:
+          type: string
+          description: City.
+        postalCode:
+          type: string
+          description: Postal or ZIP code.
+        country:
+          type: string
+          description: 'ISO 3166-1 alpha-2 country code (e.g. `DK`, `US`, `GB`).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+          description: State, province, or region. **Required** when `country` is `US` or `CA`; requests without it are rejected with `PHYSICAL_CARD_STATE_OR_PROVINCE_REQUIRED`. Optional for other countries.
+      description: Postal address the card is shipped to. Country must be an ISO 3166-1 alpha-2 code; `stateOrProvince` is required for US and CA destinations.
+    ExternalCardDeliveryContactV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        address:
+          $ref: '#/components/schemas/ExternalCardDeliveryAddressV1Model'
+        name:
+          $ref: '#/components/schemas/ExternalCardDeliveryContactNameV1Model'
+        company:
+          type:
+          - string
+          - 'null'
+          description: Company or department name on the shipping label.
+        email:
+          type:
+          - string
+          - 'null'
+          description: Contact email for delivery notifications.
         phoneNumber:
           $ref: '#/components/schemas/PhoneNumber'
-        password:
-          type: string
-        email:
-          type: string
+      description: Recipient and address used by the card issuer to ship the physical card. Only `address` and `name` are required.
     ExternalCardV1Model:
       type: object
       properties:
@@ -911,153 +1069,6 @@ components:
           enum:
           - VENDOR
           - EMPLOYEE
-    ExternalCreateCardRequestV1Model:
-      type: object
-      properties:
-        balanceAccountId:
-          type: string
-          description: ID of the card balance account to associate with this card.
-          format: uuid
-        ownerId:
-          type: string
-          description: ID of the user who will own/manage this card.
-          format: uuid
-        metadata:
-          $ref: '#/components/schemas/ExternalCreateCardMetadataV1Model'
-        description:
-          type: string
-          description: Optional description or memo for this card.
-          nullable: true
-        authentication:
-          $ref: '#/components/schemas/ExternalCardAuthenticationV1Model'
-        limits:
-          type: array
-          description: Optional spending limits for this card.
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalCreateCardLimitRequestV1Model'
-        formFactor:
-          type: string
-          description: 'Card form factor. Defaults to `VIRTUAL` when omitted. `PHYSICAL` ships a plastic card and requires `deliveryContact` to be set. `VIRTUAL` must be sent with `deliveryContact` left null. Mismatches are rejected with `PHYSICAL_CARD_DELIVERY_CONTACT_REQUIRED` or `VIRTUAL_CARD_DELIVERY_CONTACT_NOT_ALLOWED`.
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: true
-          deprecated: false
-          enum:
-          - PHYSICAL
-          - VIRTUAL
-        deliveryContact:
-          $ref: '#/components/schemas/ExternalCardDeliveryContactV1Model'
-    ExternalCardDeliveryContactV1Model:
-      type: object
-      properties:
-        address:
-          $ref: '#/components/schemas/ExternalCardDeliveryAddressV1Model'
-        name:
-          $ref: '#/components/schemas/ExternalCardDeliveryContactNameV1Model'
-        company:
-          type: string
-          description: Company or department name on the shipping label.
-          nullable: true
-        email:
-          type: string
-          description: Contact email for delivery notifications.
-          nullable: true
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-      description: Recipient and address used by the card issuer to ship the physical card. Only `address` and `name` are required.
-      nullable: true
-    ExternalBffCardV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyEntityId:
-          type: string
-          format: uuid
-        companyEntityName:
-          type: string
-        companyId:
-          type: string
-          format: uuid
-        ownerId:
-          type: string
-          format: uuid
-        ownerName:
-          type: string
-        cardBalanceAccountId:
-          type: string
-          format: uuid
-        cardBalanceAccountLabel:
-          type: string
-        currency:
-          type: string
-          example: USD
-        form:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - PHYSICAL
-          - VIRTUAL
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACTIVE
-          - FROZEN
-          - CLOSED
-          - UPDATE_IN_PROGRESS
-        metadata:
-          $ref: '#/components/schemas/ExternalCardMetadataV1Model'
-        threeDs:
-          $ref: '#/components/schemas/ExternalCard3DsMetadataV1Model'
-        vendorId:
-          type: string
-          format: uuid
-        vendorName:
-          type: string
-        vendorAvatarUrl:
-          type: string
-        description:
-          type: string
-        bin:
-          type: string
-        lastFour:
-          type: string
-        cardholderName:
-          type: string
-        limitIntervalSpend:
-          type: integer
-          format: int64
-        limits:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCardLimitV1Model'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        type:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - VENDOR
-          - EMPLOYEE
-      description: List of records for the current page
-    ExternalCardDeliveryContactNameV1Model:
-      type: object
-      properties:
-        firstName:
-          type: string
-          description: Recipient first name.
-        lastName:
-          type: string
-          description: Recipient last name.
-      description: Name printed on the shipping label.
     ExternalCardMetadataV1Model:
       type: object
       properties:

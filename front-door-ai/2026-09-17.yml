@@ -1,0 +1,31 @@
+# Front Door AI Index — light — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: light
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: light.inc
+  final_host: light.inc
+  ownership: own
+  owner: light
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 21
+  host_score: 21
+  density: 10.42
+  words: 2015
+  tiers:
+    agentic: 10
+    core: 8
+    model: 3
+  ambiguous: 31
+  top_terms:
+    agent: 31
+    AI: 8
+    agentic: 6
+    AI agent: 3
+    Claude: 2
+    ChatGPT: 1
+    MCP: 1

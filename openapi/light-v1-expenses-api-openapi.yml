@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Expenses API
+  title: Light v1 - Expenses API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -261,71 +261,19 @@ paths:
             application/json;charset=UTF-8: {}
 components:
   schemas:
-    UpdateExpenseLineItemRequestV1Model:
-      type: object
-      properties:
-        originalAmount:
-          type: integer
-          format: int64
-          nullable: true
-        billingAmount:
-          type: integer
-          format: int64
-          nullable: true
-        accountId:
-          type: string
-          format: uuid
-          nullable: true
-        costCenterId:
-          type: string
-          format: uuid
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        reimbursementCategoryId:
-          type: string
-          format: uuid
-          nullable: true
-    GetExternalExpensesResponseV1Model:
-      type: object
-      properties:
-        billingAmountTotal:
-          type: integer
-          format: int64
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalExpenseV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
-          type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
-          type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
     ExternalUpdateExpenseRequestV1Model:
       type: object
       properties:
         originalCurrency:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
           example: USD
         performedDate:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date
-          nullable: true
     ExternalExpenseReceiptUploadUrlRequestV1Model:
       type: object
       properties:
@@ -378,28 +326,65 @@ components:
       type: object
       properties:
         originalAmount:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int64
-          nullable: true
         billingAmount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+        reimbursementCategoryId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+    GetExternalExpensesResponseV1Model:
+      type: object
+      properties:
+        billingAmountTotal:
           type: integer
           format: int64
-          nullable: true
-        accountId:
-          type: string
-          format: uuid
-          nullable: true
-        costCenterId:
-          type: string
-          format: uuid
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        reimbursementCategoryId:
-          type: string
-          format: uuid
-          nullable: true
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalExpenseV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalExpenseLineItemV1Model:
       type: object
       properties:
@@ -432,6 +417,38 @@ components:
         updatedAt:
           type: string
           format: date-time
+    UpdateExpenseLineItemRequestV1Model:
+      type: object
+      properties:
+        originalAmount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        billingAmount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+        reimbursementCategoryId:
+          type:
+          - string
+          - 'null'
+          format: uuid
     ExternalExpenseReceiptUploadUrlResponseV1Model:
       type: object
       properties:
@@ -441,10 +458,11 @@ components:
         key:
           type: string
         metadata:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties:
             type: string
-          nullable: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey

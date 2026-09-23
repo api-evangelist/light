@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Customers API
+  title: Light v1 - Customers API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -182,101 +182,6 @@ paths:
                 $ref: '#/components/schemas/ExternalCustomerV1Model'
 components:
   schemas:
-    ExternalCreateCustomerRequestV1Model:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          nullable: true
-        address:
-          $ref: '#/components/schemas/Address'
-        billingAddress:
-          $ref: '#/components/schemas/Address'
-        shippingAddress:
-          $ref: '#/components/schemas/Address'
-        domain:
-          type: string
-          nullable: true
-        description:
-          type: string
-          nullable: true
-        vatNumber:
-          type: string
-          nullable: true
-        businessRegistrationNumber:
-          type: string
-          nullable: true
-        easCode:
-          type: string
-          nullable: true
-        einvoiceAddress:
-          type: string
-          nullable: true
-        einvoiceNetwork:
-          type: string
-          description: '- `MYDATA` - Greece myDATA e-invoice network
-
-            - `NEMHANDEL` - NemHandel e-invoice network
-
-            - `PEPPOL` - Peppol e-invoice network
-
-            - `PORTUGUESE_TAX_REPORTING` - Portuguese tax reporting (ATCUD) e-invoice network
-
-            - `SDI` - SDI (Sistema di Interscambio) e-invoice network
-
-            - `VERIFACTU` - Spain VERI*FACTU tax reporting e-invoice network
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: true
-          enum:
-          - MYDATA
-          - NEMHANDEL
-          - PEPPOL
-          - PORTUGUESE_TAX_REPORTING
-          - SDI
-          - VERIFACTU
-        type:
-          type: string
-          description: '- `BUSINESS` - Business customer
-
-            - `CONSUMER` - Consumer customer
-
-            - `GOVERNMENT` - Government customer
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: true
-          enum:
-          - BUSINESS
-          - CONSUMER
-          - GOVERNMENT
-        logoUrl:
-          type: string
-          nullable: true
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        recipientEmails:
-          type: array
-          description: Billing email recipients ("Send to") used when sending invoices to this customer
-          nullable: true
-          items:
-            type: string
-            description: Billing email recipients ("Send to") used when sending invoices to this customer
-            nullable: true
-        ccEmails:
-          type: array
-          description: Billing email CC recipients used when sending invoices to this customer
-          nullable: true
-          items:
-            type: string
-            description: Billing email CC recipients used when sending invoices to this customer
-            nullable: true
     Address:
       type: object
       properties:
@@ -566,6 +471,118 @@ components:
           type: string
         street2:
           type: string
+    ExternalUpdateCustomerRequestV1Model:
+      type: object
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        address:
+          $ref: '#/components/schemas/Address'
+        billingAddress:
+          $ref: '#/components/schemas/Address'
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        shippingAddress:
+          $ref: '#/components/schemas/Address'
+        domain:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        vatNumber:
+          type:
+          - string
+          - 'null'
+        businessRegistrationNumber:
+          type:
+          - string
+          - 'null'
+        easCode:
+          type:
+          - string
+          - 'null'
+        einvoiceAddress:
+          type:
+          - string
+          - 'null'
+        einvoiceNetwork:
+          type:
+          - string
+          - 'null'
+          description: '- `MYDATA` - Greece myDATA e-invoice network
+
+            - `NEMHANDEL` - NemHandel e-invoice network
+
+            - `PEPPOL` - Peppol e-invoice network
+
+            - `PORTUGUESE_TAX_REPORTING` - Portuguese tax reporting (ATCUD) e-invoice network
+
+            - `SDI` - SDI (Sistema di Interscambio) e-invoice network
+
+            - `VERIFACTU` - Spain VERI*FACTU tax reporting e-invoice network
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          enum:
+          - MYDATA
+          - NEMHANDEL
+          - PEPPOL
+          - PORTUGUESE_TAX_REPORTING
+          - SDI
+          - VERIFACTU
+        type:
+          type:
+          - string
+          - 'null'
+          description: '- `BUSINESS` - Business customer
+
+            - `CONSUMER` - Consumer customer
+
+            - `GOVERNMENT` - Government customer
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          enum:
+          - BUSINESS
+          - CONSUMER
+          - GOVERNMENT
+        logoUrl:
+          type:
+          - string
+          - 'null'
+        recipientEmails:
+          type:
+          - array
+          - 'null'
+          description: Billing email recipients ("Send to"). Omit to leave unchanged; send an empty list to clear.
+          items:
+            type:
+            - string
+            - 'null'
+            description: Billing email recipients ("Send to"). Omit to leave unchanged; send an empty list to clear.
+        ccEmails:
+          type:
+          - array
+          - 'null'
+          description: Billing email CC recipients. Omit to leave unchanged; send an empty list to clear.
+          items:
+            type:
+            - string
+            - 'null'
+            description: Billing email CC recipients. Omit to leave unchanged; send an empty list to clear.
     ExternalCustomPropertyValueV1Model:
       type: object
       properties:
@@ -591,9 +608,10 @@ components:
           type: string
           description: Label of the custom property value
         context:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Context/description of the custom property value
-          nullable: true
         createdAt:
           type: string
           description: Timestamp when the custom property value was created
@@ -603,61 +621,6 @@ components:
           description: Timestamp when the custom property value was last updated
           format: date-time
       description: List of values. Note that this will be a single value unless the group input type supports multiple values
-    ExternalPaginatedResponseV1ModelExternalCustomerV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalCustomerV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type: integer
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          nullable: true
-          deprecated: true
-        nextCursor:
-          type: string
-          description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
-        prevCursor:
-          type: string
-          description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
-    ExternalApiExternalSourceV1Model:
-      type: object
-      properties:
-        name:
-          type: string
-          description: 'The name of the external source
-
-
-            - `CHARGEBEE` - Data synced from Chargebee
-
-            - `HUBSPOT` - Data synced from HubSpot
-
-            - `SALESFORCE` - Data synced from Salesforce
-
-            - `STRIPE` - Data synced from Stripe
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
-          deprecated: false
-          enum:
-          - CHARGEBEE
-          - HUBSPOT
-          - SALESFORCE
-          - STRIPE
-        externalId:
-          type: string
-          description: The ID of the object in the external source system
-      description: The external system where this product was synced from
-      nullable: true
     ExternalCustomerV1Model:
       type: object
       properties:
@@ -669,9 +632,10 @@ components:
           type: string
           description: Name of the customer
         email:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Email address of the customer
-          nullable: true
         address:
           $ref: '#/components/schemas/Address'
         billingAddress:
@@ -689,33 +653,39 @@ components:
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: false
           deprecated: false
           enum:
           - ACTIVE
           - ARCHIVED
         description:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Description or notes about the customer
-          nullable: true
         vatNumber:
-          type: string
+          type:
+          - string
+          - 'null'
           description: VAT number of the customer
-          nullable: true
         businessRegistrationNumber:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Business registration number of the customer
-          nullable: true
         easCode:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Electronic Address Scheme code used for sending e-invoices
-          nullable: true
         einvoiceAddress:
-          type: string
+          type:
+          - string
+          - 'null'
           description: E-invoice address for the customer
-          nullable: true
         einvoiceNetwork:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'E-invoice network the customer is registered on
 
 
@@ -733,7 +703,6 @@ components:
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: true
           deprecated: false
           enum:
           - MYDATA
@@ -743,7 +712,9 @@ components:
           - SDI
           - VERIFACTU
         type:
-          type: string
+          type:
+          - string
+          - 'null'
           description: 'Type of customer
 
 
@@ -755,20 +726,21 @@ components:
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: true
           deprecated: false
           enum:
           - BUSINESS
           - CONSUMER
           - GOVERNMENT
         logoUrl:
-          type: string
+          type:
+          - string
+          - 'null'
           description: URL to the customer's logo
-          nullable: true
         domain:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Domain of the customer's website
-          nullable: true
         externalSource:
           $ref: '#/components/schemas/ExternalApiExternalSourceV1Model'
         createdAt:
@@ -780,9 +752,10 @@ components:
           description: Timestamp when the customer was last updated
           format: date-time
         customProperties:
-          type: array
+          type:
+          - array
+          - 'null'
           description: List of custom properties associated with the customer
-          nullable: true
           items:
             $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
         recipientEmails:
@@ -797,46 +770,49 @@ components:
           items:
             type: string
             description: Billing email CC recipients used when sending invoices to this customer
-    ExternalUpdateCustomerRequestV1Model:
+    ExternalCreateCustomerRequestV1Model:
       type: object
       properties:
         name:
           type: string
-          nullable: true
         email:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         address:
           $ref: '#/components/schemas/Address'
         billingAddress:
           $ref: '#/components/schemas/Address'
-        customProperties:
-          type: array
-          nullable: true
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
         shippingAddress:
           $ref: '#/components/schemas/Address'
         domain:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         vatNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         businessRegistrationNumber:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         easCode:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         einvoiceAddress:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         einvoiceNetwork:
-          type: string
+          type:
+          - string
+          - 'null'
           description: '- `MYDATA` - Greece myDATA e-invoice network
 
             - `NEMHANDEL` - NemHandel e-invoice network
@@ -851,7 +827,6 @@ components:
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: true
           enum:
           - MYDATA
           - NEMHANDEL
@@ -860,7 +835,9 @@ components:
           - SDI
           - VERIFACTU
         type:
-          type: string
+          type:
+          - string
+          - 'null'
           description: '- `BUSINESS` - Business customer
 
             - `CONSUMER` - Consumer customer
@@ -869,56 +846,44 @@ components:
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          nullable: true
           enum:
           - BUSINESS
           - CONSUMER
           - GOVERNMENT
         logoUrl:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
         recipientEmails:
-          type: array
-          description: Billing email recipients ("Send to"). Omit to leave unchanged; send an empty list to clear.
-          nullable: true
+          type:
+          - array
+          - 'null'
+          description: Billing email recipients ("Send to") used when sending invoices to this customer
           items:
-            type: string
-            description: Billing email recipients ("Send to"). Omit to leave unchanged; send an empty list to clear.
-            nullable: true
+            type:
+            - string
+            - 'null'
+            description: Billing email recipients ("Send to") used when sending invoices to this customer
         ccEmails:
-          type: array
-          description: Billing email CC recipients. Omit to leave unchanged; send an empty list to clear.
-          nullable: true
+          type:
+          - array
+          - 'null'
+          description: Billing email CC recipients used when sending invoices to this customer
           items:
-            type: string
-            description: Billing email CC recipients. Omit to leave unchanged; send an empty list to clear.
-            nullable: true
-    ExternalSetCustomPropertyRequestV1Model:
-      type: object
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group.
-          format: uuid
-        valueIds:
-          type: array
-          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
-          items:
-            type: string
-            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
-            format: uuid
-        inlineValues:
-          type: array
-          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-          nullable: true
-          items:
-            type: string
-            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-            nullable: true
-      description: List of custom properties to set on the vendor. Replaces the existing set.
-      nullable: true
+            type:
+            - string
+            - 'null'
+            description: Billing email CC recipients used when sending invoices to this customer
     ExternalCustomPropertyV1Model:
-      type: object
+      type:
+      - object
+      - 'null'
       properties:
         groupId:
           type: string
@@ -933,7 +898,91 @@ components:
           items:
             $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
       description: Custom properties set on the vendor.
-      nullable: true
+    ExternalApiExternalSourceV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: 'The name of the external source
+
+
+            - `CHARGEBEE` - Data synced from Chargebee
+
+            - `HUBSPOT` - Data synced from HubSpot
+
+            - `SALESFORCE` - Data synced from Salesforce
+
+            - `STRIPE` - Data synced from Stripe
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - CHARGEBEE
+          - HUBSPOT
+          - SALESFORCE
+          - STRIPE
+        externalId:
+          type: string
+          description: The ID of the object in the external source system
+      description: The external system where this product was synced from
+    ExternalSetCustomPropertyRequestV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type:
+          - array
+          - 'null'
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          items:
+            type:
+            - string
+            - 'null'
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+    ExternalPaginatedResponseV1ModelExternalCustomerV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCustomerV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
   securitySchemes:
     apiKeyAuth:
       type: apiKey

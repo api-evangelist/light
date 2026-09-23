@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - Attachments API
+  title: Light v1 - Attachments API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -130,14 +130,29 @@ paths:
             application/json;charset=UTF-8: {}
 components:
   schemas:
-    LightPrincipal:
+    ExternalCreateAttachmentRequestV1Model:
       type: object
       properties:
-        roles:
-          type: array
-          items:
-            type: string
-        name:
+        resourceId:
+          type: string
+          format: uuid
+        documentKey:
+          type: string
+        fileName:
+          type: string
+        contentType:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/ExternalAttachmentMetadataV1Model'
+    ExternalUploadAttachmentRequestV1Model:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        fileName:
+          type: string
+        contentType:
           type: string
     ExternalAttachmentUploadUrlResponseV1Model:
       type: object
@@ -148,10 +163,11 @@ components:
         key:
           type: string
         metadata:
-          type: object
+          type:
+          - object
+          - 'null'
           additionalProperties:
             type: string
-          nullable: true
     ExternalAttachmentV1Model:
       type: object
       properties:
@@ -181,30 +197,15 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ExternalUploadAttachmentRequestV1Model:
+    LightPrincipal:
       type: object
       properties:
-        resourceId:
+        roles:
+          type: array
+          items:
+            type: string
+        name:
           type: string
-          format: uuid
-        fileName:
-          type: string
-        contentType:
-          type: string
-    ExternalCreateAttachmentRequestV1Model:
-      type: object
-      properties:
-        resourceId:
-          type: string
-          format: uuid
-        documentKey:
-          type: string
-        fileName:
-          type: string
-        contentType:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/ExternalAttachmentMetadataV1Model'
     ExternalAttachmentMetadataV1Model:
       type: object
       properties:

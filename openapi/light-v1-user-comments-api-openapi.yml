@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Light Authorization v1 - User Comments API
+  title: Light v1 - User Comments API
   version: 1.0.0
 security:
 - apiKeyAuth: []
@@ -142,19 +142,32 @@ components:
           type: boolean
           description: Boolean flag indicating if there are more records available
         total:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
           format: int64
-          nullable: true
           deprecated: true
         nextCursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Cursor for fetching the next page (only for cursor pagination)
-          nullable: true
         prevCursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
-          nullable: true
+    ExternalCreateUserCommentRequestV1Model:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: ID of the resource this comment is attached to (e.g. vendor, customer, etc.).
+          format: uuid
+        content:
+          type: string
+          description: Comment content.
     ExternalUserCommentV1Model:
       type: object
       properties:
@@ -188,16 +201,6 @@ components:
     ExternalUpdateUserCommentRequestV1Model:
       type: object
       properties:
-        content:
-          type: string
-          description: Comment content.
-    ExternalCreateUserCommentRequestV1Model:
-      type: object
-      properties:
-        resourceId:
-          type: string
-          description: ID of the resource this comment is attached to (e.g. vendor, customer, etc.).
-          format: uuid
         content:
           type: string
           description: Comment content.
