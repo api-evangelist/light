@@ -144,30 +144,6 @@ components:
           type: string
         metadata:
           $ref: '#/components/schemas/ExternalAttachmentMetadataV1Model'
-    ExternalUploadAttachmentRequestV1Model:
-      type: object
-      properties:
-        resourceId:
-          type: string
-          format: uuid
-        fileName:
-          type: string
-        contentType:
-          type: string
-    ExternalAttachmentUploadUrlResponseV1Model:
-      type: object
-      properties:
-        uploadUrl:
-          type: string
-          format: url
-        key:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
     ExternalAttachmentV1Model:
       type: object
       properties:
@@ -216,6 +192,30 @@ components:
           - AR
       discriminator:
         propertyName: type
+    ExternalAttachmentUploadUrlResponseV1Model:
+      type: object
+      properties:
+        uploadUrl:
+          type: string
+          format: url
+        key:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+    ExternalUploadAttachmentRequestV1Model:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        fileName:
+          type: string
+        contentType:
+          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

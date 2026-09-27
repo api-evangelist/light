@@ -207,24 +207,18 @@ paths:
                 $ref: '#/components/schemas/ExternalBankTransactionV1Model'
 components:
   schemas:
-    ExternalBankAccountBalanceV1Model:
+    ExternalGetAllResponseWithBalanceV1ModelExternalBankTransactionV1Model:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique identifier for the bank account balance
-          format: uuid
-        bankAccountId:
-          type: string
-          description: ID of the bank account
-          format: uuid
-        balanceAt:
-          type: string
-          description: Timestamp of the balance (opening balance date)
-          format: date-time
+        total:
+          type: integer
+          format: int64
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalBankTransactionV1Model'
         balance:
           type: integer
-          description: Balance amount in minor units (e.g. cents)
           format: int64
     ExternalBankAccountBalanceAsOfV1Model:
       type: object
@@ -250,6 +244,567 @@ components:
           type: string
           description: Date the balance is computed for
           format: date
+    ExternalUpsertBankAccountBalanceRequestV1Model:
+      required:
+      - balance
+      type: object
+      properties:
+        balanceAt:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of the balance (opening balance date). Defaults to current timestamp if not provided.
+          format: date-time
+        balance:
+          type: integer
+          description: Balance amount in minor units (e.g. cents)
+          format: int64
+    ExternalCreateBankAccountRequestV1Model:
+      required:
+      - bankCountry
+      - bankProvider
+      - companyEntityId
+      - currency
+      - ledgerAccount
+      - name
+      type: object
+      properties:
+        companyEntityId:
+          type: string
+          description: ID of the company entity this bank account belongs to.
+          format: uuid
+        name:
+          type: string
+          description: Bank account display name.
+        bankProvider:
+          type: string
+          description: 'Bank provider. Use OTHER if no specific provider applies.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - ABANCA
+          - ABN_AMRO
+          - AGRICULTURAL_BANK_OF_CHINA
+          - AIRWALLEX
+          - AKTIA_BANK
+          - ALANDS_BANKEN
+          - ANZ_GROUP
+          - ARBEJDERNES_LANDSBANK
+          - ARION_BANK
+          - BANCA_MARCH
+          - BANCA_NAZIONALE_DEL_LAVORO
+          - BANCO_BPM
+          - BANCO_BRADESCO
+          - BANCO_DO_BRASIL
+          - BANCO_SABADELL
+          - BANCO_SANTANDER
+          - BANK_NORWEGIAN
+          - BANK_OF_AMERICA
+          - BANK_OF_BEIJING
+          - BANK_OF_CHINA
+          - BANK_OF_COMMUNICATIONS
+          - BANK_OF_JIANGSU
+          - BANK_OF_MONTREAL
+          - BANK_OF_NINGBO
+          - BANK_OF_SHANGHAI
+          - BANK2
+          - BANKINTER
+          - BANQUE_PALATINE
+          - BARCLAYS
+          - BAYERNLB
+          - BBVA
+          - BCC_MILANO
+          - BN_BANK
+          - BNP_PARIBAS
+          - BNY_MELLON
+          - BOURSORAMA
+          - CAIXA_ECONOMICA_FEDERAL
+          - CAIXABANK
+          - CANADIAN_IMPERIAL_BANK_OF_COMMERCE
+          - CAPITAL_ONE
+          - CHARLES_SCHWAB
+          - CHINA_CITIC_BANK
+          - CHINA_CONSTRUCTION_BANK
+          - CHINA_EVERBRIGHT_BANK
+          - CHINA_GUANGFA_BANK
+          - CHINA_MERCHANTS_BANK
+          - CHINA_MINSHENG_BANK
+          - CHINA_ZHESHANG_BANK
+          - CITIGROUP
+          - COMMERZBANK
+          - COMMONWEALTH_BANK
+          - CREDIT_AGRICOLE
+          - CREDIT_DU_NORD
+          - CREDIT_MUTUEL
+          - CULTURA_SPAREBANK
+          - DANSKE_BANK
+          - DBS_GROUP
+          - DEUTSCHE_BANK
+          - DNB
+          - DNB_BANK
+          - DZ_BANK
+          - ERSTE_GROUP
+          - FELLOW_BANK
+          - GOLDMAN_SACHS
+          - GRASSHOPPER
+          - GROUPE_BPCE
+          - HANA_FINANCIAL
+          - HANDELSBANKEN
+          - HDFC_BANK
+          - HELABA
+          - HSBC
+          - HSBC_FRANCE
+          - HUAXIA_BANK
+          - HYPO
+          - IKANO_BANK
+          - INDUSTRIAL_AND_COMMERCIAL_BANK_OF_CHINA
+          - INDUSTRIAL_BANK
+          - INDUSTRIAL_BANK_OF_KOREA
+          - ING_DIBA
+          - ING_GROUP
+          - ING_SPAIN
+          - INSTABANK
+          - INTESA_SANPAOLO
+          - ISLANDSBANKI
+          - ITAU_UNIBANCO
+          - JAPAN_POST_BANK
+          - JPM_CHASE
+          - JYSKE
+          - KB_FINANCIAL_GROUP
+          - KBC_GROUP
+          - KFW_BANK
+          - KUTXABANK
+          - LA_BANQUE_POSTALE
+          - LANDKREDITT_BANK
+          - LANDESBANK_BADEN_WURTTEMBERG
+          - LANDESBANK_BADEN_WURTTEMBERG_LBBW
+          - LANDESBANK_BERLIN
+          - LANDSBANKINN
+          - LANSFORSAKRINGAR_BANK
+          - LLOYDS_BANK
+          - LLOYDS_BANKING_GROUP
+          - MERCURY
+          - MITSUBISHI_UFJ_FINANCIAL_GROUP
+          - MIZUHO_FINANCIAL_GROUP
+          - MONZO
+          - MORGAN_STANLEY
+          - NATIONAL_AUSTRALIA_BANK
+          - NATIONAL_BANK_OF_CANADA
+          - NATIONWIDE_BUILDING_SOCIETY
+          - NATWEST
+          - NATWEST_GROUP
+          - NOMURA_HOLDINGS
+          - NONGHYUP_BANK
+          - NORDEA
+          - NORDLB
+          - NORINCHUKIN_BANK
+          - NYKREDIT_BANK
+          - OCBC
+          - OP_BANK
+          - OTHER
+          - PARETO_BANK
+          - PAYPAL
+          - PING_AN_BANK
+          - PNC_FINANCIAL_SERVICES
+          - POP_PANKKI
+          - POSTAL_SAVINGS_BANK_OF_CHINA
+          - QATAR_NATIONAL_BANK
+          - RABOBANK
+          - RAIFFEISEN_GROUP
+          - RESONA_HOLDINGS
+          - REVOLUT
+          - RINGKJOBING_LANDBOBANK
+          - ROYAL_BANK_OF_CANADA
+          - S_PANKKI
+          - SANTANDER
+          - SANTANDER_UK
+          - SAXO_BANK
+          - SBANKEN
+          - SBERBANK_RUSSIA
+          - SCOTIABANK
+          - SEB
+          - SHANGHAI_PUDONG_DEVELOPMENT_BANK
+          - SHINHAN_FINANCIAL
+          - SMBC_GROUP
+          - SOCIETE_GENERALE
+          - SPAR_NORD_BANK
+          - STANDARD_CHARTERED
+          - STARLING_BANK
+          - STATE_BANK_OF_INDIA
+          - STOREBRAND_BANK
+          - STRIPE
+          - SUMITOMO_MITSUI_TRUST
+          - SVB
+          - SVENSKA_HANDELSBANKEN
+          - SWEDBANK
+          - SYDBANK
+          - TORONTO_DOMINION_BANK
+          - TRUIST_FINANCIAL
+          - TSB_BANK
+          - UBS
+          - UNICAJA_BANCO
+          - UNICREDIT
+          - UNICREDIT_BANK_HYPOVEREINSBANK
+          - UNITED_OVERSEAS_BANK
+          - US_BANCORP
+          - VEKSELBANKEN
+          - VIRGIN_MONEY
+          - WELLS_FARGO
+          - WESTPAC
+          - WISE
+          - WINTRUST_BANK
+          - WOORI_FINANCIAL
+          - YA_BANK
+          - ZKB
+        currency:
+          type: string
+          example: USD
+        bankCountry:
+          type: string
+          description: 'Bank country (ISO 3166-1 alpha-2).
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        ledgerAccount:
+          $ref: '#/components/schemas/ExternalCreateBankLedgerAccountRequestV1Model'
+        iban:
+          type:
+          - string
+          - 'null'
+          description: IBAN. Required (with BIC) for IBAN countries.
+        bic:
+          type:
+          - string
+          - 'null'
+          description: BIC / SWIFT code. Required (with IBAN) for IBAN countries.
+        domesticBankAccountNumber:
+          type:
+          - string
+          - 'null'
+          description: Domestic bank account number. Used for non-IBAN countries; must be paired with domesticBankCode.
+        domesticBankCode:
+          type:
+          - string
+          - 'null'
+          description: Domestic bank code (e.g. routing/sort code). Must be paired with domesticBankAccountNumber.
+        bankName:
+          type:
+          - string
+          - 'null'
+          description: Bank name.
+        bankCity:
+          type:
+          - string
+          - 'null'
+          description: Bank city.
+        bankAddress:
+          type:
+          - string
+          - 'null'
+          description: Bank street address.
+        bankZipcode:
+          type:
+          - string
+          - 'null'
+          description: Bank ZIP / postal code.
+        bankState:
+          type:
+          - string
+          - 'null'
+          description: Bank state / region.
+        defaultChargeBearerCode:
+          type:
+          - string
+          - 'null'
+          description: 'Default charge bearer for international transfers. OUR = sender pays all fees, SHAR = fees shared.
+
+
+            - `OUR` - Sender pays all fees
+
+            - `SHAR` - Fees are shared between sender and receiver
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - OUR
+          - SHAR
     ExternalBankTransactionV1Model:
       type: object
       properties:
@@ -314,6 +869,54 @@ components:
           type: string
           description: Timestamp when the transaction was created
           format: date-time
+    ExternalCreateBankTransactionRequestV1Model:
+      required:
+      - amount
+      - date
+      - dcSign
+      type: object
+      properties:
+        date:
+          type: string
+          description: Transaction date
+          format: date
+        amount:
+          type: integer
+          description: Transaction amount in minor units (e.g. cents). Must be positive.
+          format: int64
+        dcSign:
+          type: string
+          description: 'Debit/credit sign. DEBIT for money out, CREDIT for money in.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - D
+          - C
+        name:
+          type:
+          - string
+          - 'null'
+          description: Transaction name / payee
+        memo:
+          type:
+          - string
+          - 'null'
+          description: Transaction memo / description
+        reference:
+          type:
+          - string
+          - 'null'
+          description: Transaction reference
+        transactionId:
+          type:
+          - string
+          - 'null'
+          description: External transaction identifier. Used for idempotency — duplicate transactionIds for the same bank account are silently skipped.
+      description: List of bank transactions to create. Maximum 500 per request.
+    LocalDateParam:
+      type: object
     ExternalBankAccountV1Model:
       type: object
       properties:
@@ -881,6 +1484,25 @@ components:
           type: string
           description: Timestamp when the bank account was created
           format: date-time
+    ExternalBankAccountBalanceV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the bank account balance
+          format: uuid
+        bankAccountId:
+          type: string
+          description: ID of the bank account
+          format: uuid
+        balanceAt:
+          type: string
+          description: Timestamp of the balance (opening balance date)
+          format: date-time
+        balance:
+          type: integer
+          description: Balance amount in minor units (e.g. cents)
+          format: int64
     ExternalCreateBankTransactionsRequestV1Model:
       required:
       - transactions
@@ -891,69 +1513,6 @@ components:
           description: List of bank transactions to create. Maximum 500 per request.
           items:
             $ref: '#/components/schemas/ExternalCreateBankTransactionRequestV1Model'
-    ExternalCreateBankTransactionRequestV1Model:
-      required:
-      - amount
-      - date
-      - dcSign
-      type: object
-      properties:
-        date:
-          type: string
-          description: Transaction date
-          format: date
-        amount:
-          type: integer
-          description: Transaction amount in minor units (e.g. cents). Must be positive.
-          format: int64
-        dcSign:
-          type: string
-          description: 'Debit/credit sign. DEBIT for money out, CREDIT for money in.
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - D
-          - C
-        name:
-          type:
-          - string
-          - 'null'
-          description: Transaction name / payee
-        memo:
-          type:
-          - string
-          - 'null'
-          description: Transaction memo / description
-        reference:
-          type:
-          - string
-          - 'null'
-          description: Transaction reference
-        transactionId:
-          type:
-          - string
-          - 'null'
-          description: External transaction identifier. Used for idempotency — duplicate transactionIds for the same bank account are silently skipped.
-      description: List of bank transactions to create. Maximum 500 per request.
-    LocalDateParam:
-      type: object
-    ExternalUpsertBankAccountBalanceRequestV1Model:
-      required:
-      - balance
-      type: object
-      properties:
-        balanceAt:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of the balance (opening balance date). Defaults to current timestamp if not provided.
-          format: date-time
-        balance:
-          type: integer
-          description: Balance amount in minor units (e.g. cents)
-          format: int64
     ExternalCreateBankLedgerAccountRequestV1Model:
       required:
       - code
@@ -969,565 +1528,6 @@ components:
           - 'null'
           description: Ledger account label. Defaults to the bank name when omitted.
       description: Ledger account (chart of accounts entry) created and linked to this bank account.
-    ExternalGetAllResponseWithBalanceV1ModelExternalBankTransactionV1Model:
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalBankTransactionV1Model'
-        balance:
-          type: integer
-          format: int64
-    ExternalCreateBankAccountRequestV1Model:
-      required:
-      - bankCountry
-      - bankProvider
-      - companyEntityId
-      - currency
-      - ledgerAccount
-      - name
-      type: object
-      properties:
-        companyEntityId:
-          type: string
-          description: ID of the company entity this bank account belongs to.
-          format: uuid
-        name:
-          type: string
-          description: Bank account display name.
-        bankProvider:
-          type: string
-          description: 'Bank provider. Use OTHER if no specific provider applies.
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - ABANCA
-          - ABN_AMRO
-          - AGRICULTURAL_BANK_OF_CHINA
-          - AIRWALLEX
-          - AKTIA_BANK
-          - ALANDS_BANKEN
-          - ANZ_GROUP
-          - ARBEJDERNES_LANDSBANK
-          - ARION_BANK
-          - BANCA_MARCH
-          - BANCA_NAZIONALE_DEL_LAVORO
-          - BANCO_BPM
-          - BANCO_BRADESCO
-          - BANCO_DO_BRASIL
-          - BANCO_SABADELL
-          - BANCO_SANTANDER
-          - BANK_NORWEGIAN
-          - BANK_OF_AMERICA
-          - BANK_OF_BEIJING
-          - BANK_OF_CHINA
-          - BANK_OF_COMMUNICATIONS
-          - BANK_OF_JIANGSU
-          - BANK_OF_MONTREAL
-          - BANK_OF_NINGBO
-          - BANK_OF_SHANGHAI
-          - BANK2
-          - BANKINTER
-          - BANQUE_PALATINE
-          - BARCLAYS
-          - BAYERNLB
-          - BBVA
-          - BCC_MILANO
-          - BN_BANK
-          - BNP_PARIBAS
-          - BNY_MELLON
-          - BOURSORAMA
-          - CAIXA_ECONOMICA_FEDERAL
-          - CAIXABANK
-          - CANADIAN_IMPERIAL_BANK_OF_COMMERCE
-          - CAPITAL_ONE
-          - CHARLES_SCHWAB
-          - CHINA_CITIC_BANK
-          - CHINA_CONSTRUCTION_BANK
-          - CHINA_EVERBRIGHT_BANK
-          - CHINA_GUANGFA_BANK
-          - CHINA_MERCHANTS_BANK
-          - CHINA_MINSHENG_BANK
-          - CHINA_ZHESHANG_BANK
-          - CITIGROUP
-          - COMMERZBANK
-          - COMMONWEALTH_BANK
-          - CREDIT_AGRICOLE
-          - CREDIT_DU_NORD
-          - CREDIT_MUTUEL
-          - CULTURA_SPAREBANK
-          - DANSKE_BANK
-          - DBS_GROUP
-          - DEUTSCHE_BANK
-          - DNB
-          - DNB_BANK
-          - DZ_BANK
-          - ERSTE_GROUP
-          - FELLOW_BANK
-          - GOLDMAN_SACHS
-          - GRASSHOPPER
-          - GROUPE_BPCE
-          - HANA_FINANCIAL
-          - HANDELSBANKEN
-          - HDFC_BANK
-          - HELABA
-          - HSBC
-          - HSBC_FRANCE
-          - HUAXIA_BANK
-          - HYPO
-          - IKANO_BANK
-          - INDUSTRIAL_AND_COMMERCIAL_BANK_OF_CHINA
-          - INDUSTRIAL_BANK
-          - INDUSTRIAL_BANK_OF_KOREA
-          - ING_DIBA
-          - ING_GROUP
-          - ING_SPAIN
-          - INSTABANK
-          - INTESA_SANPAOLO
-          - ISLANDSBANKI
-          - ITAU_UNIBANCO
-          - JAPAN_POST_BANK
-          - JPM_CHASE
-          - JYSKE
-          - KB_FINANCIAL_GROUP
-          - KBC_GROUP
-          - KFW_BANK
-          - KUTXABANK
-          - LA_BANQUE_POSTALE
-          - LANDKREDITT_BANK
-          - LANDESBANK_BADEN_WURTTEMBERG
-          - LANDESBANK_BADEN_WURTTEMBERG_LBBW
-          - LANDESBANK_BERLIN
-          - LANDSBANKINN
-          - LANSFORSAKRINGAR_BANK
-          - LLOYDS_BANK
-          - LLOYDS_BANKING_GROUP
-          - MERCURY
-          - MITSUBISHI_UFJ_FINANCIAL_GROUP
-          - MIZUHO_FINANCIAL_GROUP
-          - MONZO
-          - MORGAN_STANLEY
-          - NATIONAL_AUSTRALIA_BANK
-          - NATIONAL_BANK_OF_CANADA
-          - NATIONWIDE_BUILDING_SOCIETY
-          - NATWEST
-          - NATWEST_GROUP
-          - NOMURA_HOLDINGS
-          - NONGHYUP_BANK
-          - NORDEA
-          - NORDLB
-          - NORINCHUKIN_BANK
-          - NYKREDIT_BANK
-          - OCBC
-          - OP_BANK
-          - OTHER
-          - PARETO_BANK
-          - PAYPAL
-          - PING_AN_BANK
-          - PNC_FINANCIAL_SERVICES
-          - POP_PANKKI
-          - POSTAL_SAVINGS_BANK_OF_CHINA
-          - QATAR_NATIONAL_BANK
-          - RABOBANK
-          - RAIFFEISEN_GROUP
-          - RESONA_HOLDINGS
-          - REVOLUT
-          - RINGKJOBING_LANDBOBANK
-          - ROYAL_BANK_OF_CANADA
-          - S_PANKKI
-          - SANTANDER
-          - SANTANDER_UK
-          - SAXO_BANK
-          - SBANKEN
-          - SBERBANK_RUSSIA
-          - SCOTIABANK
-          - SEB
-          - SHANGHAI_PUDONG_DEVELOPMENT_BANK
-          - SHINHAN_FINANCIAL
-          - SMBC_GROUP
-          - SOCIETE_GENERALE
-          - SPAR_NORD_BANK
-          - STANDARD_CHARTERED
-          - STARLING_BANK
-          - STATE_BANK_OF_INDIA
-          - STOREBRAND_BANK
-          - STRIPE
-          - SUMITOMO_MITSUI_TRUST
-          - SVB
-          - SVENSKA_HANDELSBANKEN
-          - SWEDBANK
-          - SYDBANK
-          - TORONTO_DOMINION_BANK
-          - TRUIST_FINANCIAL
-          - TSB_BANK
-          - UBS
-          - UNICAJA_BANCO
-          - UNICREDIT
-          - UNICREDIT_BANK_HYPOVEREINSBANK
-          - UNITED_OVERSEAS_BANK
-          - US_BANCORP
-          - VEKSELBANKEN
-          - VIRGIN_MONEY
-          - WELLS_FARGO
-          - WESTPAC
-          - WISE
-          - WINTRUST_BANK
-          - WOORI_FINANCIAL
-          - YA_BANK
-          - ZKB
-        currency:
-          type: string
-          example: USD
-        bankCountry:
-          type: string
-          description: 'Bank country (ISO 3166-1 alpha-2).
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - UNDEFINED
-          - AC
-          - AD
-          - AE
-          - AF
-          - AG
-          - AI
-          - AL
-          - AM
-          - AN
-          - AO
-          - AQ
-          - AR
-          - AS
-          - AT
-          - AU
-          - AW
-          - AX
-          - AZ
-          - BA
-          - BB
-          - BD
-          - BE
-          - BF
-          - BG
-          - BH
-          - BI
-          - BJ
-          - BL
-          - BM
-          - BN
-          - BO
-          - BQ
-          - BR
-          - BS
-          - BT
-          - BU
-          - BV
-          - BW
-          - BY
-          - BZ
-          - CA
-          - CC
-          - CD
-          - CF
-          - CG
-          - CH
-          - CI
-          - CK
-          - CL
-          - CM
-          - CN
-          - CO
-          - CP
-          - CR
-          - CS
-          - CU
-          - CV
-          - CW
-          - CX
-          - CY
-          - CZ
-          - DE
-          - DG
-          - DJ
-          - DK
-          - DM
-          - DO
-          - DZ
-          - EA
-          - EC
-          - EE
-          - EG
-          - EH
-          - ER
-          - ES
-          - ET
-          - EU
-          - EZ
-          - FI
-          - FJ
-          - FK
-          - FM
-          - FO
-          - FR
-          - FX
-          - GA
-          - GB
-          - GD
-          - GE
-          - GF
-          - GG
-          - GH
-          - GI
-          - GL
-          - GM
-          - GN
-          - GP
-          - GQ
-          - GR
-          - GS
-          - GT
-          - GU
-          - GW
-          - GY
-          - HK
-          - HM
-          - HN
-          - HR
-          - HT
-          - HU
-          - IC
-          - ID
-          - IE
-          - IL
-          - IM
-          - IN
-          - IO
-          - IQ
-          - IR
-          - IS
-          - IT
-          - JE
-          - JM
-          - JO
-          - JP
-          - KE
-          - KG
-          - KH
-          - KI
-          - KM
-          - KN
-          - KP
-          - KR
-          - KW
-          - KY
-          - KZ
-          - LA
-          - LB
-          - LC
-          - LI
-          - LK
-          - LR
-          - LS
-          - LT
-          - LU
-          - LV
-          - LY
-          - MA
-          - MC
-          - MD
-          - ME
-          - MF
-          - MG
-          - MH
-          - MK
-          - ML
-          - MM
-          - MN
-          - MO
-          - MP
-          - MQ
-          - MR
-          - MS
-          - MT
-          - MU
-          - MV
-          - MW
-          - MX
-          - MY
-          - MZ
-          - NA
-          - NC
-          - NE
-          - NF
-          - NG
-          - NI
-          - NL
-          - 'NO'
-          - NP
-          - NR
-          - NT
-          - NU
-          - NZ
-          - OM
-          - PA
-          - PE
-          - PF
-          - PG
-          - PH
-          - PK
-          - PL
-          - PM
-          - PN
-          - PR
-          - PS
-          - PT
-          - PW
-          - PY
-          - QA
-          - RE
-          - RO
-          - RS
-          - RU
-          - RW
-          - SA
-          - SB
-          - SC
-          - SD
-          - SE
-          - SF
-          - SG
-          - SH
-          - SI
-          - SJ
-          - SK
-          - SL
-          - SM
-          - SN
-          - SO
-          - SR
-          - SS
-          - ST
-          - SU
-          - SV
-          - SX
-          - SY
-          - SZ
-          - TA
-          - TC
-          - TD
-          - TF
-          - TG
-          - TH
-          - TJ
-          - TK
-          - TL
-          - TM
-          - TN
-          - TO
-          - TP
-          - TR
-          - TT
-          - TV
-          - TW
-          - TZ
-          - UA
-          - UG
-          - UK
-          - UM
-          - US
-          - UY
-          - UZ
-          - VA
-          - VC
-          - VE
-          - VG
-          - VI
-          - VN
-          - VU
-          - WF
-          - WS
-          - XI
-          - XU
-          - XK
-          - YE
-          - YT
-          - YU
-          - ZA
-          - ZM
-          - ZR
-          - ZW
-        ledgerAccount:
-          $ref: '#/components/schemas/ExternalCreateBankLedgerAccountRequestV1Model'
-        iban:
-          type:
-          - string
-          - 'null'
-          description: IBAN. Required (with BIC) for IBAN countries.
-        bic:
-          type:
-          - string
-          - 'null'
-          description: BIC / SWIFT code. Required (with IBAN) for IBAN countries.
-        domesticBankAccountNumber:
-          type:
-          - string
-          - 'null'
-          description: Domestic bank account number. Used for non-IBAN countries; must be paired with domesticBankCode.
-        domesticBankCode:
-          type:
-          - string
-          - 'null'
-          description: Domestic bank code (e.g. routing/sort code). Must be paired with domesticBankAccountNumber.
-        bankName:
-          type:
-          - string
-          - 'null'
-          description: Bank name.
-        bankCity:
-          type:
-          - string
-          - 'null'
-          description: Bank city.
-        bankAddress:
-          type:
-          - string
-          - 'null'
-          description: Bank street address.
-        bankZipcode:
-          type:
-          - string
-          - 'null'
-          description: Bank ZIP / postal code.
-        bankState:
-          type:
-          - string
-          - 'null'
-          description: Bank state / region.
-        defaultChargeBearerCode:
-          type:
-          - string
-          - 'null'
-          description: 'Default charge bearer for international transfers. OUR = sender pays all fees, SHAR = fees shared.
-
-
-            - `OUR` - Sender pays all fees
-
-            - `SHAR` - Fees are shared between sender and receiver
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - OUR
-          - SHAR
   securitySchemes:
     apiKeyAuth:
       type: apiKey

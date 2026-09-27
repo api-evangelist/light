@@ -261,26 +261,6 @@ paths:
             application/json;charset=UTF-8: {}
 components:
   schemas:
-    ExternalUpdateExpenseRequestV1Model:
-      type: object
-      properties:
-        originalCurrency:
-          type:
-          - string
-          - 'null'
-          example: USD
-        performedDate:
-          type:
-          - string
-          - 'null'
-          format: date
-    ExternalExpenseReceiptUploadUrlRequestV1Model:
-      type: object
-      properties:
-        filename:
-          type: string
-        contentType:
-          type: string
     ExternalExpenseV1Model:
       type: object
       properties:
@@ -322,6 +302,58 @@ components:
         updatedAt:
           type: string
           format: date-time
+    ExternalUpdateExpenseRequestV1Model:
+      type: object
+      properties:
+        originalCurrency:
+          type:
+          - string
+          - 'null'
+          example: USD
+        performedDate:
+          type:
+          - string
+          - 'null'
+          format: date
+    ExternalExpenseReceiptUploadUrlRequestV1Model:
+      type: object
+      properties:
+        filename:
+          type: string
+        contentType:
+          type: string
+    UpdateExpenseLineItemRequestV1Model:
+      type: object
+      properties:
+        originalAmount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        billingAmount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        description:
+          type:
+          - string
+          - 'null'
+        reimbursementCategoryId:
+          type:
+          - string
+          - 'null'
+          format: uuid
     CreateExpenseLineItemRequestV1Model:
       type: object
       properties:
@@ -385,6 +417,20 @@ components:
           - string
           - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
+    ExternalExpenseReceiptUploadUrlResponseV1Model:
+      type: object
+      properties:
+        uploadUrl:
+          type: string
+          format: url
+        key:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
     ExternalExpenseLineItemV1Model:
       type: object
       properties:
@@ -417,52 +463,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    UpdateExpenseLineItemRequestV1Model:
-      type: object
-      properties:
-        originalAmount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        billingAmount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        accountId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        costCenterId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        description:
-          type:
-          - string
-          - 'null'
-        reimbursementCategoryId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-    ExternalExpenseReceiptUploadUrlResponseV1Model:
-      type: object
-      properties:
-        uploadUrl:
-          type: string
-          format: url
-        key:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

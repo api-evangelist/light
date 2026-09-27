@@ -156,15 +156,6 @@ paths:
                 $ref: '#/components/schemas/ExternalCardV1Model'
 components:
   schemas:
-    ExternalCard3DsMetadataV1Model:
-      type: object
-      properties:
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-        password:
-          type: string
-        email:
-          type: string
     ExternalCreateCardLimitRequestV1Model:
       type:
       - object
@@ -189,6 +180,40 @@ components:
           - WEEKLY
           - MONTHLY
       description: Optional spending limits for this card.
+    ExternalCreateCardMetadataV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
+      description: Card type metadata. Use type 'VENDOR' with vendorId for vendor cards, or type 'EMPLOYEE' with employeeId for employee cards.
+      discriminator:
+        propertyName: type
+    ExternalCardDeliveryContactV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        address:
+          $ref: '#/components/schemas/ExternalCardDeliveryAddressV1Model'
+        name:
+          $ref: '#/components/schemas/ExternalCardDeliveryContactNameV1Model'
+        company:
+          type:
+          - string
+          - 'null'
+          description: Company or department name on the shipping label.
+        email:
+          type:
+          - string
+          - 'null'
+          description: Contact email for delivery notifications.
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+      description: Recipient and address used by the card issuer to ship the physical card. Only `address` and `name` are required.
     ExternalCardAuthenticationV1Model:
       type: object
       properties:
@@ -272,96 +297,17 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ExternalCardDeliveryContactNameV1Model:
+    ExternalCardMetadataV1Model:
       type: object
       properties:
-        firstName:
-          type: string
-          description: Recipient first name.
-        lastName:
-          type: string
-          description: Recipient last name.
-      description: Name printed on the shipping label.
-    ExternalBffCardV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyEntityId:
-          type: string
-          format: uuid
-        companyEntityName:
-          type: string
-        companyId:
-          type: string
-          format: uuid
-        ownerId:
-          type: string
-          format: uuid
-        ownerName:
-          type: string
-        cardBalanceAccountId:
-          type: string
-          format: uuid
-        cardBalanceAccountLabel:
-          type: string
-        currency:
-          type: string
-          example: USD
-        form:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - PHYSICAL
-          - VIRTUAL
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACTIVE
-          - FROZEN
-          - CLOSED
-          - UPDATE_IN_PROGRESS
-        metadata:
-          $ref: '#/components/schemas/ExternalCardMetadataV1Model'
-        threeDs:
-          $ref: '#/components/schemas/ExternalCard3DsMetadataV1Model'
-        vendorId:
-          type: string
-          format: uuid
-        vendorName:
-          type: string
-        vendorAvatarUrl:
-          type: string
-        description:
-          type: string
-        bin:
-          type: string
-        lastFour:
-          type: string
-        cardholderName:
-          type: string
-        limitIntervalSpend:
-          type: integer
-          format: int64
-        limits:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCardLimitV1Model'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
         type:
           type: string
           description: ⚠️ This enum is not exhaustive; new values may be added in the future.
           enum:
           - VENDOR
           - EMPLOYEE
-      description: List of records for the current page
+      discriminator:
+        propertyName: type
     ExternalPaginatedResponseV1ModelExternalBffCardV1Model:
       type: object
       properties:
@@ -390,18 +336,6 @@ components:
           - string
           - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
-    ExternalCreateCardMetadataV1Model:
-      type: object
-      properties:
-        type:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - VENDOR
-          - EMPLOYEE
-      description: Card type metadata. Use type 'VENDOR' with vendorId for vendor cards, or type 'EMPLOYEE' with employeeId for employee cards.
-      discriminator:
-        propertyName: type
     PhoneNumber:
       type:
       - object
@@ -686,6 +620,66 @@ components:
         localNumber:
           type: string
       description: Vendor phone number.
+    ExternalCardV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        ownerId:
+          type: string
+          format: uuid
+        cardBalanceAccountId:
+          type: string
+          format: uuid
+        form:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PHYSICAL
+          - VIRTUAL
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - FROZEN
+          - CLOSED
+          - UPDATE_IN_PROGRESS
+        metadata:
+          $ref: '#/components/schemas/ExternalCardMetadataV1Model'
+        threeDs:
+          $ref: '#/components/schemas/ExternalCard3DsMetadataV1Model'
+        description:
+          type: string
+        bin:
+          type: string
+        lastFour:
+          type: string
+        cardholderName:
+          type: string
+        limits:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCardLimitV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - VENDOR
+          - EMPLOYEE
     ExternalCardDeliveryAddressV1Model:
       type: object
       properties:
@@ -987,29 +981,7 @@ components:
           - 'null'
           description: State, province, or region. **Required** when `country` is `US` or `CA`; requests without it are rejected with `PHYSICAL_CARD_STATE_OR_PROVINCE_REQUIRED`. Optional for other countries.
       description: Postal address the card is shipped to. Country must be an ISO 3166-1 alpha-2 code; `stateOrProvince` is required for US and CA destinations.
-    ExternalCardDeliveryContactV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        address:
-          $ref: '#/components/schemas/ExternalCardDeliveryAddressV1Model'
-        name:
-          $ref: '#/components/schemas/ExternalCardDeliveryContactNameV1Model'
-        company:
-          type:
-          - string
-          - 'null'
-          description: Company or department name on the shipping label.
-        email:
-          type:
-          - string
-          - 'null'
-          description: Contact email for delivery notifications.
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-      description: Recipient and address used by the card issuer to ship the physical card. Only `address` and `name` are required.
-    ExternalCardV1Model:
+    ExternalBffCardV1Model:
       type: object
       properties:
         id:
@@ -1018,15 +990,24 @@ components:
         companyEntityId:
           type: string
           format: uuid
+        companyEntityName:
+          type: string
         companyId:
           type: string
           format: uuid
         ownerId:
           type: string
           format: uuid
+        ownerName:
+          type: string
         cardBalanceAccountId:
           type: string
           format: uuid
+        cardBalanceAccountLabel:
+          type: string
+        currency:
+          type: string
+          example: USD
         form:
           type: string
           description: ⚠️ This enum is not exhaustive; new values may be added in the future.
@@ -1045,6 +1026,13 @@ components:
           $ref: '#/components/schemas/ExternalCardMetadataV1Model'
         threeDs:
           $ref: '#/components/schemas/ExternalCard3DsMetadataV1Model'
+        vendorId:
+          type: string
+          format: uuid
+        vendorName:
+          type: string
+        vendorAvatarUrl:
+          type: string
         description:
           type: string
         bin:
@@ -1053,6 +1041,9 @@ components:
           type: string
         cardholderName:
           type: string
+        limitIntervalSpend:
+          type: integer
+          format: int64
         limits:
           type: array
           items:
@@ -1069,17 +1060,26 @@ components:
           enum:
           - VENDOR
           - EMPLOYEE
-    ExternalCardMetadataV1Model:
+      description: List of records for the current page
+    ExternalCardDeliveryContactNameV1Model:
       type: object
       properties:
-        type:
+        firstName:
           type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - VENDOR
-          - EMPLOYEE
-      discriminator:
-        propertyName: type
+          description: Recipient first name.
+        lastName:
+          type: string
+          description: Recipient last name.
+      description: Name printed on the shipping label.
+    ExternalCard3DsMetadataV1Model:
+      type: object
+      properties:
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        password:
+          type: string
+        email:
+          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

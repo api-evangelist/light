@@ -72,6 +72,8 @@ paths:
                   $ref: '#/components/schemas/ExternalExchangeRateV1Model'
 components:
   schemas:
+    LocalDateParam:
+      type: object
     ExternalExchangeRateV1Model:
       type: object
       properties:
@@ -92,8 +94,6 @@ components:
           type: string
           description: Date the exchange rate is requested for
           format: date
-    LocalDateParam:
-      type: object
   securitySchemes:
     apiKeyAuth:
       type: apiKey

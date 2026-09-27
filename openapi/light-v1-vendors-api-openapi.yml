@@ -131,794 +131,6 @@ paths:
                 $ref: '#/components/schemas/ExternalVendorV1Model'
 components:
   schemas:
-    SetCustomPropertyRequestV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          format: uuid
-        valueIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-        inlineValues:
-          type: array
-          items:
-            type: string
-      description: List of custom properties to set on the vendor.
-    ExternalCustomPropertyV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
-          type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
-    ExternalUiClientExceptionErrorV1Model:
-      type: object
-      properties:
-        type:
-          type: string
-          description: A string code identifying the error type
-        message:
-          type: string
-          description: A human-readable message providing more details about the error
-        path:
-          type:
-          - array
-          - 'null'
-          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
-          items:
-            type:
-            - string
-            - 'null'
-            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
-        context:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - object
-            - 'null'
-            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
-          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
-      description: List of errors providing details about what went wrong
-    ExternalUpdateVendorRequestV1Model:
-      type: object
-      properties:
-        name:
-          type: string
-          description: Vendor name.
-        defaultCompanyEntity:
-          $ref: '#/components/schemas/ExternalUpdateDefaultVendorCompanyEntityRequestV1Model'
-        companyEntityIds:
-          uniqueItems: true
-          type: array
-          description: IDs of the company entities this vendor is associated with.
-          items:
-            type: string
-            description: IDs of the company entities this vendor is associated with.
-            format: uuid
-        vatId:
-          type:
-          - string
-          - 'null'
-          description: Vendor VAT ID.
-        businessRegistrationNumber:
-          type:
-          - string
-          - 'null'
-          description: Vendor business registration number.
-        identifier:
-          type:
-          - string
-          - 'null'
-          description: Vendor identifier (external/system identifier).
-        description:
-          type:
-          - string
-          - 'null'
-          description: Vendor description or memo.
-        avatarUrl:
-          type:
-          - string
-          - 'null'
-          description: Vendor avatar/logo URL.
-        email:
-          type:
-          - string
-          - 'null'
-          description: Vendor email address.
-        phoneNumber:
-          $ref: '#/components/schemas/PhoneNumber'
-        website:
-          type:
-          - string
-          - 'null'
-          description: Vendor website.
-        country:
-          type:
-          - string
-          - 'null'
-          description: 'Vendor country. Note: currently, updating country does not sync with the vendor in the ERP.
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - UNDEFINED
-          - AC
-          - AD
-          - AE
-          - AF
-          - AG
-          - AI
-          - AL
-          - AM
-          - AN
-          - AO
-          - AQ
-          - AR
-          - AS
-          - AT
-          - AU
-          - AW
-          - AX
-          - AZ
-          - BA
-          - BB
-          - BD
-          - BE
-          - BF
-          - BG
-          - BH
-          - BI
-          - BJ
-          - BL
-          - BM
-          - BN
-          - BO
-          - BQ
-          - BR
-          - BS
-          - BT
-          - BU
-          - BV
-          - BW
-          - BY
-          - BZ
-          - CA
-          - CC
-          - CD
-          - CF
-          - CG
-          - CH
-          - CI
-          - CK
-          - CL
-          - CM
-          - CN
-          - CO
-          - CP
-          - CR
-          - CS
-          - CU
-          - CV
-          - CW
-          - CX
-          - CY
-          - CZ
-          - DE
-          - DG
-          - DJ
-          - DK
-          - DM
-          - DO
-          - DZ
-          - EA
-          - EC
-          - EE
-          - EG
-          - EH
-          - ER
-          - ES
-          - ET
-          - EU
-          - EZ
-          - FI
-          - FJ
-          - FK
-          - FM
-          - FO
-          - FR
-          - FX
-          - GA
-          - GB
-          - GD
-          - GE
-          - GF
-          - GG
-          - GH
-          - GI
-          - GL
-          - GM
-          - GN
-          - GP
-          - GQ
-          - GR
-          - GS
-          - GT
-          - GU
-          - GW
-          - GY
-          - HK
-          - HM
-          - HN
-          - HR
-          - HT
-          - HU
-          - IC
-          - ID
-          - IE
-          - IL
-          - IM
-          - IN
-          - IO
-          - IQ
-          - IR
-          - IS
-          - IT
-          - JE
-          - JM
-          - JO
-          - JP
-          - KE
-          - KG
-          - KH
-          - KI
-          - KM
-          - KN
-          - KP
-          - KR
-          - KW
-          - KY
-          - KZ
-          - LA
-          - LB
-          - LC
-          - LI
-          - LK
-          - LR
-          - LS
-          - LT
-          - LU
-          - LV
-          - LY
-          - MA
-          - MC
-          - MD
-          - ME
-          - MF
-          - MG
-          - MH
-          - MK
-          - ML
-          - MM
-          - MN
-          - MO
-          - MP
-          - MQ
-          - MR
-          - MS
-          - MT
-          - MU
-          - MV
-          - MW
-          - MX
-          - MY
-          - MZ
-          - NA
-          - NC
-          - NE
-          - NF
-          - NG
-          - NI
-          - NL
-          - 'NO'
-          - NP
-          - NR
-          - NT
-          - NU
-          - NZ
-          - OM
-          - PA
-          - PE
-          - PF
-          - PG
-          - PH
-          - PK
-          - PL
-          - PM
-          - PN
-          - PR
-          - PS
-          - PT
-          - PW
-          - PY
-          - QA
-          - RE
-          - RO
-          - RS
-          - RU
-          - RW
-          - SA
-          - SB
-          - SC
-          - SD
-          - SE
-          - SF
-          - SG
-          - SH
-          - SI
-          - SJ
-          - SK
-          - SL
-          - SM
-          - SN
-          - SO
-          - SR
-          - SS
-          - ST
-          - SU
-          - SV
-          - SX
-          - SY
-          - SZ
-          - TA
-          - TC
-          - TD
-          - TF
-          - TG
-          - TH
-          - TJ
-          - TK
-          - TL
-          - TM
-          - TN
-          - TO
-          - TP
-          - TR
-          - TT
-          - TV
-          - TW
-          - TZ
-          - UA
-          - UG
-          - UK
-          - UM
-          - US
-          - UY
-          - UZ
-          - VA
-          - VC
-          - VE
-          - VG
-          - VI
-          - VN
-          - VU
-          - WF
-          - WS
-          - XI
-          - XU
-          - XK
-          - YE
-          - YT
-          - YU
-          - ZA
-          - ZM
-          - ZR
-          - ZW
-        city:
-          type:
-          - string
-          - 'null'
-          description: Vendor city.
-        address:
-          type:
-          - string
-          - 'null'
-          description: Vendor street address.
-        zipcode:
-          type:
-          - string
-          - 'null'
-          description: Vendor ZIP/postal code.
-        bankName:
-          type:
-          - string
-          - 'null'
-          description: Vendor bank name.
-        bankCountry:
-          type:
-          - string
-          - 'null'
-          description: 'Vendor bank country.
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - UNDEFINED
-          - AC
-          - AD
-          - AE
-          - AF
-          - AG
-          - AI
-          - AL
-          - AM
-          - AN
-          - AO
-          - AQ
-          - AR
-          - AS
-          - AT
-          - AU
-          - AW
-          - AX
-          - AZ
-          - BA
-          - BB
-          - BD
-          - BE
-          - BF
-          - BG
-          - BH
-          - BI
-          - BJ
-          - BL
-          - BM
-          - BN
-          - BO
-          - BQ
-          - BR
-          - BS
-          - BT
-          - BU
-          - BV
-          - BW
-          - BY
-          - BZ
-          - CA
-          - CC
-          - CD
-          - CF
-          - CG
-          - CH
-          - CI
-          - CK
-          - CL
-          - CM
-          - CN
-          - CO
-          - CP
-          - CR
-          - CS
-          - CU
-          - CV
-          - CW
-          - CX
-          - CY
-          - CZ
-          - DE
-          - DG
-          - DJ
-          - DK
-          - DM
-          - DO
-          - DZ
-          - EA
-          - EC
-          - EE
-          - EG
-          - EH
-          - ER
-          - ES
-          - ET
-          - EU
-          - EZ
-          - FI
-          - FJ
-          - FK
-          - FM
-          - FO
-          - FR
-          - FX
-          - GA
-          - GB
-          - GD
-          - GE
-          - GF
-          - GG
-          - GH
-          - GI
-          - GL
-          - GM
-          - GN
-          - GP
-          - GQ
-          - GR
-          - GS
-          - GT
-          - GU
-          - GW
-          - GY
-          - HK
-          - HM
-          - HN
-          - HR
-          - HT
-          - HU
-          - IC
-          - ID
-          - IE
-          - IL
-          - IM
-          - IN
-          - IO
-          - IQ
-          - IR
-          - IS
-          - IT
-          - JE
-          - JM
-          - JO
-          - JP
-          - KE
-          - KG
-          - KH
-          - KI
-          - KM
-          - KN
-          - KP
-          - KR
-          - KW
-          - KY
-          - KZ
-          - LA
-          - LB
-          - LC
-          - LI
-          - LK
-          - LR
-          - LS
-          - LT
-          - LU
-          - LV
-          - LY
-          - MA
-          - MC
-          - MD
-          - ME
-          - MF
-          - MG
-          - MH
-          - MK
-          - ML
-          - MM
-          - MN
-          - MO
-          - MP
-          - MQ
-          - MR
-          - MS
-          - MT
-          - MU
-          - MV
-          - MW
-          - MX
-          - MY
-          - MZ
-          - NA
-          - NC
-          - NE
-          - NF
-          - NG
-          - NI
-          - NL
-          - 'NO'
-          - NP
-          - NR
-          - NT
-          - NU
-          - NZ
-          - OM
-          - PA
-          - PE
-          - PF
-          - PG
-          - PH
-          - PK
-          - PL
-          - PM
-          - PN
-          - PR
-          - PS
-          - PT
-          - PW
-          - PY
-          - QA
-          - RE
-          - RO
-          - RS
-          - RU
-          - RW
-          - SA
-          - SB
-          - SC
-          - SD
-          - SE
-          - SF
-          - SG
-          - SH
-          - SI
-          - SJ
-          - SK
-          - SL
-          - SM
-          - SN
-          - SO
-          - SR
-          - SS
-          - ST
-          - SU
-          - SV
-          - SX
-          - SY
-          - SZ
-          - TA
-          - TC
-          - TD
-          - TF
-          - TG
-          - TH
-          - TJ
-          - TK
-          - TL
-          - TM
-          - TN
-          - TO
-          - TP
-          - TR
-          - TT
-          - TV
-          - TW
-          - TZ
-          - UA
-          - UG
-          - UK
-          - UM
-          - US
-          - UY
-          - UZ
-          - VA
-          - VC
-          - VE
-          - VG
-          - VI
-          - VN
-          - VU
-          - WF
-          - WS
-          - XI
-          - XU
-          - XK
-          - YE
-          - YT
-          - YU
-          - ZA
-          - ZM
-          - ZR
-          - ZW
-        bankCity:
-          type:
-          - string
-          - 'null'
-          description: Vendor bank city.
-        bankAddress:
-          type:
-          - string
-          - 'null'
-          description: Vendor bank address.
-        bankZipcode:
-          type:
-          - string
-          - 'null'
-          description: Vendor bank ZIP/postal code.
-        bankAccountNumber:
-          type:
-          - string
-          - 'null'
-          description: Vendor bank account number (IBAN or local format).
-        bankAccountBic:
-          type:
-          - string
-          - 'null'
-          description: Vendor bank BIC/SWIFT code.
-        domesticBankAccountNumber:
-          type:
-          - string
-          - 'null'
-          description: Vendor domestic bank account number (country-specific format).
-        domesticBankAccountCode:
-          type:
-          - string
-          - 'null'
-          description: Vendor domestic bank account code (e.g. routing/sort code).
-        swedishBankgiroNumber:
-          type:
-          - string
-          - 'null'
-          description: Vendor Swedish Bankgiro number, if applicable.
-        swedishPlusgiroNumber:
-          type:
-          - string
-          - 'null'
-          description: Vendor Swedish Plusgiro number, if applicable.
-        bankRecipientName:
-          type:
-          - string
-          - 'null'
-          description: Name of the bank account holder. When set, this overrides the vendor name on the payment recipient for providers that consult it (currently Airwallex).
-        customProperties:
-          type:
-          - array
-          - 'null'
-          description: List of custom properties to set on the vendor. Replaces the existing set.
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-    ExternalUiClientExceptionV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        name:
-          type: string
-          description: The error name
-        type:
-          type: string
-          description: 'The error type
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - BAD_REQUEST
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - NOT_FOUND
-          - CONFLICT
-          - UNPROCESSABLE_CONTENT
-        errors:
-          type: array
-          description: List of errors providing details about what went wrong
-          items:
-            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
-      description: Failure context when vendor onboarding fails.
     ExternalVendorApproverV1Model:
       type: object
       properties:
@@ -943,74 +155,6 @@ components:
           description: Timestamp when the approver entry was created.
           format: date-time
       description: List of vendor approvers.
-    ExternalVendorNoteV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        vendorId:
-          type: string
-          format: uuid
-        authorId:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        channel:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - WEB_APP
-          - SLACK
-        content:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-      description: List of vendor notes.
-    ExternalCustomPropertyValueV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        internalName:
-          type: string
-          description: Internal name of the custom property value
-        label:
-          type: string
-          description: Label of the custom property value
-        context:
-          type:
-          - string
-          - 'null'
-          description: Context/description of the custom property value
-        createdAt:
-          type: string
-          description: Timestamp when the custom property value was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the custom property value was last updated
-          format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
     ExternalCreateDefaultVendorCompanyEntityRequestV1Model:
       type:
       - object
@@ -1045,404 +189,51 @@ components:
           description: ID of the sender bank account to use for payments to this vendor.
           format: uuid
       description: Default company entity configuration for this vendor, if any.
-    ExternalPaginatedResponseV1ModelExternalVendorV1Model:
-      type: object
+    SetCustomPropertyRequestV1Model:
+      type:
+      - object
+      - 'null'
       properties:
-        records:
+        groupId:
+          type: string
+          format: uuid
+        valueIds:
           type: array
-          description: List of records for the current page
           items:
-            $ref: '#/components/schemas/ExternalVendorV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type:
-          - integer
-          - 'null'
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          deprecated: true
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the next page (only for cursor pagination)
-        prevCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the previous page (only for cursor pagination)
-    ExternalUpdateDefaultVendorCompanyEntityRequestV1Model:
+            type: string
+            format: uuid
+        inlineValues:
+          type: array
+          items:
+            type: string
+      description: List of custom properties to set on the vendor.
+    ExternalSetCustomPropertyRequestV1Model:
       type:
       - object
       - 'null'
       properties:
-        companyEntityId:
+        groupId:
           type: string
-          description: ID of the company entity.
+          description: ID of the custom property group.
           format: uuid
-        accountId:
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
           type:
-          - string
+          - array
           - 'null'
-          description: ID of the ledger account to use for this vendor.
-          format: uuid
-        taxCodeId:
-          type:
-          - string
-          - 'null'
-          description: ID of the tax code to use for this vendor.
-          format: uuid
-        costCenterId:
-          type:
-          - string
-          - 'null'
-          description: ID of the cost center to use for this vendor.
-          format: uuid
-        senderBankAccountId:
-          type:
-          - string
-          - 'null'
-          description: ID of the sender bank account to use for payments to this vendor.
-          format: uuid
-      description: Default company entity configuration for this vendor, if any.
-    ExternalDefaultVendorCompanyEntityV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        id:
-          type: string
-          description: ID of the default company entity configuration.
-          format: uuid
-        vendorId:
-          type: string
-          description: ID of the vendor.
-          format: uuid
-        companyEntityId:
-          type:
-          - string
-          - 'null'
-          description: ID of the company entity.
-          format: uuid
-        accountId:
-          type:
-          - string
-          - 'null'
-          description: ID of the ledger account to use for this vendor.
-          format: uuid
-        taxCodeId:
-          type:
-          - string
-          - 'null'
-          description: ID of the tax code to use for this vendor.
-          format: uuid
-        costCenterId:
-          type:
-          - string
-          - 'null'
-          description: ID of the cost center to use for this vendor.
-          format: uuid
-        senderBankAccountId:
-          type:
-          - string
-          - 'null'
-          description: ID of the sender bank account to use for payments to this vendor.
-          format: uuid
-        createdAt:
-          type: string
-          description: Timestamp when the configuration was created.
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the configuration was last updated.
-          format: date-time
-      description: Default company entity configuration for this vendor, if any.
-    PhoneNumber:
-      type:
-      - object
-      - 'null'
-      properties:
-        countryCode:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - UNDEFINED
-          - AC
-          - AD
-          - AE
-          - AF
-          - AG
-          - AI
-          - AL
-          - AM
-          - AN
-          - AO
-          - AQ
-          - AR
-          - AS
-          - AT
-          - AU
-          - AW
-          - AX
-          - AZ
-          - BA
-          - BB
-          - BD
-          - BE
-          - BF
-          - BG
-          - BH
-          - BI
-          - BJ
-          - BL
-          - BM
-          - BN
-          - BO
-          - BQ
-          - BR
-          - BS
-          - BT
-          - BU
-          - BV
-          - BW
-          - BY
-          - BZ
-          - CA
-          - CC
-          - CD
-          - CF
-          - CG
-          - CH
-          - CI
-          - CK
-          - CL
-          - CM
-          - CN
-          - CO
-          - CP
-          - CR
-          - CS
-          - CU
-          - CV
-          - CW
-          - CX
-          - CY
-          - CZ
-          - DE
-          - DG
-          - DJ
-          - DK
-          - DM
-          - DO
-          - DZ
-          - EA
-          - EC
-          - EE
-          - EG
-          - EH
-          - ER
-          - ES
-          - ET
-          - EU
-          - EZ
-          - FI
-          - FJ
-          - FK
-          - FM
-          - FO
-          - FR
-          - FX
-          - GA
-          - GB
-          - GD
-          - GE
-          - GF
-          - GG
-          - GH
-          - GI
-          - GL
-          - GM
-          - GN
-          - GP
-          - GQ
-          - GR
-          - GS
-          - GT
-          - GU
-          - GW
-          - GY
-          - HK
-          - HM
-          - HN
-          - HR
-          - HT
-          - HU
-          - IC
-          - ID
-          - IE
-          - IL
-          - IM
-          - IN
-          - IO
-          - IQ
-          - IR
-          - IS
-          - IT
-          - JE
-          - JM
-          - JO
-          - JP
-          - KE
-          - KG
-          - KH
-          - KI
-          - KM
-          - KN
-          - KP
-          - KR
-          - KW
-          - KY
-          - KZ
-          - LA
-          - LB
-          - LC
-          - LI
-          - LK
-          - LR
-          - LS
-          - LT
-          - LU
-          - LV
-          - LY
-          - MA
-          - MC
-          - MD
-          - ME
-          - MF
-          - MG
-          - MH
-          - MK
-          - ML
-          - MM
-          - MN
-          - MO
-          - MP
-          - MQ
-          - MR
-          - MS
-          - MT
-          - MU
-          - MV
-          - MW
-          - MX
-          - MY
-          - MZ
-          - NA
-          - NC
-          - NE
-          - NF
-          - NG
-          - NI
-          - NL
-          - 'NO'
-          - NP
-          - NR
-          - NT
-          - NU
-          - NZ
-          - OM
-          - PA
-          - PE
-          - PF
-          - PG
-          - PH
-          - PK
-          - PL
-          - PM
-          - PN
-          - PR
-          - PS
-          - PT
-          - PW
-          - PY
-          - QA
-          - RE
-          - RO
-          - RS
-          - RU
-          - RW
-          - SA
-          - SB
-          - SC
-          - SD
-          - SE
-          - SF
-          - SG
-          - SH
-          - SI
-          - SJ
-          - SK
-          - SL
-          - SM
-          - SN
-          - SO
-          - SR
-          - SS
-          - ST
-          - SU
-          - SV
-          - SX
-          - SY
-          - SZ
-          - TA
-          - TC
-          - TD
-          - TF
-          - TG
-          - TH
-          - TJ
-          - TK
-          - TL
-          - TM
-          - TN
-          - TO
-          - TP
-          - TR
-          - TT
-          - TV
-          - TW
-          - TZ
-          - UA
-          - UG
-          - UK
-          - UM
-          - US
-          - UY
-          - UZ
-          - VA
-          - VC
-          - VE
-          - VG
-          - VI
-          - VN
-          - VU
-          - WF
-          - WS
-          - XI
-          - XU
-          - XK
-          - YE
-          - YT
-          - YU
-          - ZA
-          - ZM
-          - ZR
-          - ZW
-        localNumber:
-          type: string
-      description: Vendor phone number.
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          items:
+            type:
+            - string
+            - 'null'
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+      description: List of custom properties to set on the vendor. Replaces the existing set.
     ExternalVendorV1Model:
       type: object
       properties:
@@ -2215,6 +1006,34 @@ components:
         groupCurrency:
           type: string
           example: USD
+    ExternalPaginatedResponseV1ModelExternalVendorV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalVendorV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalCreateVendorRequestV1Model:
       type: object
       properties:
@@ -2914,33 +1733,1214 @@ components:
           description: List of custom properties to set on the vendor.
           items:
             $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
-    ExternalSetCustomPropertyRequestV1Model:
+    ExternalUiClientExceptionV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
+    ExternalUpdateDefaultVendorCompanyEntityRequestV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        companyEntityId:
+          type: string
+          description: ID of the company entity.
+          format: uuid
+        accountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the ledger account to use for this vendor.
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          description: ID of the tax code to use for this vendor.
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          description: ID of the cost center to use for this vendor.
+          format: uuid
+        senderBankAccountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the sender bank account to use for payments to this vendor.
+          format: uuid
+      description: Default company entity configuration for this vendor, if any.
+    PhoneNumber:
+      type:
+      - object
+      - 'null'
+      properties:
+        countryCode:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        localNumber:
+          type: string
+      description: Vendor phone number.
+    ExternalVendorNoteV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        vendorId:
+          type: string
+          format: uuid
+        authorId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        channel:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - WEB_APP
+          - SLACK
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      description: List of vendor notes.
+    ExternalUiClientExceptionErrorV1Model:
+      type: object
+      properties:
+        type:
+          type: string
+          description: A string code identifying the error type
+        message:
+          type: string
+          description: A human-readable message providing more details about the error
+        path:
+          type:
+          - array
+          - 'null'
+          description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+          items:
+            type:
+            - string
+            - 'null'
+            description: Optional path of the error when the error is for a specific field. Used mostly on BAD_REQUEST errors, that path will match the field name on the request object
+        context:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - object
+            - 'null'
+            description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+          description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
+      description: List of errors providing details about what went wrong
+    ExternalDefaultVendorCompanyEntityV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        id:
+          type: string
+          description: ID of the default company entity configuration.
+          format: uuid
+        vendorId:
+          type: string
+          description: ID of the vendor.
+          format: uuid
+        companyEntityId:
+          type:
+          - string
+          - 'null'
+          description: ID of the company entity.
+          format: uuid
+        accountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the ledger account to use for this vendor.
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          description: ID of the tax code to use for this vendor.
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          description: ID of the cost center to use for this vendor.
+          format: uuid
+        senderBankAccountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the sender bank account to use for payments to this vendor.
+          format: uuid
+        createdAt:
+          type: string
+          description: Timestamp when the configuration was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the configuration was last updated.
+          format: date-time
+      description: Default company entity configuration for this vendor, if any.
+    ExternalCustomPropertyV1Model:
       type:
       - object
       - 'null'
       properties:
         groupId:
           type: string
-          description: ID of the custom property group.
+          description: ID of the custom property group
           format: uuid
-        valueIds:
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
           type: array
-          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type:
+          - string
+          - 'null'
+          description: Context/description of the custom property value
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalUpdateVendorRequestV1Model:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Vendor name.
+        defaultCompanyEntity:
+          $ref: '#/components/schemas/ExternalUpdateDefaultVendorCompanyEntityRequestV1Model'
+        companyEntityIds:
+          uniqueItems: true
+          type: array
+          description: IDs of the company entities this vendor is associated with.
           items:
             type: string
-            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            description: IDs of the company entities this vendor is associated with.
             format: uuid
-        inlineValues:
+        vatId:
+          type:
+          - string
+          - 'null'
+          description: Vendor VAT ID.
+        businessRegistrationNumber:
+          type:
+          - string
+          - 'null'
+          description: Vendor business registration number.
+        identifier:
+          type:
+          - string
+          - 'null'
+          description: Vendor identifier (external/system identifier).
+        description:
+          type:
+          - string
+          - 'null'
+          description: Vendor description or memo.
+        avatarUrl:
+          type:
+          - string
+          - 'null'
+          description: Vendor avatar/logo URL.
+        email:
+          type:
+          - string
+          - 'null'
+          description: Vendor email address.
+        phoneNumber:
+          $ref: '#/components/schemas/PhoneNumber'
+        website:
+          type:
+          - string
+          - 'null'
+          description: Vendor website.
+        country:
+          type:
+          - string
+          - 'null'
+          description: 'Vendor country. Note: currently, updating country does not sync with the vendor in the ERP.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        city:
+          type:
+          - string
+          - 'null'
+          description: Vendor city.
+        address:
+          type:
+          - string
+          - 'null'
+          description: Vendor street address.
+        zipcode:
+          type:
+          - string
+          - 'null'
+          description: Vendor ZIP/postal code.
+        bankName:
+          type:
+          - string
+          - 'null'
+          description: Vendor bank name.
+        bankCountry:
+          type:
+          - string
+          - 'null'
+          description: 'Vendor bank country.
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - UNDEFINED
+          - AC
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BU
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CP
+          - CR
+          - CS
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DG
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EA
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - EU
+          - EZ
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - FX
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - IC
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NT
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SF
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SU
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TA
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TP
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UK
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - XI
+          - XU
+          - XK
+          - YE
+          - YT
+          - YU
+          - ZA
+          - ZM
+          - ZR
+          - ZW
+        bankCity:
+          type:
+          - string
+          - 'null'
+          description: Vendor bank city.
+        bankAddress:
+          type:
+          - string
+          - 'null'
+          description: Vendor bank address.
+        bankZipcode:
+          type:
+          - string
+          - 'null'
+          description: Vendor bank ZIP/postal code.
+        bankAccountNumber:
+          type:
+          - string
+          - 'null'
+          description: Vendor bank account number (IBAN or local format).
+        bankAccountBic:
+          type:
+          - string
+          - 'null'
+          description: Vendor bank BIC/SWIFT code.
+        domesticBankAccountNumber:
+          type:
+          - string
+          - 'null'
+          description: Vendor domestic bank account number (country-specific format).
+        domesticBankAccountCode:
+          type:
+          - string
+          - 'null'
+          description: Vendor domestic bank account code (e.g. routing/sort code).
+        swedishBankgiroNumber:
+          type:
+          - string
+          - 'null'
+          description: Vendor Swedish Bankgiro number, if applicable.
+        swedishPlusgiroNumber:
+          type:
+          - string
+          - 'null'
+          description: Vendor Swedish Plusgiro number, if applicable.
+        bankRecipientName:
+          type:
+          - string
+          - 'null'
+          description: Name of the bank account holder. When set, this overrides the vendor name on the payment recipient for providers that consult it (currently Airwallex).
+        customProperties:
           type:
           - array
           - 'null'
-          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          description: List of custom properties to set on the vendor. Replaces the existing set.
           items:
-            type:
-            - string
-            - 'null'
-            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-      description: List of custom properties to set on the vendor. Replaces the existing set.
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

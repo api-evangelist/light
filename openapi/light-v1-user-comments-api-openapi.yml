@@ -130,6 +130,42 @@ paths:
                 $ref: '#/components/schemas/ExternalUserCommentV1Model'
 components:
   schemas:
+    ExternalUpdateUserCommentRequestV1Model:
+      type: object
+      properties:
+        content:
+          type: string
+          description: Comment content.
+    ExternalUserCommentV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: ID of the comment.
+          format: uuid
+        companyId:
+          type: string
+          description: ID of the company this comment belongs to.
+          format: uuid
+        resourceId:
+          type: string
+          description: ID of the resource this comment is attached to (e.g. vendor, customer, etc.).
+          format: uuid
+        content:
+          type: string
+          description: Comment content.
+        createdBy:
+          type: string
+          description: ID of the user who created the comment.
+          format: uuid
+        createdAt:
+          type: string
+          description: Timestamp when the comment was created.
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the comment was last updated.
+          format: date-time
     ExternalPaginatedResponseV1ModelExternalUserCommentV1Model:
       type: object
       properties:
@@ -165,42 +201,6 @@ components:
           type: string
           description: ID of the resource this comment is attached to (e.g. vendor, customer, etc.).
           format: uuid
-        content:
-          type: string
-          description: Comment content.
-    ExternalUserCommentV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: ID of the comment.
-          format: uuid
-        companyId:
-          type: string
-          description: ID of the company this comment belongs to.
-          format: uuid
-        resourceId:
-          type: string
-          description: ID of the resource this comment is attached to (e.g. vendor, customer, etc.).
-          format: uuid
-        content:
-          type: string
-          description: Comment content.
-        createdBy:
-          type: string
-          description: ID of the user who created the comment.
-          format: uuid
-        createdAt:
-          type: string
-          description: Timestamp when the comment was created.
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the comment was last updated.
-          format: date-time
-    ExternalUpdateUserCommentRequestV1Model:
-      type: object
-      properties:
         content:
           type: string
           description: Comment content.
