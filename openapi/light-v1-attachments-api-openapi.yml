@@ -130,20 +130,15 @@ paths:
             application/json;charset=UTF-8: {}
 components:
   schemas:
-    ExternalCreateAttachmentRequestV1Model:
+    LightPrincipal:
       type: object
       properties:
-        resourceId:
+        roles:
+          type: array
+          items:
+            type: string
+        name:
           type: string
-          format: uuid
-        documentKey:
-          type: string
-        fileName:
-          type: string
-        contentType:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/ExternalAttachmentMetadataV1Model'
     ExternalAttachmentV1Model:
       type: object
       properties:
@@ -173,15 +168,30 @@ components:
         updatedAt:
           type: string
           format: date-time
-    LightPrincipal:
+    ExternalUploadAttachmentRequestV1Model:
       type: object
       properties:
-        roles:
-          type: array
-          items:
-            type: string
-        name:
+        resourceId:
           type: string
+          format: uuid
+        fileName:
+          type: string
+        contentType:
+          type: string
+    ExternalCreateAttachmentRequestV1Model:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          format: uuid
+        documentKey:
+          type: string
+        fileName:
+          type: string
+        contentType:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/ExternalAttachmentMetadataV1Model'
     ExternalAttachmentMetadataV1Model:
       type: object
       properties:
@@ -206,16 +216,6 @@ components:
           - 'null'
           additionalProperties:
             type: string
-    ExternalUploadAttachmentRequestV1Model:
-      type: object
-      properties:
-        resourceId:
-          type: string
-          format: uuid
-        fileName:
-          type: string
-        contentType:
-          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

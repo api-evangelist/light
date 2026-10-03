@@ -136,6 +136,16 @@ components:
         content:
           type: string
           description: Comment content.
+    ExternalCreateUserCommentRequestV1Model:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: ID of the resource this comment is attached to (e.g. vendor, customer, etc.).
+          format: uuid
+        content:
+          type: string
+          description: Comment content.
     ExternalUserCommentV1Model:
       type: object
       properties:
@@ -194,16 +204,6 @@ components:
           - string
           - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
-    ExternalCreateUserCommentRequestV1Model:
-      type: object
-      properties:
-        resourceId:
-          type: string
-          description: ID of the resource this comment is attached to (e.g. vendor, customer, etc.).
-          format: uuid
-        content:
-          type: string
-          description: Comment content.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

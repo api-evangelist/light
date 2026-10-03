@@ -80,76 +80,24 @@ paths:
                 $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalLedgerAccountV1Model'
 components:
   schemas:
-    ExternalPaginatedResponseV1ModelExternalLedgerAccountV1Model:
-      type: object
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
       properties:
-        records:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
           type: array
-          description: List of records for the current page
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
           items:
-            $ref: '#/components/schemas/ExternalLedgerAccountV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type:
-          - integer
-          - 'null'
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          deprecated: true
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the next page (only for cursor pagination)
-        prevCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the previous page (only for cursor pagination)
-    ExternalCompanyEntityV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        code:
-          type: string
-        parentCompanyEntityId:
-          type: string
-          format: uuid
-        localCurrency:
-          type: string
-          example: USD
-        displayName:
-          type: string
-        vatNumber:
-          type: string
-        name:
-          type: string
-        address:
-          $ref: '#/components/schemas/Address'
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACTIVE
-          - HIDDEN
-          - INACTIVE
-        seedInvoiceNumber:
-          type: integer
-          description: This field is used to offset the invoice number sequence for this company entity. The first invoice issued for this company entity will have the number seedInvoiceNumber. This field is optional (default is 1) and can be used to set a custom starting point for invoice numbering or to synchronize with an existing invoicing system. After the first invoice is issued, the sequence will continue without gaps and the seedInvoiceNumber will be ignored.
-          format: int64
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
     ExternalLedgerAccountV1Model:
       type: object
       properties:
@@ -255,6 +203,44 @@ components:
           type: string
           format: date-time
       description: List of records for the current page
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type:
+          - string
+          - 'null'
+          description: Context/description of the custom property value
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
     Address:
       type: object
       properties:
@@ -544,62 +530,76 @@ components:
           type: string
         street2:
           type: string
-    ExternalCustomPropertyV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
-          type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
-    ExternalCustomPropertyValueV1Model:
+    ExternalCompanyEntityV1Model:
       type: object
       properties:
         id:
           type: string
-          description: Unique identifier for the object
           format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
         companyId:
           type: string
-          description: ID of the company
           format: uuid
-        internalName:
+        code:
           type: string
-          description: Internal name of the custom property value
-        label:
+        parentCompanyEntityId:
           type: string
-          description: Label of the custom property value
-        context:
-          type:
-          - string
-          - 'null'
-          description: Context/description of the custom property value
+          format: uuid
+        localCurrency:
+          type: string
+          example: USD
+        displayName:
+          type: string
+        vatNumber:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/Address'
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - HIDDEN
+          - INACTIVE
+        seedInvoiceNumber:
+          type: integer
+          description: This field is used to offset the invoice number sequence for this company entity. The first invoice issued for this company entity will have the number seedInvoiceNumber. This field is optional (default is 1) and can be used to set a custom starting point for invoice numbering or to synchronize with an existing invoicing system. After the first invoice is issued, the sequence will continue without gaps and the seedInvoiceNumber will be ignored.
+          format: int64
         createdAt:
           type: string
-          description: Timestamp when the custom property value was created
           format: date-time
         updatedAt:
           type: string
-          description: Timestamp when the custom property value was last updated
           format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalPaginatedResponseV1ModelExternalLedgerAccountV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalLedgerAccountV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
   securitySchemes:
     apiKeyAuth:
       type: apiKey

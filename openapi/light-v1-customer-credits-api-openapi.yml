@@ -454,16 +454,36 @@ paths:
             application/json;charset=UTF-8: {}
 components:
   schemas:
-    ExternalCreateCustomerCreditLineRequestV1Model:
+    ExternalLinkCustomerCreditToInvoiceReceivableRequestV1Model:
+      type: object
+      properties:
+        amount:
+          type:
+          - integer
+          - 'null'
+          description: Amount of the customer credit to apply to the sales invoice, in the smallest currency unit. If omitted, the remaining unallocated customer-credit balance is applied, capped by the invoice receivable's remaining balance. Partial allocation is not supported for entities configured with an e-invoicing provider.
+          format: int64
+    ExternalUpdateCustomerCreditLineRequestV1Model:
       type: object
       properties:
         productId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: ID of the product
           format: uuid
         quantity:
-          type: number
+          type:
+          - number
+          - 'null'
           description: Quantity of the product
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties associated with the line
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
         netTransactionAmount:
           $ref: '#/components/schemas/DirectedAmount'
         grossTransactionAmount:
@@ -492,13 +512,6 @@ components:
           - string
           - 'null'
           description: Avalara tax code. Used when the customer credit tax engine is AVATAX
-        customProperties:
-          type:
-          - array
-          - 'null'
-          description: List of custom properties associated with the line
-          items:
-            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
         accrualTemplateId:
           type:
           - string
@@ -517,6 +530,79 @@ components:
           - 'null'
           description: End date for accrual
           format: date
+    ExternalRelatedAccDocV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        documentNumber:
+          type:
+          - string
+          - 'null'
+          description: Document number
+        documentDate:
+          type:
+          - string
+          - 'null'
+          description: Date the accounting document was issued
+          format: date
+        status:
+          type: string
+          description: 'Status of the accounting document
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - DRAFT
+          - APPROVAL_PENDING
+          - APPROVED
+          - POSTED
+          - PARTIALLY_CLEARED
+          - CLEARED
+          - ARCHIVED
+        amount:
+          type:
+          - integer
+          - 'null'
+          description: The amount of the accounting document in cents
+          format: int64
+        currency:
+          type: string
+          example: USD
+      description: Invoice payable details
+    ExternalPostCustomerCreditRequestV1Model:
+      type: object
+      properties:
+        shouldSubmitEInvoice:
+          type:
+          - boolean
+          - 'null'
+          description: 'Whether to submit the customer credit to the e-invoicing system (if configured). If true, the e-credit note will be submitted. If false, it will not. If omitted (null), the system will auto-detect: submit if the linked invoice has an e-invoice ID.'
+    ExternalPostAndSendCustomerCreditRequestV1Model:
+      type: object
+      properties:
+        emailInfo:
+          $ref: '#/components/schemas/ExternalCustomerCreditEmailInfoRequestV1Model'
+        shouldSubmitEInvoice:
+          type:
+          - boolean
+          - 'null'
+          description: 'Whether to submit the customer credit to the e-invoicing system (if configured). If true, the e-credit note will be submitted. If false, it will not. If omitted (null), the system will auto-detect: submit if the linked invoice has an e-invoice ID.'
+    DirectedAmount:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        dcSign:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - D
+          - C
     ExternalUpdateCustomerCreditRequestV1Model:
       type: object
       properties:
@@ -576,242 +662,6 @@ components:
           - 'null'
           description: ID of the document template that the customer credit will use
           format: uuid
-    DirectedAmount:
-      type: object
-      properties:
-        amount:
-          type: integer
-          format: int64
-        dcSign:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - D
-          - C
-    ExternalCreateCustomerCreditRequestV1Model:
-      type: object
-      properties:
-        companyEntityId:
-          type:
-          - string
-          - 'null'
-          description: ID of the entity
-          format: uuid
-        documentNumber:
-          type:
-          - string
-          - 'null'
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of the customer credit
-        currency:
-          type:
-          - string
-          - 'null'
-          example: USD
-        localCurrencyFxRate:
-          type:
-          - number
-          - 'null'
-          description: Custom foreign exchange rate for the ledger's local currency. If not provided Light uses official ECB rates
-        groupCurrencyFxRate:
-          type:
-          - number
-          - 'null'
-          description: Custom foreign exchange rate for the ledger's group currency. If not provided Light uses official ECB rates
-        documentDate:
-          type:
-          - string
-          - 'null'
-          description: Date when the customer credit was issued
-          format: date
-        documentTemplateId:
-          type:
-          - string
-          - 'null'
-          description: ID of the document template that the customer credit will use
-          format: uuid
-        areLinesWithTax:
-          type: boolean
-          description: Whether the customer credit line amount is inclusive of tax or not. True means tax is already included in the line amount and will not be added on top, false means tax will be added on top of the line amount
-        customerId:
-          type:
-          - string
-          - 'null'
-          description: ID of the customer
-          format: uuid
-        amount:
-          type:
-          - integer
-          - 'null'
-          description: Total customer credit amount in cents
-          format: int64
-        lines:
-          type: array
-          description: List of customer credit line items
-          items:
-            $ref: '#/components/schemas/ExternalCreateCustomerCreditLineRequestV1Model'
-        customProperties:
-          type:
-          - array
-          - 'null'
-          description: List of custom properties associated with the customer credit
-          items:
-            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
-    ExternalCustomerCreditEmailInfoRequestV1Model:
-      type: object
-      properties:
-        subject:
-          type: string
-          description: Email subject line
-        replyTo:
-          type: string
-          description: Reply-to email address
-        recipients:
-          type: array
-          description: List of email addresses to send the customer credit to
-          items:
-            type: string
-            description: List of email addresses to send the customer credit to
-        cc:
-          type:
-          - array
-          - 'null'
-          description: List of email addresses to CC on the email
-          items:
-            type:
-            - string
-            - 'null'
-            description: List of email addresses to CC on the email
-        customMessage:
-          type:
-          - string
-          - 'null'
-          description: Optional custom message added to the email body
-      description: Email configuration for sending the customer credit.
-    ExternalCursorPaginatedResponseV1ModelExternalCustomerCreditV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalCustomerCreditV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the next page
-        prevCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the previous page
-    ExternalUiClientExceptionV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        name:
-          type: string
-          description: The error name
-        type:
-          type: string
-          description: 'The error type
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - BAD_REQUEST
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - NOT_FOUND
-          - CONFLICT
-          - UNPROCESSABLE_CONTENT
-        errors:
-          type: array
-          description: List of errors providing details about what went wrong
-          items:
-            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
-      description: Failure context when vendor onboarding fails.
-    ExternalCustomerCreditInvoiceReceivableV1Model:
-      type: object
-      properties:
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        customerCredit:
-          $ref: '#/components/schemas/ExternalRelatedAccDocV1Model'
-        invoiceReceivable:
-          $ref: '#/components/schemas/ExternalRelatedAccDocV1Model'
-        amount:
-          type: integer
-          description: Amount of the customer credit applied to the sales invoice, in the smallest currency unit
-          format: int64
-        linkedAt:
-          type: string
-          description: Timestamp when the customer credit was linked to the sales invoice
-          format: date-time
-    ExternalPostAndSendCustomerCreditRequestV1Model:
-      type: object
-      properties:
-        emailInfo:
-          $ref: '#/components/schemas/ExternalCustomerCreditEmailInfoRequestV1Model'
-        shouldSubmitEInvoice:
-          type:
-          - boolean
-          - 'null'
-          description: 'Whether to submit the customer credit to the e-invoicing system (if configured). If true, the e-credit note will be submitted. If false, it will not. If omitted (null), the system will auto-detect: submit if the linked invoice has an e-invoice ID.'
-    ExternalRelatedAccDocV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        documentNumber:
-          type:
-          - string
-          - 'null'
-          description: Document number
-        documentDate:
-          type:
-          - string
-          - 'null'
-          description: Date the accounting document was issued
-          format: date
-        status:
-          type: string
-          description: 'Status of the accounting document
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - DRAFT
-          - APPROVAL_PENDING
-          - APPROVED
-          - POSTED
-          - PARTIALLY_CLEARED
-          - CLEARED
-          - ARCHIVED
-        amount:
-          type:
-          - integer
-          - 'null'
-          description: The amount of the accounting document in cents
-          format: int64
-        currency:
-          type: string
-          example: USD
-      description: Invoice payable details
     ExternalCustomerCreditV1Model:
       type: object
       properties:
@@ -905,6 +755,143 @@ components:
           format: uuid
         linkedInvoiceReceivable:
           $ref: '#/components/schemas/ExternalRelatedAccDocV1Model'
+    ExternalCustomerCreditInvoiceReceivableV1Model:
+      type: object
+      properties:
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        customerCredit:
+          $ref: '#/components/schemas/ExternalRelatedAccDocV1Model'
+        invoiceReceivable:
+          $ref: '#/components/schemas/ExternalRelatedAccDocV1Model'
+        amount:
+          type: integer
+          description: Amount of the customer credit applied to the sales invoice, in the smallest currency unit
+          format: int64
+        linkedAt:
+          type: string
+          description: Timestamp when the customer credit was linked to the sales invoice
+          format: date-time
+    ExternalCreateCustomerCreditRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type:
+          - string
+          - 'null'
+          description: ID of the entity
+          format: uuid
+        documentNumber:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the customer credit
+        currency:
+          type:
+          - string
+          - 'null'
+          example: USD
+        localCurrencyFxRate:
+          type:
+          - number
+          - 'null'
+          description: Custom foreign exchange rate for the ledger's local currency. If not provided Light uses official ECB rates
+        groupCurrencyFxRate:
+          type:
+          - number
+          - 'null'
+          description: Custom foreign exchange rate for the ledger's group currency. If not provided Light uses official ECB rates
+        documentDate:
+          type:
+          - string
+          - 'null'
+          description: Date when the customer credit was issued
+          format: date
+        documentTemplateId:
+          type:
+          - string
+          - 'null'
+          description: ID of the document template that the customer credit will use
+          format: uuid
+        areLinesWithTax:
+          type: boolean
+          description: Whether the customer credit line amount is inclusive of tax or not. True means tax is already included in the line amount and will not be added on top, false means tax will be added on top of the line amount
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the customer
+          format: uuid
+        amount:
+          type:
+          - integer
+          - 'null'
+          description: Total customer credit amount in cents
+          format: int64
+        lines:
+          type: array
+          description: List of customer credit line items
+          items:
+            $ref: '#/components/schemas/ExternalCreateCustomerCreditLineRequestV1Model'
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties associated with the customer credit
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
+    SetCustomPropertyRequestV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          format: uuid
+        valueIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        inlineValues:
+          type: array
+          items:
+            type: string
+      description: List of custom properties to set on the vendor.
+    ExternalUiClientExceptionV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        name:
+          type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
     ExternalUiClientExceptionErrorV1Model:
       type: object
       properties:
@@ -935,23 +922,90 @@ components:
             description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
           description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
       description: List of errors providing details about what went wrong
-    ExternalPostCustomerCreditRequestV1Model:
+    ExternalCursorPaginatedResponseV1ModelExternalCustomerCreditV1Model:
       type: object
       properties:
-        shouldSubmitEInvoice:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCustomerCreditV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        nextCursor:
           type:
-          - boolean
+          - string
           - 'null'
-          description: 'Whether to submit the customer credit to the e-invoicing system (if configured). If true, the e-credit note will be submitted. If false, it will not. If omitted (null), the system will auto-detect: submit if the linked invoice has an e-invoice ID.'
-    ExternalLinkCustomerCreditToInvoiceReceivableRequestV1Model:
+          description: Cursor for fetching the next page
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page
+    ExternalCreateCustomerCreditLineRequestV1Model:
       type: object
       properties:
-        amount:
+        productId:
+          type: string
+          description: ID of the product
+          format: uuid
+        quantity:
+          type: number
+          description: Quantity of the product
+        netTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        grossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        taxTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        description:
           type:
-          - integer
+          - string
           - 'null'
-          description: Amount of the customer credit to apply to the sales invoice, in the smallest currency unit. If omitted, the remaining unallocated customer-credit balance is applied, capped by the invoice receivable's remaining balance. Partial allocation is not supported for entities configured with an e-invoicing provider.
-          format: int64
+          description: Description of the customer credit line item
+        ledgerTaxId:
+          type:
+          - string
+          - 'null'
+          description: ID of the tax code
+          format: uuid
+        ledgerAccountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the ledger account
+          format: uuid
+        avataxCode:
+          type:
+          - string
+          - 'null'
+          description: Avalara tax code. Used when the customer credit tax engine is AVATAX
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties associated with the line
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
+        accrualTemplateId:
+          type:
+          - string
+          - 'null'
+          description: ID of the accrual template
+          format: uuid
+        accrualStartDate:
+          type:
+          - string
+          - 'null'
+          description: Start date for accrual
+          format: date
+        accrualEndDate:
+          type:
+          - string
+          - 'null'
+          description: End date for accrual
+          format: date
     ExternalCustomerCreditLineV1Model:
       type: object
       properties:
@@ -1034,91 +1088,37 @@ components:
           - 'null'
           description: Default duration for accrual in months
           format: int32
-    SetCustomPropertyRequestV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          format: uuid
-        valueIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-        inlineValues:
-          type: array
-          items:
-            type: string
-      description: List of custom properties to set on the vendor.
-    ExternalUpdateCustomerCreditLineRequestV1Model:
+    ExternalCustomerCreditEmailInfoRequestV1Model:
       type: object
       properties:
-        productId:
-          type:
-          - string
-          - 'null'
-          description: ID of the product
-          format: uuid
-        quantity:
-          type:
-          - number
-          - 'null'
-          description: Quantity of the product
-        customProperties:
+        subject:
+          type: string
+          description: Email subject line
+        replyTo:
+          type: string
+          description: Reply-to email address
+        recipients:
+          type: array
+          description: List of email addresses to send the customer credit to
+          items:
+            type: string
+            description: List of email addresses to send the customer credit to
+        cc:
           type:
           - array
           - 'null'
-          description: List of custom properties associated with the line
+          description: List of email addresses to CC on the email
           items:
-            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
-        netTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        grossTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        taxTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        description:
+            type:
+            - string
+            - 'null'
+            description: List of email addresses to CC on the email
+        customMessage:
           type:
           - string
           - 'null'
-          description: Description of the customer credit line item
-        ledgerTaxId:
-          type:
-          - string
-          - 'null'
-          description: ID of the tax code
-          format: uuid
-        ledgerAccountId:
-          type:
-          - string
-          - 'null'
-          description: ID of the ledger account
-          format: uuid
-        avataxCode:
-          type:
-          - string
-          - 'null'
-          description: Avalara tax code. Used when the customer credit tax engine is AVATAX
-        accrualTemplateId:
-          type:
-          - string
-          - 'null'
-          description: ID of the accrual template
-          format: uuid
-        accrualStartDate:
-          type:
-          - string
-          - 'null'
-          description: Start date for accrual
-          format: date
-        accrualEndDate:
-          type:
-          - string
-          - 'null'
-          description: End date for accrual
-          format: date
+          description: Optional custom message added to the email body
+      description: Email configuration for sending the customer credit.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

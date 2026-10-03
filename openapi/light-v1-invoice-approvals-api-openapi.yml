@@ -39,6 +39,66 @@ paths:
                   $ref: '#/components/schemas/ExternalInvoiceApprovalV1Model'
 components:
   schemas:
+    LightPrincipal:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+    ExternalInvoiceUserApprovalV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        approvalId:
+          type: string
+          format: uuid
+        userId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        userGroupId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        priority:
+          type: integer
+          format: int32
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - APPROVED
+          - DECLINED
+          - FAILED
+          - IN_REVIEW
+          - PENDING
+        note:
+          type:
+          - string
+          - 'null'
+        completedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        notifiedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
     ExternalInvoiceApprovalV1Model:
       type: object
       properties:
@@ -102,66 +162,6 @@ components:
           format: date-time
         createdAt:
           type: string
-          format: date-time
-    LightPrincipal:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: string
-        name:
-          type: string
-    ExternalInvoiceUserApprovalV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        approvalId:
-          type: string
-          format: uuid
-        userId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        userGroupId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        priority:
-          type: integer
-          format: int32
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - APPROVED
-          - DECLINED
-          - FAILED
-          - IN_REVIEW
-          - PENDING
-        note:
-          type:
-          - string
-          - 'null'
-        completedAt:
-          type:
-          - string
-          - 'null'
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        notifiedAt:
-          type:
-          - string
-          - 'null'
           format: date-time
   securitySchemes:
     apiKeyAuth:

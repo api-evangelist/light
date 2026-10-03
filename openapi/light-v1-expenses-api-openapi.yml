@@ -261,6 +261,69 @@ paths:
             application/json;charset=UTF-8: {}
 components:
   schemas:
+    ExternalExpenseLineItemV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        expenseId:
+          type: string
+          format: uuid
+        originalAmount:
+          type: integer
+          format: int64
+        billingAmount:
+          type: integer
+          format: int64
+        accountId:
+          type: string
+          format: uuid
+        costCenterId:
+          type: string
+          format: uuid
+        description:
+          type: string
+        reimbursementCategoryId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    GetExternalExpensesResponseV1Model:
+      type: object
+      properties:
+        billingAmountTotal:
+          type: integer
+          format: int64
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalExpenseV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalExpenseV1Model:
       type: object
       properties:
@@ -302,26 +365,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    ExternalUpdateExpenseRequestV1Model:
-      type: object
-      properties:
-        originalCurrency:
-          type:
-          - string
-          - 'null'
-          example: USD
-        performedDate:
-          type:
-          - string
-          - 'null'
-          format: date
-    ExternalExpenseReceiptUploadUrlRequestV1Model:
-      type: object
-      properties:
-        filename:
-          type: string
-        contentType:
-          type: string
     UpdateExpenseLineItemRequestV1Model:
       type: object
       properties:
@@ -354,6 +397,13 @@ components:
           - string
           - 'null'
           format: uuid
+    ExternalExpenseReceiptUploadUrlRequestV1Model:
+      type: object
+      properties:
+        filename:
+          type: string
+        contentType:
+          type: string
     CreateExpenseLineItemRequestV1Model:
       type: object
       properties:
@@ -386,37 +436,19 @@ components:
           - string
           - 'null'
           format: uuid
-    GetExternalExpensesResponseV1Model:
+    ExternalUpdateExpenseRequestV1Model:
       type: object
       properties:
-        billingAmountTotal:
-          type: integer
-          format: int64
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalExpenseV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type:
-          - integer
-          - 'null'
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          deprecated: true
-        nextCursor:
+        originalCurrency:
           type:
           - string
           - 'null'
-          description: Cursor for fetching the next page (only for cursor pagination)
-        prevCursor:
+          example: USD
+        performedDate:
           type:
           - string
           - 'null'
-          description: Cursor for fetching the previous page (only for cursor pagination)
+          format: date
     ExternalExpenseReceiptUploadUrlResponseV1Model:
       type: object
       properties:
@@ -431,38 +463,6 @@ components:
           - 'null'
           additionalProperties:
             type: string
-    ExternalExpenseLineItemV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        expenseId:
-          type: string
-          format: uuid
-        originalAmount:
-          type: integer
-          format: int64
-        billingAmount:
-          type: integer
-          format: int64
-        accountId:
-          type: string
-          format: uuid
-        costCenterId:
-          type: string
-          format: uuid
-        description:
-          type: string
-        reimbursementCategoryId:
-          type: string
-          format: uuid
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
   securitySchemes:
     apiKeyAuth:
       type: apiKey
