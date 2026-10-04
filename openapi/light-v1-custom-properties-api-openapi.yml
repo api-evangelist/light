@@ -266,57 +266,6 @@ components:
           - string
           - 'null'
           description: Optional context or description for the custom property value.
-    ExternalCustomPropertyValueV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        internalName:
-          type: string
-          description: Internal name of the custom property value
-        label:
-          type: string
-          description: Label of the custom property value
-        context:
-          type:
-          - string
-          - 'null'
-          description: Context/description of the custom property value
-        createdAt:
-          type: string
-          description: Timestamp when the custom property value was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the custom property value was last updated
-          format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
-    ExternalUpdateCustomPropertyValueRequestV1Model:
-      type: object
-      properties:
-        label:
-          type:
-          - string
-          - 'null'
-          description: Display label for the custom property value.
-        context:
-          type:
-          - string
-          - 'null'
-          description: Optional context or description for the custom property value.
     ExternalPaginatedResponseV1ModelExternalCustomPropertyValueV1Model:
       type: object
       properties:
@@ -446,6 +395,57 @@ components:
         required:
           type: boolean
       description: List of records for the current page
+    ExternalUpdateCustomPropertyValueRequestV1Model:
+      type: object
+      properties:
+        label:
+          type:
+          - string
+          - 'null'
+          description: Display label for the custom property value.
+        context:
+          type:
+          - string
+          - 'null'
+          description: Optional context or description for the custom property value.
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type:
+          - string
+          - 'null'
+          description: Context/description of the custom property value
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
   securitySchemes:
     apiKeyAuth:
       type: apiKey

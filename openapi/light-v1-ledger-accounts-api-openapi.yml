@@ -80,167 +80,6 @@ paths:
                 $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalLedgerAccountV1Model'
 components:
   schemas:
-    ExternalCustomPropertyV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
-          type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
-    ExternalLedgerAccountV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        bankAccountId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        cardAccountId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        cashAndEquivalentsAccountId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        code:
-          type: integer
-          format: int32
-        label:
-          type: string
-        type:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - BANK
-          - CARD
-          - CASH_AND_EQUIVALENTS
-          - ACCOUNTS_RECEIVABLE
-          - INVENTORY
-          - CORPORATE_TAX_RECEIVABLE
-          - OTHER_CURRENT_ASSET
-          - INTANGIBLE_NON_CURRENT_ASSET
-          - TANGIBLE_NON_CURRENT_ASSET
-          - FINANCIAL_NON_CURRENT_ASSET
-          - CORPORATE_TAX_DEFERRED_ASSET
-          - OTHER_NON_CURRENT_ASSET
-          - ACCOUNTS_PAYABLE
-          - OVERDRAFT_FACILITY
-          - CORPORATE_TAX_PAYABLE
-          - OTHER_CURRENT_LIABILITY
-          - LONG_TERM_LOAN
-          - CORPORATE_TAX_DEFERRED_LIABILITY
-          - OTHER_LONG_TERM_LIABILITY
-          - CONTRIBUTED_CAPITAL
-          - RETAINED_EARNINGS
-          - ACCUMULATED_OTHER_COMPREHENSIVE_INCOME
-          - OTHER_EQUITY
-          - COST_OF_SALES
-          - DISTRIBUTION_COST
-          - GENERAL_AND_ADMINISTRATIVE_EXPENSE
-          - PERSONNEL_COST
-          - OTHER_OPERATING_EXPENSE
-          - INCOME_TAX
-          - DEPRECIATION_AND_AMORTIZATION
-          - NON_OPERATING_EXPENSE
-          - INTEREST_EXPENSE
-          - EXCHANGE_RATE_LOSS_REALIZED
-          - EXCHANGE_RATE_LOSS_UNREALIZED
-          - OTHER_FINANCIAL_EXPENSE
-          - REVENUE
-          - DISCOUNT
-          - NON_OPERATING_INCOME
-          - INTEREST_INCOME
-          - EXCHANGE_RATE_GAIN_REALIZED
-          - EXCHANGE_RATE_GAIN_UNREALIZED
-          - OTHER_FINANCIAL_INCOME
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACTIVE
-          - DISABLED_EXTERNALLY
-          - DISABLED
-        context:
-          type:
-          - string
-          - 'null'
-        revaluateFxBalance:
-          type: boolean
-        companyEntities:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCompanyEntityV1Model'
-        customProperties:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-      description: List of records for the current page
-    ExternalCustomPropertyValueV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        internalName:
-          type: string
-          description: Internal name of the custom property value
-        label:
-          type: string
-          description: Label of the custom property value
-        context:
-          type:
-          - string
-          - 'null'
-          description: Context/description of the custom property value
-        createdAt:
-          type: string
-          description: Timestamp when the custom property value was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the custom property value was last updated
-          format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
     Address:
       type: object
       properties:
@@ -530,6 +369,44 @@ components:
           type: string
         street2:
           type: string
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
+          type:
+          - string
+          - 'null'
+          description: Context/description of the custom property value
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
     ExternalCompanyEntityV1Model:
       type: object
       properties:
@@ -572,6 +449,111 @@ components:
         updatedAt:
           type: string
           format: date-time
+    ExternalLedgerAccountV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        bankAccountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        cardAccountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        cashAndEquivalentsAccountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        code:
+          type: integer
+          format: int32
+        label:
+          type: string
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - BANK
+          - CARD
+          - CASH_AND_EQUIVALENTS
+          - ACCOUNTS_RECEIVABLE
+          - INVENTORY
+          - CORPORATE_TAX_RECEIVABLE
+          - OTHER_CURRENT_ASSET
+          - INTANGIBLE_NON_CURRENT_ASSET
+          - TANGIBLE_NON_CURRENT_ASSET
+          - FINANCIAL_NON_CURRENT_ASSET
+          - CORPORATE_TAX_DEFERRED_ASSET
+          - OTHER_NON_CURRENT_ASSET
+          - ACCOUNTS_PAYABLE
+          - OVERDRAFT_FACILITY
+          - CORPORATE_TAX_PAYABLE
+          - OTHER_CURRENT_LIABILITY
+          - LONG_TERM_LOAN
+          - CORPORATE_TAX_DEFERRED_LIABILITY
+          - OTHER_LONG_TERM_LIABILITY
+          - CONTRIBUTED_CAPITAL
+          - RETAINED_EARNINGS
+          - ACCUMULATED_OTHER_COMPREHENSIVE_INCOME
+          - OTHER_EQUITY
+          - COST_OF_SALES
+          - DISTRIBUTION_COST
+          - GENERAL_AND_ADMINISTRATIVE_EXPENSE
+          - PERSONNEL_COST
+          - OTHER_OPERATING_EXPENSE
+          - INCOME_TAX
+          - DEPRECIATION_AND_AMORTIZATION
+          - NON_OPERATING_EXPENSE
+          - INTEREST_EXPENSE
+          - EXCHANGE_RATE_LOSS_REALIZED
+          - EXCHANGE_RATE_LOSS_UNREALIZED
+          - OTHER_FINANCIAL_EXPENSE
+          - REVENUE
+          - DISCOUNT
+          - NON_OPERATING_INCOME
+          - INTEREST_INCOME
+          - EXCHANGE_RATE_GAIN_REALIZED
+          - EXCHANGE_RATE_GAIN_UNREALIZED
+          - OTHER_FINANCIAL_INCOME
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - DISABLED_EXTERNALLY
+          - DISABLED
+        context:
+          type:
+          - string
+          - 'null'
+        revaluateFxBalance:
+          type: boolean
+        companyEntities:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCompanyEntityV1Model'
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      description: List of records for the current page
     ExternalPaginatedResponseV1ModelExternalLedgerAccountV1Model:
       type: object
       properties:
@@ -600,6 +582,24 @@ components:
           - string
           - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

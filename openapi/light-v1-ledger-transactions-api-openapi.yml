@@ -72,24 +72,41 @@ paths:
                 $ref: '#/components/schemas/ExternalGetLedgerTransactionLinesWithMaxAmountResponseV1Model'
 components:
   schemas:
-    ExternalCustomPropertyV1Model:
-      type:
-      - object
-      - 'null'
+    ExternalGetLedgerTransactionLinesWithMaxAmountResponseV1Model:
+      type: object
       properties:
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
+        maxTransactionAmount:
+          type:
+          - integer
+          - 'null'
+          description: Maximum line amount in transaction currency across all records. This field is deprecated and will be removed, please fetch all lines and compute this locally if needed
+          format: int64
+          deprecated: true
+        records:
           type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          description: List of records for the current page
           items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
+            $ref: '#/components/schemas/ExternalLedgerTransactionLineV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalCustomPropertyValueV1Model:
       type: object
       properties:
@@ -128,41 +145,6 @@ components:
           description: Timestamp when the custom property value was last updated
           format: date-time
       description: List of values. Note that this will be a single value unless the group input type supports multiple values
-    ExternalGetLedgerTransactionLinesWithMaxAmountResponseV1Model:
-      type: object
-      properties:
-        maxTransactionAmount:
-          type:
-          - integer
-          - 'null'
-          description: Maximum line amount in transaction currency across all records. This field is deprecated and will be removed, please fetch all lines and compute this locally if needed
-          format: int64
-          deprecated: true
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalLedgerTransactionLineV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type:
-          - integer
-          - 'null'
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          deprecated: true
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the next page (only for cursor pagination)
-        prevCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalLedgerTransactionLineAmountsV1Model:
       type: object
       properties:
@@ -217,6 +199,24 @@ components:
           type: boolean
         credit:
           type: boolean
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
     ExternalLedgerTransactionLineV1Model:
       type: object
       properties:

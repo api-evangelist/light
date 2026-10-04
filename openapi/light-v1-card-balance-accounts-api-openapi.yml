@@ -153,40 +153,34 @@ paths:
                 $ref: '#/components/schemas/ExternalCardBalanceAccountSpendV1Model'
 components:
   schemas:
-    ExternalCardBalanceAccountV1Model:
+    ExternalPaginatedResponseV1ModelExternalCardBalanceAccountV1Model:
       type: object
       properties:
-        id:
-          type: string
-          format: uuid
-        companyEntityId:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        currency:
-          type: string
-          example: USD
-        label:
-          type: string
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACTIVE
-          - CLOSED
-        balance:
-          $ref: '#/components/schemas/ExternalCardBalanceAccountBalanceV1Model'
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        primary:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalCardBalanceAccountV1Model'
+        hasMore:
           type: boolean
-      description: List of records for the current page
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
     ExternalCardBalanceAccountStatementV1Model:
       type: object
       properties:
@@ -246,49 +240,6 @@ components:
           type:
           - string
           - 'null'
-    ExternalPaginatedResponseV1ModelExternalCardBalanceAccountV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalCardBalanceAccountV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type:
-          - integer
-          - 'null'
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          deprecated: true
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the next page (only for cursor pagination)
-        prevCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the previous page (only for cursor pagination)
-    ExternalCardBalanceAccountSpendV1Model:
-      type: object
-      properties:
-        currency:
-          type: string
-          example: USD
-        total:
-          type: integer
-          format: int64
-        from:
-          type: string
-          format: date-time
-        to:
-          type: string
-          format: date-time
     ExternalCardBalanceAccountBalanceV1Model:
       type: object
       properties:
@@ -304,6 +255,55 @@ components:
         currency:
           type: string
           example: USD
+    ExternalCardBalanceAccountV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        currency:
+          type: string
+          example: USD
+        label:
+          type: string
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACTIVE
+          - CLOSED
+        balance:
+          $ref: '#/components/schemas/ExternalCardBalanceAccountBalanceV1Model'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        primary:
+          type: boolean
+      description: List of records for the current page
+    ExternalCardBalanceAccountSpendV1Model:
+      type: object
+      properties:
+        currency:
+          type: string
+          example: USD
+        total:
+          type: integer
+          format: int64
+        from:
+          type: string
+          format: date-time
+        to:
+          type: string
+          format: date-time
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -89,24 +89,141 @@ paths:
                 $ref: '#/components/schemas/ExternalJournalEntryV1Model'
 components:
   schemas:
-    ExternalCustomPropertyV1Model:
+    ExternalJournalEntryV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        documentNumber:
+          type: string
+        companyEntityId:
+          type: string
+          format: uuid
+        ledgerName:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PRIMARY
+          - ELIMINATION
+        createdBy:
+          type: string
+          format: uuid
+        updatedBy:
+          type: string
+          format: uuid
+        documentSequenceId:
+          type: string
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - DRAFT
+          - APPROVAL_PENDING
+          - APPROVED
+          - POSTED
+          - PARTIALLY_CLEARED
+          - CLEARED
+          - ARCHIVED
+        description:
+          type: string
+        currency:
+          type: string
+          example: USD
+        postingDate:
+          type: string
+          format: date
+        documentDate:
+          type: string
+          format: date
+        valuationDate:
+          type: string
+          format: date
+        localCurrencyFxRate:
+          type:
+          - number
+          - 'null'
+          description: Custom foreign exchange rate for the ledger's local currency. If not provided, Light uses official ECB rates
+        groupCurrencyFxRate:
+          type:
+          - number
+          - 'null'
+          description: Custom foreign exchange rate for the ledger's group currency. If not provided, Light uses official ECB rates
+        areLinesWithTax:
+          type: boolean
+        failureContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalJournalEntryLineV1Model'
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        businessPartnerName:
+          type: string
+        businessPartnerId:
+          type: string
+          format: uuid
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        totalNetTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        totalTaxTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        totalGrossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        multiJournalEntryId:
+          type: string
+          format: uuid
+    DirectedAmount:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        dcSign:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - D
+          - C
+    ExternalUiClientExceptionV1Model:
       type:
       - object
       - 'null'
       properties:
-        groupId:
+        name:
           type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
+          description: The error name
+        type:
           type: string
-          description: Internal name of the custom property group
-        values:
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
           type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          description: List of errors providing details about what went wrong
           items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
     ExternalJournalEntryLineV1Model:
       type: object
       properties:
@@ -155,45 +272,6 @@ components:
         amortizationEndDate:
           type: string
           format: date
-    ExternalSetCustomPropertyRequestV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group.
-          format: uuid
-        valueIds:
-          type: array
-          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
-          items:
-            type: string
-            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
-            format: uuid
-        inlineValues:
-          type:
-          - array
-          - 'null'
-          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-          items:
-            type:
-            - string
-            - 'null'
-            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-      description: List of custom properties to set on the vendor. Replaces the existing set.
-    DirectedAmount:
-      type: object
-      properties:
-        amount:
-          type: integer
-          format: int64
-        dcSign:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - D
-          - C
     ExternalCustomPropertyValueV1Model:
       type: object
       properties:
@@ -232,6 +310,87 @@ components:
           description: Timestamp when the custom property value was last updated
           format: date-time
       description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalCreateJournalEntryLineRequestV1Model:
+      type: object
+      properties:
+        netTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        grossTransactionAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        taxAmount:
+          $ref: '#/components/schemas/DirectedAmount'
+        description:
+          type:
+          - string
+          - 'null'
+        targetCompanyEntityId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        ledgerTaxId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        ledgerAccountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        amortizationTemplateId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        amortizationStartDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        amortizationEndDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+    ExternalSetCustomPropertyRequestV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group.
+          format: uuid
+        valueIds:
+          type: array
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          items:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
+          type:
+          - array
+          - 'null'
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+          items:
+            type:
+            - string
+            - 'null'
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+      description: List of custom properties to set on the vendor. Replaces the existing set.
     ExternalCreateJournalEntryRequestV1Model:
       type: object
       properties:
@@ -380,34 +539,6 @@ components:
           - string
           - 'null'
           example: USD
-    ExternalUiClientExceptionV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        name:
-          type: string
-          description: The error name
-        type:
-          type: string
-          description: 'The error type
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - BAD_REQUEST
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - NOT_FOUND
-          - CONFLICT
-          - UNPROCESSABLE_CONTENT
-        errors:
-          type: array
-          description: List of errors providing details about what went wrong
-          items:
-            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
-      description: Failure context when vendor onboarding fails.
     ExternalUiClientExceptionErrorV1Model:
       type: object
       properties:
@@ -438,155 +569,24 @@ components:
             description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
           description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
       description: List of errors providing details about what went wrong
-    ExternalJournalEntryV1Model:
-      type: object
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
       properties:
-        id:
+        groupId:
           type: string
+          description: ID of the custom property group
           format: uuid
-        companyId:
+        groupInternalName:
           type: string
-          format: uuid
-        documentNumber:
-          type: string
-        companyEntityId:
-          type: string
-          format: uuid
-        ledgerName:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - PRIMARY
-          - ELIMINATION
-        createdBy:
-          type: string
-          format: uuid
-        updatedBy:
-          type: string
-          format: uuid
-        documentSequenceId:
-          type: string
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - DRAFT
-          - APPROVAL_PENDING
-          - APPROVED
-          - POSTED
-          - PARTIALLY_CLEARED
-          - CLEARED
-          - ARCHIVED
-        description:
-          type: string
-        currency:
-          type: string
-          example: USD
-        postingDate:
-          type: string
-          format: date
-        documentDate:
-          type: string
-          format: date
-        valuationDate:
-          type: string
-          format: date
-        localCurrencyFxRate:
-          type:
-          - number
-          - 'null'
-          description: Custom foreign exchange rate for the ledger's local currency. If not provided, Light uses official ECB rates
-        groupCurrencyFxRate:
-          type:
-          - number
-          - 'null'
-          description: Custom foreign exchange rate for the ledger's group currency. If not provided, Light uses official ECB rates
-        areLinesWithTax:
-          type: boolean
-        failureContext:
-          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
-        lines:
+          description: Internal name of the custom property group
+        values:
           type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
           items:
-            $ref: '#/components/schemas/ExternalJournalEntryLineV1Model'
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        businessPartnerName:
-          type: string
-        businessPartnerId:
-          type: string
-          format: uuid
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        totalNetTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        totalTaxTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        totalGrossTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        multiJournalEntryId:
-          type: string
-          format: uuid
-    ExternalCreateJournalEntryLineRequestV1Model:
-      type: object
-      properties:
-        netTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        grossTransactionAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        taxAmount:
-          $ref: '#/components/schemas/DirectedAmount'
-        description:
-          type:
-          - string
-          - 'null'
-        targetCompanyEntityId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        ledgerTaxId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        ledgerAccountId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        costCenterId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        amortizationTemplateId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        amortizationStartDate:
-          type:
-          - string
-          - 'null'
-          format: date
-        amortizationEndDate:
-          type:
-          - string
-          - 'null'
-          format: date
-        customProperties:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
