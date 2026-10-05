@@ -1,0 +1,90 @@
+slug: light
+provider: Light
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 8
+edges:
+- tag: v1 - Invoice Payables
+  spec_file: light-v1-invoice-payables-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.95
+  evidence: POST /v1/invoice-payables/{invoicePayableId}/approve  Approve invoice payable; ExternalMarkInvoicePayableAsPaidRequestV1Model
+  reason: Full supplier invoice lifecycle — create, line items, approve/decline, mark as paid, vendor
+    details — which is exactly Accounts Payable Management.
+- tag: v1 - Invoice Receivables
+  spec_file: light-v1-invoice-receivables-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.95
+  evidence: POST /v1/invoice-receivables  createInvoice; POST /v1/invoice-receivables/{invoiceReceivableId}/payments  Enter
+    invoice payment
+  reason: Customer invoicing, invoice PDF generation and recording of customer payments — Accounts Receivable
+    Management.
+- tag: v1 - Journal Entries
+  spec_file: light-v1-journal-entries-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.95
+  evidence: POST /v1/journal-entries  createJournalEntry  Create journal entry
+  reason: Creation, update and archiving of journal entries with debit/credit lines (ExternalJournalEntryLineV1Model,
+    DirectedAmount) — core General Ledger Management.
+- tag: v1 - Purchase Orders
+  spec_file: light-v1-purchase-orders-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.9
+  evidence: POST /v1/purchase-orders  createPurchaseOrder; POST /v1/purchase-orders/{purchaseOrderId}/close  Close
+    purchase order
+  reason: Creation, line management, locking, cancelling and closing of purchase orders — Purchase Order
+    Management within Procurement.
+- tag: v1 - Ledger accounts
+  spec_file: light-v1-ledger-accounts-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.88
+  evidence: GET /v1/ledger-accounts  getLedgerAccounts  List ledger accounts
+  reason: Exposes the chart of accounts per company entity (ExternalLedgerAccountV1Model, ExternalCompanyEntityV1Model),
+    which falls under General Ledger Management.
+- tag: v1 - Customer Credits
+  spec_file: light-v1-customer-credits-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.85
+  evidence: POST /v1/customer-credits/{customerCreditId}/invoice-receivables/{invoiceReceivableId}/link  Link
+    customer credit to invoice
+  reason: Credit notes issued to customers and applied against invoice receivables, with posting and emailing
+    — this is customer-side accounting, i.e. Accounts Receivable Management within Financial Management.
+- tag: v1 - Ledger Transactions
+  spec_file: light-v1-ledger-transactions-api-openapi.yml
+  capability_id: BC-200.10
+  capability_id_l1: BC-200
+  capability_name: General Ledger Management
+  confidence: 0.85
+  evidence: GET /v1/ledger-transaction-lines  listLedgerTransactionLines  List ledger transaction lines
+  reason: Query of posted general-ledger transaction lines with amounts — reading of the ledger, part
+    of General Ledger Management.
+- tag: v1 - Invoice Approvals
+  spec_file: light-v1-invoice-approvals-api-openapi.yml
+  capability_id: BC-200.20
+  capability_id_l1: BC-200
+  capability_name: Accounts Payable Management
+  confidence: 0.8
+  evidence: GET /v1/invoice-approval  getInvoicePayableApprovals  Get invoice approvals
+  reason: Approval state of payable invoices (operationId explicitly getInvoicePayableApprovals, schema
+    ExternalInvoiceApprovalV1Model) — part of supplier invoice processing under Accounts Payable Management.
