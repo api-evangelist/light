@@ -2,6 +2,13 @@
   "repo": "light",
   "feeds": [
     {
+      "source": "https://light.inc/blog",
+      "feed_url": "https://light.inc/blog",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://light.inc/help",
       "feed_url": "https://light.inc/help",
       "title": "",
@@ -10,5 +17,5 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z"
+  "fetched": "2026-10-10T13:15:00Z"
 }
