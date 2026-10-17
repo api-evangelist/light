@@ -207,45 +207,24 @@ paths:
                 $ref: '#/components/schemas/ExternalBankTransactionV1Model'
 components:
   schemas:
-    LocalDateParam:
-      type: object
-    ExternalCreateBankLedgerAccountRequestV1Model:
+    ExternalCreateBankTransactionRequestV1Model:
       required:
-      - code
+      - amount
+      - date
+      - dcSign
       type: object
       properties:
-        code:
-          type: integer
-          description: Ledger account code. Must be a unique 6-digit integer within the company's chart of accounts.
-          format: int32
-        label:
-          type:
-          - string
-          - 'null'
-          description: Ledger account label. Defaults to the bank name when omitted.
-      description: Ledger account (chart of accounts entry) created and linked to this bank account.
-    ExternalBankTransactionV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the bank transaction
-          format: uuid
-        bankAccountId:
-          type: string
-          description: ID of the bank account this transaction belongs to
-          format: uuid
         date:
           type: string
           description: Transaction date
           format: date
         amount:
           type: integer
-          description: Transaction amount in minor units (e.g. cents)
+          description: Transaction amount in minor units (e.g. cents). Must be positive.
           format: int64
         dcSign:
           type: string
-          description: 'Debit/credit sign
+          description: 'Debit/credit sign. DEBIT for money out, CREDIT for money in.
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
@@ -253,17 +232,6 @@ components:
           enum:
           - D
           - C
-        reconciliationStatus:
-          type: string
-          description: 'Reconciliation status
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - EXCLUDED
-          - MATCHED
-          - UNMATCHED
         name:
           type:
           - string
@@ -283,11 +251,8 @@ components:
           type:
           - string
           - 'null'
-          description: External transaction identifier for idempotency
-        createdAt:
-          type: string
-          description: Timestamp when the transaction was created
-          format: date-time
+          description: External transaction identifier. Used for idempotency — duplicate transactionIds for the same bank account are silently skipped.
+      description: List of bank transactions to create. Maximum 500 per request.
     ExternalBankAccountV1Model:
       type: object
       properties:
@@ -855,35 +820,6 @@ components:
           type: string
           description: Timestamp when the bank account was created
           format: date-time
-    ExternalBankAccountBalanceV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the bank account balance
-          format: uuid
-        bankAccountId:
-          type: string
-          description: ID of the bank account
-          format: uuid
-        balanceAt:
-          type: string
-          description: Timestamp of the balance (opening balance date)
-          format: date-time
-        balance:
-          type: integer
-          description: Balance amount in minor units (e.g. cents)
-          format: int64
-    ExternalCreateBankTransactionsRequestV1Model:
-      required:
-      - transactions
-      type: object
-      properties:
-        transactions:
-          type: array
-          description: List of bank transactions to create. Maximum 500 per request.
-          items:
-            $ref: '#/components/schemas/ExternalCreateBankTransactionRequestV1Model'
     ExternalCreateBankAccountRequestV1Model:
       required:
       - bankCountry
@@ -1430,52 +1366,28 @@ components:
           enum:
           - OUR
           - SHAR
-    ExternalUpsertBankAccountBalanceRequestV1Model:
-      required:
-      - balance
+    ExternalBankTransactionV1Model:
       type: object
       properties:
-        balanceAt:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of the balance (opening balance date). Defaults to current timestamp if not provided.
-          format: date-time
-        balance:
-          type: integer
-          description: Balance amount in minor units (e.g. cents)
-          format: int64
-    ExternalGetAllResponseWithBalanceV1ModelExternalBankTransactionV1Model:
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalBankTransactionV1Model'
-        balance:
-          type: integer
-          format: int64
-    ExternalCreateBankTransactionRequestV1Model:
-      required:
-      - amount
-      - date
-      - dcSign
-      type: object
-      properties:
+        id:
+          type: string
+          description: Unique identifier for the bank transaction
+          format: uuid
+        bankAccountId:
+          type: string
+          description: ID of the bank account this transaction belongs to
+          format: uuid
         date:
           type: string
           description: Transaction date
           format: date
         amount:
           type: integer
-          description: Transaction amount in minor units (e.g. cents). Must be positive.
+          description: Transaction amount in minor units (e.g. cents)
           format: int64
         dcSign:
           type: string
-          description: 'Debit/credit sign. DEBIT for money out, CREDIT for money in.
+          description: 'Debit/credit sign
 
 
             ⚠️ This enum is not exhaustive; new values may be added in the future.'
@@ -1483,6 +1395,17 @@ components:
           enum:
           - D
           - C
+        reconciliationStatus:
+          type: string
+          description: 'Reconciliation status
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - EXCLUDED
+          - MATCHED
+          - UNMATCHED
         name:
           type:
           - string
@@ -1502,8 +1425,85 @@ components:
           type:
           - string
           - 'null'
-          description: External transaction identifier. Used for idempotency — duplicate transactionIds for the same bank account are silently skipped.
-      description: List of bank transactions to create. Maximum 500 per request.
+          description: External transaction identifier for idempotency
+        createdAt:
+          type: string
+          description: Timestamp when the transaction was created
+          format: date-time
+    ExternalGetAllResponseWithBalanceV1ModelExternalBankTransactionV1Model:
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalBankTransactionV1Model'
+        balance:
+          type: integer
+          format: int64
+    ExternalBankAccountBalanceV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the bank account balance
+          format: uuid
+        bankAccountId:
+          type: string
+          description: ID of the bank account
+          format: uuid
+        balanceAt:
+          type: string
+          description: Timestamp of the balance (opening balance date)
+          format: date-time
+        balance:
+          type: integer
+          description: Balance amount in minor units (e.g. cents)
+          format: int64
+    ExternalCreateBankTransactionsRequestV1Model:
+      required:
+      - transactions
+      type: object
+      properties:
+        transactions:
+          type: array
+          description: List of bank transactions to create. Maximum 500 per request.
+          items:
+            $ref: '#/components/schemas/ExternalCreateBankTransactionRequestV1Model'
+    LocalDateParam:
+      type: object
+    ExternalUpsertBankAccountBalanceRequestV1Model:
+      required:
+      - balance
+      type: object
+      properties:
+        balanceAt:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of the balance (opening balance date). Defaults to current timestamp if not provided.
+          format: date-time
+        balance:
+          type: integer
+          description: Balance amount in minor units (e.g. cents)
+          format: int64
+    ExternalCreateBankLedgerAccountRequestV1Model:
+      required:
+      - code
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Ledger account code. Must be a unique 6-digit integer within the company's chart of accounts.
+          format: int32
+        label:
+          type:
+          - string
+          - 'null'
+          description: Ledger account label. Defaults to the bank name when omitted.
+      description: Ledger account (chart of accounts entry) created and linked to this bank account.
     ExternalBankAccountBalanceAsOfV1Model:
       type: object
       properties:

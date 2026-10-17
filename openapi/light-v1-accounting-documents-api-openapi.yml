@@ -62,6 +62,18 @@ paths:
                 $ref: '#/components/schemas/ExternalPaginatedResponseV1ModelExternalAccountingDocumentWithAmountV1Model'
 components:
   schemas:
+    DirectedAmount:
+      type: object
+      properties:
+        amount:
+          type: integer
+          format: int64
+        dcSign:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - D
+          - C
     ExternalPaginatedResponseV1ModelExternalAccountingDocumentWithAmountV1Model:
       type: object
       properties:
@@ -175,18 +187,6 @@ components:
           - 'null'
           example: USD
       description: List of records for the current page
-    DirectedAmount:
-      type: object
-      properties:
-        amount:
-          type: integer
-          format: int64
-        dcSign:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - D
-          - C
   securitySchemes:
     apiKeyAuth:
       type: apiKey

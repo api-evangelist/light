@@ -367,13 +367,21 @@ paths:
                 $ref: '#/components/schemas/ExternalContractV1Model'
 components:
   schemas:
-    ExternalCreateContractRequestV1Model:
+    ExternalUpdateContractRequestV1Model:
       type: object
       properties:
-        companyEntityId:
-          type: string
-          description: ID of the company entity
-          format: uuid
+        areLinesWithTax:
+          type:
+          - boolean
+          - 'null'
+          description: Whether invoice line amounts include tax or tax is added on top. Defaults to true
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties to set on the contract or line
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
         startDate:
           type:
           - string
@@ -386,6 +394,12 @@ components:
           - 'null'
           description: Contract end date
           format: date
+        companyEntityId:
+          type:
+          - string
+          - 'null'
+          description: ID of the company entity
+          format: uuid
         invoiceTemplateId:
           type:
           - string
@@ -403,12 +417,6 @@ components:
           - 'null'
           description: Estimated total amount for the contract in cents
           format: int64
-        renewalDate:
-          type:
-          - string
-          - 'null'
-          description: Date when the contract should be renewed
-          format: date
         paymentType:
           type:
           - string
@@ -444,14 +452,12 @@ components:
           - 'null'
           description: Number of days from invoice date to when payment is due. Defaults to 30
           format: int32
-          default: 30
         invoiceLeadDays:
           type:
           - integer
           - 'null'
           description: Number of days before the billing period start to date the invoice. Defaults to 0
           format: int32
-          default: 0
         billingStart:
           type:
           - string
@@ -469,24 +475,194 @@ components:
           - 'null'
           description: ID of the customer
           format: uuid
-        areLinesWithTax:
-          type: boolean
-          description: Whether invoice line amounts include tax or tax is added on top. Defaults to true
-          default: true
+        renewalDate:
+          type:
+          - string
+          - 'null'
+          description: Date when the contract should be renewed
+          format: date
+    ExternalContractLineV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        contractId:
+          type: string
+          description: ID of the contract this line belongs to
+          format: uuid
+        productId:
+          type: string
+          description: ID of the product
+          format: uuid
+        billingStart:
+          type:
+          - string
+          - 'null'
+          description: Date when billing starts for this line
+          format: date
+        billingEnd:
+          type:
+          - string
+          - 'null'
+          description: Date when billing ends for this line
+          format: date
+        billingRecurrence:
+          type: string
+          description: 'Billing frequency for this line
+
+
+            - `ONE_TIME` - The product is billed once
+
+            - `MONTHLY` - The product is billed every month
+
+            - `QUARTERLY` - The product is billed every three months
+
+            - `HALF_YEARLY` - The product is billed every six months
+
+            - `YEARLY` - The product is billed every year
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - ONE_TIME
+          - MONTHLY
+          - QUARTERLY
+          - HALF_YEARLY
+          - YEARLY
+        accountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the account for bookkeeping
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          description: ID of the tax code
+          format: uuid
+        avataxCode:
+          type:
+          - string
+          - 'null'
+          description: Avalara tax code
+        discount:
+          $ref: '#/components/schemas/ExternalContractLineDiscountV1Model'
+        quantity:
+          type:
+          - number
+          - 'null'
+          description: Quantity of the product
+        priceOverwrite:
+          type:
+          - integer
+          - 'null'
+          description: Custom price override in cents
+          format: int64
+        productNameOverwrite:
+          type:
+          - string
+          - 'null'
+          description: Custom product name override
+        amortizationTemplateId:
+          type:
+          - string
+          - 'null'
+          description: ID of the amortization template
+          format: uuid
+        amortizationStartDate:
+          type:
+          - string
+          - 'null'
+          description: Start date for amortization
+          format: date
+        amortizationEndDate:
+          type:
+          - string
+          - 'null'
+          description: End date for amortization
+          format: date
+        aiValueSuggestions:
+          type:
+          - array
+          - 'null'
+          description: AI-generated suggestions for this line
+          items:
+            $ref: '#/components/schemas/ExternalAiValueSuggestionV1Model'
         customProperties:
           type:
           - array
           - 'null'
-          description: List of custom properties to set on the contract or line
+          description: List of custom properties associated with the line
           items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        lines:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        createdAt:
+          type: string
+          description: Timestamp when the line was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the line was last updated
+          format: date-time
+    ExternalCustomPropertyValueV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the object
+          format: uuid
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        companyId:
+          type: string
+          description: ID of the company
+          format: uuid
+        internalName:
+          type: string
+          description: Internal name of the custom property value
+        label:
+          type: string
+          description: Label of the custom property value
+        context:
           type:
-          - array
+          - string
           - 'null'
-          description: List of contract line items to create
+          description: Context/description of the custom property value
+        createdAt:
+          type: string
+          description: Timestamp when the custom property value was created
+          format: date-time
+        updatedAt:
+          type: string
+          description: Timestamp when the custom property value was last updated
+          format: date-time
+      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalAiValueSuggestionV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        field:
+          type: string
+        fieldValues:
+          type: array
           items:
-            $ref: '#/components/schemas/ExternalCreateContractLineRequestV1Model'
+            type: string
+        reasoning:
+          type: string
+      description: AI-generated suggestions for line item values (e.g. account, cost center, tax code).
     ExternalContractV1Model:
       type: object
       properties:
@@ -701,154 +877,6 @@ components:
           type: string
           description: Timestamp when the contract was last updated
           format: date-time
-    ExternalUpdateContractRequestV1Model:
-      type: object
-      properties:
-        areLinesWithTax:
-          type:
-          - boolean
-          - 'null'
-          description: Whether invoice line amounts include tax or tax is added on top. Defaults to true
-        customProperties:
-          type:
-          - array
-          - 'null'
-          description: List of custom properties to set on the contract or line
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        startDate:
-          type:
-          - string
-          - 'null'
-          description: Contract start date
-          format: date
-        endDate:
-          type:
-          - string
-          - 'null'
-          description: Contract end date
-          format: date
-        companyEntityId:
-          type:
-          - string
-          - 'null'
-          description: ID of the company entity
-          format: uuid
-        invoiceTemplateId:
-          type:
-          - string
-          - 'null'
-          description: ID of the invoice template to use for generating invoices
-          format: uuid
-        currency:
-          type:
-          - string
-          - 'null'
-          example: USD
-        estimatedAmount:
-          type:
-          - integer
-          - 'null'
-          description: Estimated total amount for the contract in cents
-          format: int64
-        paymentType:
-          type:
-          - string
-          - 'null'
-          description: 'Payment type for invoices generated from this contract
-
-
-            - `AIRWALLEX` - Payment via Airwallex. A payment link will be displayed on the invoice
-
-            - `BANK_TRANSFER` - Payment via bank transfer. Bank information will be displayed on the invoice
-
-            - `DIRECT_DEBIT` - Payment via direct debit. A notice that the amount will be collected automatically will be displayed on the invoice
-
-            - `STRIPE` - Payment via Stripe. A payment link will be sent to the customer
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - AIRWALLEX
-          - BANK_TRANSFER
-          - DIRECT_DEBIT
-          - STRIPE
-        payeeBankAccountId:
-          type:
-          - string
-          - 'null'
-          description: ID of the bank account where payments should be sent
-          format: uuid
-        netTerms:
-          type:
-          - integer
-          - 'null'
-          description: Number of days from invoice date to when payment is due. Defaults to 30
-          format: int32
-        invoiceLeadDays:
-          type:
-          - integer
-          - 'null'
-          description: Number of days before the billing period start to date the invoice. Defaults to 0
-          format: int32
-        billingStart:
-          type:
-          - string
-          - 'null'
-          description: Date when billing should start for this contract
-          format: date
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of the contract
-        customerId:
-          type:
-          - string
-          - 'null'
-          description: ID of the customer
-          format: uuid
-        renewalDate:
-          type:
-          - string
-          - 'null'
-          description: Date when the contract should be renewed
-          format: date
-    ExternalTerminateContractRequestV1Model:
-      type: object
-      properties:
-        terminationDate:
-          type:
-          - string
-          - 'null'
-          description: Date on which the contract should be terminated. If null or today, terminates immediately.
-          format: date
-        terminationReason:
-          type:
-          - string
-          - 'null'
-          description: Reason for terminating the contract
-    ExternalContractLineDiscountV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        type:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - PERCENTAGE
-          - AMOUNT
-      description: Discount to apply to this line (can be percentage or amount-based)
-      discriminator:
-        propertyName: type
     ExternalPaginatedResponseV1ModelExternalContractV1Model:
       type: object
       properties:
@@ -877,44 +905,19 @@ components:
           - string
           - 'null'
           description: Cursor for fetching the previous page (only for cursor pagination)
-    ExternalCustomPropertyValueV1Model:
+    ExternalRenewContractRequestV1Model:
       type: object
       properties:
-        id:
+        nextEndDate:
           type: string
-          description: Unique identifier for the object
-          format: uuid
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        internalName:
-          type: string
-          description: Internal name of the custom property value
-        label:
-          type: string
-          description: Label of the custom property value
-        context:
+          description: New end date when renewing the contract
+          format: date
+        nextRenewalDate:
           type:
           - string
           - 'null'
-          description: Context/description of the custom property value
-        createdAt:
-          type: string
-          description: Timestamp when the custom property value was created
-          format: date-time
-        updatedAt:
-          type: string
-          description: Timestamp when the custom property value was last updated
-          format: date-time
-      description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          description: New renewal date when renewing the contract
+          format: date
     ExternalCreateContractLineRequestV1Model:
       type: object
       properties:
@@ -1020,72 +1023,44 @@ components:
           - 'null'
           description: End date for amortization
           format: date
-    ExternalSetCustomPropertyRequestV1Model:
+    ExternalContractLineDiscountV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PERCENTAGE
+          - AMOUNT
+      description: Discount to apply to this line (can be percentage or amount-based)
+      discriminator:
+        propertyName: type
+    ExternalCustomPropertyV1Model:
       type:
       - object
       - 'null'
       properties:
         groupId:
           type: string
-          description: ID of the custom property group.
+          description: ID of the custom property group
           format: uuid
-        valueIds:
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
           type: array
-          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
           items:
-            type: string
-            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
-            format: uuid
-        inlineValues:
-          type:
-          - array
-          - 'null'
-          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-          items:
-            type:
-            - string
-            - 'null'
-            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
-      description: List of custom properties to set on the vendor. Replaces the existing set.
-    ExternalContractDocumentUploadUrlResponseV1Model:
-      type: object
-      properties:
-        uploadUrl:
-          type: string
-          description: Pre-signed URL to upload the document to
-        key:
-          type: string
-          description: Key to identify the uploaded document
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type:
-            - string
-            - 'null'
-            description: Metadata to include with the upload request
-          description: Metadata to include with the upload request
-    ExternalContractDocumentUploadRequestV1Model:
-      type: object
-      properties:
-        filename:
-          type: string
-          description: Name of the file to upload
-    ExternalAiValueSuggestionV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        field:
-          type: string
-        fieldValues:
-          type: array
-          items:
-            type: string
-        reasoning:
-          type: string
-      description: AI-generated suggestions for line item values (e.g. account, cost center, tax code).
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
     ExternalUpdateContractLineRequestV1Model:
       type: object
       properties:
@@ -1188,167 +1163,192 @@ components:
           - 'null'
           description: End date for amortization
           format: date
-    ExternalCustomPropertyV1Model:
+    ExternalCreateContractRequestV1Model:
+      type: object
+      properties:
+        companyEntityId:
+          type: string
+          description: ID of the company entity
+          format: uuid
+        startDate:
+          type:
+          - string
+          - 'null'
+          description: Contract start date
+          format: date
+        endDate:
+          type:
+          - string
+          - 'null'
+          description: Contract end date
+          format: date
+        invoiceTemplateId:
+          type:
+          - string
+          - 'null'
+          description: ID of the invoice template to use for generating invoices
+          format: uuid
+        currency:
+          type:
+          - string
+          - 'null'
+          example: USD
+        estimatedAmount:
+          type:
+          - integer
+          - 'null'
+          description: Estimated total amount for the contract in cents
+          format: int64
+        renewalDate:
+          type:
+          - string
+          - 'null'
+          description: Date when the contract should be renewed
+          format: date
+        paymentType:
+          type:
+          - string
+          - 'null'
+          description: 'Payment type for invoices generated from this contract
+
+
+            - `AIRWALLEX` - Payment via Airwallex. A payment link will be displayed on the invoice
+
+            - `BANK_TRANSFER` - Payment via bank transfer. Bank information will be displayed on the invoice
+
+            - `DIRECT_DEBIT` - Payment via direct debit. A notice that the amount will be collected automatically will be displayed on the invoice
+
+            - `STRIPE` - Payment via Stripe. A payment link will be sent to the customer
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - AIRWALLEX
+          - BANK_TRANSFER
+          - DIRECT_DEBIT
+          - STRIPE
+        payeeBankAccountId:
+          type:
+          - string
+          - 'null'
+          description: ID of the bank account where payments should be sent
+          format: uuid
+        netTerms:
+          type:
+          - integer
+          - 'null'
+          description: Number of days from invoice date to when payment is due. Defaults to 30
+          format: int32
+          default: 30
+        invoiceLeadDays:
+          type:
+          - integer
+          - 'null'
+          description: Number of days before the billing period start to date the invoice. Defaults to 0
+          format: int32
+          default: 0
+        billingStart:
+          type:
+          - string
+          - 'null'
+          description: Date when billing should start for this contract
+          format: date
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the contract
+        customerId:
+          type:
+          - string
+          - 'null'
+          description: ID of the customer
+          format: uuid
+        areLinesWithTax:
+          type: boolean
+          description: Whether invoice line amounts include tax or tax is added on top. Defaults to true
+          default: true
+        customProperties:
+          type:
+          - array
+          - 'null'
+          description: List of custom properties to set on the contract or line
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        lines:
+          type:
+          - array
+          - 'null'
+          description: List of contract line items to create
+          items:
+            $ref: '#/components/schemas/ExternalCreateContractLineRequestV1Model'
+    ExternalSetCustomPropertyRequestV1Model:
       type:
       - object
       - 'null'
       properties:
         groupId:
           type: string
-          description: ID of the custom property group
+          description: ID of the custom property group.
           format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
+        valueIds:
           type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
           items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
-    ExternalRenewContractRequestV1Model:
-      type: object
-      properties:
-        nextEndDate:
-          type: string
-          description: New end date when renewing the contract
-          format: date
-        nextRenewalDate:
-          type:
-          - string
-          - 'null'
-          description: New renewal date when renewing the contract
-          format: date
-    ExternalContractLineV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the object
-          format: uuid
-        companyId:
-          type: string
-          description: ID of the company
-          format: uuid
-        contractId:
-          type: string
-          description: ID of the contract this line belongs to
-          format: uuid
-        productId:
-          type: string
-          description: ID of the product
-          format: uuid
-        billingStart:
-          type:
-          - string
-          - 'null'
-          description: Date when billing starts for this line
-          format: date
-        billingEnd:
-          type:
-          - string
-          - 'null'
-          description: Date when billing ends for this line
-          format: date
-        billingRecurrence:
-          type: string
-          description: 'Billing frequency for this line
-
-
-            - `ONE_TIME` - The product is billed once
-
-            - `MONTHLY` - The product is billed every month
-
-            - `QUARTERLY` - The product is billed every three months
-
-            - `HALF_YEARLY` - The product is billed every six months
-
-            - `YEARLY` - The product is billed every year
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - ONE_TIME
-          - MONTHLY
-          - QUARTERLY
-          - HALF_YEARLY
-          - YEARLY
-        accountId:
-          type:
-          - string
-          - 'null'
-          description: ID of the account for bookkeeping
-          format: uuid
-        taxCodeId:
-          type:
-          - string
-          - 'null'
-          description: ID of the tax code
-          format: uuid
-        avataxCode:
-          type:
-          - string
-          - 'null'
-          description: Avalara tax code
-        discount:
-          $ref: '#/components/schemas/ExternalContractLineDiscountV1Model'
-        quantity:
-          type:
-          - number
-          - 'null'
-          description: Quantity of the product
-        priceOverwrite:
-          type:
-          - integer
-          - 'null'
-          description: Custom price override in cents
-          format: int64
-        productNameOverwrite:
-          type:
-          - string
-          - 'null'
-          description: Custom product name override
-        amortizationTemplateId:
-          type:
-          - string
-          - 'null'
-          description: ID of the amortization template
-          format: uuid
-        amortizationStartDate:
-          type:
-          - string
-          - 'null'
-          description: Start date for amortization
-          format: date
-        amortizationEndDate:
-          type:
-          - string
-          - 'null'
-          description: End date for amortization
-          format: date
-        aiValueSuggestions:
+            type: string
+            description: IDs of the selected custom property values. It behaves as a PUT operation, so if empty the existing ones will be effectively deleted.
+            format: uuid
+        inlineValues:
           type:
           - array
           - 'null'
-          description: AI-generated suggestions for this line
+          description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
           items:
-            $ref: '#/components/schemas/ExternalAiValueSuggestionV1Model'
-        customProperties:
+            type:
+            - string
+            - 'null'
+            description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
+      description: List of custom properties to set on the vendor. Replaces the existing set.
+    ExternalContractDocumentUploadRequestV1Model:
+      type: object
+      properties:
+        filename:
+          type: string
+          description: Name of the file to upload
+    ExternalTerminateContractRequestV1Model:
+      type: object
+      properties:
+        terminationDate:
           type:
-          - array
+          - string
           - 'null'
-          description: List of custom properties associated with the line
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        createdAt:
+          description: Date on which the contract should be terminated. If null or today, terminates immediately.
+          format: date
+        terminationReason:
+          type:
+          - string
+          - 'null'
+          description: Reason for terminating the contract
+    ExternalContractDocumentUploadUrlResponseV1Model:
+      type: object
+      properties:
+        uploadUrl:
           type: string
-          description: Timestamp when the line was created
-          format: date-time
-        updatedAt:
+          description: Pre-signed URL to upload the document to
+        key:
           type: string
-          description: Timestamp when the line was last updated
-          format: date-time
+          description: Key to identify the uploaded document
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type:
+            - string
+            - 'null'
+            description: Metadata to include with the upload request
+          description: Metadata to include with the upload request
   securitySchemes:
     apiKeyAuth:
       type: apiKey

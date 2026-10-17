@@ -296,24 +296,6 @@ paths:
                 $ref: '#/components/schemas/ExternalCardTransactionLineV1Model'
 components:
   schemas:
-    SetCustomPropertyRequestV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          format: uuid
-        valueIds:
-          type: array
-          items:
-            type: string
-            format: uuid
-        inlineValues:
-          type: array
-          items:
-            type: string
-      description: List of custom properties to set on the vendor.
     ExternalCustomPropertyValueV1Model:
       type: object
       properties:
@@ -352,6 +334,103 @@ components:
           description: Timestamp when the custom property value was last updated
           format: date-time
       description: List of values. Note that this will be a single value unless the group input type supports multiple values
+    ExternalBffCardTransactionLineV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        transactionId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        accountLabel:
+          type: string
+        taxCodeId:
+          type: string
+          format: uuid
+        taxCodeLabel:
+          type: string
+        costCenterId:
+          type: string
+          format: uuid
+        costCenterName:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        netAmount:
+          type: integer
+          format: int64
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        amortizationTemplateId:
+          type: string
+          format: uuid
+        amortizationStartDate:
+          type: string
+          format: date
+        amortizationEndDate:
+          type: string
+          format: date
+    ExternalTransactionReceiptUploadUrlRequestV1Model:
+      type: object
+      properties:
+        filename:
+          type: string
+        contentType:
+          type: string
+    ExternalCustomPropertyV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          description: ID of the custom property group
+          format: uuid
+        groupInternalName:
+          type: string
+          description: Internal name of the custom property group
+        values:
+          type: array
+          description: List of values. Note that this will be a single value unless the group input type supports multiple values
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
+      description: Custom properties set on the vendor.
+    SetCustomPropertyRequestV1Model:
+      type:
+      - object
+      - 'null'
+      properties:
+        groupId:
+          type: string
+          format: uuid
+        valueIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+        inlineValues:
+          type: array
+          items:
+            type: string
+      description: List of custom properties to set on the vendor.
     ExternalSetCustomPropertyRequestV1Model:
       type:
       - object
@@ -379,61 +458,34 @@ components:
             - 'null'
             description: Inline custom property values (used for TEXT/NUMERIC/DATE/etc. groups). It behaves as a PUT operation, so if empty or null the existing ones will be effectively deleted.
       description: List of custom properties to set on the vendor. Replaces the existing set.
-    ExternalUpdateCardTransactionRequestV1Model:
-      type: object
+    ExternalUiClientExceptionV1Model:
+      type:
+      - object
+      - 'null'
       properties:
-        customProperties:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        description:
-          type:
-          - string
-          - 'null'
-    ExternalBatchUpdateCardTransactionLineRequestV1Model:
-      type: object
-      properties:
-        lineId:
-          type: string
-          format: uuid
-        customProperties:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
-        description:
-          type:
-          - string
-          - 'null'
-        accountId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        taxCodeId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-    ExternalTransactionReceiptUploadUrlRequestV1Model:
-      type: object
-      properties:
-        filename:
-          type: string
-        contentType:
-          type: string
-    LightPrincipal:
-      type: object
-      properties:
-        roles:
-          type: array
-          items:
-            type: string
         name:
           type: string
+          description: The error name
+        type:
+          type: string
+          description: 'The error type
+
+
+            ⚠️ This enum is not exhaustive; new values may be added in the future.'
+          deprecated: false
+          enum:
+          - BAD_REQUEST
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - NOT_FOUND
+          - CONFLICT
+          - UNPROCESSABLE_CONTENT
+        errors:
+          type: array
+          description: List of errors providing details about what went wrong
+          items:
+            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
+      description: Failure context when vendor onboarding fails.
     ExternalUiClientExceptionErrorV1Model:
       type: object
       properties:
@@ -464,6 +516,574 @@ components:
             description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
           description: Optional context providing additional information about the error. This can include any relevant data that might help in understanding or resolving the error
       description: List of errors providing details about what went wrong
+    ExternalCardTransactionV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        cardBalanceAccountId:
+          type: string
+          format: uuid
+        cardId:
+          type: string
+          format: uuid
+        originalAmount:
+          type: integer
+          format: int64
+        originalCurrency:
+          type: string
+          example: USD
+        amount:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          example: USD
+        direction:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - DEBIT
+          - CREDIT
+        transactionReason:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACCOUNT_NOT_ACTIVE
+          - AMOUNT_LIMIT_EXCEEDED
+          - APPROVAL_EXPIRED
+          - APPROVED
+          - AUTHENTICATION_FAILED
+          - AUTHENTICATION_REQUIRED
+          - BALANCE_ACCOUNT_BLOCKED_BY_RULE
+          - CALL_REFERRAL
+          - CANCELLED
+          - CARD_BLOCKED
+          - CARD_CAPTURED
+          - CARD_EXPIRED
+          - CARD_LOST_OR_STOLEN
+          - CARD_RESTRICTED
+          - CARD_VERIFICATION_FAILED
+          - CASHBACK_LIMIT_EXCEEDED
+          - CONTACTLESS_FALLBACK
+          - CONTACTLESS_LIMIT_REACHED
+          - COUNTERPARTY_ACCOUNT_UNAVAILABLE
+          - COUNTERPARTY_ADDRESS_REQUIRED
+          - COUNTERPARTY_BANK_UNAVAILABLE
+          - CRYPTOGRAPHIC_FAILURE
+          - DECLINED
+          - DECLINED_BY_BAP_VALIDATION
+          - DECLINED_BY_TRANSACTION_RULE
+          - DECLINED_NON_GENERIC
+          - DOMESTIC_DEBIT_NOT_ALLOWED
+          - DO_NOT_HONOR
+          - DUPLICATE_TRANSMISSION
+          - FORMAT_ERROR
+          - FRAUD
+          - HONOR_WITH_ID
+          - INSUFFICIENT_FUNDS
+          - INTERNAL_TIMEOUT
+          - INVALID_ACCOUNT
+          - INVALID_AMOUNT
+          - INVALID_AUTHORIZATION_LIFECYCLE
+          - INVALID_CARD
+          - INVALID_ISSUER
+          - INVALID_MERCHANT
+          - INVALID_TRANSACTION
+          - ISSUER_SUSPECTED_FRAUD
+          - MOBILE_PIN_REQUIRED
+          - NOT_SUBMITTED
+          - NO_ACCOUNT_OF_TYPE
+          - OTHER
+          - PARTIALLY_APPROVED
+          - PENDING
+          - PIN_INVALID
+          - PIN_NOT_CHANGED
+          - PIN_REQUIRED
+          - PIN_TRIES_EXCEEDED
+          - PIN_VALIDATION_NOT_POSSIBLE
+          - PROVIDER_ERROR
+          - PURCHASE_AMOUNT_ONLY_NO_CASHBACK
+          - REFUSED_BY_COUNTERPARTY_BANK
+          - REFUSED_BY_CUSTOMER
+          - REVOCATION_OF_AUTH
+          - ROUTE_NOT_FOUND
+          - SCHEME_ADVICE
+          - SECURITY_VIOLATION
+          - TRANSACTION_NOT_PERMITTED
+          - TRANSFER_INSTRUMENT_NOT_FOUND
+          - TRANSFER_NOT_SUPPORTED
+          - UNKNOWN
+          - WITHDRAWAL_AMOUNT_EXCEEDED
+          - WITHDRAWAL_COUNT_EXCEEDED
+        purchaseType:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ATM
+          - BALANCE_INQUIRY
+          - ECOMMERCE
+          - POS
+          - RECURRING
+          - UNKNOWN
+          - OTHER
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - AUTHORIZED
+          - DECLINED
+          - CAPTURED
+          - REFUNDED
+          - VOIDED
+          - POSTED
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PAYMENT
+          - REFUND
+          - OTHER
+        merchant:
+          $ref: '#/components/schemas/ExternalCardTransactionMerchantV1Model'
+        receiptDocumentKey:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCardTransactionLineV1Model'
+        failureContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        editStatus:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ALL_EDITS_ALLOWED
+          - LINE_AMOUNT_EDITS_LOCKED
+          - ALL_EDITS_LOCKED
+        description:
+          type: string
+        performedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+          format: uuid
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+    ExternalBatchUpdateCardTransactionRequestV1Model:
+      type: object
+      properties:
+        cardTransactionId:
+          type: string
+          format: uuid
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
+        lines:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalBatchUpdateCardTransactionLineRequestV1Model'
+        postingDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        description:
+          type:
+          - string
+          - 'null'
+    ExternalUpdateCardTransactionLineRequestV1Model:
+      type: object
+      properties:
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        costCenterId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        amount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        description:
+          type:
+          - string
+          - 'null'
+        amortizationTemplateId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        amortizationStartDate:
+          type:
+          - string
+          - 'null'
+          format: date
+        amortizationEndDate:
+          type:
+          - string
+          - 'null'
+          format: date
+    ExternalPaginatedResponseV1ModelExternalBffCardTransactionV1Model:
+      type: object
+      properties:
+        records:
+          type: array
+          description: List of records for the current page
+          items:
+            $ref: '#/components/schemas/ExternalBffCardTransactionV1Model'
+        hasMore:
+          type: boolean
+          description: Boolean flag indicating if there are more records available
+        total:
+          type:
+          - integer
+          - 'null'
+          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
+          format: int64
+          deprecated: true
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the next page (only for cursor pagination)
+        prevCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor for fetching the previous page (only for cursor pagination)
+    ExternalBatchUpdateCardTransactionLineRequestV1Model:
+      type: object
+      properties:
+        lineId:
+          type: string
+          format: uuid
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
+        description:
+          type:
+          - string
+          - 'null'
+        accountId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+        taxCodeId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+    ExternalCardTransactionReceiptUploadUrlResponseV1Model:
+      type: object
+      properties:
+        uploadUrl:
+          type: string
+          format: url
+        key:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          additionalProperties:
+            type: string
+    LightPrincipal:
+      type: object
+      properties:
+        roles:
+          type: array
+          items:
+            type: string
+        name:
+          type: string
+    ExternalUpdateCardTransactionRequestV1Model:
+      type: object
+      properties:
+        customProperties:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
+        description:
+          type:
+          - string
+          - 'null'
+    ExternalBffCardTransactionV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        companyEntityId:
+          type: string
+          format: uuid
+        companyEntityName:
+          type: string
+        cardBalanceAccountId:
+          type: string
+          format: uuid
+        cardBalanceAccountLabel:
+          type: string
+        cardId:
+          type: string
+          format: uuid
+        cardVendorId:
+          type: string
+          format: uuid
+        cardVendorAvatarUrl:
+          type: string
+        cardVendorName:
+          type: string
+        cardOwnerName:
+          type: string
+        cardOwnerId:
+          type: string
+          format: uuid
+        cardLastFour:
+          type: string
+        originalAmount:
+          type: integer
+          format: int64
+        originalCurrency:
+          type: string
+          example: USD
+        amount:
+          type: integer
+          format: int64
+        currency:
+          type: string
+          example: USD
+        direction:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - DEBIT
+          - CREDIT
+        transactionReason:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ACCOUNT_NOT_ACTIVE
+          - AMOUNT_LIMIT_EXCEEDED
+          - APPROVAL_EXPIRED
+          - APPROVED
+          - AUTHENTICATION_FAILED
+          - AUTHENTICATION_REQUIRED
+          - BALANCE_ACCOUNT_BLOCKED_BY_RULE
+          - CALL_REFERRAL
+          - CANCELLED
+          - CARD_BLOCKED
+          - CARD_CAPTURED
+          - CARD_EXPIRED
+          - CARD_LOST_OR_STOLEN
+          - CARD_RESTRICTED
+          - CARD_VERIFICATION_FAILED
+          - CASHBACK_LIMIT_EXCEEDED
+          - CONTACTLESS_FALLBACK
+          - CONTACTLESS_LIMIT_REACHED
+          - COUNTERPARTY_ACCOUNT_UNAVAILABLE
+          - COUNTERPARTY_ADDRESS_REQUIRED
+          - COUNTERPARTY_BANK_UNAVAILABLE
+          - CRYPTOGRAPHIC_FAILURE
+          - DECLINED
+          - DECLINED_BY_BAP_VALIDATION
+          - DECLINED_BY_TRANSACTION_RULE
+          - DECLINED_NON_GENERIC
+          - DOMESTIC_DEBIT_NOT_ALLOWED
+          - DO_NOT_HONOR
+          - DUPLICATE_TRANSMISSION
+          - FORMAT_ERROR
+          - FRAUD
+          - HONOR_WITH_ID
+          - INSUFFICIENT_FUNDS
+          - INTERNAL_TIMEOUT
+          - INVALID_ACCOUNT
+          - INVALID_AMOUNT
+          - INVALID_AUTHORIZATION_LIFECYCLE
+          - INVALID_CARD
+          - INVALID_ISSUER
+          - INVALID_MERCHANT
+          - INVALID_TRANSACTION
+          - ISSUER_SUSPECTED_FRAUD
+          - MOBILE_PIN_REQUIRED
+          - NOT_SUBMITTED
+          - NO_ACCOUNT_OF_TYPE
+          - OTHER
+          - PARTIALLY_APPROVED
+          - PENDING
+          - PIN_INVALID
+          - PIN_NOT_CHANGED
+          - PIN_REQUIRED
+          - PIN_TRIES_EXCEEDED
+          - PIN_VALIDATION_NOT_POSSIBLE
+          - PROVIDER_ERROR
+          - PURCHASE_AMOUNT_ONLY_NO_CASHBACK
+          - REFUSED_BY_COUNTERPARTY_BANK
+          - REFUSED_BY_CUSTOMER
+          - REVOCATION_OF_AUTH
+          - ROUTE_NOT_FOUND
+          - SCHEME_ADVICE
+          - SECURITY_VIOLATION
+          - TRANSACTION_NOT_PERMITTED
+          - TRANSFER_INSTRUMENT_NOT_FOUND
+          - TRANSFER_NOT_SUPPORTED
+          - UNKNOWN
+          - WITHDRAWAL_AMOUNT_EXCEEDED
+          - WITHDRAWAL_COUNT_EXCEEDED
+        purchaseType:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - ATM
+          - BALANCE_INQUIRY
+          - ECOMMERCE
+          - POS
+          - RECURRING
+          - UNKNOWN
+          - OTHER
+        status:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - AUTHORIZED
+          - DECLINED
+          - CAPTURED
+          - REFUNDED
+          - VOIDED
+          - POSTED
+        type:
+          type: string
+          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
+          enum:
+          - PAYMENT
+          - REFUND
+          - OTHER
+        merchant:
+          $ref: '#/components/schemas/ExternalCardTransactionMerchantV1Model'
+        receiptDocumentKey:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalBffCardTransactionLineV1Model'
+        failureContext:
+          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
+        description:
+          type: string
+        performedAt:
+          type: string
+          format: date-time
+        exportedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+      description: List of records for the current page
+    ExternalCardTransactionLineV1Model:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        transactionId:
+          type: string
+          format: uuid
+        companyId:
+          type: string
+          format: uuid
+        accountId:
+          type: string
+          format: uuid
+        taxCodeId:
+          type: string
+          format: uuid
+        costCenterId:
+          type: string
+          format: uuid
+        amount:
+          type: integer
+          format: int64
+        netAmount:
+          type: integer
+          format: int64
+        taxAmount:
+          type: integer
+          format: int64
+        description:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        customProperties:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
+        amortizationTemplateId:
+          type: string
+          format: uuid
+        amortizationStartDate:
+          type: string
+          format: date
+        amortizationEndDate:
+          type: string
+          format: date
     ExternalCardTransactionMerchantV1Model:
       type: object
       properties:
@@ -757,626 +1377,6 @@ components:
           type: string
         logoUrl:
           type: string
-    ExternalBffCardTransactionV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        companyEntityId:
-          type: string
-          format: uuid
-        companyEntityName:
-          type: string
-        cardBalanceAccountId:
-          type: string
-          format: uuid
-        cardBalanceAccountLabel:
-          type: string
-        cardId:
-          type: string
-          format: uuid
-        cardVendorId:
-          type: string
-          format: uuid
-        cardVendorAvatarUrl:
-          type: string
-        cardVendorName:
-          type: string
-        cardOwnerName:
-          type: string
-        cardOwnerId:
-          type: string
-          format: uuid
-        cardLastFour:
-          type: string
-        originalAmount:
-          type: integer
-          format: int64
-        originalCurrency:
-          type: string
-          example: USD
-        amount:
-          type: integer
-          format: int64
-        currency:
-          type: string
-          example: USD
-        direction:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - DEBIT
-          - CREDIT
-        transactionReason:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACCOUNT_NOT_ACTIVE
-          - AMOUNT_LIMIT_EXCEEDED
-          - APPROVAL_EXPIRED
-          - APPROVED
-          - AUTHENTICATION_FAILED
-          - AUTHENTICATION_REQUIRED
-          - BALANCE_ACCOUNT_BLOCKED_BY_RULE
-          - CALL_REFERRAL
-          - CANCELLED
-          - CARD_BLOCKED
-          - CARD_CAPTURED
-          - CARD_EXPIRED
-          - CARD_LOST_OR_STOLEN
-          - CARD_RESTRICTED
-          - CARD_VERIFICATION_FAILED
-          - CASHBACK_LIMIT_EXCEEDED
-          - CONTACTLESS_FALLBACK
-          - CONTACTLESS_LIMIT_REACHED
-          - COUNTERPARTY_ACCOUNT_UNAVAILABLE
-          - COUNTERPARTY_ADDRESS_REQUIRED
-          - COUNTERPARTY_BANK_UNAVAILABLE
-          - CRYPTOGRAPHIC_FAILURE
-          - DECLINED
-          - DECLINED_BY_BAP_VALIDATION
-          - DECLINED_BY_TRANSACTION_RULE
-          - DECLINED_NON_GENERIC
-          - DOMESTIC_DEBIT_NOT_ALLOWED
-          - DO_NOT_HONOR
-          - DUPLICATE_TRANSMISSION
-          - FORMAT_ERROR
-          - FRAUD
-          - HONOR_WITH_ID
-          - INSUFFICIENT_FUNDS
-          - INTERNAL_TIMEOUT
-          - INVALID_ACCOUNT
-          - INVALID_AMOUNT
-          - INVALID_AUTHORIZATION_LIFECYCLE
-          - INVALID_CARD
-          - INVALID_ISSUER
-          - INVALID_MERCHANT
-          - INVALID_TRANSACTION
-          - ISSUER_SUSPECTED_FRAUD
-          - MOBILE_PIN_REQUIRED
-          - NOT_SUBMITTED
-          - NO_ACCOUNT_OF_TYPE
-          - OTHER
-          - PARTIALLY_APPROVED
-          - PENDING
-          - PIN_INVALID
-          - PIN_NOT_CHANGED
-          - PIN_REQUIRED
-          - PIN_TRIES_EXCEEDED
-          - PIN_VALIDATION_NOT_POSSIBLE
-          - PROVIDER_ERROR
-          - PURCHASE_AMOUNT_ONLY_NO_CASHBACK
-          - REFUSED_BY_COUNTERPARTY_BANK
-          - REFUSED_BY_CUSTOMER
-          - REVOCATION_OF_AUTH
-          - ROUTE_NOT_FOUND
-          - SCHEME_ADVICE
-          - SECURITY_VIOLATION
-          - TRANSACTION_NOT_PERMITTED
-          - TRANSFER_INSTRUMENT_NOT_FOUND
-          - TRANSFER_NOT_SUPPORTED
-          - UNKNOWN
-          - WITHDRAWAL_AMOUNT_EXCEEDED
-          - WITHDRAWAL_COUNT_EXCEEDED
-        purchaseType:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ATM
-          - BALANCE_INQUIRY
-          - ECOMMERCE
-          - POS
-          - RECURRING
-          - UNKNOWN
-          - OTHER
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - AUTHORIZED
-          - DECLINED
-          - CAPTURED
-          - REFUNDED
-          - VOIDED
-          - POSTED
-        type:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - PAYMENT
-          - REFUND
-          - OTHER
-        merchant:
-          $ref: '#/components/schemas/ExternalCardTransactionMerchantV1Model'
-        receiptDocumentKey:
-          type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalBffCardTransactionLineV1Model'
-        failureContext:
-          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
-        description:
-          type: string
-        performedAt:
-          type: string
-          format: date-time
-        exportedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-      description: List of records for the current page
-    ExternalUiClientExceptionV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        name:
-          type: string
-          description: The error name
-        type:
-          type: string
-          description: 'The error type
-
-
-            ⚠️ This enum is not exhaustive; new values may be added in the future.'
-          deprecated: false
-          enum:
-          - BAD_REQUEST
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - NOT_FOUND
-          - CONFLICT
-          - UNPROCESSABLE_CONTENT
-        errors:
-          type: array
-          description: List of errors providing details about what went wrong
-          items:
-            $ref: '#/components/schemas/ExternalUiClientExceptionErrorV1Model'
-      description: Failure context when vendor onboarding fails.
-    ExternalCardTransactionV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        companyEntityId:
-          type: string
-          format: uuid
-        cardBalanceAccountId:
-          type: string
-          format: uuid
-        cardId:
-          type: string
-          format: uuid
-        originalAmount:
-          type: integer
-          format: int64
-        originalCurrency:
-          type: string
-          example: USD
-        amount:
-          type: integer
-          format: int64
-        currency:
-          type: string
-          example: USD
-        direction:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - DEBIT
-          - CREDIT
-        transactionReason:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ACCOUNT_NOT_ACTIVE
-          - AMOUNT_LIMIT_EXCEEDED
-          - APPROVAL_EXPIRED
-          - APPROVED
-          - AUTHENTICATION_FAILED
-          - AUTHENTICATION_REQUIRED
-          - BALANCE_ACCOUNT_BLOCKED_BY_RULE
-          - CALL_REFERRAL
-          - CANCELLED
-          - CARD_BLOCKED
-          - CARD_CAPTURED
-          - CARD_EXPIRED
-          - CARD_LOST_OR_STOLEN
-          - CARD_RESTRICTED
-          - CARD_VERIFICATION_FAILED
-          - CASHBACK_LIMIT_EXCEEDED
-          - CONTACTLESS_FALLBACK
-          - CONTACTLESS_LIMIT_REACHED
-          - COUNTERPARTY_ACCOUNT_UNAVAILABLE
-          - COUNTERPARTY_ADDRESS_REQUIRED
-          - COUNTERPARTY_BANK_UNAVAILABLE
-          - CRYPTOGRAPHIC_FAILURE
-          - DECLINED
-          - DECLINED_BY_BAP_VALIDATION
-          - DECLINED_BY_TRANSACTION_RULE
-          - DECLINED_NON_GENERIC
-          - DOMESTIC_DEBIT_NOT_ALLOWED
-          - DO_NOT_HONOR
-          - DUPLICATE_TRANSMISSION
-          - FORMAT_ERROR
-          - FRAUD
-          - HONOR_WITH_ID
-          - INSUFFICIENT_FUNDS
-          - INTERNAL_TIMEOUT
-          - INVALID_ACCOUNT
-          - INVALID_AMOUNT
-          - INVALID_AUTHORIZATION_LIFECYCLE
-          - INVALID_CARD
-          - INVALID_ISSUER
-          - INVALID_MERCHANT
-          - INVALID_TRANSACTION
-          - ISSUER_SUSPECTED_FRAUD
-          - MOBILE_PIN_REQUIRED
-          - NOT_SUBMITTED
-          - NO_ACCOUNT_OF_TYPE
-          - OTHER
-          - PARTIALLY_APPROVED
-          - PENDING
-          - PIN_INVALID
-          - PIN_NOT_CHANGED
-          - PIN_REQUIRED
-          - PIN_TRIES_EXCEEDED
-          - PIN_VALIDATION_NOT_POSSIBLE
-          - PROVIDER_ERROR
-          - PURCHASE_AMOUNT_ONLY_NO_CASHBACK
-          - REFUSED_BY_COUNTERPARTY_BANK
-          - REFUSED_BY_CUSTOMER
-          - REVOCATION_OF_AUTH
-          - ROUTE_NOT_FOUND
-          - SCHEME_ADVICE
-          - SECURITY_VIOLATION
-          - TRANSACTION_NOT_PERMITTED
-          - TRANSFER_INSTRUMENT_NOT_FOUND
-          - TRANSFER_NOT_SUPPORTED
-          - UNKNOWN
-          - WITHDRAWAL_AMOUNT_EXCEEDED
-          - WITHDRAWAL_COUNT_EXCEEDED
-        purchaseType:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ATM
-          - BALANCE_INQUIRY
-          - ECOMMERCE
-          - POS
-          - RECURRING
-          - UNKNOWN
-          - OTHER
-        status:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - AUTHORIZED
-          - DECLINED
-          - CAPTURED
-          - REFUNDED
-          - VOIDED
-          - POSTED
-        type:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - PAYMENT
-          - REFUND
-          - OTHER
-        merchant:
-          $ref: '#/components/schemas/ExternalCardTransactionMerchantV1Model'
-        receiptDocumentKey:
-          type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCardTransactionLineV1Model'
-        failureContext:
-          $ref: '#/components/schemas/ExternalUiClientExceptionV1Model'
-        editStatus:
-          type: string
-          description: ⚠️ This enum is not exhaustive; new values may be added in the future.
-          enum:
-          - ALL_EDITS_ALLOWED
-          - LINE_AMOUNT_EDITS_LOCKED
-          - ALL_EDITS_LOCKED
-        description:
-          type: string
-        performedAt:
-          type: string
-          format: date-time
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-          format: uuid
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-    ExternalPaginatedResponseV1ModelExternalBffCardTransactionV1Model:
-      type: object
-      properties:
-        records:
-          type: array
-          description: List of records for the current page
-          items:
-            $ref: '#/components/schemas/ExternalBffCardTransactionV1Model'
-        hasMore:
-          type: boolean
-          description: Boolean flag indicating if there are more records available
-        total:
-          type:
-          - integer
-          - 'null'
-          description: Total number of records (only for offset pagination). This field is not guaranteed to be returned and only available for offset pagination, please do not rely on it and migrate to cursor pagination.
-          format: int64
-          deprecated: true
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the next page (only for cursor pagination)
-        prevCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor for fetching the previous page (only for cursor pagination)
-    ExternalBatchUpdateCardTransactionRequestV1Model:
-      type: object
-      properties:
-        cardTransactionId:
-          type: string
-          format: uuid
-        customProperties:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/SetCustomPropertyRequestV1Model'
-        lines:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExternalBatchUpdateCardTransactionLineRequestV1Model'
-        postingDate:
-          type:
-          - string
-          - 'null'
-          format: date
-        description:
-          type:
-          - string
-          - 'null'
-    ExternalCardTransactionLineV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        transactionId:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        accountId:
-          type: string
-          format: uuid
-        taxCodeId:
-          type: string
-          format: uuid
-        costCenterId:
-          type: string
-          format: uuid
-        amount:
-          type: integer
-          format: int64
-        netAmount:
-          type: integer
-          format: int64
-        taxAmount:
-          type: integer
-          format: int64
-        description:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        amortizationTemplateId:
-          type: string
-          format: uuid
-        amortizationStartDate:
-          type: string
-          format: date
-        amortizationEndDate:
-          type: string
-          format: date
-    ExternalUpdateCardTransactionLineRequestV1Model:
-      type: object
-      properties:
-        customProperties:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ExternalSetCustomPropertyRequestV1Model'
-        accountId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        taxCodeId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        costCenterId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        amount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-        description:
-          type:
-          - string
-          - 'null'
-        amortizationTemplateId:
-          type:
-          - string
-          - 'null'
-          format: uuid
-        amortizationStartDate:
-          type:
-          - string
-          - 'null'
-          format: date
-        amortizationEndDate:
-          type:
-          - string
-          - 'null'
-          format: date
-    ExternalCardTransactionReceiptUploadUrlResponseV1Model:
-      type: object
-      properties:
-        uploadUrl:
-          type: string
-          format: url
-        key:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          additionalProperties:
-            type: string
-    ExternalBffCardTransactionLineV1Model:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        transactionId:
-          type: string
-          format: uuid
-        companyId:
-          type: string
-          format: uuid
-        accountId:
-          type: string
-          format: uuid
-        accountLabel:
-          type: string
-        taxCodeId:
-          type: string
-          format: uuid
-        taxCodeLabel:
-          type: string
-        costCenterId:
-          type: string
-          format: uuid
-        costCenterName:
-          type: string
-        amount:
-          type: integer
-          format: int64
-        netAmount:
-          type: integer
-          format: int64
-        description:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        customProperties:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyV1Model'
-        amortizationTemplateId:
-          type: string
-          format: uuid
-        amortizationStartDate:
-          type: string
-          format: date
-        amortizationEndDate:
-          type: string
-          format: date
-    ExternalCustomPropertyV1Model:
-      type:
-      - object
-      - 'null'
-      properties:
-        groupId:
-          type: string
-          description: ID of the custom property group
-          format: uuid
-        groupInternalName:
-          type: string
-          description: Internal name of the custom property group
-        values:
-          type: array
-          description: List of values. Note that this will be a single value unless the group input type supports multiple values
-          items:
-            $ref: '#/components/schemas/ExternalCustomPropertyValueV1Model'
-      description: Custom properties set on the vendor.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
