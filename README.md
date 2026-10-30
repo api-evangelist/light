@@ -64,47 +64,178 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Light is an agentic accounting and financial-operations platform positioned as an alternative to
-traditional ERPs and fragmented finance stacks — a multi-entity general ledger and consolidation
-engine with accounts payable, accounts receivable, spend management and corporate cards,
-contracts and subscription billing, purchase orders and expense reimbursement.
+Light is an agentic accounting and financial-operations platform positioned as an alternative to traditional ERPs and fragmented finance stacks. It combines a multi-entity general ledger and consolidation engine with accounts payable, accounts receivable, spend management and corporate cards, contracts and subscription billing, purchase orders and expense reimbursement. The Light API is a REST API over HTTPS returning camelCase JSON, covering 183 operations across 28 resource groups — invoice payables and receivables, credit notes, customer credits, journal entries, ledger accounts, bank accounts and transactions, cards and card transactions, contracts, purchase orders, products, vendors, customers and users. Authentication is either an API key sent as HTTP Basic or an OAuth 2.0 access token, access is governed by the same roles as user accounts, and writes on 14 operations accept an X-Idempotency-Key header. Light also publishes a live Model Context Protocol server over its documentation and markets a Claude MCP integration against the live ledger.
 
-Backed by: balderton-capital, seedcamp — https://light.inc/
+**Areas:** Accounting · Finance · ERP · Accounts Payable · Accounts Receivable · General Ledger · Spend Management · Invoicing · Corporate Cards · Expense Management · Financial Operations · Agents
 
-## API
+## Light on APIs.io
 
-- **Developer docs**: https://docs.light.inc/getting-started/introduction
-- **Base URL**: https://api.light.inc
-- **Spec**: OpenAPI 3.0.1 — 183 operations, 136 paths, 226 schemas, 28 resource groups
-- **Auth**: API key as HTTP Basic (`Authorization: Basic <key>`) or OAuth 2.0 bearer JWT
-  (authorization-code flow, Auth0-backed, refresh-token rotation)
-- **Rate limits**: 300 req/min per key or token; 100,000 req/day per organization
-- **Idempotency**: `X-Idempotency-Key` header on 14 write operations
-- **Pagination**: `cursor` + `limit` (or `offset`), with a `field:operator:value` filter grammar
+Everything profiled for Light is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/light/](https://apis.io/providers/light/)** — or go straight to one of the APIs or properties below.
 
-## Artifacts
+### APIs (28)
 
-| Artifact | Method |
+- [Light Authorization API](https://apis.io/apis/light/light-authorization-api/) — The Authorization API from Light — 2 operation(s) for authorization.
+- [Light v1 - Accounting Documents API](https://apis.io/apis/light/light-v1-accounting-documents-api/) — The v1 - Accounting Documents API from Light — 1 operation(s) for v1 - accounting documents.
+- [Light v1 - Attachments API](https://apis.io/apis/light/light-v1-attachments-api/) — The v1 - Attachments API from Light — 4 operation(s) for v1 - attachments.
+- [Light v1 - Bank Accounts API](https://apis.io/apis/light/light-v1-bank-accounts-api/) — The v1 - Bank Accounts API from Light — 4 operation(s) for v1 - bank accounts.
+- [Light v1 - Card Balance Accounts API](https://apis.io/apis/light/light-v1-card-balance-accounts-api/) — The v1 - Card Balance Accounts API from Light — 4 operation(s) for v1 - card balance accounts.
+- [Light v1 - Card Customers API](https://apis.io/apis/light/light-v1-card-customers-api/) — The v1 - Card Customers API from Light — 1 operation(s) for v1 - card customers.
+- [Light v1 - Card Transactions API](https://apis.io/apis/light/light-v1-card-transactions-api/) — The v1 - Card Transactions API from Light — 9 operation(s) for v1 - card transactions.
+- [Light v1 - Cards API](https://apis.io/apis/light/light-v1-cards-api/) — The v1 - Cards API from Light — 4 operation(s) for v1 - cards.
+- [Light v1 - Companies API](https://apis.io/apis/light/light-v1-companies-api/) — The v1 - Companies API from Light — 1 operation(s) for v1 - companies.
+- [Light v1 - Contracts API](https://apis.io/apis/light/light-v1-contracts-api/) — The v1 - Contracts API from Light — 10 operation(s) for v1 - contracts.
+- [Light v1 - Credit Notes API](https://apis.io/apis/light/light-v1-credit-notes-api/) — The v1 - Credit Notes API from Light — 10 operation(s) for v1 - credit notes.
+- [Light v1 - Custom Properties API](https://apis.io/apis/light/light-v1-custom-properties-api/) — The v1 - Custom Properties API from Light — 4 operation(s) for v1 - custom properties.
+- [Light v1 - Customer Credits API](https://apis.io/apis/light/light-v1-customer-credits-api/) — The v1 - Customer Credits API from Light — 12 operation(s) for v1 - customer credits.
+- [Light v1 - Customers API](https://apis.io/apis/light/light-v1-customers-api/) — The v1 - Customers API from Light — 4 operation(s) for v1 - customers.
+- [Light v1 - Entities API](https://apis.io/apis/light/light-v1-entities-api/) — The v1 - Entities API from Light — 1 operation(s) for v1 - entities.
+- [Light v1 - Exchange API](https://apis.io/apis/light/light-v1-exchange-api/) — The v1 - Exchange API from Light — 2 operation(s) for v1 - exchange.
+- [Light v1 - Expenses API](https://apis.io/apis/light/light-v1-expenses-api/) — The v1 - Expenses API from Light — 8 operation(s) for v1 - expenses.
+- [Light v1 - Invoice Approvals API](https://apis.io/apis/light/light-v1-invoice-approvals-api/) — The v1 - Invoice Approvals API from Light — 1 operation(s) for v1 - invoice approvals.
+- [Light v1 - Invoice Payables API](https://apis.io/apis/light/light-v1-invoice-payables-api/) — The v1 - Invoice Payables API from Light — 17 operation(s) for v1 - invoice payables.
+- [Light v1 - Invoice Receivables API](https://apis.io/apis/light/light-v1-invoice-receivables-api/) — The v1 - Invoice Receivables API from Light — 11 operation(s) for v1 - invoice receivables.
+- [Light v1 - Journal Entries API](https://apis.io/apis/light/light-v1-journal-entries-api/) — The v1 - Journal Entries API from Light — 3 operation(s) for v1 - journal entries.
+- [Light v1 - Ledger accounts API](https://apis.io/apis/light/light-v1-ledger-accounts-api/) — The v1 - Ledger accounts API from Light — 1 operation(s) for v1 - ledger accounts.
+- [Light v1 - Ledger Transactions API](https://apis.io/apis/light/light-v1-ledger-transactions-api/) — The v1 - Ledger Transactions API from Light — 1 operation(s) for v1 - ledger transactions.
+- [Light v1 - Products API](https://apis.io/apis/light/light-v1-products-api/) — The v1 - Products API from Light — 3 operation(s) for v1 - products.
+- [Light v1 - Purchase Orders API](https://apis.io/apis/light/light-v1-purchase-orders-api/) — The v1 - Purchase Orders API from Light — 9 operation(s) for v1 - purchase orders.
+- [Light v1 - User Comments API](https://apis.io/apis/light/light-v1-user-comments-api/) — The v1 - User Comments API from Light — 2 operation(s) for v1 - user comments.
+- [Light v1 - Users API](https://apis.io/apis/light/light-v1-users-api/) — The v1 - Users API from Light — 5 operation(s) for v1 - users.
+- [Light v1 - Vendors API](https://apis.io/apis/light/light-v1-vendors-api/) — The v1 - Vendors API from Light — 2 operation(s) for v1 - vendors.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [Light API documentation](https://apis.io/servers/light/light-api-documentation/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Light Agentic Access](https://apis.io/agentic-access/light/light-agentic-access/)
+
+#### Collections (28)
+
+Postman and Open Collection request collections.
+
+- [Light Authorization API](https://apis.io/collections/light/open-light-authorization-api/)
+- [Light Authorization v1 - Accounting Documents API](https://apis.io/collections/light/open-light-v1-accounting-documents-api/)
+- [Light Authorization v1 - Attachments API](https://apis.io/collections/light/open-light-v1-attachments-api/)
+- [Light Authorization v1 - Bank Accounts API](https://apis.io/collections/light/open-light-v1-bank-accounts-api/)
+- [Light Authorization v1 - Card Balance Accounts API](https://apis.io/collections/light/open-light-v1-card-balance-accounts-api/)
+- [Light Authorization v1 - Card Customers API](https://apis.io/collections/light/open-light-v1-card-customers-api/)
+- [Light Authorization v1 - Card Transactions API](https://apis.io/collections/light/open-light-v1-card-transactions-api/)
+- [Light Authorization v1 - Cards API](https://apis.io/collections/light/open-light-v1-cards-api/)
+- [Light Authorization v1 - Companies API](https://apis.io/collections/light/open-light-v1-companies-api/)
+- [Light Authorization v1 - Contracts API](https://apis.io/collections/light/open-light-v1-contracts-api/)
+- [Light Authorization v1 - Credit Notes API](https://apis.io/collections/light/open-light-v1-credit-notes-api/)
+- [Light Authorization v1 - Custom Properties API](https://apis.io/collections/light/open-light-v1-custom-properties-api/)
+- [Light Authorization v1 - Customer Credits API](https://apis.io/collections/light/open-light-v1-customer-credits-api/)
+- [Light Authorization v1 - Customers API](https://apis.io/collections/light/open-light-v1-customers-api/)
+- [Light Authorization v1 - Entities API](https://apis.io/collections/light/open-light-v1-entities-api/)
+- [Light Authorization v1 - Exchange API](https://apis.io/collections/light/open-light-v1-exchange-api/)
+- [Light Authorization v1 - Expenses API](https://apis.io/collections/light/open-light-v1-expenses-api/)
+- [Light Authorization v1 - Invoice Approvals API](https://apis.io/collections/light/open-light-v1-invoice-approvals-api/)
+- [Light Authorization v1 - Invoice Payables API](https://apis.io/collections/light/open-light-v1-invoice-payables-api/)
+- [Light Authorization v1 - Invoice Receivables API](https://apis.io/collections/light/open-light-v1-invoice-receivables-api/)
+- [Light Authorization v1 - Journal Entries API](https://apis.io/collections/light/open-light-v1-journal-entries-api/)
+- [Light Authorization v1 - Ledger accounts API](https://apis.io/collections/light/open-light-v1-ledger-accounts-api/)
+- [Light Authorization v1 - Ledger Transactions API](https://apis.io/collections/light/open-light-v1-ledger-transactions-api/)
+- [Light Authorization v1 - Products API](https://apis.io/collections/light/open-light-v1-products-api/)
+- [Light Authorization v1 - Purchase Orders API](https://apis.io/collections/light/open-light-v1-purchase-orders-api/)
+- …and 3 more published on APIs.io
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Light Openapi Overlay](https://apis.io/overlays/light/light-openapi-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Light Authentication](https://apis.io/security/light/light-authentication/)
+- [Light Domain Security](https://apis.io/security/light/light-domain-security/)
+- [Light Trust Center](https://apis.io/security/light/light-trust-center/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Light Rate Limits](https://apis.io/rate-limits/light/light-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://light.inc/)
+- [Documentation](https://docs.light.inc/getting-started/introduction)
+- [Getting started](https://docs.light.inc/getting-started/introduction)
+- [API reference](https://docs.light.inc/api-reference/customers/001-overview)
+- [Sign up](https://light.inc/book-a-demo)
+- [Support](https://light.inc/help)
+- [Blog](https://light.inc/blog)
+- [Compliance](https://light.inc/soc-2)
+- [Terms of service](https://light.inc/terms)
+- [Privacy policy](https://light.inc/privacy)
+
+## API Evangelist rating
+
+**Kin Score 46.4** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
 |---|---|
-| `openapi/` | searched — `docs.light.inc/openapi-public.json` |
-| `llms/` | searched — verbatim `docs.light.inc/llms.txt` |
-| `mcp/` | searched — live MCP server verified at `docs.light.inc/mcp` |
-| `authentication/` | searched — docs publish an OAuth 2.0 flow the spec omits |
-| `conventions/` | searched — idempotency, pagination, filtering, error envelope, uploads |
-| `rate-limits/` | searched |
-| `errors/` | searched — custom envelope (not RFC 9457) + live-probed variant |
-| `lifecycle/` | searched — versioning + the one deprecated operation |
-| `conformance/` | searched — standards posture + published compliance program |
-| `security/` | probed — domain security, trust/compliance surface |
-| `well-known/` | probed — verified absence, all paths 404 |
-| `data-model/` | derived — 26 entities and their relationship graph |
-| `overlays/` | generated — adds the missing `servers[]`, OAuth scheme, runtime semantics |
-| `skills/` | generated — 4 Agent Skills grounded in verified operationIds |
-| `agentic-access/` | generated — `x-agentic-access` contracts for 183 operations |
+| Discoverability | 71.7 |
+| Contract quality | 39.7 |
+| Contract governance | 18.2 |
+| Operational transparency | 21.1 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 50.0 |
 
-## Notable gaps
+**Agent readiness 36.6** — agent-ready
 
-No status page, changelog, deprecation policy or SLA. No `/.well-known/` documents (including
-no `security.txt` and no RFC 8414 metadata despite operating OAuth). No published SDKs, CLI,
-GitHub organization or Postman collection. No webhook or event surface. The published OpenAPI
-declares no `servers[]` and models 179 of 183 responses as a bare `default`.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | verified |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 26.8** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/light/](https://apis.io/providers/light/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Light: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/light/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
